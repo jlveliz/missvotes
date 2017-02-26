@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => MissVote\User::class,
+            'model' => MissVote\Models\User::class,
         ],
 
         // 'users' => [
