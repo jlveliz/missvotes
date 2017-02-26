@@ -14,6 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+
+Route::group(['prefix'=>'backend'],function(){
+	Auth::routes();
+	Route::get('/',function(){
+		if (Auth::guest()) return redirect('/backend/login');
+		return redirect('/backend/dashboard'); 
+	});
+	Route::get('/dashboard', 'HomeController@index');
+});
+
+
