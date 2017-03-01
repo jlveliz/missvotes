@@ -23,6 +23,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+         //USERS
+        $this->app->bind(
+            'MissVote\RepositoryInterface\UserRepositoryInterface',
+            'MissVote\Repository\UserRepository'
+        );
+
     }
 }

@@ -12,6 +12,13 @@
 
     <!-- Styles -->
     <link href=" {{asset('public/css/app.css')}} " rel="stylesheet">
+    <link href=" {{asset('public/css/backend.css')}} " rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/js/datatables/jquery.dataTables.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/js/datatables/buttons.bootstrap.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/js/datatables/fixedHeader.bootstrap.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/js/datatables/responsive.bootstrap.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/js/datatables/scroller.bootstrap.min.css') }}" />
+    @yield('css')
 
     <!-- Scripts -->
     <script>
@@ -42,9 +49,11 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        <li>Usuarios</li>
-                    </ul>
+                    @if (Auth::user()) 
+                       <ul class="nav navbar-nav">
+                            <li class="@if(Request::path() == 'backend/users') active @endif"><a href="{{ route('users.index') }}">Usuarios <span class="sr-only">(current)</span></a></li>
+                        </ul>
+                    @endif
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
@@ -60,7 +69,7 @@
                                         <a href="{{ url('backend/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
+                                            Salir
                                         </a>
 
                                         <form id="logout-form" action="{{ url('backend/logout') }}" method="POST" style="display: none;">
@@ -75,10 +84,34 @@
             </div>
         </nav>
 
-        @yield('content')
+        <div class="container">
+            <div id="panel-container">
+                <div class="row">
+                    <div class="col-md-12">
+                        @yield('content')    
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- Scripts -->
     <script src="{{asset('public/js/app.js')}} "></script>
+    <script src="{{ asset('public/js/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('public/js/datatables/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ asset('public/js/datatables/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('public/js/datatables/buttons.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('public/js/datatables/jszip.min.js') }}"></script>
+    <script src="{{ asset('public/js/datatables/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('public/js/datatables/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('public/js/datatables/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('public/js/datatables/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('public/js/datatables/dataTables.fixedHeader.min.js') }}"></script>
+    <script src="{{ asset('public/js/datatables/dataTables.keyTable.min.js') }}"></script>
+    <script src="{{ asset('public/js/datatables/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('public/js/datatables/responsive.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('public/js/datatables/dataTables.scroller.min.js') }}"></script>
+    @yield('js')
 </body>
 </html>

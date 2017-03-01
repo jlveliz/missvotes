@@ -20,9 +20,12 @@ Route::group(['prefix'=>'backend'],function(){
 	Auth::routes();
 	Route::get('/',function(){
 		if (Auth::guest()) return redirect('/backend/login');
-		return redirect('/backend/dashboard'); 
+		return redirect('/backend/users'); 
 	});
-	Route::get('/dashboard', 'HomeController@index');
+
+	Route::resource('/users', 'UserController');
+	// Route::resource('/clients', 'UserController');
+	// Route::resource('/misses', 'UserController');
 });
 
 
