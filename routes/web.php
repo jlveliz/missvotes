@@ -24,7 +24,7 @@ Route::group(['prefix'=>'backend'],function(){
 	});
 
 	Route::resource('/users', 'UserController');
-	// Route::resource('/clients', 'UserController');
+	Route::resource('/clients', 'ClientController');
 	// Route::resource('/misses', 'UserController');
 });
 
