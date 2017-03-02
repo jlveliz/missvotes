@@ -15,6 +15,20 @@ class Miss extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'last_name', 'city','height','measures','hobbies','state'
+        'name', 
+        'last_name', 
+        'city_id',
+        'height',
+        'bust_measure',
+        'waist_measure',
+        'hip_measure',
+        'hobbies',
+        'state'
     ];
+
+
+    public function city()
+    {
+    	return $this->belongsTo('MissVote\Models\City','city_id');
+    }
 }

@@ -49,14 +49,14 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
+                            <div class="col-md-12 col-md-offset-5">
                                 <button type="submit" class="btn btn-primary">
                                    @lang('auth.login_submit')
                                 </button>
 
-                                <a class="btn btn-link" href="{{ url('backend/password/reset') }}">
+                               {{--  <a class="btn btn-link" href="{{ url('backend/password/reset') }}">
                                     @lang('auth.lost_password')
-                                </a>
+                                </a> --}}
                             </div>
                         </div>
                     </form>

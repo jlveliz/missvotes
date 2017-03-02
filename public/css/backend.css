@@ -5,3 +5,11 @@
 .subtitle {
 	padding: 10px;
 }
+
+.no-padding {
+	padding: 0px !important
+}
+
+.no-padding-left {
+	padding-left: 0px !important
+}

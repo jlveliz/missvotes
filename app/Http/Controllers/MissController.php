@@ -8,6 +8,8 @@ use MissVote\Http\Requests\MissRequest;
 
 use MissVote\RepositoryInterface\MissRepositoryInterface;
 
+use MissVote\Models\City;
+
 use Response;
 
 use Redirect;
@@ -45,7 +47,8 @@ class MissController extends Controller
      */
     public function create()
     {
-        return view('backend.miss.create');
+        $cities = City::orderby('name')->get();
+        return view('backend.miss.create',compact('cities'));
     }
 
     /**
