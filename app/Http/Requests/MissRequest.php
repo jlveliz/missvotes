@@ -23,11 +23,17 @@ class MissRequest extends FormRequest
      */
     public function rules()
     {
+        // dd($this->all());
         return [
             'name' => 'required',
             'last_name' => 'required',
-            'city' => 'required',
-            'state' => 'required',
+            'city_id' => 'required|exists:city,id',
+            'height' => 'required',
+            'bust_measure' => 'required|integer',
+            'waist_measure' => 'required|integer',
+            'hip_measure' => 'required|integer',
+            'state' => 'required|integer',
+            'photos'=>'required|array'
         ];
            
     }
@@ -38,8 +44,19 @@ class MissRequest extends FormRequest
         return [
             'name.required' => 'El nombre es requerido',
             'last_name.required' => 'El apellido es requerido',
-            'city.required' => 'La ciudad es requerida',
+            'city_id.required' => 'La ciudad es requerida',
+            'city_id.exists' => 'La ciudad que intenta ingresar no existe',
+            'height.required' => 'La altura es requerida',
+            'bust_measure.required' => 'Medida de busto requerida',
+            'bust_measure.integer' => 'Medida de busto inválida', 
+            'waist_measure.required' => 'Medida de cintura requerida',
+            'waist_measure.integer' => 'Medida de cintura inválida',
+            'hip_measure.required' => 'Medida de cadera requerida',
+            'hip_measure.integer' => 'Medida de cadera inválida',
             'state.required' => 'El estado es requerida',
+            'state.integer' => 'El estado es inválido',
+            'photos.required'=>'Las fotos son requeridas',
+            'photos.array'=>'No es un arreglo',
         ];
     }
 }

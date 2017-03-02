@@ -65,7 +65,7 @@ class MissController extends Controller
             'mensaje' => '',
         ];
         if ($miss) {
-            $sessionData['mensaje'] = 'Misse Creado Satisfactoriamente';
+            $sessionData['mensaje'] = 'Misses Creado Satisfactoriamente';
         } else {
             $sessionData['tipo_mensaje'] = 'error';
             $sessionData['mensaje'] = 'El misse no pudo ser creado, intente nuevamente';

@@ -47,9 +47,6 @@ class MissRepository implements MissRepositoryInterface
 	public function save($data)
 	{
 		$miss = new Miss();
-
-		$data['password'] = \Hash::make($data['password']);
-
 		$miss->fill($data);
 		if ($miss->save()) {
 			// $miss->roles()->sync($data['roles']);
