@@ -102,93 +102,11 @@
 @endsection
 
 @section('css')
-<link rel="stylesheet" type="text/css" href="{{ asset('public/css/dropzone.css') }}">
+
 @endsection
 
 @section('js')
-<script src="{{asset('public/js/dropzone.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
-	$(".dropzone").dropzone({
-		paramName:"photos",
-		addRemoveLinks: true,
-        dictRemoveFile: "Remover foto",
-        dictCancelUpload: "Cancelar subida",
-        dictInvalidFileType: "No puede subir archivos de este tipo",
-        acceptedFiles: "image/*",
-        autoProcessQueue: false, //detiene que los archivos no sean subidos al soltarlos
-        uploadMultiple: true,
-        parallelUploads: 100,
-        maxFiles: 100,
-        clickable: ".dropzone-area",
-        previewsContainer: ".dropzone-area",
-        init: function() {
-
-            var submitButton = $("#save")
-            // var galeriaId = $("#galeria_id").val();
-            myDropzone = this; // closure
-
-            submitButton.click(function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                myDropzone.processQueue();
-            });
-
-            this.on("addedfile", function(file) {
-            	console.log(file);
-                // var message = $('.dz-message');
-                // if (message.is(":visible")) {
-                //     message.css('display', 'none');
-                // }
-
-            });
-
-            this.on("reset", function(file) {
-                $('.dz-message').css('display', 'block')
-            });
-
-            this.on("sendingmultiple", function() {
-                // window.setTimeout(function() {
-                //     document.location.href = '/dashboard/galerias'
-                // }, 2000);
-            });
-
-            // if (galeriaId) {
-            //     $.get('/dashboard/galerias/' + galeriaId + '/contenidos', function(data) {
-            //         $.each(data, function(index, el) {
-            //             var existingFile = {
-            //                 id: el.id,
-            //                 name: el.fuente.split('/').pop(),
-            //                 size: el.tamanio,
-            //                 accepted: true,
-            //                 fullPath: document.location.origin + '/' + el.fuente
-            //             };
-
-            //             myDropzone.files.push(existingFile);
-            //             myDropzone.emit("addedfile", existingFile);
-            //             myDropzone.emit("thumbnail", existingFile, existingFile.fullPath);
-            //             myDropzone.emit("success", existingFile);
-            //             myDropzone.emit("complete", existingFile);
-            //         });
-            //     });
-            // }
-        },
-        removedfile: function(file) {
-            if (!file.id) {
-                var _ref;
-                if (file.previewElement) {
-                    if ((_ref = file.previewElement) != null) {
-                        _ref.parentNode.removeChild(file.previewElement);
-                    }
-                }
-                return this._updateMaxFilesReachedClass();
-            } else {
-                //INSERTAMOS ATRIBUTOS AL OBJETO QUE VAMOS A ELIMINAR
-                $(file.previewElement).attr('id', 'item-selected');
-                $(file.previewElement).attr('data-contenido', file.id);
-                //si la foto tiene id aparecerá el modal 
-                $('#eliminacionContenidoGaleriaModal').modal('show');
-            }
-        },
-	});
+	
 </script>
 @endsection
