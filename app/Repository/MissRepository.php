@@ -3,6 +3,7 @@ namespace MissVote\Repository;
 
 use MissVote\RepositoryInterface\MissRepositoryInterface;
 use MissVote\Models\Miss;
+use Carbon\Carbon;
 
 /**
 * 
@@ -47,11 +48,29 @@ class MissRepository implements MissRepositoryInterface
 	public function save($data)
 	{
 		$miss = new Miss();
+		$photos = $data['photos'];
 		$miss->fill($data);
 		if ($miss->save()) {
-			// $miss->roles()->sync($data['roles']);
-			$key = $miss->getKey();
-			return  $this->find($key);
+			$paths=[];
+			$keyMiss = $miss->getKey();
+			foreach ($photos as $key => $photo) {
+				if ($photo->isValid()) {
+					$imageName = $keyMiss.'_'.str_random().'.'. $photo->getClientOriginalExtension();
+					if($photo->move($this->pathUplod(),$imageName)){
+						$paths[$key]['path'] = 'public/uploads/'.$imageName;
+						// $paths[$key]['miss_id'] = $keyMiss;
+					}
+				}
+			}
+			// dd($paths);
+			if (count($paths) > 0) {
+				foreach ($paths as $key => $path) {
+					$modelRelation = new \MissVote\Models\MissPhoto($path);
+					// dd($modelRelation);
+					$miss->photos()->save($modelRelation);
+				}
+			}
+			return  $this->find($keyMiss);
 		} 
 		throw new MissException("Ha ocurrido un error al guardar la candidata",500);
 		
@@ -80,6 +99,11 @@ class MissRepository implements MissRepositoryInterface
 			return true;
 		}
 		throw new MissException("Ha ocurrido un error al eliminar la candidata",500);
+	}
+
+
+	private function pathUplod() {
+		return public_path().'/uploads';
 	}
 
 }

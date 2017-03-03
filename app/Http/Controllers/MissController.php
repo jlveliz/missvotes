@@ -94,9 +94,11 @@ class MissController extends Controller
      */
     public function edit($id)
     {
+        $cities = City::orderby('name')->get();
         $miss = $this->miss->find($id);
         return view('backend.miss.edit',[
-            'miss'=>$miss
+            'miss'=>$miss,
+            'cities' => $cities
             ]);
     }
 

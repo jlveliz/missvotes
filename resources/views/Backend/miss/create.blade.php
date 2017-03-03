@@ -41,8 +41,8 @@
 					<label class="control-label">Estado </label>
 					<select name="state" id="state" class="form-control">
 						<option value="null">--Seleccione--</option>
-						<option value="1">Activa</option>
-						<option value="0">Inactiva</option>
+						<option value="1" @if (old('state') == '1') selected @endif>Activa</option>
+						<option value="0" @if (old('state') == '0') selected @endif>Inactiva</option>
 					</select>
 					@if ($errors->has('state')) <p class="help-block">{{ $errors->first('state') }}</p> @endif
 				</div>
@@ -80,11 +80,8 @@
 			<div class="row">
 				<div class="col-md-12 col-sm-12 col-xs-12">
 					<label class="control-label">Fotos</label>
-					<div class="dropzone-area">
-                    	<div class="dz-message">
-                        	Arrastre las fotos hasta aqui o presione para subirlas.
-                    	</div>
-                	</div>
+					<input type="file" name="photos[]" id="photos" multiple accept="image/*">
+					@if ($errors->has('photos')) <p class="help-block">{{ $errors->first('photos') }}</p> @endif
 				</div>
 			</div>
 			<hr>
@@ -102,11 +99,24 @@
 @endsection
 
 @section('css')
-
+<link rel="stylesheet" type="text/css" href="{{ asset('/public/css/bootstrap-file-input/fileinput.min.css') }}">
 @endsection
 
 @section('js')
+<script src="{{asset('/public/js/bootstrap-file-input/plugins/canvas-to-blob.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('/public/js/bootstrap-file-input/plugins/purify.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('/public/js/bootstrap-file-input/fileinput.js')}}" type="text/javascript"></script>
+<script src="{{asset('/public/js/bootstrap-file-input/themes/fa/theme.js')}}" type="text/javascript"></script>
+<script src="{{asset('/public/js/bootstrap-file-input/locales/es.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
-	
+	$("#photos").fileinput({
+		language : 'es',
+		theme:'fa',
+		allowedFileTypes: ['image'],
+		showUpload: false,
+		minFileCount: 3,
+		maxFileCount: 5,
+		autoReplace:false
+	});
 </script>
 @endsection

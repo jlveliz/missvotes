@@ -26,7 +26,7 @@
      			@foreach ($misses as $miss)
        			<tr>
        				<td>{{$miss->name}} {{$miss->last_name}}</td>
-       				<td>{{$miss->city}}</td>
+       				<td>{{$miss->city->name}}</td>
        				<td>{{$miss->address}}</td>
        				<td>{{$miss->created_at }} / {{$miss->updated_at}}</td>
        				<td class="text-center">

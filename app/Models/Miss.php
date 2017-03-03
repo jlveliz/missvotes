@@ -9,6 +9,8 @@ class Miss extends Model
     
     protected $table = "miss";
 
+    protected $with = ['photos'];
+
       /**
      * The attributes that are mass assignable.
      *
@@ -30,5 +32,10 @@ class Miss extends Model
     public function city()
     {
     	return $this->belongsTo('MissVote\Models\City','city_id');
+    }
+
+    public function photos()
+    {
+      return $this->hasMany('MissVote\Models\MissPhoto','miss_id');
     }
 }
