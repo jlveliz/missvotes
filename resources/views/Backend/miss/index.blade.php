@@ -32,11 +32,9 @@
        				<td class="text-center">
        					<form action="{{ route('misses.destroy',$miss->id) }}" method="POST">
        						<a href="{{ route('misses.edit',$miss->id) }}" title="Editar" class="btn btn-xs btn-warning"> Editar</a>
-       						@if (Auth::user()->id != $miss->id)
          						<input type="hidden" name="_token" value="{{ csrf_token() }}">
          						<input type="hidden" name="_method" value="DELETE">
          						<button type="submit" title="Eliminar" class="btn btn-xs btn-danger"> Eliminar</button>
-       						@endif
        					</form>
        				</td>
        			</tr>

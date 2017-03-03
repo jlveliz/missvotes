@@ -54,7 +54,7 @@
 				<div class="form-group col-md-6 col-sm-6 col-xs-12">
 					<label class="control-label col-md-12 col-sm-12 col-xs-12 no-padding">Medidas </label>
 					<div class="form-group col-md-3 col-sm-3 col-xs-4 no-padding-left @if($errors->has('height')) has-error @endif">
-						<input type="number" placeholder="Altura" name="height" id="height" class="form-control" value="{{$miss->height}}">
+						<input type="number" step="any" min="0.00" placeholder="Altura" name="height" id="height" class="form-control" value="{{$miss->height}}">
 						@if ($errors->has('height')) <p class="help-block">{{ $errors->first('height') }}</p> @endif
 					</div>
 					<div class="form-group col-md-3 col-sm-3 col-xs-4 no-padding-left @if($errors->has('bust_measure')) has-error @endif">
@@ -110,6 +110,12 @@
 <script src="{{asset('/public/js/bootstrap-file-input/themes/fa/theme.js')}}" type="text/javascript"></script>
 <script src="{{asset('/public/js/bootstrap-file-input/locales/es.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
+	<?php 
+		$photos = [];
+		foreach ($miss->photos as $key => $value) {
+			$photos[] = config('app.url').$value->path;
+		}
+	?>
 	$("#photos").fileinput({
 		language : 'es',
 		theme:'fa',
@@ -117,7 +123,13 @@
 		showUpload: false,
 		minFileCount: 3,
 		maxFileCount: 5,
-		autoReplace:false
+		autoReplace:false,
+		initialPreview : [
+			@foreach ($photos as $photo)
+			 	'{{$photo}}',
+			@endforeach
+		]
+		
 	});
 </script>
 @endsection
