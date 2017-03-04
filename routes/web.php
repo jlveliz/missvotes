@@ -30,6 +30,8 @@ Route::group(['prefix'=>'backend'],function(){
 	Route::resource('/users', 'UserController');
 	Route::resource('/clients', 'ClientController');
 	Route::resource('/misses', 'MissController');
+	Route::post('/upload-photo', 'MissController@uploadPhoto');
+	Route::post('/delete-photo', 'MissController@deletePhoto');
 });
 
 

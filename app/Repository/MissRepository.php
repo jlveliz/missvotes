@@ -21,7 +21,7 @@ class MissRepository implements MissRepositoryInterface
 		return $misses;
 	}
 
-	public function find($field, $returnException = true)
+	public function find($field, $returnException = false)
 	{
 		if (is_array($field)) {
 			if (array_key_exists('name', $field)) { 
@@ -51,24 +51,9 @@ class MissRepository implements MissRepositoryInterface
 		$photos = $data['photos'];
 		$miss->fill($data);
 		if ($miss->save()) {
-			$paths=[];
 			$keyMiss = $miss->getKey();
 			foreach ($photos as $key => $photo) {
-				if ($photo->isValid()) {
-					$imageName = $keyMiss.'_'.str_random().'.'. $photo->getClientOriginalExtension();
-					if($photo->move($this->pathUplod(),$imageName)){
-						$paths[$key]['path'] = 'public/uploads/'.$imageName;
-						// $paths[$key]['miss_id'] = $keyMiss;
-					}
-				}
-			}
-			// dd($paths);
-			if (count($paths) > 0) {
-				foreach ($paths as $key => $path) {
-					$modelRelation = new \MissVote\Models\MissPhoto($path);
-					// dd($modelRelation);
-					$miss->photos()->save($modelRelation);
-				}
+				$this->uploadPhoto($keyMiss,$photo);
 			}
 			return  $this->find($keyMiss);
 		} 
@@ -104,6 +89,38 @@ class MissRepository implements MissRepositoryInterface
 
 	private function pathUplod() {
 		return public_path().'/uploads';
+	}
+
+
+	public function uploadPhoto($missId,$photo)
+	{
+		$arrayModel=[];
+		if ($photo->isValid()) {
+			$imageName = $missId.'_'.str_random().'.'. $photo->getClientOriginalExtension();
+			if($photo->move($this->pathUplod(),$imageName)){
+				$arrayModel['path'] = 'public/uploads/'.$imageName;
+				// $paths[$key]['miss_id'] = $keyMiss;
+			}
+		}
+
+		if ($arrayModel) {
+			$miss = $this->find($missId);
+			$modelRelation = new \MissVote\Models\MissPhoto($arrayModel);
+			$miss->photos()->save($modelRelation);
+			return $miss;
+		}
+	}
+
+
+	public function deletePhoto($idPhoto)
+	{
+		$photo = \MissVote\Models\MissPhoto::find($idPhoto);
+		if ($photo) {
+			$pathUnlink = '/'.$photo->path;
+			if ($photo->delete()) {
+				return true;
+			}
+		}
 	}
 
 }

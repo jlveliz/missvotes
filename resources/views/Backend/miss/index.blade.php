@@ -17,7 +17,7 @@
      			<tr>
      				<th>Nombres</th>
             <th>Ciudad</th>
-     				<th>Dirección</th>
+     				<th>Estado</th>
      				<th>Fecha creación/Actualización</th>
      				<th>Acción</th>
      			</tr>
@@ -27,7 +27,7 @@
        			<tr>
        				<td>{{$miss->name}} {{$miss->last_name}}</td>
        				<td>{{$miss->city->name}}</td>
-       				<td>{{$miss->address}}</td>
+       				<td>@if($miss->state == '1') Activa @else Inactiva @endif</td>
        				<td>{{$miss->created_at }} / {{$miss->updated_at}}</td>
        				<td class="text-center">
        					<form action="{{ route('misses.destroy',$miss->id) }}" method="POST">

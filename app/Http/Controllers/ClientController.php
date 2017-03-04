@@ -24,8 +24,7 @@ class ClientController extends Controller
     public function __construct(ClientRepositoryInterface $client)
     {
         $this->client = $client;
-        // $this->role = $role;
-        // $this->middleware('permission');
+        $this->middleware('auth');
     }
 
     /**

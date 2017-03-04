@@ -110,25 +110,42 @@
 <script src="{{asset('/public/js/bootstrap-file-input/themes/fa/theme.js')}}" type="text/javascript"></script>
 <script src="{{asset('/public/js/bootstrap-file-input/locales/es.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
-	<?php 
-		$photos = [];
-		foreach ($miss->photos as $key => $value) {
-			$photos[] = config('app.url').$value->path;
-		}
-	?>
+	$.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+	});
 	$("#photos").fileinput({
 		language : 'es',
 		theme:'fa',
+		uploadAsync: true,
+		uploadUrl : '{{ url('/backend/upload-photo') }}',
+		ajaxSetting : {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
 		allowedFileTypes: ['image'],
-		showUpload: false,
-		minFileCount: 3,
+		// showUpload: true,
+		showRemove: true,
 		maxFileCount: 5,
 		autoReplace:false,
+		initialPreviewCount: true,
+		showUploadedThumbs: true,
+		overwriteInitial:false,
+		initialPreviewAsData: true,
+    	initialPreviewFileType: 'image',
 		initialPreview : [
-			@foreach ($photos as $photo)
-			 	'{{$photo}}',
+			@foreach ($miss->photos as $element)
+			 	'{{config('app.url').'/'.$element->path}}',
 			@endforeach
-		]
+		],
+		uploadExtraData: {
+			miss_id : {{$miss->id}}
+		},
+    	initialPreviewConfig: [
+    		@foreach ($miss->photos as $element)
+    			{ caption : '{{$element->path}}', url: '{{url('/backend/delete-photo')}}', key : {{$element->id}} },
+    		@endforeach
+    	]
 		
 	});
 </script>

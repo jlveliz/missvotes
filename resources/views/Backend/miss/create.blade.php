@@ -116,7 +116,9 @@
 		showUpload: false,
 		minFileCount: 3,
 		maxFileCount: 5,
-		autoReplace:false
+		autoReplace:true,
+		overwriteInitial:false,
+		showRemove: true,
 	});
 </script>
 @endsection

@@ -23,6 +23,7 @@ class MissController extends Controller
 
     public function __construct(MissRepositoryInterface $miss)
     {
+        $this->middleware('auth');
         $this->miss = $miss;
     }
 
@@ -98,7 +99,7 @@ class MissController extends Controller
         $miss = $this->miss->find($id);
         return view('backend.miss.edit',[
             'miss'=>$miss,
-            'cities' => $cities
+            'cities' => $cities,
             ]);
     }
 
@@ -152,5 +153,24 @@ class MissController extends Controller
         return Redirect::action('MissController@index')->with($sessionData);
             
         
+    }
+
+
+    public function uploadPhoto(Request $request)
+    {
+        $missId = $request->get('miss_id');
+        $photo = $request->file('photos');
+        // dd($photo[0]);
+        if($miss = $this->miss->uploadPhoto($missId,$photo[0])){
+            return ['miss'=>$miss];
+        }
+    }
+
+    public function deletePhoto(Request $request)
+    {
+        $key = $request->get('key');
+        if ($this->miss->deletePhoto($key)) {
+            return ['success'=>"It's cool"];
+        }
     }
 }

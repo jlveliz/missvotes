@@ -23,18 +23,34 @@ class MissRequest extends FormRequest
      */
     public function rules()
     {
-        // dd($this->all());
-        return [
-            'name' => 'required',
-            'last_name' => 'required',
-            'city_id' => 'required|exists:city,id',
-            'height' => 'required',
-            'bust_measure' => 'required|integer',
-            'waist_measure' => 'required|integer',
-            'hip_measure' => 'required|integer',
-            'state' => 'required|integer',
-            'photos'=>'required|array'
-        ];
+        switch ($this->method()) {
+            case 'POST':
+                return [
+                    'name' => 'required',
+                    'last_name' => 'required',
+                    'city_id' => 'required|exists:city,id',
+                    'height' => 'required',
+                    'bust_measure' => 'required|integer',
+                    'waist_measure' => 'required|integer',
+                    'hip_measure' => 'required|integer',
+                    'state' => 'required|integer',
+                    'photos'=>'required|array'
+                ];
+                break;
+            case "PUT":
+                return [
+                    'name' => 'required',
+                    'last_name' => 'required',
+                    'city_id' => 'required|exists:city,id',
+                    'height' => 'required',
+                    'bust_measure' => 'required|integer',
+                    'waist_measure' => 'required|integer',
+                    'hip_measure' => 'required|integer',
+                    'state' => 'required|integer',
+                    'photos'=>'required_with:photos|array'
+                ];
+                break;
+        }
            
     }
 
