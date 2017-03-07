@@ -51,6 +51,34 @@
 				</div>
 			</div>
 
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<p class="subtitle">Tickets</p>
+					<table id="tickets-detail" class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Ticket</th>
+								<th>Tipo de pago</th>
+								<th>Estado</th>
+								<th>Acción</th>
+							</tr>
+						</thead>
+						<tbody>
+						@foreach ($client->tickets as $ticket)
+							<tr>
+								<td>{{$ticket->ticket->name}}</td>
+								<td>{{$ticket->payment_type}}</td>
+								<td>@if($ticket->state == '1') Activa @else Usada @endif</td>
+								<td>
+									<button title="Ver detalle" class="btn btn-xs btn btn-primary"><i class="fa fa-eye"></i> Ver</button>
+								</td>
+							</tr>
+						@endforeach
+						</tbody>
+					</table>
+				</div>
+			</div>
+
 			<div class="form-group  col-md-12 col-sm-12 col-xs-12">
 				<a href="{{ route('clients.index') }}" class="btn btn-primary">Cancelar</a>
                 <button type="submit" class="btn btn-success">Guardar</button>
@@ -60,4 +88,16 @@
 	</div>
 
 </div>
+@endsection
+
+@section('js')
+<script type="text/javascript">
+  $(document).ready(function(){
+      $('#tickets-detail').DataTable({
+        "language": {
+          "url": "../../../public/js/datatables/json/es.json"
+        }
+      });
+  });
+ </script>
 @endsection

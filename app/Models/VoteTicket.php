@@ -8,7 +8,7 @@ class VoteTicket extends Model
 {
     protected $table = "vote_ticket";
 
-    protected $id = "id";
+    protected $primaryKey = "id";
 
      /**
      * The attributes that are mass assignable.

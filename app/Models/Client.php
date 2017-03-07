@@ -28,4 +28,10 @@ class Client extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public function tickets()
+    {
+        return $this->hasMany('MissVote\Models\ClientVoteTicket');
+    }
 }
