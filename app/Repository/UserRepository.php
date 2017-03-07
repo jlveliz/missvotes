@@ -65,7 +65,6 @@ class UserRepository implements UserRepositoryInterface
 		$user = $this->find($id);
 
 		if ($user) {
-			// dd($data);
 			$user->name = $data['name'];
 			$user->email = $data['email'];
 			$user->address = $data['address'];
