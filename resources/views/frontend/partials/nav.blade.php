@@ -16,10 +16,15 @@
                 <img class="logo" src="{{ asset('public/images/queen.png') }}" alt="Logo">
             </a>
         </div>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Entrar</a></li>
-            <li><a href="#">Registrarse</a></li>
-        </ul>
+        @if (!Auth::user())
+            <ul class="nav navbar-nav navbar-right">
+                <li><a data-toggle="modal" data-target="#login-modal" href="#">Entrar</a></li>
+                <li><a href="#">Registrarse</a></li>
+            </ul>
+        @else
+            {!!Auth::user()!!}
+        @endif
+
     </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>

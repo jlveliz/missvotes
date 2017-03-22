@@ -15,6 +15,13 @@ Route::get('/', function () {
     return view('layouts.frontend');
 });
 
+Route::group(['prefix'=>'auth'],function(){
+	Route::post('login', 'Auth\LoginClientController@login');
+	Route::post('logout', 'Auth\LoginClientController@logout')->name('logout');
+});
+
+
+
 
 Route::group(['prefix'=>'backend'],function(){
 	Route::get('/',function(){

@@ -7,6 +7,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" type="text/css" href="{{ asset('public/css/app.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('public/css/frontend.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 	 <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -15,6 +16,15 @@
     </script>
 </head>
 <body>
+    <div id="spinner">
+        <div class="spinner" >
+          <div class="rect1"></div>
+          <div class="rect2"></div>
+          <div class="rect3"></div>
+          <div class="rect4"></div>
+          <div class="rect5"></div>
+        </div>
+    </div>
 	<header id="header">
 		@include('frontend.partials.nav')
 	</header><!-- /header -->
@@ -78,6 +88,11 @@
 			<p class="text-center">{{date('Y')}}© todos los derechos reservados.</p>
 		</footer>
 	</div>
-	<script src="{{asset('public/js/app.js')}} "></script>
+    <script src="{{asset('public/js/app.js')}} "></script>
+	<script src="{{asset('public/js/frontend-app.js')}} "></script>
+    {{-- partials --}}
+    @include('frontend.modals.login')
+    @include('frontend.modals.register')
+
 </body>
 </html>
