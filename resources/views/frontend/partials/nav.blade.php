@@ -11,15 +11,9 @@
         </button>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <!-- <ul class="nav navbar-nav">
-            <li class="active"><a href="index.php">Home <span class="sr-only">(current)</span></a></li>
-            <li><a href="about-us.php">About Us</a></li>
-            <li><a href="media.php">Media</a></li>
-            <li><a href="events.php">Events</a></li>
-        </ul> -->
         <div class="navbar-brand hidden-xs">
             <a class="white-circle" href="#">
-                <img class="logo" src="" alt="Logo">
+                <img class="logo" src="{{ asset('public/images/queen.png') }}" alt="Logo">
             </a>
         </div>
         <ul class="nav navbar-nav navbar-right">

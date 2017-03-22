@@ -13,17 +13,19 @@ body {
   margin: 0 !important;
   overflow: visible;
 }
-.navbar-collapse .navbar-brand .white-circle {
+.navbar-brand .white-circle {
   display: block;
-  width: 101px;
-  height: 101px;
+  width: 90px;
+  height: 90px;
   background-color: white;
   border-radius: 50%;
   border: 1px solid #cdcdcd;
-  content: "Logo"
+  content: "Logo";
+  margin-left: 80px
 }
 .navbar-collapse .navbar-brand .white-circle .logo {
-  width: 50px;
+  width: 85px;
+  margin: 1px;
 }
 
 @media (min-width: 768px) {
