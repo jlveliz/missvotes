@@ -1,3 +1,59 @@
 body {
     background: #eeefee;
 }
+
+.navbar .container {
+  text-align: center;
+}
+
+.navbar-collapse .navbar-brand {
+  display: inline-block;
+  float: none;
+  padding: 0;
+  margin: 0 !important;
+  overflow: visible;
+}
+.navbar-collapse .navbar-brand .white-circle {
+  display: block;
+  width: 101px;
+  height: 101px;
+  background-color: white;
+  border-radius: 50%;
+  border: 1px solid #cdcdcd;
+  content: "Logo"
+}
+.navbar-collapse .navbar-brand .white-circle .logo {
+  width: 50px;
+}
+
+@media (min-width: 768px) {
+	.navbar {
+		border-radius: 0px;
+	}
+}
+
+.container-app{
+	background-color: #ffffff;
+	border:  1px solid #cdcdcd;
+	position: relative;
+	top: 51px
+}
+
+.footer{
+	border-top: 1px solid #cdcdcd;
+
+}
+
+.jumbotron-app {
+	border-radius: 0px!important;
+}
+
+.port-image
+{
+    width: 100%;
+}
+
+.gallery_product
+{
+    margin-bottom: 30px;
+}
