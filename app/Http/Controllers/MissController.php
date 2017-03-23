@@ -8,7 +8,7 @@ use MissVote\Http\Requests\MissRequest;
 
 use MissVote\RepositoryInterface\MissRepositoryInterface;
 
-use MissVote\Models\City;
+use MissVote\Models\Country;
 
 use Response;
 
@@ -49,8 +49,8 @@ class MissController extends Controller
      */
     public function create()
     {
-        $cities = City::orderby('name')->get();
-        return view('backend.miss.create',compact('cities'));
+        $countries = Country::orderby('name')->get();
+        return view('backend.miss.create',compact('countries'));
     }
 
     /**
@@ -96,11 +96,11 @@ class MissController extends Controller
      */
     public function edit($id)
     {
-        $cities = City::orderby('name')->get();
+        $countries = Country::orderby('name')->get();
         $miss = $this->miss->find($id);
         return view('backend.miss.edit',[
             'miss'=>$miss,
-            'cities' => $cities,
+            'countries' => $countries,
             ]);
     }
 

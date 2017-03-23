@@ -16,7 +16,7 @@
      		<thead>
      			<tr>
      				<th>Nombres</th>
-            <th>Ciudad</th>
+            <th>País</th>
      				<th>Estado</th>
      				<th>Fecha creación/Actualización</th>
      				<th>Acción</th>
@@ -26,7 +26,7 @@
      			@foreach ($misses as $miss)
        			<tr>
        				<td>{{$miss->name}} {{$miss->last_name}}</td>
-       				<td>{{$miss->city->name}}</td>
+       				<td>{{$miss->country->name}}</td>
        				<td>@if($miss->state == '1') Activa @else Inactiva @endif</td>
        				<td>{{$miss->created_at }} / {{$miss->updated_at}}</td>
        				<td class="text-center">

@@ -28,7 +28,7 @@ class MissRequest extends FormRequest
                 return [
                     'name' => 'required',
                     'last_name' => 'required',
-                    'city_id' => 'required|exists:city,id',
+                    'country_id' => 'required|exists:country,id',
                     'height' => 'required',
                     'bust_measure' => 'required|integer',
                     'waist_measure' => 'required|integer',
@@ -41,7 +41,7 @@ class MissRequest extends FormRequest
                 return [
                     'name' => 'required',
                     'last_name' => 'required',
-                    'city_id' => 'required|exists:city,id',
+                    'country_id' => 'required|exists:country,id',
                     'height' => 'required',
                     'bust_measure' => 'required|integer',
                     'waist_measure' => 'required|integer',
@@ -60,8 +60,8 @@ class MissRequest extends FormRequest
         return [
             'name.required' => 'El nombre es requerido',
             'last_name.required' => 'El apellido es requerido',
-            'city_id.required' => 'La ciudad es requerida',
-            'city_id.exists' => 'La ciudad que intenta ingresar no existe',
+            'country_id.required' => 'La ciudad es requerida',
+            'country_id.exists' => 'La ciudad que intenta ingresar no existe',
             'height.required' => 'La altura es requerida',
             'bust_measure.required' => 'Medida de busto requerida',
             'bust_measure.integer' => 'Medida de busto inválida', 

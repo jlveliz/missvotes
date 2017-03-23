@@ -4,10 +4,10 @@ namespace MissVote\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class City extends Model
+class Country extends Model
 {
     
-    protected $table = "city";
+    protected $table = "country";
 
       /**
      * The attributes that are mass assignable.

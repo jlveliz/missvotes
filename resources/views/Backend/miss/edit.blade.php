@@ -27,15 +27,15 @@
 					@if ($errors->has('last_name')) <p class="help-block">{{ $errors->first('last_name') }}</p> @endif
 				</div>
 
-				<div class="form-group col-md-3 col-sm-3 col-xs-12 @if($errors->has('city_id')) has-error @endif">
-					<label class="control-label">Ciudad </label>
-					<select class="form-control" name="city_id" id="city">
+				<div class="form-group col-md-3 col-sm-3 col-xs-12 @if($errors->has('country_id')) has-error @endif">
+					<label class="control-label">País </label>
+					<select class="form-control" name="country_id" id="country">
 						<option value="null">--Seleccione--</option>
-						@foreach ($cities as $element)
-							<option value="{{$element->id}}" @if($miss->city_id == $element->id) selected  @endif>{{$element->name}}</option>
+						@foreach ($countries as $element)
+							<option value="{{$element->id}}" @if($miss->country_id == $element->id) selected  @endif>{{$element->name}}</option>
 						@endforeach
 					</select>
-					@if ($errors->has('city_id')) <p class="help-block">{{ $errors->first('city_id') }}</p> @endif
+					@if ($errors->has('country_id')) <p class="help-block">{{ $errors->first('country_id') }}</p> @endif
 				</div>
 
 				<div class="form-group col-md-2 col-sm-2 col-xs-12 @if($errors->has('state')) has-error @endif">
@@ -72,7 +72,7 @@
 					</div>
 				</div>
 
-				<div class="form-group col-md-6 col-sm-6 col-xs-12"  @if($errors->has('city_id')) has-error @endif>
+				<div class="form-group col-md-6 col-sm-6 col-xs-12"  @if($errors->has('country_id')) has-error @endif>
 					<label class="control-label" for="hobbies">Hobbies </label>
 					<textarea name="hobbies" id="hobbies" class="form-control">{{$miss->hobbies}}</textarea>
 				</div>

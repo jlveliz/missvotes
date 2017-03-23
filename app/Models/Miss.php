@@ -19,7 +19,7 @@ class Miss extends Model
     protected $fillable = [
         'name', 
         'last_name', 
-        'city_id',
+        'country_id',
         'height',
         'bust_measure',
         'waist_measure',
@@ -29,9 +29,9 @@ class Miss extends Model
     ];
 
 
-    public function city()
+    public function country()
     {
-    	return $this->belongsTo('MissVote\Models\City','city_id');
+    	return $this->belongsTo('MissVote\Models\Country','country_id');
     }
 
     public function photos()
