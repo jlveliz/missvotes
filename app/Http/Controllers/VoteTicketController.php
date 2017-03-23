@@ -22,6 +22,7 @@ class VoteTicketController extends Controller
     public function __construct(VoteTicketRepositoryInterface $voteTicket)
     {
         $this->middleware('auth');
+        $this->middleware('can:acess-backend');
         $this->voteTicket = $voteTicket;
     }
 

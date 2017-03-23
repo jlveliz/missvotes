@@ -94,7 +94,7 @@ class LoginClientController extends Controller
         );
 
         if ($attempt) {
-            if (Auth::user()->is_admin == 0) {
+            if (Auth::user()) {
                 return true;
             }
 

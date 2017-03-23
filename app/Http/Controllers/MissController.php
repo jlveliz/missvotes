@@ -24,6 +24,7 @@ class MissController extends Controller
     public function __construct(MissRepositoryInterface $miss)
     {
         $this->middleware('auth');
+         $this->middleware('can:acess-backend');
         $this->miss = $miss;
     }
 

@@ -17,8 +17,12 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect('backend/misses');
+        if ($guard == 'is_admin') {
+            if (Auth::guard()->check() && Auth::user()->is_admin) {
+                return redirect('backend/users');
+            } else {
+                return redirect('backend/login');
+            }
         }
 
         return $next($request);

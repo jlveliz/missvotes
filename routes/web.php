@@ -16,18 +16,16 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix'=>'auth'],function(){
-	Route::post('login', 'Auth\LoginClientController@login');
-	Route::post('logout', 'Auth\LoginClientController@logout')->name('logout');
+	Route::post('login', 'Auth\LoginClientController@login')->name('client.login');
+	Route::post('logout', 'Auth\LoginClientController@logout')->name('client.logout');
 });
 
 
 
 
 Route::group(['prefix'=>'backend'],function(){
-	Route::get('/',function(){
-		if (Auth::guest()) return redirect('/backend/login');
-		return redirect('/backend/users'); 
-	});
+
+	Route::get('/',function(){})->middleware('guest:is_admin');
 
 	// Authentication Routes...
     Route::get('login', 'Auth\LoginAdminController@showLoginForm')->name('login');

@@ -50,7 +50,7 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    @if (Auth::user()) 
+                    @if (Auth::user() && Auth::user()->is_admin) 
                        <ul class="nav navbar-nav">
                             <li class="@if(Request::path() == 'backend/misses') active @endif"><a href="{{ route('misses.index') }}">Candidatas <span class="sr-only">(current)</span></a></li>
                             <li class="@if(Request::path() == 'backend/vote-tickets') active @endif"><a href="{{ route('vote-tickets.index') }}">Tickets <span class="sr-only">(current)</span></a></li>
@@ -62,7 +62,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
-                        @if (Auth::user())
+                        @if (Auth::user() && Auth::user()->is_admin)
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>

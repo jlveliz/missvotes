@@ -15,6 +15,7 @@ $(document).ready(function() {
         $("#spinner").css('display', 'block');
         $("#login-email").attr('readonly', 'readonly');
         $("#login-password").attr('readonly', 'readonly');
+        $(".loginmodal-container").removeClass('animated shake');
 
         $.ajax({
                 url: '/auth/login',
@@ -25,12 +26,12 @@ $(document).ready(function() {
                 location.reload();
             })
             .fail(function(reason) {
-                console.log(reason);
                 var message = reason.responseJSON.email;
                 $("#login-password").val('');
                 $("#login-password").attr('autofocus');
                 $("#login-email").parent().addClass('has-error');
                 $("#login-email").next('.help-block').children('strong').text(message);
+                $(".loginmodal-container").addClass('animated shake');
             })
             .always(function() {
                 $("#spinner").css('display', 'none');

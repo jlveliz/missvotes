@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Auth;
 
+
 class LoginAdminController extends Controller
 {
     /*
@@ -36,7 +37,7 @@ class LoginAdminController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('guest:is_admin', ['except' => 'logout']);
+        $this->middleware('guest', ['except' => 'logout']);
     }
 
     /**
@@ -86,7 +87,7 @@ class LoginAdminController extends Controller
         $attempt = $this->guard()->attempt(
             $this->credentials($request), $request->has('remember')
         );
-
+        
         if ($attempt) {
             if (Auth::user()->is_admin) {
                 return true;
@@ -97,8 +98,6 @@ class LoginAdminController extends Controller
 
         return false;
     }
-
-
 
 
 }

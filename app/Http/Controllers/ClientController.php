@@ -25,6 +25,7 @@ class ClientController extends Controller
     {
         $this->client = $client;
         $this->middleware('auth');
+        $this->middleware('can:acess-backend');
     }
 
     /**

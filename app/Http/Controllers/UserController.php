@@ -25,6 +25,7 @@ class UserController extends Controller
     {
         $this->user = $user;
         $this->middleware('auth');
+         $this->middleware('can:acess-backend');
     }
 
     /**

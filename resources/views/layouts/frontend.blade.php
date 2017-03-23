@@ -6,7 +6,8 @@
 	<title>{{config('app.name')}}</title>
 	<link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" type="text/css" href="{{ asset('public/css/app.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('public/css/frontend.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/frontend.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('public/css/animate.min.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 	 <!-- Scripts -->
     <script>
