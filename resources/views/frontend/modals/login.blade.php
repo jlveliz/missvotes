@@ -12,6 +12,14 @@
             <input type="password" class="form-control" name="password" id="login-password" placeholder="Contraseña">
         </div>
 
+        <div class="form-group">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : ''}}> @lang('auth.remember_me')
+                </label>
+            </div>
+        </div>
+
         <input type="submit" name="login" id="login" class="login btn btn-primary btn-block loginmodal-submit" value="Ingresar">
       </form>
       

@@ -9,6 +9,8 @@ $(document).ready(function() {
 
     $("#login").click(function(event) {
 
+        var thisModal = $(this);
+
         event.preventDefault();
 
         var dataForm = $("#login-form-content").serialize();
@@ -23,6 +25,7 @@ $(document).ready(function() {
                 data: dataForm,
             })
             .done(function(data) {
+                thisModal.modal('hide');
                 location.reload();
             })
             .fail(function(reason) {
