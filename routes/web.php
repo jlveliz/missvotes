@@ -18,6 +18,8 @@ Route::get('/', function () {
 Route::group(['prefix'=>'auth'],function(){
 	Route::post('login', 'Auth\LoginClientController@login')->name('client.login');
 	Route::post('logout', 'Auth\LoginClientController@logout')->name('client.logout');
+	Route::post('register', 'Auth\RegisterClientController@register')->name('client.register');
+	Route::post('verify', 'Auth\RegisterClientController@verifyEmail')->name('client.verify');
 });
 
 

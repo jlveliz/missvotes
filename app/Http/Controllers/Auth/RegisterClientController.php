@@ -2,12 +2,14 @@
 
 namespace MissVote\Http\Controllers\Auth;
 
-use MissVote\User;
+use MissVote\Models\Client;
 use MissVote\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Request;
+use Response;
 
-class RegisterController extends Controller
+class RegisterClientController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -27,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -49,8 +51,10 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'email' => 'required|email|max:255|unique:user',
+            'address' => 'required',
             'password' => 'required|min:6|confirmed',
+            'password_confirmation' => 'required|min:6'
         ]);
     }
 
@@ -62,10 +66,29 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        return Client::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'address' => $data['address'],
+            'is_admin' => 0,
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    /**
+     * 
+     */
+    protected function verifyEmail(){
+        $data = Request::only('email');
+        $validator =  Validator::make($data,[
+            'email' => 'unique:user'
+        ],[
+            'email.unique' => 'El correo ya existe'
+        ]);
+
+        if ($validator->fails()) {
+            return Response::json($validator->errors()->first('email'),200);
+        }
+        return Response::json('true',200);
     }
 }

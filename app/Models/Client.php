@@ -11,6 +11,11 @@ class Client extends Authenticatable
 
     protected $table = "user";
 
+    // public function __construct() {
+    //     parent::__construct();
+    //     $this->is_admin = 0;
+    // }
+
     /**
      * The attributes that are mass assignable.
      *

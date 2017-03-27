@@ -5,11 +5,11 @@
       <h1>Ingreso</h1><br>
       <form role="form" id="login-form-content" action="#">
         <div class="form-group">
-            <input type="text" class="form-control" name="email" id="login-email" placeholder="Correo" autofocus>
+            <input type="text" class="form-control" name="email" id="login-email" placeholder="Correo" autofocus required>
             <span class="help-block"><strong></strong></span>
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" name="password" id="login-password" placeholder="Contraseña">
+            <input type="password" class="form-control" name="password" id="login-password" placeholder="Contraseña" required>
         </div>
 
         <div class="form-group">
@@ -24,7 +24,7 @@
       </form>
       
       <div class="login-help">
-        <a href="#">Registro</a> - <a href="#">Perdió su contraseña</a>
+        <a href="#" id="go-register">Registro</a> - <a href="#">Perdió su contraseña</a>
       </div>
     </div>
   </div>
