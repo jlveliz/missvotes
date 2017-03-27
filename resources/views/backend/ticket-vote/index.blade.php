@@ -12,7 +12,7 @@
         <div class="clearfix"></div>
        @endif
      	<table id="tickets-datatable" class="table table-bordered">
-     		<caption>Listado de Tickets <a class="pull-right btn btn-primary" href="{{ route('vote-tickets.create') }}" title="Crear">Crear </a></caption>
+     		<caption>Listado de Tickets <a class="pull-right btn btn-primary" href="{{ route('tickets-vote.create') }}" title="Crear">Crear </a></caption>
      		<thead>
      			<tr>
      				<th>Nombre</th>
@@ -30,8 +30,8 @@
        				<td>${{$ticket->price}}</td>
        				<td>{{$ticket->created_at }} / {{$ticket->updated_at}}</td>
        				<td class="text-center">
-       					<form action="{{ route('vote-tickets.destroy',$ticket->id) }}" method="POST">
-       						<a href="{{ route('vote-tickets.edit',$ticket->id) }}" title="Editar" class="btn btn-xs btn-warning"> Editar</a>
+       					<form action="{{ route('tickets-vote.destroy',$ticket->id) }}" method="POST">
+       						<a href="{{ route('tickets-vote.edit',$ticket->id) }}" title="Editar" class="btn btn-xs btn-warning"> Editar</a>
          						<input type="hidden" name="_token" value="{{ csrf_token() }}">
          						<input type="hidden" name="_method" value="DELETE">
          						<button type="submit" title="Eliminar" class="btn btn-xs btn-danger"> Eliminar</button>

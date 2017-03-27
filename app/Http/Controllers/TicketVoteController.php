@@ -4,22 +4,22 @@ namespace MissVote\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use MissVote\Http\Requests\VoteTicketRequest;
+use MissVote\Http\Requests\TicketVoteRequest;
 
-use MissVote\RepositoryInterface\VoteTicketRepositoryInterface;
+use MissVote\RepositoryInterface\TicketVoteRepositoryInterface;
 
-use MissVote\Models\VoteTicket;
+use MissVote\Models\TicketVote;
 
 use Response;
 
 use Redirect;
 
-class VoteTicketController extends Controller
+class TicketVoteController extends Controller
 {
     
     private $voteTicket;
 
-    public function __construct(VoteTicketRepositoryInterface $voteTicket)
+    public function __construct(TicketVoteRepositoryInterface $voteTicket)
     {
         $this->middleware('auth');
         $this->middleware('can:acess-backend');
@@ -37,7 +37,7 @@ class VoteTicketController extends Controller
         $data = [
             'voteTickets' => $voteTickets
         ];
-        return view('backend.vote-ticket.index',$data);
+        return view('backend.ticket-vote.index',$data);
     }
 
     /**
@@ -47,7 +47,7 @@ class VoteTicketController extends Controller
      */
     public function create()
     {
-       return view('backend.vote-ticket.create');
+       return view('backend.ticket-vote.create');
     }
 
     /**
@@ -55,7 +55,7 @@ class VoteTicketController extends Controller
      *
      * @return Response
      */
-    public function store(VoteTicketRequest $request)
+    public function store(TicketVoteRequest $request)
     {
         $data = $request->all();
         $voteTicket = $this->voteTicket->save($data);
@@ -70,7 +70,7 @@ class VoteTicketController extends Controller
             $sessionData['mensaje'] = 'El Tickets no pudo ser creado, intente nuevamente';
         }
         
-        return Redirect::action('VoteTicketController@edit',$voteTicket->id)->with($sessionData);
+        return Redirect::action('TicketVoteController@edit',$voteTicket->id)->with($sessionData);
         
     }
 
@@ -94,7 +94,7 @@ class VoteTicketController extends Controller
     public function edit($id)
     {
         $voteTicket = $this->voteTicket->find($id);
-        return view('backend.vote-ticket.edit',[
+        return view('backend.ticket-vote.edit',[
             'voteTicket'=>$voteTicket
             ]);
     }
@@ -105,7 +105,7 @@ class VoteTicketController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(VoteTicketRequest $request, $id)
+    public function update(TicketVoteRequest $request, $id)
     {
         $data = $request->all();
         $voteTicket = $this->voteTicket->edit($id,$data);
@@ -120,7 +120,7 @@ class VoteTicketController extends Controller
             $sessionData['mensaje'] = 'El Ticket no pudo ser creado, intente nuevamente';
         }
         
-        return Redirect::action('VoteTicketController@edit',$voteTicket->id)->with($sessionData);
+        return Redirect::action('TicketVoteController@edit',$voteTicket->id)->with($sessionData);
     }
 
     /**
@@ -146,7 +146,7 @@ class VoteTicketController extends Controller
             $sessionData['mensaje'] = 'El ticket no pudo ser eliminado, intente nuevamente';
         }
         
-        return Redirect::action('VoteTicketController@index')->with($sessionData);
+        return Redirect::action('TicketVoteController@index')->with($sessionData);
             
         
     }

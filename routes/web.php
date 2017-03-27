@@ -36,7 +36,7 @@ Route::group(['prefix'=>'backend'],function(){
 	Route::resource('/clients', 'ClientController');
 	Route::resource('/memberships', 'MembershipController');
 	Route::resource('/misses', 'MissController');
-	Route::resource('/vote-tickets', 'VoteTicketController');
+	Route::resource('/tickets-vote', 'TicketVoteController');
 	Route::post('/upload-photo', 'MissController@uploadPhoto');
 	Route::post('/delete-photo', 'MissController@deletePhoto');
 });

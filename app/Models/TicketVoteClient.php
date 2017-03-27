@@ -4,9 +4,9 @@ namespace MissVote\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ClientVoteTicket extends Model
+class TicketVoteClient extends Model
 {
-    protected $table = "client_vote_ticket";
+    protected $table = "ticket_vote_client";
 
 
     public function client()
@@ -16,6 +16,6 @@ class ClientVoteTicket extends Model
 
     public function ticket()
     {
-    	return $this->belongsTo('MissVote\Models\VoteTicket','vote_ticket_id');
+    	return $this->belongsTo('MissVote\Models\TicketVote','ticket_vote_id');
     }
 }

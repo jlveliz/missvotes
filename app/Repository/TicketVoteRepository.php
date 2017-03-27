@@ -1,19 +1,19 @@
 <?php
 namespace MissVote\Repository;
 
-use MissVote\RepositoryInterface\VoteTicketRepositoryInterface;
-use MissVote\Models\VoteTicket;
+use MissVote\RepositoryInterface\TicketVoteRepositoryInterface;
+use MissVote\Models\TicketVote;
 use Carbon\Carbon;
 
 /**
 * 
 */
-class VoteTicketRepository implements VoteTicketRepositoryInterface
+class TicketVoteRepository implements TicketVoteRepositoryInterface
 {
 	
 	public function enum($params = null)
 	{
-		$ticketVotes = VoteTicket::all();
+		$ticketVotes = TicketVote::all();
 		
 		if (!$ticketVotes) {
 			return false;
@@ -25,13 +25,13 @@ class VoteTicketRepository implements VoteTicketRepositoryInterface
 	{
 		if (is_array($field)) {
 			if (array_key_exists('name', $field)) { 
-				$miss = VoteTicket::where('name',$field['name'])->first();
+				$miss = TicketVote::where('name',$field['name'])->first();
 			} else {
 				return false;	
 			}
 		} elseif (is_string($field) || is_int($field)) {
 		
-			$miss = VoteTicket::where('id',$field)->first();
+			$miss = TicketVote::where('id',$field)->first();
 		}
 
 		
@@ -45,7 +45,7 @@ class VoteTicketRepository implements VoteTicketRepositoryInterface
 	//TODO
 	public function save($data)
 	{
-		$miss = new VoteTicket();
+		$miss = new TicketVote();
 		$miss->fill($data);
 		if ($miss->save()) {
 			$keyMiss = $miss->getKey();

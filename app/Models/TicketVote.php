@@ -4,9 +4,9 @@ namespace MissVote\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class VoteTicket extends Model
+class TicketVote extends Model
 {
-    protected $table = "vote_ticket";
+    protected $table = "ticket_vote";
 
     protected $primaryKey = "id";
 

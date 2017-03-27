@@ -32,6 +32,6 @@ class Client extends Authenticatable
 
     public function tickets()
     {
-        return $this->hasMany('MissVote\Models\ClientVoteTicket');
+        return $this->hasMany('MissVote\Models\TicketVoteClient');
     }
 }

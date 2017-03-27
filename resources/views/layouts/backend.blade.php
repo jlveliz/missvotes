@@ -53,7 +53,7 @@
                     @if (Auth::user() && Auth::user()->is_admin) 
                        <ul class="nav navbar-nav">
                             <li class="@if(Request::path() == 'backend/misses') active @endif"><a href="{{ route('misses.index') }}">Candidatas <span class="sr-only">(current)</span></a></li>
-                            <li class="@if(Request::path() == 'backend/vote-tickets') active @endif"><a href="{{ route('vote-tickets.index') }}">Tickets <span class="sr-only">(current)</span></a></li>
+                            <li class="@if(Request::path() == 'backend/tickets-vote') active @endif"><a href="{{ route('tickets-vote.index') }}">Tickets <span class="sr-only">(current)</span></a></li>
                              <li class="@if(Request::path() == 'backend/memberships') active @endif"><a href="{{ route('memberships.index') }}">Membresias <span class="sr-only">(current)</span></a></li>
                             <li class="@if(Request::path() == 'backend/clients') active @endif">
                                 <a href="{{ route('clients.index') }}">Clientes <span class="sr-only">(current)</span></a>
