@@ -1,103 +1,74 @@
 @extends('layouts.backend')
 @section('content')
 <div class="panel panel-default">
-	<div class="panel-heading">Clientes</div>
-	<p class="subtitle">Edición de Clientes</p>
+	<div class="panel-heading">Membresias</div>
+	<p class="subtitle">Creación de Membresias</p>
 	<div class="panel-body">
 		@if (Session::has('mensaje'))
         <div class="alert alert-dismissible @if(Session::get('tipo_mensaje') == 'success') alert-info  @endif @if(Session::get('tipo_mensaje') == 'error') alert-danger  @endif" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-          {{session('mensaje')}}
+          {{ session('mensaje') }}
            </div>
         <div class="clearfix"></div>
        @endif
-		<form action="{{ route('clients.update',$client->id) }}" method="post">
+		<form action="{{ route('memberships.update',$membership->id) }}" method="post">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<input type="hidden" name="_method" value="PUT">
-			<input type="hidden" name="key" value="{{$client->id}}">
-			<input type="hidden" name="is_admin" value="0">
+			<input type="hidden" name="key" value="{{ $membership->id }}">
 			<div class="row">
-				<div class="form-group col-md-3 col-sm-3 col-xs-12 @if($errors->has('email')) has-error @endif">
-					<label class="control-label">Email </label>
-					<input type="email" class="form-control" placeholder="Email" name="email" value="{{ $client->email }}">
-					@if ($errors->has('email')) <p class="help-block">{{ $errors->first('email') }}</p> @endif
-				</div>
-
-				<div class="form-group col-md-3 col-sm-3 col-xs-12 @if($errors->has('name')) has-error @endif">
+				<div class="form-group col-md-2 col-sm-2 col-xs-8 @if($errors->has('name')) has-error @endif">
 					<label class="control-label">Nombre </label>
-					<input type="text" class="form-control" placeholder="Nombre" name="name" value="{{ $client->name }}">
+					<input type="text" class="form-control" placeholder="Nombre" name="name" value="{{ $membership->name }}">
 					@if ($errors->has('name')) <p class="help-block">{{ $errors->first('name') }}</p> @endif
 				</div>
 
-				<div class="form-group col-md-6 col-sm-6 col-xs-12 @if($errors->has('address')) has-error @endif">
-					<label class="control-label">Dirección </label>
-					<input type="text" class="form-control" placeholder="Dirección" name="address" value="{{ $client->address }}">
-					@if ($errors->has('address')) <p class="help-block">{{ $errors->first('address') }}</p> @endif
+				<div class="form-group col-md-6 col-sm-6 col-xs-12 @if($errors->has('description')) has-error @endif">
+					<label class="control-label">Descripción </label>
+					<input type="text" class="form-control" placeholder="Descripción" name="description" value="{{ $membership->description }}">
+					@if ($errors->has('description')) <p class="help-block">{{ $errors->first('description') }}</p> @endif
+				</div>
+				<div class="form-group col-md-4 col-sm-4 col-xs-12">
+					<label class="control-label col-md-12 col-sm-12 col-xs-12 no-padding">Duración </label>
+					<div class="form-group col-md-4 col-sm-4 col-xs-6 no-padding-left @if($errors->has('duration_time')) has-error @endif">
+							<input type="number" step="1" min="1" placeholder="Tiempo" name="duration_time" id="duration_time" class="form-control" value="{{ $membership->duration_time }}">
+							@if ($errors->has('duration_time')) <p class="help-block">{{ $errors->first('duration_time') }}</p> @endif
+						</div>
+						<div class="form-group col-md-8 col-sm-8 col-xs-6 no-padding-left @if($errors->has('duration_mode')) has-error @endif">
+							<select name="duration_mode" id="duration_mode" class="form-control">
+								<option value="null">--Seleccione--</option>
+								@foreach($durationsMode as $index => $element)
+								<option value="{{ $index }}" @if($membership->duration_mode == $index) selected @endif>{{ $element }}</option>	
+								@endforeach
+							</select>
+							@if ($errors->has('duration_mode')) <p class="help-block">{{ $errors->first('duration_mode') }}</p> @endif
+						</div>
 				</div>
 			</div>
-
-
+			
 			<div class="row">
-				<div class="form-group col-md-3 col-sm-3 col-xs-12 @if($errors->has('password')) has-error @endif">
-					<label class="control-label">Clave </label>
-					<input type="password" class="form-control" placeholder="Clave" name="password" value="">
-					@if ($errors->has('password')) <p class="help-block">{{ $errors->first('password') }}</p> @endif
+				<div class="form-group col-md-2 col-sm-2 col-xs-4 @if($errors->has('price')) has-error @endif">
+					<label class="control-label">Precio </label>
+					<input type="number" step="0.01" min="0.00" class="form-control" placeholder="Precio" name="price" value="{{ $membership->price }}">
+					@if ($errors->has('price')) <p class="help-block">{{ $errors->first('price') }}</p> @endif
 				</div>
 
-				<div class="form-group col-md-3 col-sm-3 col-xs-12 @if($errors->has('password_repeat')) has-error @endif">
-					<label class="control-label">Repetir Clave </label>
-					<input type="password" class="form-control" placeholder="Clave" name="password_repeat" value="">
-					@if ($errors->has('password_repeat')) <p class="help-block">{{ $errors->first('password_repeat') }}</p> @endif
+				<div class="form-group col-md-2 col-sm-2 col-xs-4 @if($errors->has('points_per_vote')) has-error @endif">
+					<label class="control-label">Puntos por voto </label>
+					<input type="text" class="form-control" placeholder="Puntos por voto" name="points_per_vote" value="{{ $membership->points_per_vote }}">
+					@if ($errors->has('points_per_vote')) <p class="help-block">{{ $errors->first('points_per_vote') }}</p> @endif
 				</div>
+
 			</div>
-
+			
 			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12">
-					<p class="subtitle">Tickets</p>
-					<table id="tickets-detail" class="table table-bordered">
-						<thead>
-							<tr>
-								<th>Ticket</th>
-								<th>Tipo de pago</th>
-								<th>Estado</th>
-								<th>Acción</th>
-							</tr>
-						</thead>
-						<tbody>
-						@foreach ($client->tickets as $ticket)
-							<tr>
-								<td>{{$ticket->ticket->name}}</td>
-								<td>{{$ticket->payment_type}}</td>
-								<td>@if($ticket->state == '1') Activa @else Usada @endif</td>
-								<td>
-									<button title="Ver detalle" class="btn btn-xs btn btn-primary"><i class="fa fa-eye"></i> Ver</button>
-								</td>
-							</tr>
-						@endforeach
-						</tbody>
-					</table>
-				</div>
+				<div class="form-group  col-md-12 col-sm-12 col-xs-12">
+					<a href="{{ route('memberships.index') }}" class="btn btn-primary">Cancelar</a>
+	                <button type="submit" class="btn btn-success">Guardar</button>
+	            </div>
 			</div>
-
-			<div class="form-group  col-md-12 col-sm-12 col-xs-12">
-				<a href="{{ route('clients.index') }}" class="btn btn-primary">Cancelar</a>
-                <button type="submit" class="btn btn-success">Guardar</button>
-            </div>
 
 		</form>
 	</div>
 
 </div>
-@endsection
-
-@section('js')
-<script type="text/javascript">
-  $(document).ready(function(){
-      $('#tickets-detail').DataTable({
-        "language": {
-          "url": "../../../public/js/datatables/json/es.json"
-        }
-      });
-  });
- </script>
 @endsection

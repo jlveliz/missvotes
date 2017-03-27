@@ -26,7 +26,7 @@
      			@foreach ($memberships as $membership)
        			<tr>
        				<td>{{$membership->name}}</td>
-              <td>{{$membership->duration_time}} {{$membership->duration_mode}}</td>
+              <td>{{$membership->duration_time}} {{$membership->durationsMode[$membership->duration_mode]}}</td>
        				<td>{{$membership->price}}</td>
        				<td>{{$membership->created_at }} / {{$membership->updated_at}}</td>
        				<td class="text-center">

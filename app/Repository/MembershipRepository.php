@@ -1,5 +1,5 @@
 <?php
-namespace Miss\Repository;
+namespace MissVote\Repository;
 
 use MissVote\RepositoryInterface\MembershipRepositoryInterface;
 use MissVote\Models\Membership;

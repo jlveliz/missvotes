@@ -8,6 +8,8 @@ use MissVote\Http\Requests\MembershipRequest;
 
 use MissVote\RepositoryInterface\MembershipRepositoryInterface;
 
+use MissVote\Models\Membership;
+
 use Response;
 
 use Redirect;
@@ -46,7 +48,8 @@ class MembershipController extends Controller
      */
     public function create()
     {
-       return view('backend.membership.create');
+       $durationsMode = (new Membership())->durationsMode;
+       return view('backend.membership.create',compact('durationsMode'));
     }
 
     /**
@@ -63,10 +66,10 @@ class MembershipController extends Controller
             'mensaje' => '',
         ];
         if ($membership) {
-            $sessionData['mensaje'] = 'Membresia Creado Satisfactoriamente';
+            $sessionData['mensaje'] = 'Membresia creada Satisfactoriamente';
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = 'La Membresia no pudo ser creado, intente nuevamente';
+            $sessionData['mensaje'] = 'La Membresia no pudo ser creada, intente nuevamente';
         }
         
         return Redirect::action('MembershipController@edit',$membership->id)->with($sessionData);
@@ -93,7 +96,8 @@ class MembershipController extends Controller
     public function edit($id)
     {
         $membership = $this->membership->find($id);
-        return view('backend.membership.edit',compact('membership'));
+        $durationsMode = (new Membership())->durationsMode;
+        return view('backend.membership.edit',['membership' => $membership , 'durationsMode' =>$durationsMode]);
     }
 
     /**
