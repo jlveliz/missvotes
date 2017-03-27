@@ -4,6 +4,7 @@ namespace MissVote\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\CanResetPassword;
 
 class Client extends Authenticatable
 {
@@ -11,11 +12,7 @@ class Client extends Authenticatable
 
     protected $table = "user";
 
-    // public function __construct() {
-    //     parent::__construct();
-    //     $this->is_admin = 0;
-    // }
-
+   
     /**
      * The attributes that are mass assignable.
      *

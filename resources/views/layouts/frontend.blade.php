@@ -95,6 +95,7 @@
     {{-- partials --}}
     @include('frontend.modals.login')
     @include('frontend.modals.register')
+    @include('frontend.modals.reset')
 
 </body>
 </html>

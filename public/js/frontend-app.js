@@ -76,6 +76,12 @@ $(document).ready(function() {
         $("#register-modal").modal('show');
     });
 
+    $("#go-reset").on('click', function(event) {
+        event.preventDefault();
+        $("#login-modal").modal('hide');
+        $("#reset-modal").modal('show');
+    });
+
     /***   LOGIN  **/
 
 
@@ -165,14 +171,7 @@ $(document).ready(function() {
                     $("#register-modal").modal('hide');
                     // location.reload();
                 })
-                .fail(function(reason) {
-                    // var message = reason.responseJSON.email;
-                    // $("#login-password").val('');
-                    // $("#login-password").attr('autofocus');
-                    // $("#login-email").parent().addClass('has-error');
-                    // $("#login-email").next('.help-block').children('strong').text(message);
-                    // $(".loginmodal-container").addClass('animated shake');
-                })
+                .fail(function(reason) {})
                 .always(function() {
                     $("#spinner").css('display', 'none');
                     $("#register-email").removeAttr('readonly', 'readonly');
@@ -191,4 +190,43 @@ $(document).ready(function() {
         $("#register-modal").modal('hide');
     });
     /***   REGISTER  **/
+
+
+    /******** RESET ********/
+    $("#reset-form-content").validate({
+        rules: {
+            email: {
+                required: true,
+                email: true,
+                remote: {
+                    url: "/auth/password-verify-email",
+                    method: 'POST',
+                    data: {
+                        email: function() {
+                            return $("#reset-email").val()
+                        }
+                    },
+                }
+            }
+        },
+        messsages: {
+            email: {
+                required: "Ingrese un correo",
+                email: "El correo tiene un formato inválido"
+            }
+        },
+        highlight: function(element) {
+            $(".registermodal-container").addClass('animated shake');
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function(element) {
+            $(".registermodal-container").removeClass('animated shake');
+        },
+        errorElement: 'strong',
+        errorClass: 'help-block',
+        submitHandler: function(form) {
+            event.preventDefault();
+        }
+    });
+    /******** RESET ********/
 });

@@ -4,8 +4,11 @@ namespace MissVote\Http\Controllers\Auth;
 
 use MissVote\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Support\Facades\Validator;
+use Request;
+use Response;
 
-class ForgotPasswordController extends Controller
+class ForgotClientPasswordController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -28,5 +31,20 @@ class ForgotPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    public function verifyEmail()
+    {
+        $data = Request::only('email');
+        $validator =  Validator::make($data,[
+            'email' => 'unique:user'
+        ],[
+            'email.unique' => 'El correo ya pertenece a otro usuario'
+        ]);
+
+        if ($validator->fails()) {
+            return Response::json('true',200);
+        }
+        return Response::json($validator->errors()->first('email'),200);
     }
 }

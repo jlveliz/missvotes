@@ -83,9 +83,9 @@ class RegisterClientController extends Controller
         $validator =  Validator::make($data,[
             'email' => 'unique:user'
         ],[
-            'email.unique' => 'El correo ya existe'
+            'email.unique' => 'El correo ya pertenece a otro usuario'
         ]);
-
+        dd($validator);
         if ($validator->fails()) {
             return Response::json($validator->errors()->first('email'),200);
         }

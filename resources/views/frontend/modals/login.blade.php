@@ -24,7 +24,7 @@
       </form>
       
       <div class="login-help">
-        <a href="#" id="go-register">Registro</a> - <a href="#">Perdió su contraseña</a>
+        <a href="#" id="go-register">Registro</a> - <a href="#" id="go-reset">Perdió su contraseña</a>
       </div>
     </div>
   </div>
