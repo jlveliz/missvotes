@@ -4,8 +4,9 @@ namespace MissVote\Http\Controllers\Auth;
 
 use MissVote\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
-use Request;
+use Illuminate\Http\Request;
 use Response;
 
 class ForgotClientPasswordController extends Controller
@@ -33,16 +34,40 @@ class ForgotClientPasswordController extends Controller
         $this->middleware('guest');
     }
 
-    public function verifyEmail()
+
+     /**
+     * Send a reset link to the given user.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function sendResetLinkEmail(Request $request)
     {
-        $data = Request::only('email');
+        $this->verifyEmail($request);
+
+        // We will send the password reset link to this user. Once we have attempted
+        // to send the link, we will examine the response then see the message we
+        // need to show to the user. Finally, we'll send out a proper response.
+        $response = $this->broker()->sendResetLink(
+            $request->only('email')
+        );
+
+        return $response == Password::RESET_LINK_SENT
+                    ? $this->sendResetLinkResponse($response)
+                    : $this->sendResetLinkFailedResponse($request, $response);
+    }
+
+    public function verifyEmail(Request $request)
+    {
+        $data = $request->only('email');
         $validator =  Validator::make($data,[
-            'email' => 'exists:user'
+            'email' => 'required|email|exists:user'
         ],[
+            'email.required' => 'El correo debe ser ingresado',
+            'email.email' => 'Debe ser un correo válido',
             'email.exists' => 'El correo no pertenece a ningún usuario'
         ]);
 
-        // dd($validator->errors()->all());
         if ($validator->fails()) {
             return Response::json($validator->errors()->first('email'),200);
         }

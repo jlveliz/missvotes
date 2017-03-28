@@ -8,6 +8,17 @@ $(document).ready(function() {
 
     /***   LOGIN  **/
 
+    $("#login-modal").on('show.bs.modal', function() {
+        $("#login-email").val('');
+        $("#login-email").parent().removeClass('has-error');
+        $("#login-email").next().text('');
+        $("#login-email").attr('autofocus', 'autofocus');
+        $("#login-password").val('');
+        $("#login-password").parent().removeClass('has-error');
+        $("#login-password").next().text('');
+        $(".loginmodal-container").removeClass('animated shake');
+    });
+
     $("#login-form-content").validate({
         rules: {
             email: {
@@ -76,16 +87,42 @@ $(document).ready(function() {
         $("#register-modal").modal('show');
     });
 
-    $("#go-reset").on('click', function(event) {
+    $("#go-email").on('click', function(event) {
         event.preventDefault();
         $("#login-modal").modal('hide');
-        $("#reset-modal").modal('show');
+        $("#email-modal").modal('show');
     });
 
     /***   LOGIN  **/
 
 
     /***   REGISTER  **/
+
+    $("#register-modal").on('show.bs.modal', function() {
+        $("#register-email").val('');
+        $("#register-email").parent().removeClass('has-error');
+        $("#register-email").next().text('');
+        $("#register-email").attr('autofocus', true);
+
+        $("#register-name").val('');
+        $("#register-name").parent().removeClass('has-error');
+        $("#register-name").next().text('');
+
+        $("#register-address").val('');
+        $("#register-address").parent().removeClass('has-error');
+        $("#register-address").next().text('');
+
+        $("#register-password").val('');
+        $("#register-password").parent().removeClass('has-error');
+        $("#register-password").next().text('');
+
+        $("#register-password-confirmation").val('');
+        $("#register-password-confirmation").parent().removeClass('has-error');
+        $("#register-password-confirmation").next().text('');
+
+        $(".registermodal-container").removeClass('animated shake');
+    })
+
     $("#register-form-content").validate({
         rules: {
             email: {
@@ -193,8 +230,17 @@ $(document).ready(function() {
     /***   REGISTER  **/
 
 
-    /******** RESET ********/
-    $("#reset-form-content").validate({
+    /******** RESEND EMAIL ********/
+
+    $("#email-modal").on('show.bs.modal', function() {
+        $("#email-email").val('');
+        $("#email-email").parent().removeClass('has-error');
+        $("#email-email").next().text('');
+        $("#email-email").attr('autofocus', true);
+        $(".emailmodal-container").removeClass('animated shake');
+    });
+
+    $("#email-form-content").validate({
         rules: {
             email: {
                 required: true,
@@ -204,7 +250,7 @@ $(document).ready(function() {
                     method: 'POST',
                     data: {
                         email: function() {
-                            return $("#reset-email").val()
+                            return $("#email-email").val()
                         }
                     },
                 }
@@ -218,11 +264,11 @@ $(document).ready(function() {
         },
         highlight: function(element) {
             $(element).closest('.form-group').addClass('has-error');
-            $(".resetmodal-container").addClass('animated shake');
+            $(".emailmodal-container").addClass('animated shake');
         },
         unhighlight: function(element) {
             $(element).closest('.form-group').removeClass('has-error');
-            $(".resetmodal-container").removeClass('animated shake');
+            $(".emailmodal-container").removeClass('animated shake');
         },
         errorElement: 'strong',
         errorClass: 'help-block',
@@ -230,27 +276,31 @@ $(document).ready(function() {
             event.preventDefault();
             var dataForm = $(form).serialize();
             $("#spinner").css('display', 'block');
-            $("#reset-email").attr('readonly');
+            $("#email-email").attr('readonly');
+            $(".emailmodal-container").removeClass('animated shake');
 
             $.ajax({
-                url: '/auth/send-reset',
-                type: 'POST',
-                data: dataForm,
-            })
-            .done(function() {
-                console.log("hecho")
-            })
-            .fail(function() {
-                console.log("error");
-            })
-            .always(function() {
-                $("#reset-modal").modal('hide');
-                $("#spinner").css('display', 'none');
-                $("#reset-email").removeAttr('readonly','readonly');
-                $("#reset-email").val('');
-            });
-            
+                    url: '/auth/send-reset-email',
+                    type: 'POST',
+                    data: dataForm,
+                })
+                .done(function() {
+
+                })
+                .fail(function(message) {
+                    $(".emailmodal-container").addClass('animated shake');
+                })
+                .always(function() {
+                    $("#email-modal").modal('hide');
+                    $("#spinner").css('display', 'none');
+                    $("#email-email").removeAttr('readonly', 'readonly');
+                    $("#email-email").val('');
+                });
+
         }
     });
-    /******** RESET ********/
+
+
+
+    /******** RESEND EMAIL ********/
 });

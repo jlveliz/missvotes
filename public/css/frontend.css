@@ -58,7 +58,9 @@ body {
 
 /****** LOGIN MODAL ******/
 
-.loginmodal-container {
+.loginmodal-container,
+.registermodal-container,
+.emailmodal-container {
     padding: 30px;
     max-width: 350px;
     width: 100% !important;
@@ -69,12 +71,16 @@ body {
     overflow: hidden;
 }
 
-.loginmodal-container h1 {
+.loginmodal-container h1,
+.registermodal-container h1,
+.emailmodal-container h1 {
     text-align: center;
     font-size: 1.8em;
 }
 
-.loginmodal {
+.loginmodal,
+.emailmodal,
+.registermodal {
     text-align: center;
     font-size: 14px;
     font-weight: 700;
@@ -82,19 +88,25 @@ body {
     padding: 0 8px;
 }
 
-.loginmodal-submit {
+.loginmodal-submit,
+.registermodal-submit,
+.emailmodal-submit {
     border: 0px;
     color: #fff;
     padding: 10px 0px;
     font-size: 17px;
 }
 
-.loginmodal-submit:hover {
+.loginmodal-submit:hover,
+.emailmodal-submit:hover,
+.registermodal-submit:hover {
     border: 0px;
     text-shadow: 0 1px rgba(0, 0, 0, 0.3);
 }
 
-.loginmodal-container a {
+.loginmodal-container a,
+.registermodal-container a,
+.emailmodal-container a {
     text-decoration: none;
     color: #666;
     font-weight: 400;
@@ -104,7 +116,7 @@ body {
     transition: opacity ease 0.5s;
 }
 
-.login-help {
+.login-help,.email-help,.register-help {
     margin-top: 10px;
     font-size: 12px;
 }
