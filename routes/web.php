@@ -22,6 +22,8 @@ Route::group(['prefix'=>'auth'],function(){
 	Route::post('register', 'Auth\RegisterClientController@register')->name('client.register');
 	Route::post('verify', 'Auth\RegisterClientController@verifyEmail')->name('client.register.verify');
 	Route::post('password-verify-email', 'Auth\ForgotClientPasswordController@verifyEmail')->name('client.password.verify');
+	Route::post('send-reset','Auth\ForgotClientPasswordController@sendResetLinkEmail')->name('çlient.password.send-reset');
+	Route::get('reset','Auth\ForgotClientPasswordController@sendResetLinkEmail')->name('çlient.password.send-reset');
 });
 
 

@@ -30,7 +30,7 @@
 		    <input type="submit" name="register" id="register" class="register btn btn-primary btn-block loginmodal-submit" value="Ingresar">
 		  </form>
 		  
-		  <div class="register-help">
+		  <div class="login-help">
 		    <a id="go-login" href="#">Iniciar Sesion</a>
 		  </div>
 		</div>

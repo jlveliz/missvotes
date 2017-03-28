@@ -85,7 +85,7 @@ class RegisterClientController extends Controller
         ],[
             'email.unique' => 'El correo ya pertenece a otro usuario'
         ]);
-        dd($validator);
+
         if ($validator->fails()) {
             return Response::json($validator->errors()->first('email'),200);
         }

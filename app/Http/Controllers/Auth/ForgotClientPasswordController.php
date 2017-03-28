@@ -37,14 +37,16 @@ class ForgotClientPasswordController extends Controller
     {
         $data = Request::only('email');
         $validator =  Validator::make($data,[
-            'email' => 'unique:user'
+            'email' => 'exists:user'
         ],[
-            'email.unique' => 'El correo ya pertenece a otro usuario'
+            'email.exists' => 'El correo no pertenece a ningún usuario'
         ]);
 
+        // dd($validator->errors()->all());
         if ($validator->fails()) {
-            return Response::json('true',200);
+            return Response::json($validator->errors()->first('email'),200);
         }
-        return Response::json($validator->errors()->first('email'),200);
+        return Response::json('true',200);
+
     }
 }

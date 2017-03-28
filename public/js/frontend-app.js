@@ -145,6 +145,7 @@ $(document).ready(function() {
             $(element).closest('.form-group').addClass('has-error');
         },
         unhighlight: function(element) {
+            $(element).closest('.form-group').removeClass('has-error');
             $(".registermodal-container").removeClass('animated shake');
         },
         errorElement: 'strong',
@@ -169,7 +170,7 @@ $(document).ready(function() {
                 })
                 .done(function(data) {
                     $("#register-modal").modal('hide');
-                    // location.reload();
+                    location.reload();
                 })
                 .fail(function(reason) {})
                 .always(function() {
@@ -209,23 +210,46 @@ $(document).ready(function() {
                 }
             }
         },
-        messsages: {
+        messages: {
             email: {
                 required: "Ingrese un correo",
-                email: "El correo tiene un formato inválido"
+                email: "Por favor ingrese un correo valido"
             }
         },
         highlight: function(element) {
-            $(".registermodal-container").addClass('animated shake');
             $(element).closest('.form-group').addClass('has-error');
+            $(".resetmodal-container").addClass('animated shake');
         },
         unhighlight: function(element) {
-            $(".registermodal-container").removeClass('animated shake');
+            $(element).closest('.form-group').removeClass('has-error');
+            $(".resetmodal-container").removeClass('animated shake');
         },
         errorElement: 'strong',
         errorClass: 'help-block',
         submitHandler: function(form) {
             event.preventDefault();
+            var dataForm = $(form).serialize();
+            $("#spinner").css('display', 'block');
+            $("#reset-email").attr('readonly');
+
+            $.ajax({
+                url: '/auth/send-reset',
+                type: 'POST',
+                data: dataForm,
+            })
+            .done(function() {
+                console.log("hecho")
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                $("#reset-modal").modal('hide');
+                $("#spinner").css('display', 'none');
+                $("#reset-email").removeAttr('readonly','readonly');
+                $("#reset-email").val('');
+            });
+            
         }
     });
     /******** RESET ********/
