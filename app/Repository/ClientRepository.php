@@ -25,8 +25,10 @@ class ClientRepository implements ClientRepositoryInterface
 		if (is_array($field)) {
 			if (array_key_exists('name', $field)) { 
 				$client = Client::where('name',$field['name'])->first();
+			} elseif (array_key_exists('confirmation_code', $field)) {
+				$client = Client::where('confirmation_code',$field['confirmation_code'])->first();
 			} else {
-				throw new ClientException("No se puede buscar al client",500);		
+				throw new ClientException("No se puede buscar al client",500);
 			}
 		} elseif (is_string($field) || is_int($field)) {
 		

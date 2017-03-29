@@ -95,6 +95,7 @@
     {{-- partials --}}
     @include('frontend.modals.login')
     @include('frontend.modals.register')
+    @include('frontend.modals.register-success-message')
     @include('frontend.modals.email')
     {{-- @include('frontend.modals.email-message') --}}
 

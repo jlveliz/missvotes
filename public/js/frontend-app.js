@@ -207,7 +207,7 @@ $(document).ready(function() {
                 })
                 .done(function(data) {
                     $("#register-modal").modal('hide');
-                    location.reload();
+                    $("#register-message-success-modal").modal('show');
                 })
                 .fail(function(reason) {})
                 .always(function() {

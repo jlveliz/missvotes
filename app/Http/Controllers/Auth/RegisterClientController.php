@@ -6,7 +6,9 @@ use MissVote\Models\Client;
 use MissVote\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Request;
+use Illuminate\Auth\Events\Registered;
+use MissVote\Repository\ClientRepository;
+use Illuminate\Http\Request;
 use Response;
 
 class RegisterClientController extends Controller
@@ -59,6 +61,24 @@ class RegisterClientController extends Controller
     }
 
     /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($client = $this->create($request->all())));
+
+        // $this->guard()->login($user);
+
+        return $this->registered($request, $client)
+            ?: redirect($this->redirectPath());
+    }
+
+    /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
@@ -66,20 +86,24 @@ class RegisterClientController extends Controller
      */
     protected function create(array $data)
     {
-        return Client::create([
+        $confirmation_code = str_random(30);
+
+       return Client::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'address' => $data['address'],
             'is_admin' => 0,
+            'confirmation_code' => $confirmation_code,
             'password' => bcrypt($data['password']),
         ]);
+        
     }
 
     /**
      * 
      */
-    protected function verifyEmail(){
-        $data = Request::only('email');
+    protected function verifyEmail(Request $request){
+        $data = $request->only('email');
         $validator =  Validator::make($data,[
             'email' => 'unique:user'
         ],[
@@ -90,5 +114,31 @@ class RegisterClientController extends Controller
             return Response::json($validator->errors()->first('email'),200);
         }
         return Response::json('true',200);
+    }
+
+
+    public function activateAccount($activationCode)
+    {
+        if (!$activationCode) abort(404);
+        $clientRepo = new ClientRepository();
+        $client = $clientRepo->find(['activation_code'=>$activationCode]);
+        if (!$client) abort(404);
+        
+        $client->activation_code = null;
+        $client->confirmed = 1;
+
+        $sessionData = [];
+        if ($client->save()) {
+            $sessionData['tipo_mensaje'] = "success";
+            $sessionData['mensaje'] = "La cuenta ha sido activada correctamente";
+        } else {
+            $sessionData['tipo_mensaje'] = "error";
+            $sessionData['mensaje'] = "La cuenta ha sido activada correctamente";
+        }
+
+
+        return view('frontend.pages.activation')->with($sessionData);
+
+
     }
 }
