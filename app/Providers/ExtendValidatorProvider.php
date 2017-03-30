@@ -19,10 +19,11 @@ class ExtendValidatorProvider extends ServiceProvider
      */
     public function boot()
     {
+        dd("entra");
         Validator::extend('confirmed',function($attribute, $value, $parameters, $validator){
-            $clientConfirmed = Client::where($attribute, $value)->first();
-            if (!$clientConfirmed->is_admin  && !$clientConfirmed->confirmed) return true;
-            return false;
+            $client = Client::where($attribute, $value)->first();
+            if ($client->confirmed == 1) return false;
+            return true;
         });
     }
 

@@ -5,6 +5,7 @@ namespace MissVote\Http\Controllers\Auth;
 use MissVote\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Validator;
 use Auth;
 use Lang;
 
@@ -44,7 +45,11 @@ class LoginClientController extends Controller
     public function login(Request $request)
     {
        
-        $this->validateLogin($request);
+        $validate = $this->validateLogin($request);
+
+        if ($validate->fails()) {
+            return response()->json([$this->username() => $validate->errors()->first()],500);
+        }
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
@@ -76,12 +81,14 @@ class LoginClientController extends Controller
      */
     protected function validateLogin(Request $request)
     {
-        $this->validate($request, [
-            $this->username() => 'required|confirmed', 'password' => 'required',
+        return  Validator::make($request->all(), [
+            $this->username() => 'required|exists:user|confirmed', 'password' => 'required',
         ],
         [
-            $this->username().'.confirmed' => 'Su cuenta no está activa'
+            $this->username().'.exists' => Lang::get('auth.failed'),
+            $this->username().'.confirmed' => 'Su cuenta no está activa',
         ]);
+
     }
 
      /**
@@ -118,13 +125,8 @@ class LoginClientController extends Controller
      */
     protected function sendFailedLoginResponse(Request $request)
     {
-        // return redirect()->back()
-        //     ->withInput($request->only($this->username(), 'remember'))
-        //     ->withErrors([
-        //         $this->username() => Lang::get('auth.failed'),
-        //     ]);
-
         return response()->json([$this->username() => Lang::get('auth.failed')],500);
+
     }
 
 
