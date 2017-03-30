@@ -177,6 +177,7 @@ return [
         // MissVote\Providers\BroadcastServiceProvider::class,
         MissVote\Providers\EventServiceProvider::class,
         MissVote\Providers\RouteServiceProvider::class,
+        MissVote\Providers\ExtendValidatorServiceProvider::class,
 
     ],
 
