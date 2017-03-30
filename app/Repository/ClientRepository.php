@@ -28,7 +28,7 @@ class ClientRepository implements ClientRepositoryInterface
 			} elseif (array_key_exists('confirmation_code', $field)) {
 				$client = Client::where('confirmation_code',$field['confirmation_code'])->first();
 			} else {
-				throw new ClientException("No se puede buscar al client",500);
+				abort(500);
 			}
 		} elseif (is_string($field) || is_int($field)) {
 		
@@ -36,7 +36,7 @@ class ClientRepository implements ClientRepositoryInterface
 		}
 
 		if ($returnException) {
-			if (!$client) throw new ClientException("No se ha encontrado el client solicitado",404);
+			if (!$client) abort(404);
 		} else {
 			if (!$client) return false;
 		}
@@ -58,7 +58,7 @@ class ClientRepository implements ClientRepositoryInterface
 			$key = $client->getKey();
 			return  $this->find($key);
 		} 
-		throw new ClientException("Ha ocurrido un error al guardar el ciente",500);
+		abort(500);
 		
 	}
 
@@ -84,7 +84,7 @@ class ClientRepository implements ClientRepositoryInterface
 			}
 		}
 
-		throw new ClientException("Ha ocurrido un error al actualizar el ciente",500);
+		abor(500);
 
 	}
 
@@ -94,7 +94,7 @@ class ClientRepository implements ClientRepositoryInterface
 			$client->delete();
 			return true;
 		}
-		throw new ClientException("Ha ocurrido un error al eliminar el client",500);
+		abort(500);
 	}
 
 }

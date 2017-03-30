@@ -121,23 +121,22 @@ class RegisterClientController extends Controller
     {
         if (!$activationCode) abort(404);
         $clientRepo = new ClientRepository();
-        $client = $clientRepo->find(['activation_code'=>$activationCode]);
+        $client = $clientRepo->find(['confirmation_code'=>$activationCode]);
         if (!$client) abort(404);
         
-        $client->activation_code = null;
+        $client->confirmation_code = null;
         $client->confirmed = 1;
 
-        $sessionData = [];
+        $flagData = [];
         if ($client->save()) {
-            $sessionData['tipo_mensaje'] = "success";
-            $sessionData['mensaje'] = "La cuenta ha sido activada correctamente";
+            $flagData['tipo_mensaje'] = "success";
+            $flagData['mensaje'] = "La cuenta ha sido activada correctamente";
         } else {
-            $sessionData['tipo_mensaje'] = "error";
-            $sessionData['mensaje'] = "La cuenta ha sido activada correctamente";
+            $flagData['tipo_mensaje'] = "error";
+            $flagData['mensaje'] = "La cuenta ha sido activada correctamente";
         }
 
-
-        return view('frontend.pages.activation')->with($sessionData);
+        return view('frontend.pages.activation',['flagData'=>$flagData]);
 
 
     }
