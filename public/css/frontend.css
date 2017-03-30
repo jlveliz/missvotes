@@ -56,14 +56,16 @@ body {
 }
 
 
-/****** LOGIN MODAL ******/
+/****** MODALS ******/
 
 .loginmodal-container,
 .registermodal-container,
 .emailmodal-container,
-.register-message-success-container {
+.register-message-success-container,
+.activationmodal-container,
+.activation-message-success-container {
     padding: 30px;
-    max-width: 350px;
+    max-width: 400px;
     width: 100% !important;
     background-color: #eeefee;
     margin: 0 auto;
@@ -75,14 +77,17 @@ body {
 .loginmodal-container h1,
 .registermodal-container h1,
 .emailmodal-container h1,
-.register-message-success-container-submit h1 {
+.register-message-success-container-submit h1,
+.activationmodal-container h1,
+.activation-message-success-container h1 {
     text-align: center;
     font-size: 1.8em;
 }
 
 .loginmodal,
 .emailmodal,
-.registermodal {
+.registermodal,
+.activationmodal {
     text-align: center;
     font-size: 14px;
     font-weight: 700;
@@ -93,7 +98,8 @@ body {
 .loginmodal-submit,
 .registermodal-submit,
 .emailmodal-submit,
-.register-message-success-container-submit {
+.register-message-success-container-submit,
+.activation-message-success-container-submit {
     border: 0px;
     color: #fff;
     padding: 10px 0px;
@@ -103,7 +109,9 @@ body {
 .loginmodal-submit:hover,
 .emailmodal-submit:hover,
 .registermodal-submit:hover,
-.register-message-success-container-submit:hover {
+.register-message-success-container-submit:hover,
+.activationmodal-submit:hover,
+.activation-message-success-container-submit:hover {
     border: 0px;
     text-shadow: 0 1px rgba(0, 0, 0, 0.3);
 }
@@ -124,7 +132,8 @@ body {
 .email-help,
 .register-help {
     margin-top: 10px;
-    font-size: 12px;
+    font-size: 10px;
+    text-align: center;
 }
 
 

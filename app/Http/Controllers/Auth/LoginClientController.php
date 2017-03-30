@@ -77,7 +77,10 @@ class LoginClientController extends Controller
     protected function validateLogin(Request $request)
     {
         $this->validate($request, [
-            $this->username() => 'required', 'password' => 'required',
+            $this->username() => 'required|confirmed', 'password' => 'required',
+        ],
+        [
+            $this->username().'.confirmed' => 'Su cuenta no está activa'
         ]);
     }
 
@@ -94,7 +97,8 @@ class LoginClientController extends Controller
         );
 
         if ($attempt) {
-            if (Auth::user()) {
+            //si existe usuario y si esta confirmado y no tiene codigo de confirmacion
+            if (Auth::user() && (Auth::user()->confirmed  && !Auth::user()->confirmation_code) ) {
                 return true;
             }
 

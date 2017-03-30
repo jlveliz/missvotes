@@ -27,6 +27,8 @@ class ClientRepository implements ClientRepositoryInterface
 				$client = Client::where('name',$field['name'])->first();
 			} elseif (array_key_exists('confirmation_code', $field)) {
 				$client = Client::where('confirmation_code',$field['confirmation_code'])->first();
+			} elseif (array_key_exists('email', $field)) {
+				$client = Client::where('email',$field['email'])->first();
 			} else {
 				abort(500);
 			}

@@ -137,7 +137,19 @@ class RegisterClientController extends Controller
         }
 
         return view('frontend.pages.activation',['flagData'=>$flagData]);
+    }
 
 
+    public function reSendactivateAccount(Request $request)
+    {
+        $this->verifyEmail($request);
+        $clientRepo = new ClientRepository();
+        $client = $clientRepo->find($request->only('email'));
+        if ($client) {
+            $client->confirmation_code = str_random(30);
+            $client->confirmed = 0;
+            $client->save();
+            event(new Registered($client));
+        }
     }
 }

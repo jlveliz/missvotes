@@ -6,7 +6,7 @@
       <form role="form" id="login-form-content" action="#">
         <div class="form-group">
             <input type="text" class="form-control" name="email" id="login-email" placeholder="Correo" autofocus required>
-            <span class="help-block"><strong></strong></span>
+            <strong class="help-block"></strong>
         </div>
         <div class="form-group">
             <input type="password" class="form-control" name="password" id="login-password" placeholder="Contraseña" required>
@@ -24,7 +24,9 @@
       </form>
       
       <div class="login-help">
-        <a href="#" id="go-register">Registro</a> - <a href="#" id="go-email">Olvidó su contraseña</a>
+        <a href="#" id="go-register">Registro</a> - 
+        <a href="#" id="go-email">Olvidó su contraseña?</a> - 
+        <a href="#" id="go-activation">No recibió su código de activación?</a>
       </div>
     </div>
   </div>

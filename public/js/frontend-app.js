@@ -69,7 +69,8 @@ $(document).ready(function() {
                     $("#login-password").val('');
                     $("#login-password").attr('autofocus');
                     $("#login-email").parent().addClass('has-error');
-                    $("#login-email").next('.help-block').children('strong').text(message);
+                    $("#login-email").next('.help-block').text(message);
+                    $("#login-email").next('.help-block').css('display', 'block');
                     $(".loginmodal-container").addClass('animated shake');
                 })
                 .always(function() {
@@ -91,6 +92,12 @@ $(document).ready(function() {
         event.preventDefault();
         $("#login-modal").modal('hide');
         $("#email-modal").modal('show');
+    });
+
+    $("#go-activation").on('click', function(event) {
+        event.preventDefault();
+        $("#login-modal").modal('hide');
+        $("#activation-modal").modal('show');
     });
 
     /***   LOGIN  **/
@@ -303,4 +310,74 @@ $(document).ready(function() {
 
 
     /******** RESEND EMAIL ********/
+
+
+
+    /******** ACTIVATION CODE ********/
+    $("#activation-modal").on('show.bs.modal', function() {
+        $("#activation-email").val('');
+        $("#activation-email").parent().removeClass('has-error');
+        $("#activation-email").next().text('');
+        $("#activation-email").attr('autofocus', true);
+        $(".activationmodal-container").removeClass('animated shake');
+    });
+
+
+    $("#activation-form-content").validate({
+        rules: {
+            email: {
+                required: true,
+                email: true,
+                remote: {
+                    url: "/auth/password-verify-email",
+                    method: 'POST',
+                    data: {
+                        email: function() {
+                            return $("#activation-email").val()
+                        }
+                    },
+                }
+            }
+        },
+        messages: {
+            email: {
+                required: "Ingrese un correo",
+                email: "Por favor ingrese un correo valido"
+            }
+        },
+        highlight: function(element) {
+            $(element).closest('.form-group').addClass('has-error');
+            $(".emailmodal-container").addClass('animated shake');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.form-group').removeClass('has-error');
+            $(".emailmodal-container").removeClass('animated shake');
+        },
+        errorElement: 'strong',
+        errorClass: 'help-block',
+        submitHandler: function(form) {
+            event.preventDefault();
+            var dataForm = $(form).serialize();
+            $.ajax({
+                    url: '/auth/activate',
+                    type: 'POST',
+                    data: dataForm,
+                })
+                .done(function() {
+                    $("#activation-message-success-modal").modal('show');
+                })
+                .fail(function() {
+                    console.log("error");
+                })
+                .always(function() {
+                    $("#activation-modal-message").modal('show');
+                    $("#activation-modal").modal('hide');
+                    $("#spinner").css('display', 'none');
+                });
+
+        }
+
+    })
+
+    /******** ACTIVATION CODE ********/
 });

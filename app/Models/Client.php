@@ -12,6 +12,12 @@ class Client extends Authenticatable
 
     protected $table = "user";
 
+
+    private $inactive = 0;
+
+
+    private $active = 1;
+
    
     /**
      * The attributes that are mass assignable.
@@ -31,6 +37,16 @@ class Client extends Authenticatable
         'password', 'remember_token',
     ];
 
+
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    public function getInactive()
+    {
+        return $this->inactive;
+    }
 
     public function tickets()
     {
