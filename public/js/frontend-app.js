@@ -244,15 +244,6 @@ $(document).ready(function() {
             email: {
                 required: true,
                 email: true,
-                remote: {
-                    url: "/auth/password-verify-email",
-                    method: 'POST',
-                    data: {
-                        email: function() {
-                            return $("#email-email").val()
-                        }
-                    },
-                }
             }
         },
         messages: {
@@ -282,21 +273,21 @@ $(document).ready(function() {
                     type: 'POST',
                     data: dataForm,
                 })
-                .done(function() {})
+                .done(function() {
+                    $("#email-modal").modal('hide');
+                    $("#email-succees-modal").modal('show');
+                })
                 .fail(function(reason) {
-                    var message = reason.responseJSON.email;
-                    $("#email-password").val('');
+                    var message = reason.responseJSON;
                     $("#email-password").attr('autofocus');
-                    $("#email-email").parent().addClass('has-error');
                     $("#email-email").next('.help-block').text(message);
+                    $("#email-email").parent().addClass('has-error');
                     $("#email-email").next('.help-block').css('display', 'block');
                     $(".emailmodal-container").addClass('animated shake');
                 })
                 .always(function() {
-                    $("#email-modal").modal('hide');
                     $("#spinner").css('display', 'none');
                     $("#email-email").removeAttr('readonly', 'readonly');
-                    $("#email-email").val('');
                 });
 
         }

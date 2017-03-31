@@ -43,7 +43,11 @@ class ForgotClientPasswordController extends Controller
      */
     public function sendResetLinkEmail(Request $request)
     {
-        $this->verifyEmail($request);
+        $validator = $this->verifyEmail($request);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors()->first('email'),500);
+        }
 
         // We will send the password reset link to this user. Once we have attempted
         // to send the link, we will examine the response then see the message we
@@ -60,19 +64,12 @@ class ForgotClientPasswordController extends Controller
     public function verifyEmail(Request $request)
     {
         $data = $request->only('email');
-        $validator =  Validator::make($data,[
-            'email' => 'required|email|exists:user|confirmed_account'
+        return Validator::make($data,[
+            'email' => 'required|exists:user|confirmed_account'
         ],[
             'email.required' => 'El correo debe ser ingresado',
-            'email.email' => 'Debe ser un correo válido',
             'email.exists' => 'El correo no pertenece a ningún usuario',
             'email.confirmed_account' => 'Su cuenta no está activa'
         ]);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors()->first('email'),200);
-        }
-        return Response::json('true',200);
-
     }
 }
