@@ -6,7 +6,7 @@
 		  <form role="form" id="email-form-content" action="#">
 		    <div class="form-group">
 		        <input type="email" class="form-control" name="email" id="email-email" placeholder="Correo" autofocus>
-		        <span class="help-block"><strong></strong></span>
+		        <strong class="help-block"></strong>
 		    </div>
 		    <input type="submit" name="email" id="email" class="email btn btn-primary btn-block loginmodal-submit" value="Recuperar Contraseña">
 		  </form>

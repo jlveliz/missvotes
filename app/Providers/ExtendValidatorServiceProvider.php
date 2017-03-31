@@ -19,7 +19,7 @@ class ExtendValidatorServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-       Validator::extend('confirmed_accunt',function($attribute, $value, $parameters, $validator){
+       Validator::extend('confirmed_account',function($attribute, $value, $parameters, $validator){
             $client = Client::where($attribute, $value)->first();
             if ($client) {
                 if ($client->confirmed == 1) return true;

@@ -61,15 +61,16 @@ class ForgotClientPasswordController extends Controller
     {
         $data = $request->only('email');
         $validator =  Validator::make($data,[
-            'email' => 'required|email|exists:user'
+            'email' => 'required|email|exists:user|confirmed_account'
         ],[
             'email.required' => 'El correo debe ser ingresado',
             'email.email' => 'Debe ser un correo válido',
-            'email.exists' => 'El correo no pertenece a ningún usuario'
+            'email.exists' => 'El correo no pertenece a ningún usuario',
+            'email.confirmed_account' => 'Su cuenta no está activa'
         ]);
 
         if ($validator->fails()) {
-            return Response::json($validator->errors()->first('email'),200);
+            return response()->json(['email'=>$validator->errors()->first('email')],422);
         }
         return Response::json('true',200);
 

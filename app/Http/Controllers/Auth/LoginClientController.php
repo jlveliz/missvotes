@@ -82,11 +82,11 @@ class LoginClientController extends Controller
     protected function validateLogin(Request $request)
     {
         return Validator::make($request->all(), [
-            $this->username() => 'required|exists:user|confirmed_accunt', 'password' => 'required',
+            $this->username() => 'required|exists:user|confirmed_account', 'password' => 'required',
         ],
         [
             $this->username().'.exists' => Lang::get('auth.failed'),
-            $this->username().'.confirmed_accunt' => 'Su cuenta no está activa',
+            $this->username().'.confirmed_account' => 'Su cuenta no está activa',
         ]);
 
     }

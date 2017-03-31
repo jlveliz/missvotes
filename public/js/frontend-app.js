@@ -280,6 +280,7 @@ $(document).ready(function() {
         errorElement: 'strong',
         errorClass: 'help-block',
         submitHandler: function(form) {
+            debugger;
             event.preventDefault();
             var dataForm = $(form).serialize();
             $("#spinner").css('display', 'block');
@@ -292,9 +293,16 @@ $(document).ready(function() {
                     data: dataForm,
                 })
                 .done(function() {
-
+                    debugger;
                 })
-                .fail(function(message) {
+                .fail(function(reason) {
+                    debugger;
+                    var message = reason.responseJSON.email;
+                    $("#email-password").val('');
+                    $("#email-password").attr('autofocus');
+                    $("#email-email").parent().addClass('has-error');
+                    $("#email-email").next('.help-block').text(message);
+                    $("#email-email").next('.help-block').css('display', 'block');
                     $(".emailmodal-container").addClass('animated shake');
                 })
                 .always(function() {
