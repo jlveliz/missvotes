@@ -17,16 +17,18 @@ Route::get('/', function () {
 
 
 Route::group(['prefix'=>'auth'],function(){
+	// login
 	Route::post('login', 'Auth\LoginClientController@login')->name('client.login');
 	Route::post('logout', 'Auth\LoginClientController@logout')->name('client.logout');
 	
+	// register
 	Route::post('register', 'Auth\RegisterClientController@register')->name('client.register');
-	Route::post('verify', 'Auth\RegisterClientController@verifyEmail')->name('client.register.verify');
 	
-	Route::get('activate/{activationCode}','Auth\RegisterClientController@activateAccount')->name('client.register.activate');
-	Route::post('activate','Auth\RegisterClientController@reSendactivateAccount')->name('client.re-send-activate');
+	// activate account
+	Route::get('activate/{activationCode}','Auth\ActivateClientController@activateAccount')->name('client.register.activate');
+	Route::post('activate','Auth\ActivateClientController@reSendactivationCode')->name('client.re-send-activate');
 
-	
+	// forgot and change password
 	Route::post('password-verify-email', 'Auth\ForgotClientPasswordController@verifyEmail')->name('client.password.verify');
 	Route::post('send-reset-email','Auth\ForgotClientPasswordController@sendResetLinkEmail')->name('çlient.password.send-reset');
 	Route::get('reset','Auth\ForgotClientPasswordController@sendResetLinkEmail')->name('çlient.password.send-reset');

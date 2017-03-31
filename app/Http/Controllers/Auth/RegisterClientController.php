@@ -57,7 +57,16 @@ class RegisterClientController extends Controller
             'address' => 'required',
             'password' => 'required|min:6|confirmed',
             'password_confirmation' => 'required|min:6'
-        ]);
+        ],
+        [
+            'name.required' => 'El Nombre es requerido',
+            'name.max' => 'Por favor ingrese un nombre mas corto',
+            'address.required' => 'Por favor ingrese una dirección',
+            'password.required' =>'Por favor ingrese una clave',
+            'password.min' => 'Por favor ingrese una clave más larga',
+            'password.confirmed' => 'Las claves no coinciden',
+            'password_confirmation' => 'Por favor repita la clave',
+         ]);
     }
 
     /**
@@ -68,7 +77,11 @@ class RegisterClientController extends Controller
      */
     public function register(Request $request)
     {
-        $this->validator($request->all())->validate();
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+             return Response::json($validator->errors()->all(),500);
+        }
 
         event(new Registered($client = $this->create($request->all())));
 
@@ -99,57 +112,10 @@ class RegisterClientController extends Controller
         
     }
 
-    /**
-     * 
-     */
-    protected function verifyEmail(Request $request){
-        $data = $request->only('email');
-        $validator =  Validator::make($data,[
-            'email' => 'unique:user'
-        ],[
-            'email.unique' => 'El correo ya pertenece a otro usuario'
-        ]);
+ 
 
-        if ($validator->fails()) {
-            return Response::json($validator->errors()->first('email'),200);
-        }
-        return Response::json('true',200);
-    }
+   
 
 
-    public function activateAccount($activationCode)
-    {
-        if (!$activationCode) abort(404);
-        $clientRepo = new ClientRepository();
-        $client = $clientRepo->find(['confirmation_code'=>$activationCode]);
-        if (!$client) abort(404);
-        
-        $client->confirmation_code = null;
-        $client->confirmed = 1;
-
-        $flagData = [];
-        if ($client->save()) {
-            $flagData['tipo_mensaje'] = "success";
-            $flagData['mensaje'] = "La cuenta ha sido activada correctamente";
-        } else {
-            $flagData['tipo_mensaje'] = "error";
-            $flagData['mensaje'] = "La cuenta ha sido activada correctamente";
-        }
-
-        return view('frontend.pages.activation',['flagData'=>$flagData]);
-    }
-
-
-    public function reSendactivateAccount(Request $request)
-    {
-        $this->verifyEmail($request);
-        $clientRepo = new ClientRepository();
-        $client = $clientRepo->find($request->only('email'));
-        if ($client) {
-            $client->confirmation_code = str_random(30);
-            $client->confirmed = 0;
-            $client->save();
-            event(new Registered($client));
-        }
-    }
+  
 }

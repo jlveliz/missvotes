@@ -70,7 +70,7 @@ class ForgotClientPasswordController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['email'=>$validator->errors()->first('email')],422);
+            return response()->json($validator->errors()->first('email'),200);
         }
         return Response::json('true',200);
 

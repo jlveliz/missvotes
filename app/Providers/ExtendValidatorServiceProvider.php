@@ -26,6 +26,14 @@ class ExtendValidatorServiceProvider extends ServiceProvider
             }
             return false;
         });
+
+        Validator::extend('is_confirmed_account',function($attribute, $value, $parameters, $validator){
+            $client = Client::where($attribute, $value)->first();
+            if ($client) {
+                if ($client->confirmed == 1) return false;
+            }
+            return true;
+        });
     }
 
     /**

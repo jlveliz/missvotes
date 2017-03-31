@@ -7,7 +7,7 @@
 		  <form role="form" id="activation-form-content" action="#">
 		    <div class="form-group">
 		        <input type="email" class="form-control" name="email" id="activation-email" placeholder="Correo" autofocus>
-		        <span class="help-block"><strong></strong></span>
+		       <strong class="help-block"></strong>
 		    </div>
 		    <input type="submit" name="activation" id="activation" class="activation btn btn-primary btn-block activationmodal-submit" value="Enviar Código">
 		  </form>

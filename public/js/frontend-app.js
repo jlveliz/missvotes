@@ -135,15 +135,6 @@ $(document).ready(function() {
             email: {
                 required: true,
                 email: true,
-                remote: {
-                    url: "/auth/verify",
-                    method: 'POST',
-                    data: {
-                        email: function() {
-                            return $("#register-email").val()
-                        }
-                    },
-                }
             },
             name: {
                 required: true,
@@ -189,7 +180,6 @@ $(document).ready(function() {
             $(element).closest('.form-group').addClass('has-error');
         },
         unhighlight: function(element) {
-            $(element).closest('.form-group').removeClass('has-error');
             $(".registermodal-container").removeClass('animated shake');
         },
         errorElement: 'strong',
@@ -216,7 +206,9 @@ $(document).ready(function() {
                     $("#register-modal").modal('hide');
                     $("#register-message-success-modal").modal('show');
                 })
-                .fail(function(reason) {})
+                .fail(function(reason) {
+                    console.log(reason);
+                })
                 .always(function() {
                     $("#spinner").css('display', 'none');
                     $("#register-email").removeAttr('readonly', 'readonly');
@@ -274,13 +266,11 @@ $(document).ready(function() {
             $(".emailmodal-container").addClass('animated shake');
         },
         unhighlight: function(element) {
-            $(element).closest('.form-group').removeClass('has-error');
             $(".emailmodal-container").removeClass('animated shake');
         },
         errorElement: 'strong',
         errorClass: 'help-block',
         submitHandler: function(form) {
-            debugger;
             event.preventDefault();
             var dataForm = $(form).serialize();
             $("#spinner").css('display', 'block');
@@ -292,11 +282,8 @@ $(document).ready(function() {
                     type: 'POST',
                     data: dataForm,
                 })
-                .done(function() {
-                    debugger;
-                })
+                .done(function() {})
                 .fail(function(reason) {
-                    debugger;
                     var message = reason.responseJSON.email;
                     $("#email-password").val('');
                     $("#email-password").attr('autofocus');
@@ -335,16 +322,7 @@ $(document).ready(function() {
         rules: {
             email: {
                 required: true,
-                email: true,
-                remote: {
-                    url: "/auth/password-verify-email",
-                    method: 'POST',
-                    data: {
-                        email: function() {
-                            return $("#activation-email").val()
-                        }
-                    },
-                }
+                email: true
             }
         },
         messages: {
@@ -358,7 +336,6 @@ $(document).ready(function() {
             $(".emailmodal-container").addClass('animated shake');
         },
         unhighlight: function(element) {
-            $(element).closest('.form-group').removeClass('has-error');
             $(".emailmodal-container").removeClass('animated shake');
         },
         errorElement: 'strong',
@@ -373,13 +350,16 @@ $(document).ready(function() {
                 })
                 .done(function() {
                     $("#activation-message-success-modal").modal('show');
+                    $("#activation-modal").modal('hide');
                 })
-                .fail(function() {
-                    console.log("error");
+                .fail(function(reason) {
+                    var message = reason.responseJSON;
+                    $("#activation-email").parent().addClass('has-error');
+                    $("#activation-email").next('.help-block').text(message);
+                    $("#activation-email").next('.help-block').css('display', 'block');
+                    $(".activationmodal-container").addClass('animated shake');
                 })
                 .always(function() {
-                    $("#activation-modal-message").modal('show');
-                    $("#activation-modal").modal('hide');
                     $("#spinner").css('display', 'none');
                 });
 
