@@ -62,7 +62,7 @@ $(document).ready(function() {
                 })
                 .done(function(data) {
                     $("#login-modal").modal('hide');
-                    // location.reload();
+                    location.reload();
                 })
                 .fail(function(reason) {
                     var message = reason.responseJSON.email;
