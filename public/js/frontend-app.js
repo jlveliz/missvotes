@@ -275,7 +275,7 @@ $(document).ready(function() {
                 })
                 .done(function() {
                     $("#email-modal").modal('hide');
-                    $("#email-succees-modal").modal('show');
+                    $("#email-change-password").modal('show');
                 })
                 .fail(function(reason) {
                     var message = reason.responseJSON;
@@ -332,6 +332,9 @@ $(document).ready(function() {
         errorElement: 'strong',
         errorClass: 'help-block',
         submitHandler: function(form) {
+            $("#spinner").css('display', 'block');
+            $("#activation-email").attr('readonly');
+            $(".activationmodal-container").removeClass('animated shake');
             event.preventDefault();
             var dataForm = $(form).serialize();
             $.ajax({

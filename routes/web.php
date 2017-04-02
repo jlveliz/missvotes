@@ -29,9 +29,9 @@ Route::group(['prefix'=>'auth'],function(){
 	Route::post('activate','Auth\ActivateClientController@reSendactivationCode')->name('client.re-send-activate');
 
 	// forgot and change password
-	Route::post('password-verify-email', 'Auth\ForgotClientPasswordController@verifyEmail')->name('client.password.verify');
-	Route::post('send-reset-email','Auth\ForgotClientPasswordController@sendResetLinkEmail')->name('çlient.password.send-reset');
-	Route::get('reset','Auth\ForgotClientPasswordController@sendResetLinkEmail')->name('çlient.password.send-reset');
+	Route::post('send-reset-email','Auth\ForgotClientPasswordController@sendResetLinkEmail');
+	Route::get('reset/{token}','Auth\ResetClientPasswordController@showResetForm');
+	Route::post('/password/reset','Auth\ResetClientPasswordController@reset');
 });
 
 
