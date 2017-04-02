@@ -14,8 +14,8 @@
 @section('content')
 {{-- photo gallery --}}
 <div class="miss-content">
+	<h2>{{ $miss->name }} {{ $miss->last_name }}</h2>
 	<div class="col-lg-8 col-md-8 col-sm-6 col-xs-6">
-		<h2>{{ $miss->name }} {{ $miss->last_name }}</h2>
 
 		<div class="Wallop Wallop--fade">
 		  <div class="Wallop-list">
@@ -37,7 +37,21 @@
 	</div>
 
 	{{-- description --}}
-	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6"></div>
+	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+		<p class="description-miss"><b>Nacionalidad</b></p>
+		<p>{{ $miss->country->name }}</p>
+		<p class="description-miss"><b>Medidas</b></p>
+		<p><b>Al: </b> {{ $miss->height }}  / <b>Bu:</b> {{ $miss->bust_measure }} /  <b>Ci:</b> {{ $miss->waist_measure }} / <b>Ca:</b> {{ $miss->hip_measure }}</p>
+		<p><b>Hobbies</b></p>
+		<p>{{ $miss->hobbies }}</p>
+		<hr>
+		<div class="vote-section text-center">
+			<form action="#">
+				<button type="submit" class="btn btn-info btn-lg">Votar</button>
+			</form>
+		</div>
+		<hr>
+	</div>
 </div>
 
 <div class="clearfix"></div>

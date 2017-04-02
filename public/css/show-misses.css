@@ -71,8 +71,6 @@
 }
 
 .photo-show {
-    max-height: 50%;
-    max-width: 50%;
     text-align: center;
     display: block;
     margin: 0 auto;
@@ -81,4 +79,11 @@
 .photo-show img.portrait {
     width: 100%;
     height: auto;
+}
+
+@media(max-width: 600px) {
+    .Wallop-buttonNext,
+    .Wallop-buttonPrevious {
+        display: none
+    }
 }

@@ -4,7 +4,7 @@ namespace MissVote\Repository;
 use MissVote\RepositoryInterface\MissRepositoryInterface;
 use MissVote\Models\Miss;
 use Carbon\Carbon;
-
+use Image;
 /**
 * 
 */
@@ -106,8 +106,29 @@ class MissRepository implements MissRepositoryInterface
 	{
 		$arrayModel=[];
 		if ($photo->isValid()) {
+			
+			$realPath = $photo->getRealPath();
+			$image = Image::make($realPath);
+			$isLandScape = true;
+
+			if ($image->width() >= $image->height()) {
+				$isLandScape = false;
+			}
+			//is landscape
+			if ($isLandScape) {
+				$image->resize(309,482,function($constraint){
+					$constraint->aspectRatio();
+				});
+			} else {
+				//is portrait
+				$image->resize(722,482,function($constraint){
+					$constraint->aspectRatio();
+				});				
+			}
+
+
 			$imageName = $missId.'_'.str_random().'.'. $photo->getClientOriginalExtension();
-			if($photo->move($this->pathUplod(),$imageName)){
+			if($image->save($this->pathUplod().'/'.$imageName)){
 				$arrayModel['path'] = 'public/uploads/'.$imageName;
 				// $paths[$key]['miss_id'] = $keyMiss;
 			}
