@@ -6,8 +6,9 @@
 	<title>{{config('app.name')}}</title>
 	<link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" type="text/css" href="{{ asset('public/css/app.css') }}">
+    @yield('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('public/css/frontend.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ asset('public/css/animate.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/animate.min.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 	 <!-- Scripts -->
     <script>
@@ -31,13 +32,14 @@
 	</header><!-- /header -->
 	<div class="container container-app">
         @yield('content')
-		<footer class="footer">
+		<footer class="row footer">
 			<p class="text-center">{{date('Y')}}© todos los derechos reservados.</p>
 		</footer>
 	</div>
     <script src="{{asset('public/js/app.js')}} "></script>
     <script src="{{asset('public/js/jquery-validation/dist/jquery.validate.min.js')}} "></script>
-	<script src="{{asset('public/js/frontend-app.js')}} "></script>
+    @yield('js')
+    <script src="{{asset('public/js/frontend-app.js')}} "></script>
     {{-- partials --}}
     @include('frontend.modals.login')
     @include('frontend.modals.register')

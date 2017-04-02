@@ -15,7 +15,7 @@ class MissRepository implements MissRepositoryInterface
 	{
 		if (!$params) {
 			$misses = Miss::all();
-		} else if (is_array($params)) {
+		} elseif (is_array($params)) {
 			if (array_key_exists('state', $params)) {
 				$misses = Miss::where('state',$params['state'])->get();
 			}
@@ -32,7 +32,9 @@ class MissRepository implements MissRepositoryInterface
 		if (is_array($field)) {
 			if (array_key_exists('name', $field)) { 
 				$miss = Miss::where('name',$field['name'])->first();
-			} else {
+			} elseif (array_key_exists('slug', $field)) {
+				$miss = Miss::where('slug',$field['slug'])->first();
+			}else {
 				throw new MissException("No se puede buscar a la Candidata",500);		
 			}
 		} elseif (is_string($field) || is_int($field)) {
@@ -55,6 +57,7 @@ class MissRepository implements MissRepositoryInterface
 	{
 		$miss = new Miss();
 		$photos = $data['photos'];
+		$miss->slug = str_slug($data['name'].' '.$data['last_name'],'-');
 		$miss->fill($data);
 		if ($miss->save()) {
 			$keyMiss = $miss->getKey();
@@ -72,6 +75,7 @@ class MissRepository implements MissRepositoryInterface
 		$miss = $this->find($id);
 
 		if ($miss) {
+			$miss->slug = str_slug($data['name'].' '.$data['last_name'],'-');
 			$miss->fill($data);
 			if($miss->update()){
 				$key = $miss->getKey();

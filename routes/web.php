@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/', 'WebsiteController@index');
+Route::get('/', 'WebsiteController@index')->name('website.home');
+Route::get('/miss/{slug}', 'WebsiteController@show')->name('website.miss.show');
 
 
 Route::group(['prefix'=>'auth'],function(){

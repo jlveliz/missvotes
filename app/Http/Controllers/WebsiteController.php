@@ -22,4 +22,12 @@ class WebsiteController extends Controller
     	$misses = $this->missRepo->enum(['state' => 1]);
     	return view('frontend.pages.home',['misses'=>$misses]);
     }
+
+    public function show($slug)
+    {
+    	if (!$slug) abort(404);
+    	$miss = $this->missRepo->find(['slug' => $slug]);
+    	if (!$miss) abort(404);
+    	return view('frontend.pages.show-miss',compact('miss'));
+    }
 }

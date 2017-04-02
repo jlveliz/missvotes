@@ -18,7 +18,8 @@ class Miss extends Model
      */
     protected $fillable = [
         'name', 
-        'last_name', 
+        'last_name',
+        'slug', 
         'country_id',
         'height',
         'bust_measure',
