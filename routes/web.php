@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.frontend');
-});
+Route::get('/', 'WebsiteController@index');
 
 
 Route::group(['prefix'=>'auth'],function(){

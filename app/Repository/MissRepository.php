@@ -13,8 +13,14 @@ class MissRepository implements MissRepositoryInterface
 	
 	public function enum($params = null)
 	{
-		$misses = Miss::all();
-		
+		if (!$params) {
+			$misses = Miss::all();
+		} else if (is_array($params)) {
+			if (array_key_exists('state', $params)) {
+				$misses = Miss::where('state',$params['state'])->get();
+			}
+		}
+
 		if (!$misses) {
 			throw new MissException("No se han encontrado cientes",404);
 		}
