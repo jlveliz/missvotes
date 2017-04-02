@@ -3,29 +3,7 @@
 @section('css')
 <link rel="stylesheet" href="{{ asset('/public/css/wallop/wallop.css') }}">
 <link rel="stylesheet" href="{{ asset('/public/css/wallop/wallop--fade.css') }}">
-<style rel="stylesheet">
-	
-	/* Demo styles for pagination */
-	.Wallop-pagination {
-	  text-align: center;
-	}
-
-	.Wallop-dot {
-	  text-indent: -9999px;
-	  border: 0;
-	  border-radius: 50%;
-	  width: 12px;
-	  height: 12px;
-	  padding: 0;
-	  margin: 5px;
-	  background-color: #ccc;
-	  -webkit-appearance: none;  
-	}
-
-	.Wallop-dot--current {
-	  background-color: #000;
-	}
-</style>
+<link rel="stylesheet" href="{{ asset('/public/css/show-misses.css') }}">
 @endsection()
 
 @section('js')
@@ -43,7 +21,7 @@
 		  <div class="Wallop-list">
 		  	@foreach ($miss->photos as $photo)
 		    	<div class="Wallop-item">
-		    		<img class="img-responsive" src="{{config('app.url') .'/'. $photo->path }}" alt="{{ $miss->name }} {{ $miss->last_name }}" title="{{ $miss->name }} {{ $miss->last_name }}">
+		    		<img class="img-responsive photo-show" src="{{config('app.url') .'/'. $photo->path }}" alt="{{ $miss->name }} {{ $miss->last_name }}" title="{{ $miss->name }} {{ $miss->last_name }}">
 		    	</div>
 		  	@endforeach
 

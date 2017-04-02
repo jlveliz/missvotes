@@ -1,0 +1,84 @@
+/* Demo styles for pagination */
+
+.Wallop {
+    text-align: center;
+}
+
+.Wallop-pagination {
+    text-align: center;
+    position: relative;
+    z-index: 100;
+}
+
+.Wallop-dot {
+    text-indent: -9999px;
+    border: 0;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    padding: 0;
+    margin: 5px;
+    background-color: #ccc;
+    -webkit-appearance: none;
+}
+
+.Wallop-dot--current {
+    background-color: #000;
+}
+
+.Wallop-buttonPrevious {
+    left: 1pc;
+}
+
+.Wallop-buttonNext {
+    right: 1pc;
+}
+
+.Wallop-buttonPrevious:before {
+    content: "\276E";
+}
+
+.Wallop-buttonNext:before {
+    content: "\276F";
+}
+
+.Wallop-buttonNext:before,
+.Wallop-buttonPrevious:before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    text-indent: 0;
+    font-size: 25px;
+    line-height: 0;
+}
+
+.Wallop-buttonNext,
+.Wallop-buttonPrevious {
+    border: none;
+    webkit-appearance: none;
+    background: hsla(0, 5%, 92%, 0.6);
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    text-indent: -9999px;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    z-index: 100;
+}
+
+.photo-show {
+    max-height: 50%;
+    max-width: 50%;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+}
+
+.photo-show img.portrait {
+    width: 100%;
+    height: auto;
+}
