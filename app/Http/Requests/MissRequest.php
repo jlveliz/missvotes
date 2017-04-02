@@ -34,7 +34,8 @@ class MissRequest extends FormRequest
                     'waist_measure' => 'required|integer',
                     'hip_measure' => 'required|integer',
                     'state' => 'required|integer',
-                    'photos'=>'required|array'
+                    'photos'=>'required|array',
+                    'hobbies' => 'max:300'
                 ];
                 break;
             case "PUT":
@@ -47,7 +48,8 @@ class MissRequest extends FormRequest
                     'waist_measure' => 'required|integer',
                     'hip_measure' => 'required|integer',
                     'state' => 'required|integer',
-                    'photos'=>'required_with:photos|array'
+                    'photos'=>'required_with:photos|array',
+                    'hobbies' => 'max:300'
                 ];
                 break;
         }
@@ -73,6 +75,7 @@ class MissRequest extends FormRequest
             'state.integer' => 'El estado es inválido',
             'photos.required'=>'Las fotos son requeridas',
             'photos.array'=>'No es un arreglo',
+            'hobbies.max' => 'Debe poner máximo 300 caracteres'
         ];
     }
 }
