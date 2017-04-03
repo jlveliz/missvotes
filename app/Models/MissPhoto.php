@@ -17,7 +17,8 @@ class MissPhoto extends Model
      * @var array
      */
     protected $fillable = [
-        'path'
+        'path',
+        'is_landscape',
     ];
 
     protected $guarded = [

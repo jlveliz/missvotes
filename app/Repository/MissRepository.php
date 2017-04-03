@@ -144,6 +144,7 @@ class MissRepository implements MissRepositoryInterface
 
 		if ($arrayModel) {
 			$miss = $this->find($missId);
+			$arrayModel['is_landscape'] = $isLandScape;
 			$modelRelation = new \MissVote\Models\MissPhoto($arrayModel);
 			$miss->photos()->save($modelRelation);
 			return $miss;

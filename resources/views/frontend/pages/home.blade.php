@@ -6,14 +6,13 @@
 </div>
 <div class="row gallery-container">
 	@foreach ($misses as $miss)
-        <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe thumbnail">
-            <a href="{{ route('website.miss.show',$miss->slug) }}">
-                <img src="{{config('app.url') .'/'. $miss->photos()->first()->path }}" class="img-responsive image" alt="{{ $miss->name .' '. $miss->last_name}}">
-                <div class="middle">
-                    <div class="text">{{ $miss->name .' '. $miss->last_name}}</div>
-                </div>
-            </a>
-        </div>
+        <a href="{{ route('website.miss.show',$miss->slug) }}">
+            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe thumbnail " style="background-image: url('{{config('app.url') .'/'. $miss->photos()->first()->path }}'); ">
+                    <div class="middle">
+                        <div class="text">{{ $miss->name .' '. $miss->last_name}}</div>
+                    </div>
+            </div>
+        </a>
     @endforeach
 </div>
 @endsection()

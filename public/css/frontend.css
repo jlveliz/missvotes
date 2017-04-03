@@ -238,7 +238,10 @@ hr {
     width: 300px;
     height: 300px;
     overflow: hidden;
-    margin-left: 60px
+    margin-left: 60px;
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
 }
 
 .thumbnail a img {
