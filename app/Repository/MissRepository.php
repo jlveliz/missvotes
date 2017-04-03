@@ -73,13 +73,21 @@ class MissRepository implements MissRepositoryInterface
 	public function edit($id,$data)
 	{
 		$miss = $this->find($id);
-
+		$photos = null;
 		if ($miss) {
+			if (array_key_exists('photos', $data)) {
+				$photos = $data['photos'];
+			}
 			$miss->slug = str_slug($data['name'].' '.$data['last_name'],'-');
 			$miss->fill($data);
 			if($miss->update()){
-				$key = $miss->getKey();
-				return $this->find($key);
+				$keyMiss = $miss->getKey();
+				if ($photos) {
+					foreach ($photos as $key => $photo) {
+						$this->uploadPhoto($keyMiss,$photo);
+					}
+				}
+				return $this->find($keyMiss);
 			}
 		}
 
