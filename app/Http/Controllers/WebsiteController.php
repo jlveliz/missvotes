@@ -36,4 +36,5 @@ class WebsiteController extends Controller
         }
     	return view('frontend.pages.show-miss',compact('miss','misses'));
     }
+
 }

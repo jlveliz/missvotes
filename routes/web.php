@@ -13,6 +13,8 @@
 
 Route::get('/', 'WebsiteController@index')->name('website.home');
 Route::get('/miss/{slug}', 'WebsiteController@show')->name('website.miss.show');
+// votes for miss
+Route::post('/miss/vote', 'VoteController@store')->name('website.miss.vote.store');
 
 
 Route::group(['prefix'=>'auth'],function(){

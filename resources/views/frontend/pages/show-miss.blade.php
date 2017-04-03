@@ -46,10 +46,23 @@
 		<p><b>Al: </b> {{ $miss->height }}  / <b>Bu:</b> {{ $miss->bust_measure }} /  <b>Ci:</b> {{ $miss->waist_measure }} / <b>Ca:</b> {{ $miss->hip_measure }}</p>
 		<p><b>Hobbies</b></p>
 		<p>{{ $miss->hobbies }}</p>
+		
 		<hr>
+		
+		@if (Session::has('mensaje'))
+    		<div class="alert alert-dismissible @if(Session::get('tipo_mensaje') == 'success') alert-info  @endif @if(Session::get('tipo_mensaje') == 'error') alert-danger  @endif" role="alert">
+      			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+      			{{session('mensaje')}}
+       		</div>
+    		<div class="clearfix"></div>
+   		@endif
+		
 		<div class="vote-section text-center @if(Auth::user()) ready-vote @else no-ready-vote  @endif">
 			@if (Auth::user())
-				<form action="#">
+				<form action="{{ route('website.miss.vote.store') }}" method="POST">
+					{{ csrf_field() }}
+					<input type="hidden" name="miss_id" value="{{$miss->id}}">
+					<input type="hidden" name="client_id" value="{{Auth::user()->id}}">
 					<button type="submit" class="btn btn-primary btn-lg">
 						<i class="fa fa-heart like-vote" aria-hidden="true"></i> Votar
 					</button>

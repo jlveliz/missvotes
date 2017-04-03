@@ -53,5 +53,11 @@ class AppServiceProvider extends ServiceProvider
             'MissVote\Repository\TicketVoteRepository'
         );
 
+        //VOTES
+        $this->app->bind(
+            'MissVote\RepositoryInterface\VoteRepositoryInterface',
+            'MissVote\Repository\VoteRepository'
+        );
+
     }
 }
