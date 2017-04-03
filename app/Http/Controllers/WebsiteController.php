@@ -27,7 +27,13 @@ class WebsiteController extends Controller
     {
     	if (!$slug) abort(404);
     	$miss = $this->missRepo->find(['slug' => $slug]);
+        $misses = $this->missRepo->enum(['state'=>1]);
     	if (!$miss) abort(404);
-    	return view('frontend.pages.show-miss',compact('miss'));
+        foreach ($misses as $key => $missAr) {
+            if ($missAr->id == $miss->id) {
+                unset($misses[$key]);
+            }
+        }
+    	return view('frontend.pages.show-miss',compact('miss','misses'));
     }
 }

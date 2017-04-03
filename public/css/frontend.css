@@ -2,6 +2,10 @@ body {
     background: #eeefee;
 }
 
+hr {
+    border-top: 1px solid #e2e2e2;
+}
+
 .navbar .container {
     text-align: center;
 }
@@ -237,7 +241,7 @@ body {
     margin-left: 60px
 }
 
-.thumbnail a  img {
+.thumbnail a img {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -293,10 +297,21 @@ body {
 
 
 /*******MISS CONTENT ***********/
-.miss-content{
+
+.miss-content {
     margin-top: 20px;
     padding: 5px
 }
+
+
 /*******MISS CONTENT ***********/
 
 
+/******HELPERS*******/
+
+.no-padding {
+    padding: 0px!important;
+}
+
+
+/******HELPERS*******/

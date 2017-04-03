@@ -5,7 +5,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>{{config('app.name')}}</title>
 	<link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" type="text/css" href="{{ asset('public/css/app.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('public/css/app.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('public/css/font-awesome.min.css') }}">
     @yield('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('public/css/frontend.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/css/animate.min.css') }}">

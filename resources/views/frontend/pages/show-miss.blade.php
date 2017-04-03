@@ -4,10 +4,12 @@
 <link rel="stylesheet" href="{{ asset('/public/css/wallop/wallop.css') }}">
 <link rel="stylesheet" href="{{ asset('/public/css/wallop/wallop--fade.css') }}">
 <link rel="stylesheet" href="{{ asset('/public/css/show-misses.css') }}">
+<link rel="stylesheet" href="{{ asset('/public/css/selectize/selectize.bootstrap3.css') }}">
 @endsection()
 
 @section('js')
 <script type="text/javascript" src="{{ asset('/public/js/wallop/Wallop.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/public/js/selectize/selectize.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/public/js/show-miss-app.js') }}"></script>
 @endsection()
 
@@ -45,14 +47,36 @@
 		<p><b>Hobbies</b></p>
 		<p>{{ $miss->hobbies }}</p>
 		<hr>
-		<div class="vote-section text-center">
-			<form action="#">
-				<button type="submit" class="btn btn-info btn-lg">Votar</button>
-			</form>
+		<div class="vote-section text-center @if(Auth::user()) ready-vote @else no-ready-vote  @endif">
+			@if (Auth::user())
+				<form action="#">
+					<button type="submit" class="btn btn-primary btn-lg">
+						<i class="fa fa-heart like-vote" aria-hidden="true"></i> Votar
+					</button>
+				</form>
+			@else 
+				Para votar, <a href="#" id="go-login" title="Iniciar Sesión"><span>Inicie Sesión</span></a> o  <a href="#" id="go-register" title="Registrarse"><span>Registrese</span></a>
+			@endif
 		</div>
 		<hr>
-	</div>
-</div>
 
+		<div class="navigate-section">
+			<h5><b>Mire las otras candidatas</b></h5>
+			<div class="col-md-10 col-xs-12 no-padding">
+				<select class="form-control" name="select_misses" id="select-misses">
+					@foreach ($misses as $miss)
+						<option value="null">--Seleccione--</option>
+						<option value="{{ route('website.miss.show',$miss->slug) }}"> {{ $miss->name }} {{ $miss->last_name }} </option>
+					@endforeach
+				</select>
+			</div>
+			<div class="col-md-2">
+				<a id="go-miss" href="" class="btn btn-default btn-go">Ir</a>	
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</div>
 <div class="clearfix"></div>
+
 @endsection()
