@@ -15,7 +15,7 @@
 
 @section('content')
 {{-- photo gallery --}}
-<div class="miss-content">
+<div class="container-page">
 	<h2>{{ $miss->name }} {{ $miss->last_name }}</h2>
 	<div class="col-lg-8 col-md-8 col-sm-6 col-xs-6">
 

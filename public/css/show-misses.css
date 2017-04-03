@@ -70,13 +70,6 @@
     z-index: 100;
 }
 
-.miss-content {
-    padding: 40px 0px;
-}
-
-.miss-content h2 {
-    border-bottom: 1px solid #cdcdcd;
-}
 
 .photo-show {
     text-align: center;
@@ -109,3 +102,5 @@
 .like-vote {
     color: #ca1b18;
 }
+
+

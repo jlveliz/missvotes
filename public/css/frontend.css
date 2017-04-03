@@ -47,6 +47,15 @@ hr {
     top: 51px
 }
 
+.container-page{
+    padding: 40px 0px;
+}
+
+
+.container-page h2 {
+    border-bottom: 1px solid #cdcdcd;
+}
+
 .footer {
     border-top: 1px solid #cdcdcd;
 }
@@ -318,3 +327,18 @@ hr {
 
 
 /******HELPERS*******/
+
+
+/******PROFILE*******/
+.container-tabs-profile {
+    padding: 10px 80px;
+}
+
+.profile-img{
+    padding: 5PX;
+    
+}
+
+/******PROFILE*******/
+
+

@@ -31,6 +31,9 @@
 
                     <ul class="dropdown-menu" role="menu">
                         <li>
+                            <a href="{{ route('website.account') }}" title="Mi Cuenta">Mi Cuenta</a>
+                        </li>
+                        <li>
                             <a href="{{ url('auth/logout') }}"
                                 onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();">
