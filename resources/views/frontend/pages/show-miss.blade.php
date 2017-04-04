@@ -59,14 +59,31 @@
 		
 		<div class="vote-section text-center @if(Auth::user()) ready-vote @else no-ready-vote  @endif">
 			@if (Auth::user())
-				<form action="{{ route('website.miss.vote.store') }}" method="POST">
-					{{ csrf_field() }}
-					<input type="hidden" name="miss_id" value="{{$miss->id}}">
-					<input type="hidden" name="client_id" value="{{Auth::user()->id}}">
-					<button type="submit" class="btn btn-primary btn-lg">
-						<i class="fa fa-heart like-vote" aria-hidden="true"></i> Votar
-					</button>
-				</form>
+
+				@if (!Auth::user()->is_admin)
+					@cannot('vote', Auth::user())
+						<p class="text-center">
+							<b>Gracias por registrar tu voto, vuelve el día de <span class="text-danger">mañana</span> para volver a votar</b> 
+						</p>
+					@endcannot
+				@else
+					@cannot('vote', Auth::user())
+						<p class="text-center text-danger">
+							<b>Usted no puede realizar esta acción.</b> 
+						</p>
+					@endcannot
+				@endif
+
+				@can('vote',Auth::user())
+					<form action="{{ route('website.miss.vote.store') }}" method="POST">
+						{{ csrf_field() }}
+						<input type="hidden" name="miss_id" value="{{$miss->id}}">
+						<input type="hidden" name="client_id" value="{{Auth::user()->id}}">
+						<button type="submit" class="btn btn-primary btn-lg" @cannot('vote', Auth::user()) disabled @endcannot>
+							<i class="fa fa-heart like-vote" aria-hidden="true"></i> Votar
+						</button>
+					</form>
+				@endcan
 			@else 
 				Para votar, <a href="#" id="go-login" title="Iniciar Sesión"><span>Inicie Sesión</span></a> o  <a href="#" id="go-register" title="Registrarse"><span>Registrese</span></a>
 			@endif

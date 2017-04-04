@@ -26,8 +26,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('acess-backend',function($user){
-            if ($user->is_admin) {
+        Gate::define('vote',function($user){
+            if (!$user->is_admin && $user->confirmed) {
                 return true;
             }
             return false;

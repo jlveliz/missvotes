@@ -8,19 +8,27 @@ use MissVote\Http\Requests\VoteRequest;
 
 use MissVote\RepositoryInterface\VoteRepositoryInterface;
 
+use MissVote\RepositoryInterface\ClientRepositoryInterface;
+
 use Response;
 
 use Redirect;
+
+use Auth;
 
 class VoteController extends Controller
 {
     
     public $vote;
 
+    public $clientRepo;
+
    
-    public function __construct(VoteRepositoryInterface $vote)
+    public function __construct(VoteRepositoryInterface $vote, ClientRepositoryInterface $clientRepo)
     {
         $this->vote = $vote;
+        $this->clientRepo =  $clientRepo;
+
         // $this->middleware('auth');
         // $this->middleware('can:acess-backend');
     }
@@ -52,19 +60,34 @@ class VoteController extends Controller
      */
     public function store(VoteRequest $request)
     {
-        $data = $request->all();
-        $data['value'] = 1;
-        $data['type'] = 'membership_normal';
-        $vote = $this->vote->save($data);
-        $sessionData = [
-            'tipo_mensaje' => 'success',
-            'mensaje' => '',
-        ];
-        if ($vote) {
-            $sessionData['mensaje'] = 'Gracias por su votación';
+        if($this->authorize('vote',Auth::user()) ) {
+            $data = $request->all();
+            //find a client
+            $client = $this->clientRepo->find(Auth::user()->id);
+            //find a val vote
+            $valVote = $client &&  $client->current_membership() ? $client->current_membership()->membership->points_per_vote :  config('vote.vote-default');
+            //find a membership
+            $typeMembership = $client &&  $client->current_membership() ? $client->current_membership()->membership->name :  config('vote.type-membership-default');
+
+            $data['value'] = $valVote;
+            $data['type']  = $typeMembership;
+            
+            $vote = $this->vote->save($data);
+            
+            $sessionData = [
+                'tipo_mensaje' => 'success',
+                'mensaje' => '',
+            ];
+
+            if ($vote) {
+                $sessionData['mensaje'] = 'Gracias por su votación';
+            } else {
+                $sessionData['tipo_mensaje'] = 'error';
+                $sessionData['mensaje'] = 'El voto no pudo ser procesado, intente nuevamente.';
+            }
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = 'El voto no pudo ser procesado, intente nuevamente.';
+            $sessionData['mensaje'] = 'No tiene derecho a realizar esta acción.';
         }
         
         return Redirect::back()->with($sessionData);
