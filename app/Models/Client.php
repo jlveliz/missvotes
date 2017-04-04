@@ -52,4 +52,9 @@ class Client extends Authenticatable
     {
         return $this->hasMany('MissVote\Models\TicketVoteClient');
     }
+
+    public function membership()
+    {
+        return $this->hasOne('MissVote\Models\MembershipClient','client_id');
+    }
 }
