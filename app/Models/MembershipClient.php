@@ -15,7 +15,22 @@ class MembershipClient extends Model
      * @var array
      */
     protected $fillable = [
-        'client_id','membership_id','payment_method','date_start','date_end'
+        'client_id',
+        'membership_id',
+        'payment_method',
+        'date_start',
+        'date_end'
     ];
+
+
+    public function client()
+    {
+        return $this->belongsTo('MissVote\Models\Client','client_id');
+    }
+
+    public function membership()
+    {
+        return $this->belongsTo('MissVote\Models\Membership','membership_id');
+    }
     
 }

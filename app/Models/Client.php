@@ -53,8 +53,13 @@ class Client extends Authenticatable
         return $this->hasMany('MissVote\Models\TicketVoteClient');
     }
 
-    public function membership()
+    public function memberships()
     {
-        return $this->hasOne('MissVote\Models\MembershipClient','client_id');
+        return $this->hasMany('MissVote\Models\MembershipClient','client_id');
+    }
+
+    public function current_membership()
+    {
+        return  $this->memberships()->where('is_active',$this->getActive())->first();
     }
 }

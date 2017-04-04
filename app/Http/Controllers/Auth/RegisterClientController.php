@@ -105,7 +105,7 @@ class RegisterClientController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'address' => $data['address'],
-            'is_admin' => 0,
+            'is_admin' => (new Client())->getInactive(),
             'confirmation_code' => $confirmation_code,
             'password' => bcrypt($data['password']),
         ]);

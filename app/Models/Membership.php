@@ -15,13 +15,31 @@ class Membership extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description', 'price','duration_mode','duration_time','points_per_vote'
+        'name', 
+        'description', 
+        'price',
+        'duration_mode',
+        'duration_time',
+        'points_per_vote'
     ];
 
     public $durationsMode = [
     	'1' => 'Mes(es)',
     	'2' => 'Año(s)'
     ];
+
+
+    public function clients()
+    {
+        return $this->hasMany('MissVote\Models\MembershipClient','membership_id');
+    }
+
+
+    public function getDurationMode($key)
+    {
+        if ($this->durationsMode[$key]) return $this->durationsMode[$key];
+        return "-";
+    }
 
     
 }

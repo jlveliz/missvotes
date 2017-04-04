@@ -51,33 +51,68 @@
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="col-md-12 col-sm-12 col-xs-12">
-					<p class="subtitle">Tickets</p>
-					<table id="tickets-detail" class="table table-bordered">
-						<thead>
-							<tr>
-								<th>Ticket</th>
-								<th>Tipo de pago</th>
-								<th>Estado</th>
-								<th>Acción</th>
-							</tr>
-						</thead>
-						<tbody>
-						@foreach ($client->tickets as $ticket)
-							<tr>
-								<td>{{$ticket->ticket->name}}</td>
-								<td>{{$ticket->payment_type}}</td>
-								<td>@if($ticket->state == '1') Activa @else Usada @endif</td>
-								<td>
-									<button title="Ver detalle" class="btn btn-xs btn btn-primary"><i class="fa fa-eye"></i> Ver</button>
-								</td>
-							</tr>
-						@endforeach
-						</tbody>
-					</table>
+			
+				<ul class="nav nav-tabs" role="tablist">
+					<li role="presentation" class="active">
+		    			<a href="#membership" aria-controls="membership" role="tab" data-toggle="tab">Membresia</a>
+		    		</li>
+		    		<li role="presentation">
+		    			<a href="#tickets" aria-controls="tickets" role="tab" data-toggle="tab">Tickets</a>
+		    		</li>
+				</ul>
+
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="membership">
+						<h3 class="subtitle">Membresia</h3> 
+						<table class="table table-bordered">
+							<tbody>
+								<tr>
+									<td>
+										<b>Membresia:</b> @if($client->current_membership()) {{$client->current_membership()->membership->name}} @else Gratis @endif
+									</td>
+									<td>
+										<b>Precio:</b> @if($client->current_membership()) {{$client->current_membership()->membership->price}} @else $ 0.00 @endif
+									</td>
+									<td>
+										<b>Duración:</b> @if($client->current_membership()) {{$client->current_membership()->membership->duration_time}}  {{ $client->current_membership()->membership->getDurationMode($client->current_membership()->membership->duration_mode) }} @else N/A @endif
+									</td>
+									<td>
+										<b>Puntos por voto:</b> @if($client->current_membership()) {{$client->current_membership()->membership->points_per_vote}} @else 1 @endif
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div role="tabpanel" class="tab-pane" id="tickets">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<h3 class="subtitle">Tickets</h3>
+							<table id="tickets-detail" class="table table-bordered">
+								<thead>
+									<tr>
+										<th>Ticket</th>
+										<th>Tipo de pago</th>
+										<th>Estado</th>
+										<th>Acción</th>
+									</tr>
+								</thead>
+								<tbody>
+								@foreach ($client->tickets as $ticket)
+									<tr>
+										<td>{{$ticket->ticket->name}}</td>
+										<td>{{$ticket->payment_type}}</td>
+										<td>@if($ticket->state == $client->getActive()) Activa @else Usada @endif</td>
+										<td>
+											<button title="Ver detalle" class="btn btn-xs btn btn-primary"><i class="fa fa-eye"></i> Ver</button>
+										</td>
+									</tr>
+								@endforeach
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>
-			</div>
+			
 
 			<div class="form-group  col-md-12 col-sm-12 col-xs-12">
 				<a href="{{ route('clients.index') }}" class="btn btn-primary">Cancelar</a>
@@ -101,3 +136,11 @@
   });
  </script>
 @endsection
+
+@section('css')
+<style type="text/css">
+	#tickets-detail{
+		width: 100%!important;
+	}
+</style>
+@endsection()
