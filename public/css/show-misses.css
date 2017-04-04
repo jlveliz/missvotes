@@ -2,6 +2,7 @@
 
 .Wallop {
     text-align: center;
+    background: rgba(185, 160, 53, 0.14)
 }
 
 .Wallop-pagination {
@@ -70,7 +71,6 @@
     z-index: 100;
 }
 
-
 .photo-show {
     text-align: center;
     display: block;
@@ -94,6 +94,18 @@
     background: rgba(0, 0, 0, 0.075);
 }
 
+.btn-vote {
+    color: #fff;
+    background-color: #b9a035;
+    border-color: #aa9335;
+    border-radius: 2px;
+}
+
+.btn-vote:hover {
+    background-color: #aa9335;
+    color: #fff;
+}
+
 .ready-vote {
     padding: 20px;
     background: rgba(173, 217, 243, 0.35);
@@ -102,5 +114,3 @@
 .like-vote {
     color: #ca1b18;
 }
-
-

@@ -17,7 +17,7 @@
 {{-- photo gallery --}}
 <div class="container-page">
 	<h2>{{ $miss->name }} {{ $miss->last_name }}</h2>
-	<div class="col-lg-8 col-md-8 col-sm-6 col-xs-6">
+	<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
 
 		<div class="Wallop Wallop--fade">
 		  <div class="Wallop-list">
@@ -39,7 +39,8 @@
 	</div>
 
 	{{-- description --}}
-	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+		<hr class="visible-xs">
 		<p class="description-miss"><b>Nacionalidad</b></p>
 		<p>{{ $miss->country->name }}</p>
 		<p class="description-miss"><b>Medidas</b></p>
@@ -79,7 +80,7 @@
 						{{ csrf_field() }}
 						<input type="hidden" name="miss_id" value="{{$miss->id}}">
 						<input type="hidden" name="client_id" value="{{Auth::user()->id}}">
-						<button type="submit" class="btn btn-primary btn-lg" @cannot('vote', Auth::user()) disabled @endcannot>
+						<button type="submit" class="btn btn-vote btn-lg" @cannot('vote', Auth::user()) disabled @endcannot>
 							<i class="fa fa-heart like-vote" aria-hidden="true"></i> Votar
 						</button>
 					</form>
@@ -92,7 +93,7 @@
 
 		<div class="navigate-section">
 			<h5><b>Mire las otras candidatas</b></h5>
-			<div class="col-md-10 col-xs-12 no-padding">
+			<div class="col-md-10 col-xs-8 no-padding">
 				<select class="form-control" name="select_misses" id="select-misses">
 					@foreach ($misses as $miss)
 						<option value="null">--Seleccione--</option>
@@ -100,7 +101,7 @@
 					@endforeach
 				</select>
 			</div>
-			<div class="col-md-2">
+			<div class="col-md-2 col-xs-4">
 				<a id="go-miss" href="" class="btn btn-default btn-go">Ir</a>	
 			</div>
 		</div>

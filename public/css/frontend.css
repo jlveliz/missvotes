@@ -10,6 +10,11 @@ hr {
     text-align: center;
 }
 
+.navbar-inverse {
+    background-color: #000000;
+    border-bottom: 3px solid #ffffff;
+}
+
 .navbar-collapse .navbar-brand {
     display: inline-block;
     float: none;
@@ -18,20 +23,21 @@ hr {
     overflow: visible;
 }
 
-.navbar-brand .white-circle {
-    display: block;
-    width: 90px;
-    height: 90px;
-    background-color: white;
-    border-radius: 50%;
-    border: 1px solid #cdcdcd;
-    content: "Logo";
-    margin-left: 80px
+.navbar-app {
+    padding: 2px 15px;
 }
 
-.navbar-collapse .navbar-brand .white-circle .logo {
+.navbar-collapse .navbar-brand {
     width: 85px;
     margin: 1px;
+}
+
+.logo {
+    width: 62%;
+}
+
+.navbar-app-mini {
+    padding: 0px 15px;
 }
 
 @media (min-width: 768px) {
@@ -40,6 +46,30 @@ hr {
     }
 }
 
+@media(max-width:150px) and (min-width: 20px) {
+    .thumbnail {
+        margin-left: 0px!important;
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/*@media(min-width: 500px) {
+    .thumbnail {
+        margin-left: 110px!important;
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media(min-width: 505px) {
+    .thumbnail {
+        margin-left: 60px!important;
+        width: 300px;
+        height: 300px;
+    }
+}*/
+
 .container-app {
     background-color: #ffffff;
     border: 1px solid #cdcdcd;
@@ -47,13 +77,13 @@ hr {
     top: 51px
 }
 
-.container-page{
+.container-page {
     padding: 40px 0px;
 }
 
-
 .container-page h2 {
-    border-bottom: 1px solid #cdcdcd;
+    border-bottom: 1px solid #b9a035;
+    padding-bottom: 5px;
 }
 
 .footer {
@@ -297,7 +327,7 @@ hr {
 }
 
 .text {
-    background-color: #676565;
+    background-color: #b9a035;
     color: white;
     font-size: 14px;
     padding: 5px 5px;
@@ -330,15 +360,14 @@ hr {
 
 
 /******PROFILE*******/
+
 .container-tabs-profile {
     padding: 10px 80px;
 }
 
-.profile-img{
+.profile-img {
     padding: 5PX;
-    
 }
 
+
 /******PROFILE*******/
-
-
