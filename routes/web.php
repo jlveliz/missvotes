@@ -14,8 +14,8 @@
 Route::get('/', 'WebsiteController@index')->name('website.home');
 Route::get('/miss/{slug}', 'WebsiteController@show')->name('website.miss.show');
 
-Route::get('/account','WebsiteController@myAccount')->name('website.account');
-Route::post('/account/update','WebsiteController@updateAccount')->name('website.account.update');
+Route::get('/account','WebsiteController@myAccount')->name('website.account')->middleware('auth');
+Route::post('/account/update','WebsiteController@updateAccount')->name('website.account.update')->middleware('auth');
 
 // votes for miss
 Route::post('/miss/vote', 'VoteController@store')->name('website.miss.vote.store');

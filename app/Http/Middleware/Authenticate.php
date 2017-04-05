@@ -18,7 +18,7 @@ class Authenticate
     public function handle($request, Closure $next, $guard = null)
     {
         if (!Auth::guard($guard)->check()) {
-            return redirect('backend/login');
+            return redirect('/');
         }
 
         return $next($request);
