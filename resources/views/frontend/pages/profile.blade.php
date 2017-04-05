@@ -78,7 +78,9 @@
 		    {{-- membershipss --}}
 		    <div role="tabpanel" class="tab-pane" id="membership" >
 		    	<h4>Membresia</h4> 
-		    	@include('frontend.partials.membership',$memberships)
+		    	<div class="col-md-12 col-lg-12 col-xs-12">
+		    		@include('frontend.partials.membership',$memberships)
+		    	</div>
 		    </div>
 		    <div role="tabpanel" class="tab-pane" id="tickets">
 		    	Tickets
