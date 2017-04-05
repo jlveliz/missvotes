@@ -32,7 +32,12 @@ class User extends Authenticatable
 
     public function sendPasswordResetNotification($token)
     {
-        // $this->notify(new ResetPasswordNotification($token));
         $this->notify(new MyResetPassword($token));
+    }
+
+
+    public function client()
+    {
+        return $this->hasOne('MissVote\Models\Client','id');
     }
 }

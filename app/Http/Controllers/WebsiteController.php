@@ -8,6 +8,8 @@ use MissVote\Repository\MissRepository;
 
 use MissVote\Repository\ClientRepository;
 
+use MissVote\Repository\MembershipRepository;
+
 use Hash;
 
 use Validator;
@@ -21,13 +23,16 @@ class WebsiteController extends Controller
     
     private $missRepo;
 
-	private $clientRepo;
+    private $clientRepo;
+
+	private $membershipRepo;
 
 
-	public function __construct(MissRepository $missRepo, ClientRepository $clientRepo)
+	public function __construct(MissRepository $missRepo, ClientRepository $clientRepo, MembershipRepository $membershipRepo)
 	{
         $this->missRepo = $missRepo;
-		$this->clientRepo = $clientRepo;
+        $this->clientRepo = $clientRepo;
+		$this->membershipRepo = $membershipRepo;
 	}
 
 
@@ -62,7 +67,8 @@ class WebsiteController extends Controller
      */
     public function myAccount()
     {
-        return view('frontend.pages.profile');
+        $memberships = $this->membershipRepo->enum();
+        return view('frontend.pages.profile',compact('memberships'));
     }
 
     /***

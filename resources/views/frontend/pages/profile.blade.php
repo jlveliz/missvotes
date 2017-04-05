@@ -1,5 +1,9 @@
 @extends('layouts.frontend')
 
+@section('css')
+<link rel="stylesheet" type="text/css" href="{{ asset('public/css/profile.css') }}">
+@endsection()
+
 @section('content')
 <div class="container-page">
 	<h2>{{ Auth::user()->name }}</h2>
@@ -10,7 +14,7 @@
 		    	<a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Perfil</a>
 		    </li>
 		    <li role="presentation">
-		    	<a href="#membership" aria-controls="membership" role="tab" data-toggle="tab">Membresia</a>
+		    	<a href="#membership" aria-controls="membership" role="tab" data-toggle="tab">Membresia @if(Auth::user()->client && !Auth::user()->client->current_membership()) <small class="upgrade-membership">(Actualiza!!)</small> @endif</a>
 		    </li>
 		    <li role="presentation">
 		    	<a href="#tickets" aria-controls="tickets" role="tab" data-toggle="tab">Tickets</a>
@@ -20,7 +24,7 @@
   		<!-- Tab panes -->
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="profile">
-		    	<div class="col-md-3 col-sm-3 col-xs-12">
+		    	<div class="col-md-3 col-sm-3 col-xs-12 hidden-xs">
 		    		<div class="profile-img">
 		    			<img class="img-responsive" src="{{ asset('public/images/account.png') }}" alt="{{Auth::user()->name}}" title="{{Auth::user()->name}}">
 		    		</div>
@@ -70,8 +74,11 @@
 		    		</form>
 		    	</div>
 		    </div>
-		    <div role="tabpanel" class="tab-pane" id="membership">
-		    	Membresia
+
+		    {{-- membershipss --}}
+		    <div role="tabpanel" class="tab-pane" id="membership" >
+		    	<h4>Membresia</h4> 
+		    	@include('frontend.partials.membership',$memberships)
 		    </div>
 		    <div role="tabpanel" class="tab-pane" id="tickets">
 		    	Tickets

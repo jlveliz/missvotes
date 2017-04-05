@@ -54,7 +54,6 @@ hr {
     }
 }
 
-
 @media screen and (max-width:1000px) and (min-width: 510px) {
     .thumbnail {
         margin-left: 35px!important;
@@ -355,12 +354,20 @@ hr {
 /******PROFILE*******/
 
 .container-tabs-profile {
-    padding: 10px 80px;
+    padding: 10px 15px;
 }
 
 .profile-img {
     padding: 5PX;
 }
+
+.upgrade-membership {
+    color: #b9a035;
+}
+
+/*.upgrade-membership:hover {
+    color: #b9a035!important;
+}*/
 
 
 /******PROFILE*******/

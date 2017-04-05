@@ -13,7 +13,7 @@ class MembershipRepository implements MembershipRepositoryInterface
 	
 	public function enum($params = null)
 	{
-		$memberships = Membership::all();
+		$memberships = Membership::orderBy('price')->get();
 		
 		if (!$memberships) {
 			throw new MembershipException("No se han encontrado Membresias",404);
