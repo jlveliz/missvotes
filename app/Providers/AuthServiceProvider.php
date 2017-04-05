@@ -5,6 +5,8 @@ namespace MissVote\Providers;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Auth;
+use MissVote\Models\Vote;
+use DB;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -33,5 +35,15 @@ class AuthServiceProvider extends ServiceProvider
             return false;
         });
         //
+
+        //allow view if can or not vote today
+        Gate::define('vote_today',function($user,$miss){
+            $existVote =  Vote::where('client_id',$user->id)
+                            ->where('miss_id',$miss->id)
+                            ->whereRaw("DATE_FORMAT(created_at,".DB::raw("'%Y-%m-%d'").") = DATE_FORMAT(".DB::raw("now()").",".DB::raw("'%Y-%m-%d'").")")
+                            ->first();
+            if (!$existVote) return true;
+            return false;
+        });
     }
 }

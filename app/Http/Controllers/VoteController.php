@@ -79,12 +79,10 @@ class VoteController extends Controller
                 'mensaje' => '',
             ];
 
-            if ($vote) {
-                $sessionData['mensaje'] = 'Gracias por su votación';
-            } else {
+            if (!$vote) {
                 $sessionData['tipo_mensaje'] = 'error';
-                $sessionData['mensaje'] = 'El voto no pudo ser procesado, intente nuevamente.';
-            }
+                $sessionData['mensaje'] = 'El voto no pudo ser procesado, intente nuevamente.';  
+            } 
         } else {
             $sessionData['tipo_mensaje'] = 'error';
             $sessionData['mensaje'] = 'No tiene derecho a realizar esta acción.';

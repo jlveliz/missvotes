@@ -53,8 +53,8 @@
 			
 			<hr>
 			
-			@if (Session::has('mensaje'))
-	    		<div class="alert alert-dismissible @if(Session::get('tipo_mensaje') == 'success') alert-info  @endif @if(Session::get('tipo_mensaje') == 'error') alert-danger  @endif" role="alert">
+			@if (Session::get('tipo_mensaje') == 'error')
+	    		<div class="alert alert-dismissible @if(Session::get('tipo_mensaje') == 'error') alert-danger  @endif" role="alert">
 	      			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
 	      			{{session('mensaje')}}
 	       		</div>
@@ -65,7 +65,7 @@
 				@if (Auth::user())
 
 					@if (!Auth::user()->is_admin)
-						@cannot('vote', Auth::user())
+						@cannot('vote_today', $miss)
 							<p class="text-center">
 								<b>Gracias por registrar tu voto, vuelve el día de <span class="text-danger">mañana</span> para volver a votar</b> 
 							</p>
@@ -79,14 +79,16 @@
 					@endif
 
 					@can('vote',Auth::user())
-						<form action="{{ route('website.miss.vote.store') }}" method="POST">
-							{{ csrf_field() }}
-							<input type="hidden" name="miss_id" value="{{$miss->id}}">
-							<input type="hidden" name="client_id" value="{{Auth::user()->id}}">
-							<button type="submit" class="btn btn-vote btn-lg" @cannot('vote', Auth::user()) disabled @endcannot>
-								<i class="fa fa-heart like-vote" aria-hidden="true"></i> Votar
-							</button>
-						</form>
+						@can('vote_today', $miss)
+							<form action="{{ route('website.miss.vote.store') }}" method="POST">
+								{{ csrf_field() }}
+								<input type="hidden" name="miss_id" value="{{$miss->id}}">
+								<input type="hidden" name="client_id" value="{{Auth::user()->id}}">
+								<button type="submit" class="btn btn-vote btn-lg" @cannot('vote', Auth::user()) disabled @endcannot>
+									<i class="fa fa-heart like-vote" aria-hidden="true"></i> Votar
+								</button>
+							</form>
+						@endcan()
 					@endcan
 				@else 
 					Para votar, <a href="#" id="go-login" title="Iniciar Sesión"><span>Inicie Sesión</span></a> o  <a href="#" id="go-register" title="Registrarse"><span>Registrese</span></a>
