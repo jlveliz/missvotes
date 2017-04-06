@@ -1,7 +1,7 @@
 <h5><b>Compre tickets para votar!!</b></h5>
 @foreach ($tickets as $ticket)
 	<div class="col-xs-12 col-md-3">
-		 <div class="panel panel-primary">
+		 <div class="panel panel-success">
 		 	<div class="panel-heading">
 		 		<h3 class="panel-title"> <i class="fa fa-ticket" aria-hidden="true"></i> {{$ticket->name}}</h3>
 		 	</div>
