@@ -24,4 +24,10 @@ class Vote extends Model
     protected $guarded = [
         '*'
     ];
+
+
+    public function miss()
+    {
+        return $this->belongsTo('MissVote\Models\Miss','miss_id');
+    }
 }

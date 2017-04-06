@@ -10,6 +10,8 @@ use MissVote\RepositoryInterface\VoteRepositoryInterface;
 
 use MissVote\RepositoryInterface\ClientRepositoryInterface;
 
+use MissVote\Events\ClientActivity;
+
 use Response;
 
 use Redirect;
@@ -82,7 +84,10 @@ class VoteController extends Controller
             if (!$vote) {
                 $sessionData['tipo_mensaje'] = 'error';
                 $sessionData['mensaje'] = 'El voto no pudo ser procesado, intente nuevamente.';  
-            } 
+            } else {
+                //insert activity
+                event(new ClientActivity(Auth::user()->id, 'ha votado '.$vote->value.' puntos por '.$vote->miss->name.' '.$vote->miss->last_name.''));
+            }
         } else {
             $sessionData['tipo_mensaje'] = 'error';
             $sessionData['mensaje'] = 'No tiene derecho a realizar esta acción.';

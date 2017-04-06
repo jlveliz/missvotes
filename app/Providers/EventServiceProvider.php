@@ -19,6 +19,9 @@ class EventServiceProvider extends ServiceProvider
         'Illuminate\Auth\Events\Registered' => [
             'MissVote\Listeners\ClientRegisterListener'
         ],
+        'MissVote\Events\ClientActivity' => [
+            'MissVote\Listeners\InsertClientActivity'
+        ],
     ];
 
     /**
