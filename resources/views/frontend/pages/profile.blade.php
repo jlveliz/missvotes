@@ -23,6 +23,7 @@
 
   		<!-- Tab panes -->
 		<div class="tab-content">
+			{{-- profile --}}
 			<div role="tabpanel" class="tab-pane active" id="profile">
 		    	<div class="col-md-3 col-sm-3 col-xs-12 hidden-xs">
 		    		<div class="profile-img">
@@ -82,8 +83,45 @@
 		    		@include('frontend.partials.membership',$memberships)
 		    	</div>
 		    </div>
+
+		    {{-- tickets --}}
 		    <div role="tabpanel" class="tab-pane" id="tickets">
-		    	Tickets
+		    	<h4>Tickets</h4>
+		    	<div class="col-md-12 col-lg-12 col-xs-12">
+		    		{{-- my tickets --}}
+		    		<h5><b>Mis tickets</b></h5>
+		    		<div class="row">
+		    		@if (count(Auth::user()->client->tickets) > 0)
+		    			@foreach (Auth::user()->client->tickets as $ticketClient)
+		    				<div class="col-xs-12 col-md-3">
+		    					 <div class="panel panel-primary">
+		    					 	<div class="panel-heading">
+		    					 		<h3 class="panel-title"> <i class="fa fa-ticket" aria-hidden="true"></i> {{$ticketClient->ticket->name}}</h3>
+		    					 	</div>
+		    					 	<div class="panel-body">
+		    					 		<table class="table">
+		    					 			<tbody>
+		    					 				<tr>
+		    					 					<td><b>Valor: </b> {{$ticketClient->ticket->val_vote}} Puntos</td>
+		    					 				</tr>
+		    					 			</tbody>
+		    					 		</table>
+		    					 	</div>
+		    					 	<div class="panel-footer">
+                						<a href="#" class="btn btn-success" role="button">Usar</a>
+            						</div>
+		    					 </div>
+		    				</div>
+		    			@endforeach
+		    		</div>
+		    		@else
+		    			<p class="text-center text-warning">
+							<b>Lamentamos que no tenga tickets para usar, compre uno para poder apoyar a su candidata favorita</b> 
+						</p>
+		    		@endif
+		    		{{-- buy tickets --}}
+		    		@include('frontend.partials.tickets',$tickets)
+		    	</div>
 		    </div>
 		</div>
 		<div class="clearfix"></div>

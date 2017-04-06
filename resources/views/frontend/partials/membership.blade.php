@@ -1,5 +1,5 @@
 <div class="col-xs-12 col-md-3">
-    <div class="panel panel-primary">
+    <div class="panel @if (!Auth::user()->client->current_membership()) panel-primary @else panel-success @endif">
         <div class="panel-heading">
             <h3 class="panel-title">
                 Free @if (!Auth::user()->client->current_membership())
@@ -25,13 +25,18 @@
                 </tr>
             </table>
         </div>
+        @if (Auth::user()->client->current_membership())
+            <div class="panel-footer">
+                <a href="#" class="btn btn-success" role="button">Actualizar</a>
+            </div>
+        @endif
     </div>
 </div>
 {{-- memberships --}}
 @foreach ($memberships as $membership)
     <div class="col-xs-12 col-md-3">
-        <div class="panel panel-success">
-                    @if ($membership->name == 'Premium')
+        <div class="panel @if (Auth::user()->client->current_membership() && (Auth::user()->client->current_membership()->membership_id ==  $membership->id) ) panel-primary @else  panel-success @endif">
+                  {{--   @if ($membership->name == 'Premium')
             <div class="cnrflash">
                 <div class="cnrflash-inner">
                         <span class="cnrflash-label">Más
@@ -39,7 +44,7 @@
                             POPULAR</span>
                 </div>
             </div>
-                    @endif
+                    @endif --}}
             <div class="panel-heading">
                 <h3 class="panel-title">
                     {{$membership->name}}
@@ -68,10 +73,11 @@
                     </tr>
                 </table>
             </div>
-    
-            <div class="panel-footer">
-                <a href="#" class="btn btn-success" role="button"> <i class="fa fa-shopping-cart"></i> Comprar</a>
-            </div>
+            @if (!Auth::user()->client->current_membership() || !(Auth::user()->client->current_membership()->membership_id ==  $membership->id) )
+                <div class="panel-footer">
+                    <a href="#" class="btn btn-success" role="button"> <i class="fa fa-refresh"></i> Actualizar</a>
+                </div>
+            @endif
         </div>
     </div>
 @endforeach

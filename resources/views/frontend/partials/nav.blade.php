@@ -32,9 +32,15 @@
                     </a>
 
                     <ul class="dropdown-menu" role="menu">
-                        <li>
-                            <a href="{{ route('website.account') }}" title="Mi Cuenta">Mi Cuenta</a>
-                        </li>
+                        @if (Auth::user()->is_admin)
+                            <li>
+                                <a href="{{ url('backend/clients') }}" title="Mi Cuenta">Ir a Administración</a>
+                            </li>
+                        @else 
+                            <li>
+                                <a href="{{ route('website.account') }}" title="Mi Cuenta">Mi Cuenta</a>
+                            </li>
+                        @endif
                         <li>
                             <a href="{{ url('auth/logout') }}"
                                 onclick="event.preventDefault();

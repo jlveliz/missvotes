@@ -66,6 +66,9 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::user() && Auth::user()->is_admin)
+                            <li>
+                                <a href="{{ route('website.home') }}" title="Ir al sitio">Ir al sitio</a>
+                            </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
