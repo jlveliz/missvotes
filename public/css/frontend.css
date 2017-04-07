@@ -40,6 +40,16 @@ hr {
     padding: 0px 15px;
 }
 
+.btn-update-membership-or-buy {
+    background-color: #b9a035;
+    border-radius: 0px;
+    color: #ffffff!important;
+}
+
+.btn-update-membership-or-buy:hover {
+    background-color: #aa9335!important;
+}
+
 @media (min-width: 768px) {
     .navbar {
         border-radius: 0px;
@@ -364,6 +374,7 @@ hr {
 .upgrade-membership {
     color: #b9a035;
 }
+
 
 /*.upgrade-membership:hover {
     color: #b9a035!important;

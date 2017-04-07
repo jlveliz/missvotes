@@ -26,6 +26,16 @@
         @else
              <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
+                @if (!Auth::user()->is_admin)
+                    <li>
+                        <a href="#" title="Comprar tickets" @if(Auth::user()->client->current_membership())  class="btn btn-update-membership-or-buy" @endif alt="Comprar tickets">Comprar Tickets</a>
+                    </li>
+                    @if (!Auth::user()->client->current_membership())
+                        <li>
+                            <a href="#" class="btn btn-update-membership-or-buy" title="Actualizar membresia" alt="Actualizar membresia">Actualice su membresia</a>
+                        </li>
+                    @endif
+                @endif
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         {{ Auth::user()->name }} <span class="caret"></span>
