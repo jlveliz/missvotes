@@ -59,6 +59,7 @@
                                 <a href="{{ route('clients.index') }}">Clientes <span class="sr-only">(current)</span></a>
                             </li>
                             <li class="@if(Request::path() == 'backend/users') active @endif"><a href="{{ route('users.index') }}">Usuarios <span class="sr-only">(current)</span></a></li>
+                            <li class="@if(Request::path() == 'backend/activities') active @endif"><a href="{{ route('activities.index') }}">Actividades de cliente <span class="sr-only">(current)</span></a></li>
                         </ul>
                     @endif
 
