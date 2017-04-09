@@ -61,6 +61,10 @@ class RegisterClientController extends Controller
         [
             'name.required' => 'El Nombre es requerido',
             'name.max' => 'Por favor ingrese un nombre mas corto',
+            'email.required' => 'Por favor ingrese un correo',
+            'email.email' => 'Por favor ingrese un correo válido',
+            'email.max' => 'Por favor su correo es muy grande',
+            'email.unique' => 'El correo ya se encuentra registrado',
             'address.required' => 'Por favor ingrese una dirección',
             'password.required' =>'Por favor ingrese una clave',
             'password.min' => 'Por favor ingrese una clave más larga',
@@ -80,7 +84,7 @@ class RegisterClientController extends Controller
         $validator = $this->validator($request->all());
 
         if ($validator->fails()) {
-             return Response::json($validator->errors()->all(),500);
+             return Response::json(['email'=>$validator->errors("email")->first()],500);
         }
 
         event(new Registered($client = $this->create($request->all())));

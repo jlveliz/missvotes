@@ -207,7 +207,12 @@ $(document).ready(function() {
                     $("#register-message-success-modal").modal('show');
                 })
                 .fail(function(reason) {
-                    console.log(reason);
+                    var message = reason.responseJSON.email;
+                    $("#register-password").attr('autofocus');
+                    $("#register-email").parent().addClass('has-error');
+                    $("#register-email").next('.help-block').text(message);
+                    $("#register-email").next('.help-block').css('display', 'block');
+                    $(".registermodal-container").addClass('animated shake');
                 })
                 .always(function() {
                     $("#spinner").css('display', 'none');
