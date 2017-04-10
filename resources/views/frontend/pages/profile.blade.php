@@ -126,11 +126,12 @@
 		    		@include('frontend.partials.tickets',$tickets)
 		    	</div>
 		    </div>
+		    </div>
 
 		    <div role="tabpanel" class="tab-pane" id="activity">
 		    	<h4>Tickets</h4>
 		    	<div class="col-md-12 col-lg-12 col-xs-12">
-		    		<table id="activity-datatable" class="table table-bordered">
+		    		<table id="activity-datatable" class="table table-bordered" style="width: 100%">
 				  		<thead>
 					  		<tr>
 					  			<th>Evento</th>

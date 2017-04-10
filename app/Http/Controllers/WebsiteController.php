@@ -79,7 +79,7 @@ class WebsiteController extends Controller
     {
         $memberships = $this->membershipRepo->enum();
         $tickets = $this->ticketVoteRepo->enum();
-        $activities = $this->clientActRepo->enum();
+        $activities = $this->clientActRepo->enum(['client_id'=>Auth::user()->id]);
         return view('frontend.pages.profile',compact('memberships','tickets','activities'));
     }
 
