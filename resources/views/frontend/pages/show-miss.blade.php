@@ -67,7 +67,7 @@
 					@if (!Auth::user()->is_admin)
 						@cannot('vote_today', $miss)
 							<p class="text-center">
-								<b>Gracias por registrar su voto, vuelva el día de <span class="text-danger">mañana</span> para volver a votar</b> 
+								<b>Gracias por registrar su voto, Podrá volver a votar en  <span class="text-danger">24 horas</span></b> 
 							</p>
 						@endcannot
 					@else
