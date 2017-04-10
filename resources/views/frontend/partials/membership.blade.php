@@ -30,6 +30,7 @@
                 <a href="#" class="btn btn-success" role="button">Actualizar</a>
             </div>
         @endif
+
     </div>
 </div>
 {{-- memberships --}}
@@ -76,6 +77,21 @@
             @if (!Auth::user()->client->current_membership() || !(Auth::user()->client->current_membership()->membership_id ==  $membership->id) )
                 <div class="panel-footer">
                     <a href="#" class="btn btn-success" role="button"> <i class="fa fa-refresh"></i> Actualizar</a>
+
+                    <form action="{{ route('website.subscribe') }}" method="POST">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="local_membership" >
+                      <script
+                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-email="{{Auth::user()->email}}"
+                        data-key="{{ config('services.stripe.key') }}"
+                        data-amount="{{ (int) $membership->price.'00'}}"
+                        data-name="{{ config('app.name') }}"
+                        data-description="Pago de Membresia {{$membership->name}}"
+                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                        data-locale="auto">
+                      </script>
+                    </form>
                 </div>
             @endif
         </div>

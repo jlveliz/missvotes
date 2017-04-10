@@ -14,7 +14,7 @@
 		    	<a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Perfil</a>
 		    </li>
 		    <li role="presentation">
-		    	<a href="#membership" aria-controls="membership" role="tab" data-toggle="tab">Membresia @if(Auth::user()->client && !Auth::user()->client->current_membership()) <small class="upgrade-membership">(Actualiza!!)</small> @endif</a>
+		    	<a href="#membership" aria-controls="membership" role="tab" data-toggle="tab">Membresia @if(Auth::user()->client && !Auth::user()->client->current_membership()) <small class="upgrade-membership">(Actualice!!)</small> @endif</a>
 		    </li>
 		    <li role="presentation">
 		    	<a href="#tickets" aria-controls="tickets" role="tab" data-toggle="tab">Tickets</a>
