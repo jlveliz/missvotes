@@ -12,9 +12,15 @@ class ClientActivityRepository implements ClientActivityRepositoryInterface
 	
 	public function enum($params = null)
 	{
-		$clients = ClientActivity::all();
+		if (is_array($params)) {
+			if (array_key_exists('client_id', $params)) {
+				$activities = ClientActivity::where('client_id',$params['client_id'])->get();
+			}
+		} else {
+			$activities = ClientActivity::all();
+		}
 		
-		return $clients;
+		return $activities;
 	}
 
 	public function find($field, $returnException = true)

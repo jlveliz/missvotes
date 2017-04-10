@@ -4,13 +4,15 @@ namespace MissVote\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use MissVote\Repository\MissRepository;
+use MissVote\RepositoryInterface\MissRepositoryInterface;
 
-use MissVote\Repository\ClientRepository;
+use MissVote\RepositoryInterface\ClientRepositoryInterface;
 
-use MissVote\Repository\MembershipRepository;
+use MissVote\RepositoryInterface\MembershipRepositoryInterface;
 
-use MissVote\Repository\TicketVoteRepository;
+use MissVote\RepositoryInterface\TicketVoteRepositoryInterface;
+
+use MissVote\RepositoryInterface\ClientActivityRepositoryInterface;
 
 use Hash;
 
@@ -29,15 +31,18 @@ class WebsiteController extends Controller
 
     private $membershipRepo;
 
-	private $ticketVoteRepo;
+    private $ticketVoteRepo;
+
+	private $clientActRepo;
 
 
-	public function __construct(MissRepository $missRepo, ClientRepository $clientRepo, MembershipRepository $membershipRepo, TicketVoteRepository $ticketVoteRepo)
+	public function __construct(MissRepositoryInterface $missRepo, ClientRepositoryInterface $clientRepo, MembershipRepositoryInterface $membershipRepo, TicketVoteRepositoryInterface $ticketVoteRepo, ClientActivityRepositoryInterface $clientActRepo)
 	{
         $this->missRepo = $missRepo;
         $this->clientRepo = $clientRepo;
         $this->membershipRepo = $membershipRepo;
-		$this->ticketVoteRepo = $ticketVoteRepo;
+        $this->ticketVoteRepo = $ticketVoteRepo;
+		$this->clientActRepo = $clientActRepo;
 	}
 
 
@@ -74,7 +79,8 @@ class WebsiteController extends Controller
     {
         $memberships = $this->membershipRepo->enum();
         $tickets = $this->ticketVoteRepo->enum();
-        return view('frontend.pages.profile',compact('memberships','tickets'));
+        $activities = $this->clientActRepo->enum();
+        return view('frontend.pages.profile',compact('memberships','tickets','activities'));
     }
 
     /***
