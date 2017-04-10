@@ -12,7 +12,7 @@
         <div class="clearfix"></div>
        @endif
      	<table id="miss-datatable" class="table table-bordered">
-     		<caption>Listado de Candidatas <a class="pull-right btn btn-primary" href="{{ route('misses.create') }}" title="Crear">Crear </a></caption>
+     		<caption>Listado de Candidatas <a class="pull-right btn btn-primary" href="{{ route('misses.create') }}" title="Crear">Crear Candidata </a></caption>
      		<thead>
      			<tr>
      				<th>Nombres</th>

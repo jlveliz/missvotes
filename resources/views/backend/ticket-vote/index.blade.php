@@ -12,7 +12,7 @@
         <div class="clearfix"></div>
        @endif
      	<table id="tickets-datatable" class="table table-bordered">
-     		<caption>Listado de Tickets <a class="pull-right btn btn-primary" href="{{ route('tickets-vote.create') }}" title="Crear">Crear </a></caption>
+     		<caption>Listado de Tickets <a class="pull-right btn btn-primary" href="{{ route('tickets-vote.create') }}" title="Crear">Crear Ticket</a></caption>
      		<thead>
      			<tr>
      				<th>Nombre</th>

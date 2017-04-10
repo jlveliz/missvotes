@@ -12,7 +12,7 @@
         <div class="clearfix"></div>
        @endif
      	<table id="client-datatable" class="table table-bordered">
-     		<caption>Listado de Clientes <a class="pull-right btn btn-primary" href="{{ route('clients.create') }}" title="Crear">Crear </a></caption>
+     		<caption>Listado de Clientes <a class="pull-right btn btn-primary" href="{{ route('clients.create') }}" title="Crear">Crear Cliente</a></caption>
      		<thead>
      			<tr>
      				<th>Nombre</th>

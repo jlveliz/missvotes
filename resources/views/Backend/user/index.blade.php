@@ -12,7 +12,7 @@
         <div class="clearfix"></div>
        @endif
      	<table id="user-datatable" class="table table-bordered">
-     		<caption>Listado de Usuarios <a class="pull-right btn btn-primary" href="{{ route('users.create') }}" title="Crear">Crear </a></caption>
+     		<caption>Listado de Usuarios <a class="pull-right btn btn-primary" href="{{ route('users.create') }}" title="Crear">Crear Usuario</a></caption>
      		<thead>
      			<tr>
      				<th>Nombre</th>
