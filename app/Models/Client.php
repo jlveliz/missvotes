@@ -55,11 +55,11 @@ class Client extends Authenticatable
 
     public function memberships()
     {
-        return $this->hasMany('MissVote\Models\MembershipClient','client_id');
+        return $this->hasMany('MissVote\Models\MembershipClient','user_id');
     }
 
     public function current_membership()
     {
-        return  $this->memberships()->where('is_active',$this->getActive())->first();
+        return  $this->memberships()->whereRaw("date_format(ends_at,'%Y/ %m /%d')", '>=', \DB::raw("date_format(now(),'%Y/ %m /%d')") )->first();
     }
 }

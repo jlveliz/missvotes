@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class MembershipClient extends Model
 {
 
-    protected $table = "membership_client";
+    protected $table = "subscriptions";
 
     /**
      * The attributes that are mass assignable.
@@ -15,17 +15,20 @@ class MembershipClient extends Model
      * @var array
      */
     protected $fillable = [
-        'client_id',
+        'user_id',
         'membership_id',
-        'payment_method',
-        'date_start',
-        'date_end'
+        'name',
+        'stripe_id',
+        'stripe_plan',
+        'quantity',
+        'trial_ends_at',
+        'ends_at'
     ];
 
 
     public function client()
     {
-        return $this->belongsTo('MissVote\Models\Client','client_id');
+        return $this->belongsTo('MissVote\Models\Client','user_id');
     }
 
     public function membership()
