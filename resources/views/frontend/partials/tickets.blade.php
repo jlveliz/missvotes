@@ -14,9 +14,18 @@
 		 			</tbody>
 		 		</table>
 		 	</div>
-		 	<div class="panel-footer">
-				<a href="#" class="btn btn-success" role="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Comprar</a>
-			</div>
+		 	<div class="panel-footer panel-footer-payments">
+                    <button type="button" class="btn btn-sm btn-success pay-ticket-with-stripe" data-email="{{Auth::user()->email}}" data-amount="{{ (int) $ticket->price.'00'}}" data-ticket="{{$ticket->id}}" data-description="Pago de ticket {{$ticket->name}}" role="button"> <i class="fa fa-credit-card"></i> Usar Tarjeta</button>
+                    <button href="#" class="btn  btn-sm btn-success" role="button" title=""><i class="fa fa-paypal"></i> Usar Paypal</button>
+                </div>
 		 </div>
 	</div>
 @endforeach
+
+{{-- the magic form --}}
+<form id="ticket-form" action="{{ route('website.buyticket') }}" method="POST" style="visibility: hidden;">
+    {{ csrf_field() }}
+    <input type="hidden" id="ticket-id" name="ticket_id" value="">
+    <input type="hidden" id="amount-ticket" name="amount" value="">
+    <input type="hidden" id="stripe-ticket-token" name="stripeToken" value="">
+</form>

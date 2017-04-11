@@ -21,4 +21,10 @@ class TicketVote extends Model
         'price',
     ];
 
+    public function clients()
+    {
+        return $this->hasMany('MissVote\Models\TicketVoteClient','ticket_vote_id');
+    }
+
+
 }

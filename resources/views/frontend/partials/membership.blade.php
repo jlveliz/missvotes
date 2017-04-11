@@ -75,25 +75,19 @@
                 </table>
             </div>
             @if (!Auth::user()->client->current_membership() || !(Auth::user()->client->current_membership()->membership_id ==  $membership->id) )
-                <div class="panel-footer">
-                    <a href="#" class="btn btn-success" role="button"> <i class="fa fa-refresh"></i> Actualizar</a>
-
-                    <form action="{{ route('website.subscribe') }}" method="POST">
-                        {{ csrf_field() }}
-                        <input type="hidden" name="local_membership" >
-                      <script
-                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                        data-email="{{Auth::user()->email}}"
-                        data-key="{{ config('services.stripe.key') }}"
-                        data-amount="{{ (int) $membership->price.'00'}}"
-                        data-name="{{ config('app.name') }}"
-                        data-description="Pago de Membresia {{$membership->name}}"
-                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                        data-locale="auto">
-                      </script>
-                    </form>
+                <div class="panel-footer panel-footer-payments">
+                    <button type="button" class="btn btn-sm btn-success pay-membership-with-stripe" data-email="{{Auth::user()->email}}" data-amount="{{ (int) $membership->price.'00'}}" data-membership="{{$membership->id}}" data-description="Pago de Membresia {{$membership->name}}" role="button"> <i class="fa fa-credit-card"></i> Usar Tarjeta</button>
+                    <button href="#" class="btn  btn-sm btn-success" role="button" title=""><i class="fa fa-paypal"></i> Usar Paypal</button>
                 </div>
             @endif
         </div>
     </div>
 @endforeach
+
+{{-- the magic form --}}
+<form id="membeship-form" action="{{ route('website.subscribe') }}" method="POST" style="visibility: hidden;">
+    {{ csrf_field() }}
+    <input type="hidden" id="membership-id" name="membership_id" value="">
+    <input type="hidden" id="amount" name="amount" value="">
+    <input type="hidden" id="stripe-token" name="stripeToken" value="">
+</form>

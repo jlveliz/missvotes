@@ -6,6 +6,17 @@
 
 @section('content')
 <div class="container-page">
+
+	@if (Session::has('payment-message'))
+		<div class="row">
+	        <div class="alert alert-dismissible @if(Session::get('payment-type') == 'success') alert-info  @endif @if(Session::get('payment-type') == 'error') alert-danger  @endif" role="alert">
+	          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+	          {{session('payment-message')}}
+	        </div>
+		</div>
+        <div class="clearfix"></div>
+    @endif
+
 	<h2>{{ Auth::user()->name }}</h2>
 	<div class="container-tabs-profile">
 		
@@ -126,10 +137,8 @@
 		    		@include('frontend.partials.tickets',$tickets)
 		    	</div>
 		    </div>
-		    </div>
-
 		    <div role="tabpanel" class="tab-pane" id="activity">
-		    	<h4>Tickets</h4>
+		    	<h4>Mis actividades</h4>
 		    	<div class="col-md-12 col-lg-12 col-xs-12">
 		    		<table id="activity-datatable" class="table table-bordered" style="width: 100%">
 				  		<thead>
@@ -141,7 +150,7 @@
   						<tbody>
   						@foreach ($activities as $activity)
   						<tr>
-  							<td>{{ $activity->client->name }} {{ $activity->name }}</td>
+  							<td> Usted ha {{ $activity->name }}</td>
   							<td>{{ $activity->created_at }}</td>
   						</tr>
   						@endforeach
@@ -150,8 +159,10 @@
 		    	</div>
 		    </div>
 		</div>
-		<div class="clearfix"></div>
+		    
+
 	</div>
+	<div class="clearfix"></div>
 </div>
 @endsection()
 
@@ -165,26 +176,103 @@
 
 @section('js')
  <script src="{{ asset('public/js/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('public/js/datatables/dataTables.bootstrap.js') }}"></script>
-    <script src="{{ asset('public/js/datatables/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('public/js/datatables/buttons.bootstrap.min.js') }}"></script>
-    <script src="{{ asset('public/js/datatables/jszip.min.js') }}"></script>
-    <script src="{{ asset('public/js/datatables/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('public/js/datatables/vfs_fonts.js') }}"></script>
-    <script src="{{ asset('public/js/datatables/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('public/js/datatables/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('public/js/datatables/dataTables.fixedHeader.min.js') }}"></script>
-    <script src="{{ asset('public/js/datatables/dataTables.keyTable.min.js') }}"></script>
-    <script src="{{ asset('public/js/datatables/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('public/js/datatables/responsive.bootstrap.min.js') }}"></script>
-    <script src="{{ asset('public/js/datatables/dataTables.scroller.min.js') }}"></script>
+<script src="{{ asset('public/js/datatables/dataTables.bootstrap.js') }}"></script>
+<script src="{{ asset('public/js/datatables/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('public/js/datatables/buttons.bootstrap.min.js') }}"></script>
+<script src="{{ asset('public/js/datatables/jszip.min.js') }}"></script>
+<script src="{{ asset('public/js/datatables/pdfmake.min.js') }}"></script>
+<script src="{{ asset('public/js/datatables/vfs_fonts.js') }}"></script>
+<script src="{{ asset('public/js/datatables/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('public/js/datatables/buttons.print.min.js') }}"></script>
+<script src="{{ asset('public/js/datatables/dataTables.fixedHeader.min.js') }}"></script>
+<script src="{{ asset('public/js/datatables/dataTables.keyTable.min.js') }}"></script>
+<script src="{{ asset('public/js/datatables/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('public/js/datatables/responsive.bootstrap.min.js') }}"></script>
+<script src="{{ asset('public/js/datatables/dataTables.scroller.min.js') }}"></script>
+<script src="https://checkout.stripe.com/checkout.js"></script>
 <script type="text/javascript">
+
+	var handlerMembership = StripeCheckout.configure({
+	  key: '{{ config('services.stripe.key') }}',
+	  image: '{{ asset('public/images/queen-mini.png') }}',
+	  locale: 'auto',
+	  name: '{{ config('app.name') }}',
+	  token : function(token){
+	  	$("#stripe-token").val(token.id);
+	  	//submit the magic form :3
+	  	$("#membeship-form").submit();
+	  }
+	});
+
+
+	var handlerTicket = StripeCheckout.configure({
+	  key: '{{ config('services.stripe.key') }}',
+	  image: '{{ asset('public/images/queen-mini.png') }}',
+	  locale: 'auto',
+	  name: '{{ config('app.name') }}',
+	  token : function(token){
+	  	$("#stripe-ticket-token").val(token.id);
+	  	//submit the magic form :3
+	  	$("#ticket-form").submit();
+	  }
+	});
+
   $(document).ready(function(){
       $('#activity-datatable').DataTable({
         "language": {
           "url": "../public/js/datatables/json/es.json"
         }
       });
+
+
+
+      // CHECKOUT MEMBERSHIP
+      $(".pay-membership-with-stripe").on('click', function(event) {
+      	var _this = $(this);
+
+      	//reset magic form
+      	$("#membership-id").val('');
+      	$("#stripe-token").val('');
+      	$("#amount").val('');
+
+      	//set membership on magic form
+		$("#membership-id").val(_this.data('membership'));
+      	$("#amount").val(_this.data('amount'));
+
+      	handlerMembership.open({
+    		description: _this.data('description'),
+    		amount: _this.data('amount'),
+    		email: _this.data('email')
+  		});
+      });
+
+
+      // CHECKOUT TICKET
+      $(".pay-ticket-with-stripe").on('click', function(event) {
+      	var _this = $(this);
+
+      	//reset magic form
+      	$("#ticket-id").val('');
+      	$("#stripe-ticket-token").val('');
+      	$("#amount-ticket").val('');
+
+      	//set membership on magic form
+		$("#ticket-id").val(_this.data('ticket'));
+      	$("#amount-ticket").val(_this.data('amount'));
+
+      	handlerTicket.open({
+    		description: _this.data('description'),
+    		amount: _this.data('amount'),
+    		email: _this.data('email')
+  		});
+      });
+
   });
+
+  // Close Checkout on page navigation:
+	window.addEventListener('popstate', function() {
+  		handlerMembership.close();
+  		handlerTicket.close();
+	});
  </script>
 @endsection

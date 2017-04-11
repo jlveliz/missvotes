@@ -8,6 +8,13 @@ class TicketVoteClient extends Model
 {
     protected $table = "ticket_vote_client";
 
+    protected $fillable = [
+    	'ticket_vote_id',
+    	'client_id',
+    	'payment_type',
+    	'state'
+    ];
+
 
     public function client()
     {

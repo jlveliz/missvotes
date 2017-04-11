@@ -14,7 +14,7 @@ class ClientActivityRepository implements ClientActivityRepositoryInterface
 	{
 		if (is_array($params)) {
 			if (array_key_exists('client_id', $params)) {
-				$activities = ClientActivity::where('client_id',$params['client_id'])->get();
+				$activities = ClientActivity::where('client_id',$params['client_id'])->orderBy('created_at','desc')->get();
 			}
 		} else {
 			$activities = ClientActivity::all();

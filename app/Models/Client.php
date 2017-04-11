@@ -50,7 +50,7 @@ class Client extends Authenticatable
 
     public function tickets()
     {
-        return $this->hasMany('MissVote\Models\TicketVoteClient');
+        return $this->hasMany('MissVote\Models\TicketVoteClient','client_id');
     }
 
     public function memberships()
@@ -60,6 +60,6 @@ class Client extends Authenticatable
 
     public function current_membership()
     {
-        return  $this->memberships()->whereRaw("date_format(ends_at,'%Y/ %m /%d')", '>=', \DB::raw("date_format(now(),'%Y/ %m /%d')") )->first();
+        return $this->memberships()->whereRaw("date_format(ends_at,'%Y/%m/%d') >= date_format(now(),'%Y/%m/%d')")->first();
     }
 }

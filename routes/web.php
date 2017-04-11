@@ -19,6 +19,7 @@ Route::group(['prefix'=>'account'],function(){
 	Route::get('/','WebsiteController@myAccount')->name('website.account')->middleware('auth');
 	Route::post('/update','WebsiteController@updateAccount')->name('website.account.update')->middleware('auth');
 	Route::post('subscribe','PaymentController@subscribe')->name('website.subscribe')->middleware('auth');
+	Route::post('ticket','PaymentController@buyTicket')->name('website.buyticket')->middleware('auth');
 });
 
 // votes for miss

@@ -4,11 +4,42 @@ namespace MissVote\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use MissVote\RepositoryInterface\MembershipRepositoryInterface;
+
+use MissVote\RepositoryInterface\TicketVoteRepositoryInterface;
+
+use MissVote\Models\User;
+
+use MissVote\Events\ClientActivity;
+
+use Stripe\Stripe;
+
+use Stripe\Customer;
+
+use Carbon\Carbon;
+
+use Redirect;
+
 use Auth;
 
 class PaymentController extends Controller
 {
     
+
+	private $membershipRepo; 
+
+	private $ticketRepo; 
+
+
+	public function __construct(MembershipRepositoryInterface  $membershipRepo, TicketVoteRepositoryInterface $ticketRepo)
+	{
+		$this->membershipRepo = $membershipRepo;
+		$this->ticketRepo = $ticketRepo;
+	}
+
+	/**
+	 * create a subscription on system and proccess a parge on stripe
+	 */
 
 	public function subscribe(Request $request)
 	{
@@ -16,11 +47,153 @@ class PaymentController extends Controller
 
 		$user = Auth::user();
 
-		$plan = 'premium';
+		$plan = $this->membershipRepo->find($request->get('membership_id'));
 
-		$user->newSubscription('premium',$plan)->create($stripeToken);
+		if (!$this->isStripeCustomer()) {
+			$this->createStripeCustomer($stripeToken);
+		} 
 
-		return "hecho";
+
+		//make MAGIC!!
+		$subscribed = $user->charge($request->get('amount'),['description'=>"pago de membresia ".$plan->name.""]);
+
+		$mensaje = [
+			'payment-type' => 'success',
+			'payment-message' => ''
+		];
+
+		if ($subscribed) {
+
+			$this->createOrUpdateMembershipTable($plan);
+
+			//insert activity
+            event(new ClientActivity(Auth::user()->id, 'ha actualizado su membresia a ' .$plan->name));
+
+			$mensaje['payment-message'] = 'Gracias por la compra de la membresia '. $plan->name;
+		} else {
+			$mensaje['payment-type'] = 'Error';
+			$mensaje['payment-message'] = 'Ocurrió un problema al procesar el pago, intente nuevamente.';
+		}
+		
+
+		return redirect()->route('website.account')->with($mensaje);
+
 	}
+
+
+	/**
+	 * buy a ticket 
+	 */
+
+	public function buyTicket(Request $request)
+	{
+		$stripeToken = $request->get('stripeToken');
+
+		$user = Auth::user();
+
+		$ticket = $this->ticketRepo->find($request->get('ticket_id'));
+
+		if (!$this->isStripeCustomer()) {
+			$this->createStripeCustomer($stripeToken);
+		} 
+		
+		//make MAGIC!!
+		$subscribed = $user->charge($request->get('amount'),['description'=>"pago de ticket ".$ticket->name.""]);
+
+		$mensaje = [
+			'payment-type' => 'success',
+			'payment-message' => ''
+		];
+
+		if ($subscribed) {
+
+			$this->createUserTicket($ticket);
+
+			//insert activity
+            event(new ClientActivity(Auth::user()->id, 'ha comprado un ticket ' .$ticket->name));
+
+			$mensaje['payment-message'] = 'Gracias por la compra de un ticket '. $ticket->name;
+		} else {
+			$mensaje['payment-type'] = 'Error';
+			$mensaje['payment-message'] = 'Ocurrió un problema al procesar el pago, intente nuevamente.';
+		}
+		
+
+		return redirect()->route('website.account')->with($mensaje);
+	}
+
+
+
+	 /**
+    * Create a new Stripe customer for a given user.
+    *
+    * @var Stripe\Customer $customer
+    * @param string $token
+    * @return Stripe\Customer $customer
+    */
+    public function createStripeCustomer($token)
+    {
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        $customer = Customer::create(array(
+        	"email" => Auth::user()->email,
+            "description" => Auth::user()->name,
+            "source" => $token
+        ));
+
+        Auth::user()->stripe_id = $customer->id;
+        Auth::user()->save();
+
+        return $customer;
+    }
+
+
+    /**
+    * Check if the Stripe customer exists.
+    *
+    * @return boolean
+    */
+    public function isStripeCustomer()
+    {
+        return Auth::user() && User::where('id', Auth::user()->id)->whereNotNull('stripe_id')->first();
+    }
+
+
+    /**
+     * create or update membership table
+     */
+
+    public function createOrUpdateMembershipTable($membership)
+    {
+    	
+
+    	if (!Auth::user()->client->current_membership()) {
+
+    		$now = Carbon::now();
+    		$duration = $membership->duration_time;
+    		$endsAt = $membership->duration_mode == 1 ? $now->addMonths($duration) : $now->addYears($duration);
+
+    		Auth::user()->client->memberships()->create([
+    			'membership_id' => $membership->id,
+    			'ends_at' => $endsAt
+    		]);
+    	} else {
+    		Auth::user()->client->current_membership()->membership_id = $membership->id;
+    		Auth::user()->client->current_membership()->save();
+    	}
+    }
+
+    /**
+    	create tickets for a client
+    **/
+    public function createUserTicket($ticket)
+    {
+    	Auth::user()->client->tickets()->create([
+    		'ticket_vote_id' => $ticket->id,
+    		'payment_type' => 'credit_card',
+    		'state' => 1
+    	]);
+    }
+
 
 }

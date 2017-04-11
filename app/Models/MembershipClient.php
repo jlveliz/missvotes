@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class MembershipClient extends Model
 {
 
-    protected $table = "subscriptions";
+    protected $table = "membership_client";
 
     /**
      * The attributes that are mass assignable.
