@@ -1,38 +1,40 @@
-<div class="col-xs-12 col-md-3">
-    <div class="panel @if (!Auth::user()->client->current_membership()) panel-primary @else panel-success @endif">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                Free @if (!Auth::user()->client->current_membership())
-                    <br>
-                        <b>(Su membresia Actual)</b>
-                @endif</h3>
-        </div>
-        <div class="panel-body">
-            <div class="the-price">
-                <h1>
-                    $0.00<span class="subscript"></span></h1>
+@if (!Auth::user()->client->current_membership())
+    <div class="col-xs-12 col-md-3">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    Free 
+                        <br>
+                            <b>(Su membresia Actual)</b>
+                    </h3>
             </div>
-            <table class="table">
-                <tr>
-                    <td>
-                        <b>Voto: </b>1 punto diario por candidata
-                    </td>
-                </tr>
-                <tr class="active">
-                    <td>
-                        Registro de actividades
-                    </td>
-                </tr>
-            </table>
-        </div>
-        @if (Auth::user()->client->current_membership())
-            <div class="panel-footer">
-                <a href="#" class="btn btn-success" role="button">Actualizar</a>
+            <div class="panel-body">
+                <div class="the-price">
+                    <h1>
+                        $0.00<span class="subscript"></span></h1>
+                </div>
+                <table class="table">
+                    <tr>
+                        <td>
+                            <b>Voto: </b>1 punto diario por candidata
+                        </td>
+                    </tr>
+                    <tr class="active">
+                        <td>
+                            Registro de actividades
+                        </td>
+                    </tr>
+                </table>
             </div>
-        @endif
+            @if (Auth::user()->client->current_membership())
+                <div class="panel-footer">
+                    <a href="#" class="btn btn-success" role="button">Actualizar</a>
+                </div>
+            @endif
 
+        </div>
     </div>
-</div>
+@endif
 {{-- memberships --}}
 @foreach ($memberships as $membership)
     <div class="col-xs-12 col-md-3">

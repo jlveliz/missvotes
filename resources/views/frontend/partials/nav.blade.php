@@ -20,6 +20,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         @if (!Auth::user())
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ route('website.home') }}" class="@if(Request::path() == '/') active @endif">Inicio</a></li>
                 <li><a data-toggle="modal" data-target="#login-modal" href="#">Entrar</a></li>
                 <li><a data-toggle="modal" data-target="#register-modal" href="#">Registrarse</a></li>
             </ul>
@@ -27,12 +28,13 @@
              <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 @if (!Auth::user()->is_admin)
-                    <li>
-                        <a href="#" title="Comprar tickets" @if(Auth::user()->client->current_membership())  class="btn btn-update-membership-or-buy" @endif alt="Comprar tickets">Comprar Tickets</a>
-                    </li>
+                     <li class="@if(Request::path() == '/') active @endif"><a href="{{ route('website.home') }}">Inicio</a></li>
+                    <li >
+                        <a href="{{ route('website.account') }}" title="Comprar tickets" @if(Auth::user()->client->current_membership())  class="btn btn-update-membership-or-buy" @endif alt="Comprar tickets">Comprar Tickets</a>
+                    </li >
                     @if (!Auth::user()->client->current_membership())
                         <li>
-                            <a href="#" class="btn btn-update-membership-or-buy" title="Actualizar membresia" alt="Actualizar membresia">Actualice su membresia</a>
+                            <a href="{{ route('website.account') }}" class="btn btn-update-membership-or-buy" title="Actualizar membresia" alt="Actualizar membresia">Actualice su membresia</a>
                         </li>
                     @endif
                 @endif

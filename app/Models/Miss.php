@@ -11,6 +11,8 @@ class Miss extends Model
 
     protected $with = ['photos'];
 
+     protected $perPage = 12;
+
       /**
      * The attributes that are mass assignable.
      *

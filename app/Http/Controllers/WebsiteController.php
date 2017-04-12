@@ -51,7 +51,7 @@ class WebsiteController extends Controller
      */
     public function index()
     {
-    	$misses = $this->missRepo->enum(['state' => 1]);
+    	$misses = $this->missRepo->paginate();
     	return view('frontend.pages.home',['misses'=>$misses]);
     }
 

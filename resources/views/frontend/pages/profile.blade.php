@@ -107,34 +107,38 @@
 		    		<div class="row">
 		    		@if (count(Auth::user()->client->activeTickets()) > 0)
 		    			@foreach (Auth::user()->client->activeTickets() as $ticketClient)
-		    				<div class="col-xs-12 col-md-3">
-		    					 <div class="panel panel-primary">
-		    					 	<div class="panel-heading">
-		    					 		<h3 class="panel-title"> <i class="fa fa-ticket" aria-hidden="true"></i> {{$ticketClient->ticket->name}}</h3>
-		    					 	</div>
-		    					 	<div class="panel-body">
-		    					 		<table class="table">
-		    					 			<tbody>
-		    					 				<tr>
-		    					 					<td><b>Valor: </b> {{$ticketClient->ticket->val_vote}} Puntos</td>
-		    					 				</tr>
-		    					 			</tbody>
-		    					 		</table>
-		    					 	</div>
-		    					 	<div class="panel-footer">
-                						<a href="#" class="btn btn-success" role="button">Usar</a>
-            						</div>
-		    					 </div>
+		    				<div class="col-xs-4 col-md-2">
+		    					<div class="text-center">
+			    					 <div class="panel panel-primary">
+			    					 	<div class="panel-heading">
+			    					 		<h3 class="panel-title"><span class="badge">x{{$ticketClient->counter}}</span> <i class="fa fa-ticket" aria-hidden="true"></i> {{$ticketClient->ticket->name}}</h3>
+			    					 	</div>
+			    					 	<div class="panel-body">
+			    					 		<table class="table">
+			    					 			<tbody>
+			    					 				<tr>
+			    					 					<td><b>Valor: </b> {{$ticketClient->ticket->val_vote}} Puntos</td>
+			    					 				</tr>
+			    					 			</tbody>
+			    					 		</table>
+			    					 	</div>
+			    					 	{{-- <div class="panel-footer">
+	                						<a href="#" class="btn btn-success" role="button">Usar</a>
+	            						</div> --}}
+			    					 </div>
+		    					</div>
 		    				</div>
 		    			@endforeach
+			    		@else
+			    			<p class="text-center text-warning">
+								<b>Lamentamos que no tenga tickets para usar, compre uno para poder apoyar a su candidata favorita</b> 
+							</p>
+			    		@endif
 		    		</div>
-		    		@else
-		    			<p class="text-center text-warning">
-							<b>Lamentamos que no tenga tickets para usar, compre uno para poder apoyar a su candidata favorita</b> 
-						</p>
-		    		@endif
-		    		{{-- buy tickets --}}
-		    		@include('frontend.partials.tickets',$tickets)
+		    		<div class="row">
+			    		{{-- buy tickets --}}
+			    		@include('frontend.partials.tickets',$tickets)
+		    		</div>
 		    	</div>
 		    </div>
 		    <div role="tabpanel" class="tab-pane" id="activity">
@@ -175,6 +179,7 @@
 @endsection()
 
 @section('js')
+ <script src="{{ asset('public/js/moment/moment.js') }}"></script>
  <script src="{{ asset('public/js/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('public/js/datatables/dataTables.bootstrap.js') }}"></script>
 <script src="{{ asset('public/js/datatables/dataTables.buttons.min.js') }}"></script>
@@ -189,6 +194,7 @@
 <script src="{{ asset('public/js/datatables/dataTables.responsive.min.js') }}"></script>
 <script src="{{ asset('public/js/datatables/responsive.bootstrap.min.js') }}"></script>
 <script src="{{ asset('public/js/datatables/dataTables.scroller.min.js') }}"></script>
+<script src="{{ asset('public/js/datetime-moment.js') }}"></script>
 <script src="https://checkout.stripe.com/checkout.js"></script>
 <script type="text/javascript">
 
@@ -218,11 +224,14 @@
 	});
 
   $(document).ready(function(){
-      $('#activity-datatable').DataTable({
-        "language": {
-          "url": "../public/js/datatables/json/es.json"
-        }
-      });
+
+  	$.fn.dataTable.moment( 'dddd, MMMM Do, YYYY' );
+
+      // $('#activity-datatable').DataTable({
+      //   "language": {
+      //     "url": "../public/js/datatables/json/es.json"
+      //   }
+      // });
 
 
 

@@ -93,7 +93,7 @@
 						{{-- if tickets --}}
 						@if (count(Auth::user()->client->activeTickets()))
 							<button type="submit" class="btn btn-vote btn-lg" @cannot('vote', Auth::user()) disabled @endcannot data-toggle="collapse" data-target="#collapseVoteTicket">
-								<i class="fa fa-ticket like-vote" aria-hidden="true"></i> Usar Ticket
+								<i class="fa fa-ticket like-vote" aria-hidden="true"></i> Ticket
 							</button>
 							<div class="row vote-ticket-section">
 								<div class="col-md-12 col-xs-12 text-left collapse" id="collapseVoteTicket">
@@ -107,7 +107,7 @@
 												<select class="form-control" id="select-tickets">
 													<option value=''>--Seleccione--</option>
 													@foreach (Auth::user()->client->activeTickets() as $ticketClient)
-														<option value="{{ $ticketClient->ticket_vote_id }}"> {{ $ticketClient->ticket->name }} <i>({{ $ticketClient->ticket->val_vote }} Puntos)</i> </option>
+														<option value="{{ $ticketClient->ticket_vote_id }}"><i>x({{$ticketClient->counter}})</i> {{ $ticketClient->ticket->name }} <i>({{ $ticketClient->ticket->val_vote }} Puntos)</i> </option>
 													@endforeach
 												</select>
 											</div>
@@ -138,7 +138,7 @@
 					<a class="carrousel-misses-item" href="{{ route('website.miss.show',$miss->slug) }}" title="{{$miss->name}} {{$miss->last_name}}" alt="{{$miss->name}} {{$miss->last_name}}">
 						<div style="background-image: url('{{config('app.url') .'/'. $miss->photos()->first()->path }}')">
 							<div class="layer">
-								<p>{{$miss->name}} {{$miss->last_name}}</p>
+								<p>{{$miss->name}} <br> {{$miss->last_name}}</p>
 							</div>
 						</div>
 					</a>

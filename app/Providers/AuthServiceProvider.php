@@ -48,6 +48,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('vote_today',function($user,$miss){
             $existVote =  Vote::where('client_id',$user->id)
                             ->where('miss_id',$miss->id)
+                            ->where('type','membership')
                             ->whereRaw("DATE_FORMAT(created_at,".DB::raw("'%Y-%m-%d'").") = DATE_FORMAT(".DB::raw("now()").",".DB::raw("'%Y-%m-%d'").")")
                             ->first();
             if (!$existVote) return true;

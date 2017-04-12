@@ -77,7 +77,7 @@ class VoteController extends Controller
             if ($request->has('ticket_id')) {
                 $ticketVote = $this->ticketVoteRepo->find($request->get('ticket_id'));
                 $valVote = $ticketVote->val_vote;
-                $data['type'] = $ticketVote ? 'Ticket '.$ticketVote->name : '';
+                $data['type'] = 'ticket';
                 //update the ticket client 
                 $ticketVoteUpdate = $client->tickets()->where('ticket_vote_id',$ticketVote->id)->where('state','1')->first();
                 $ticketVoteUpdate->state = 0;
@@ -88,7 +88,7 @@ class VoteController extends Controller
                 $valVote = $client &&  $client->current_membership() ? $client->current_membership()->membership->points_per_vote :  config('vote.vote-default');
                 //find a membership
                 $typeMembership = $client &&  $client->current_membership() ? 'Membresia '.$client->current_membership()->membership->name :  config('vote.type-membership-default');
-                $data['type']  = $typeMembership;
+                $data['type']  = 'membership';
 
             }
 

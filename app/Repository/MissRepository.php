@@ -11,6 +11,11 @@ use Image;
 class MissRepository implements MissRepositoryInterface
 {
 	
+	public function paginate()
+	{
+		return Miss::where('state','1')->paginate();
+	}
+
 	public function enum($params = null)
 	{
 		if (!$params) {
