@@ -105,8 +105,8 @@
 		    		{{-- my tickets --}}
 		    		<h5><b>Mis tickets</b></h5>
 		    		<div class="row">
-		    		@if (count(Auth::user()->client->tickets) > 0)
-		    			@foreach (Auth::user()->client->tickets as $ticketClient)
+		    		@if (count(Auth::user()->client->activeTickets()) > 0)
+		    			@foreach (Auth::user()->client->activeTickets() as $ticketClient)
 		    				<div class="col-xs-12 col-md-3">
 		    					 <div class="panel panel-primary">
 		    					 	<div class="panel-heading">
@@ -150,7 +150,7 @@
   						<tbody>
   						@foreach ($activities as $activity)
   						<tr>
-  							<td> Usted ha {{ $activity->name }}</td>
+  							<td> Usted {{ $activity->name }}</td>
   							<td>{{ $activity->created_at }}</td>
   						</tr>
   						@endforeach

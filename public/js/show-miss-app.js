@@ -39,7 +39,9 @@ function removeClass(element, className) {
 
 
 $(document).ready(function() {
+
     $("#select-misses").selectize();
+
 
     $("#select-misses").on('change', function(event) {
         event.preventDefault();
@@ -48,6 +50,22 @@ $(document).ready(function() {
             if (!valElement) $("#go-miss").attr('href', '#');
             $("#go-miss").attr('href', valElement);
         });
+    });
+
+    // $("#select-tickets").selectize();
+    $("#select-tickets").on('change', function(event) {
+        event.preventDefault();
+        $("#select-tickets option:selected").each(function() {
+            valElement = $(this).val();
+            if (!valElement) {
+                $("#ticket-id").val('');
+                $("#vote-ticket-submit").attr('disabled',true);
+            } else {
+                $("#ticket-id").val(valElement);
+                $("#vote-ticket-submit").removeAttr('disabled');
+            }
+        });
+        /* Act on the event */
     });
 
 

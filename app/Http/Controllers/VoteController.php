@@ -10,6 +10,8 @@ use MissVote\RepositoryInterface\VoteRepositoryInterface;
 
 use MissVote\RepositoryInterface\ClientRepositoryInterface;
 
+use MissVote\RepositoryInterface\TicketVoteRepositoryInterface;
+
 use MissVote\Events\ClientActivity;
 
 use Response;
@@ -25,11 +27,14 @@ class VoteController extends Controller
 
     public $clientRepo;
 
+    public $ticketVoteRepo;
+
    
-    public function __construct(VoteRepositoryInterface $vote, ClientRepositoryInterface $clientRepo)
+    public function __construct(VoteRepositoryInterface $vote, ClientRepositoryInterface $clientRepo, TicketVoteRepositoryInterface $ticketVoteRepo)
     {
         $this->vote = $vote;
         $this->clientRepo =  $clientRepo;
+        $this->ticketVoteRepo =  $ticketVoteRepo;
 
         // $this->middleware('auth');
         // $this->middleware('can:acess-backend');
@@ -63,16 +68,32 @@ class VoteController extends Controller
     public function store(VoteRequest $request)
     {
         if($this->authorize('vote',Auth::user()) ) {
+
             $data = $request->all();
             //find a client
             $client = $this->clientRepo->find(Auth::user()->id);
-            //find a val vote
-            $valVote = $client &&  $client->current_membership() ? $client->current_membership()->membership->points_per_vote :  config('vote.vote-default');
-            //find a membership
-            $typeMembership = $client &&  $client->current_membership() ? $client->current_membership()->membership->name :  config('vote.type-membership-default');
+            
+            //vote for ticket
+            if ($request->has('ticket_id')) {
+                $ticketVote = $this->ticketVoteRepo->find($request->get('ticket_id'));
+                $valVote = $ticketVote->val_vote;
+                $data['type'] = $ticketVote ? 'Ticket '.$ticketVote->name : '';
+                //update the ticket client 
+                $ticketVoteUpdate = $client->tickets()->where('ticket_vote_id',$ticketVote->id)->where('state','1')->first();
+                $ticketVoteUpdate->state = 0;
+                $ticketVoteUpdate->save();
+            } else {
+                //vote for membership
+                //find a val vote
+                $valVote = $client &&  $client->current_membership() ? $client->current_membership()->membership->points_per_vote :  config('vote.vote-default');
+                //find a membership
+                $typeMembership = $client &&  $client->current_membership() ? 'Membresia '.$client->current_membership()->membership->name :  config('vote.type-membership-default');
+                $data['type']  = $typeMembership;
+
+            }
+
 
             $data['value'] = $valVote;
-            $data['type']  = $typeMembership;
             
             $vote = $this->vote->save($data);
             
@@ -86,6 +107,11 @@ class VoteController extends Controller
                 $sessionData['mensaje'] = 'El voto no pudo ser procesado, intente nuevamente.';  
             } else {
                 //insert activity
+
+                if ($request->has('ticket_id')) {
+                    event(new ClientActivity(Auth::user()->id, 'ha usado un ticket '.$data['type']));  
+                }
+
                 event(new ClientActivity(Auth::user()->id, 'ha votado '.$vote->value.' puntos por '.$vote->miss->name.' '.$vote->miss->last_name.''));
             }
         } else {

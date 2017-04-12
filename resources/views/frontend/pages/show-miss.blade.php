@@ -67,7 +67,7 @@
 					@if (!Auth::user()->is_admin)
 						@cannot('vote_today', $miss)
 							<p class="text-center">
-								<b>Gracias por registrar su voto, Podrá volver a votar en  <span class="text-danger">24 horas</span></b> 
+								<b>Gracias por registrar su voto, Podrá volver a votar en  <span class="text-danger">24 horas</span> o puede <span class="text-danger">comprar</span> o <span class="text-danger">usar</span> un ticket de voto</span></b> 
 							</p>
 						@endcannot
 					@else
@@ -80,7 +80,7 @@
 
 					@can('vote',Auth::user())
 						@can('vote_today', $miss)
-							<form action="{{ route('website.miss.vote.store') }}" method="POST">
+							<form action="{{ route('website.miss.vote.store') }}" method="POST"  style="display: inline"  >
 								{{ csrf_field() }}
 								<input type="hidden" name="miss_id" value="{{$miss->id}}">
 								<input type="hidden" name="client_id" value="{{Auth::user()->id}}">
@@ -89,6 +89,36 @@
 								</button>
 							</form>
 						@endcan()
+
+						{{-- if tickets --}}
+						@if (count(Auth::user()->client->activeTickets()))
+							<button type="submit" class="btn btn-vote btn-lg" @cannot('vote', Auth::user()) disabled @endcannot data-toggle="collapse" data-target="#collapseVoteTicket">
+								<i class="fa fa-ticket like-vote" aria-hidden="true"></i> Usar Ticket
+							</button>
+							<div class="row vote-ticket-section">
+								<div class="col-md-12 col-xs-12 text-left collapse" id="collapseVoteTicket">
+									<form action="{{ route('website.miss.vote.store') }}" method="POST">
+										{{ csrf_field() }}
+										<input type="hidden" name="miss_id" value="{{$miss->id}}">
+										<input type="hidden" name="client_id" value="{{Auth::user()->id}}">
+										<input type="hidden" name="ticket_id" id="ticket-id" value="">
+										<div class="navigate-section">
+											<div class="col-md-8 col-xs-8 no-padding">
+												<select class="form-control" id="select-tickets">
+													<option value=''>--Seleccione--</option>
+													@foreach (Auth::user()->client->activeTickets() as $ticketClient)
+														<option value="{{ $ticketClient->ticket_vote_id }}"> {{ $ticketClient->ticket->name }} <i>({{ $ticketClient->ticket->val_vote }} Puntos)</i> </option>
+													@endforeach
+												</select>
+											</div>
+											<div class="col-md-2 col-xs-4">
+												<button id="vote-ticket-submit" type="submit" class="btn btn-vote" disabled><i class="fa fa-heart like-vote" aria-hidden="true" ></i> Votar</button>	
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						@endif
 					@endcan
 				@else 
 					Para votar, <a href="#" id="go-login" title="Iniciar Sesión"><span>Inicie Sesión</span></a> o  <a href="#" id="go-register" title="Registrarse"><span>Registrese</span></a>
@@ -120,8 +150,8 @@
 			<div class="navigate-section">
 				<div class="col-md-10 col-xs-8 no-padding">
 					<select class="form-control" name="select_misses" id="select-misses">
+						<option value="null">--Seleccione--</option>
 						@foreach ($misses as $miss)
-							<option value="null">--Seleccione--</option>
 							<option value="{{ route('website.miss.show',$miss->slug) }}"> {{ $miss->name }} {{ $miss->last_name }} </option>
 						@endforeach
 					</select>

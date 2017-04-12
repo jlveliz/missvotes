@@ -62,4 +62,9 @@ class Client extends Authenticatable
     {
         return $this->memberships()->whereRaw("date_format(ends_at,'%Y/%m/%d') >= date_format(now(),'%Y/%m/%d')")->first();
     }
+
+    public function activeTickets()
+    {
+        return $this->tickets()->where('state','1')->get();
+    }
 }
