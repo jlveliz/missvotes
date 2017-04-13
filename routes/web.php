@@ -21,6 +21,7 @@ Route::group(['prefix'=>'account'],function(){
 	Route::post('subscribe','StripeController@subscribe')->name('website.stripe.subscribe')->middleware('auth');
 	Route::post('ticket','StripeController@buyTicket')->name('website.stripe.buyticket')->middleware('auth');
 	Route::post('pticket','PaypalController@buyTicket')->name('website.paypal.buyticket')->middleware('auth');
+	Route::get('pstatus','PaypalController@getPaymentStatus')->name('website.paypal.status')->middleware('auth');
 });
 
 // votes for miss
