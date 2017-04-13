@@ -59,6 +59,7 @@ Route::group(['prefix'=>'backend'],function(){
     Route::post('login', 'Auth\LoginAdminController@login');
     Route::post('logout', 'Auth\LoginAdminController@logout')->name('logout');
     //resources
+    Route::get('dashboard', 'ReportController@ranking')->name('dashboard');
 	Route::resource('/users', 'UserController');
 	Route::resource('/clients', 'ClientController');
 	Route::resource('/memberships', 'MembershipController');

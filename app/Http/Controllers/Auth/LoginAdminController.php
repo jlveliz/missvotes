@@ -27,7 +27,7 @@ class LoginAdminController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'backend/misses';
+    protected $redirectTo = 'backend/dashboard';
 
     /**
      * Create a new controller instance.

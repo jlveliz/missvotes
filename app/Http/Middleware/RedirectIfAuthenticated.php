@@ -19,7 +19,7 @@ class RedirectIfAuthenticated
     {
         if ($guard == 'is_admin') {
             if (Auth::guard()->check() && Auth::user()->is_admin) {
-                return redirect('backend/users');
+                return redirect('backend/dashboard');
             } else {
                 return redirect('backend/login');
             }

@@ -225,13 +225,26 @@
 
   $(document).ready(function(){
 
+
+  	// Javascript to enable link to tab
+  	var url = document.location.toString();
+  	if (url.match('#')) {
+  	    $('.nav-tabs a[href="#' + url.split('#')[1] + '-tab"]').tab('show');
+  	} //add a suffix
+
+  	// Change hash for page-reload
+  	$('.nav-tabs a').on('shown.bs.tab', function (e) {
+  	    window.location.hash = e.target.hash;
+  	})
+
   	$.fn.dataTable.moment( 'dddd, MMMM Do, YYYY' );
 
-      // $('#activity-datatable').DataTable({
-      //   "language": {
-      //     "url": "../public/js/datatables/json/es.json"
-      //   }
-      // });
+      $('#activity-datatable').DataTable({
+        "language": {
+          "url": "../public/js/datatables/json/es.json"
+        },
+        "order": [[ 1, "desc" ]],
+      });
 
 
 

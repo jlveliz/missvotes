@@ -87,4 +87,16 @@ class VoteRepository implements VoteRepositoryInterface
 		abort(500);
 	}
 
+
+
+	/**
+	* REPORTS
+	**/
+	public function ranking()
+	{
+		
+		return Vote::SelectRaw('sum(value) as sumatory, miss_id')->groupBy('miss_id')->orderBy('sumatory','desc')->get();
+
+	}
+
 }

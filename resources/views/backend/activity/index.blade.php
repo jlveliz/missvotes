@@ -31,7 +31,8 @@
       $('#activity-datatable').DataTable({
         "language": {
           "url": "../public/js/datatables/json/es.json"
-        }
+        },
+         "order": [[ 1, "desc" ]],
       });
   });
  </script>
