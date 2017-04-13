@@ -164,6 +164,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Laravel\Cashier\CashierServiceProvider::class,
+        Anouar\Paypalpayment\PaypalpaymentServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -226,7 +227,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Image' => Intervention\Image\Facades\Image::class
+        'Image' => Intervention\Image\Facades\Image::class,
+        'Paypalpayment'   => Anouar\Paypalpayment\Facades\PaypalPayment::class,
 
     ],
 

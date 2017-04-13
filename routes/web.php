@@ -18,8 +18,9 @@ Route::get('/miss/{slug}', 'WebsiteController@show')->name('website.miss.show');
 Route::group(['prefix'=>'account'],function(){
 	Route::get('/','WebsiteController@myAccount')->name('website.account')->middleware('auth');
 	Route::post('/update','WebsiteController@updateAccount')->name('website.account.update')->middleware('auth');
-	Route::post('subscribe','PaymentController@subscribe')->name('website.subscribe')->middleware('auth');
-	Route::post('ticket','PaymentController@buyTicket')->name('website.buyticket')->middleware('auth');
+	Route::post('subscribe','StripeController@subscribe')->name('website.stripe.subscribe')->middleware('auth');
+	Route::post('ticket','StripeController@buyTicket')->name('website.stripe.buyticket')->middleware('auth');
+	Route::post('pticket','PaypalController@buyTicket')->name('website.paypal.buyticket')->middleware('auth');
 });
 
 // votes for miss

@@ -22,7 +22,7 @@ use Redirect;
 
 use Auth;
 
-class PaymentController extends Controller
+class StripeController extends Controller
 {
     
 

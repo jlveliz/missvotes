@@ -8,6 +8,7 @@
         "php": ">=5.6.4",
         "intervention/image": "^2.3",
         "laravel/cashier": "~7.0",
+        "anouar/paypalpayment": "~1.0",
         "laravel/framework": "5.3.*"
     },
     "require-dev": {

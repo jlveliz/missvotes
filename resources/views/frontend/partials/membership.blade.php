@@ -87,7 +87,7 @@
 @endforeach
 
 {{-- the magic form --}}
-<form id="membeship-form" action="{{ route('website.subscribe') }}" method="POST" style="visibility: hidden;">
+<form id="membeship-form" action="{{ route('website.stripe.subscribe') }}" method="POST" style="visibility: hidden;">
     {{ csrf_field() }}
     <input type="hidden" id="membership-id" name="membership_id" value="">
     <input type="hidden" id="amount" name="amount" value="">
