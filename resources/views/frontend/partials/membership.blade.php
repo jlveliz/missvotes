@@ -79,7 +79,15 @@
             @if (!Auth::user()->client->current_membership() || !(Auth::user()->client->current_membership()->membership_id ==  $membership->id) )
                 <div class="panel-footer panel-footer-payments">
                     <button type="button" class="btn btn-sm btn-success pay-membership-with-stripe" data-email="{{Auth::user()->email}}" data-amount="{{ (int) $membership->price.'00'}}" data-membership="{{$membership->id}}" data-description="Pago de Membresia {{$membership->name}}" role="button"> <i class="fa fa-credit-card"></i> Usar Tarjeta</button>
-                    <button href="#" class="btn  btn-sm btn-success" role="button" title=""><i class="fa fa-paypal"></i> Usar Paypal</button>
+                    <form action="{{ route('website.paypal.subscribe') }}" method="post" style="display: inline">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="paypal_email" value="{{ Auth::user()->email }}">
+                        <input type="hidden" name="paypal_membership_id" value="{{ $membership->id }}">
+                        <input type="hidden" name="paypal_membership_name" value="{{ $membership->name }}">
+                        <input type="hidden" name="paypal_membership_description" value="Pago de membresia {{ $membership->name }}">
+                        <input type="hidden" name="paypal_membership_amount" value="{{ $membership->price }}">
+                        <button type="submit" class="btn  btn-sm btn-success" role="button" title="Usar Paypal"><i class="fa fa-paypal"></i> Usar Paypal</button>
+                    </form>
                 </div>
             @endif
         </div>
