@@ -10,6 +10,8 @@ use MissVote\RepositoryInterface\ClientRepositoryInterface;
 
 // use MissVote\RepositoryInterface\RoleRepositoryInterface;
 
+use MissVote\Models\Country;
+
 use Response;
 
 use Redirect;
@@ -49,8 +51,8 @@ class ClientController extends Controller
      */
     public function create()
     {
-        // $roles = $this->role->enum();
-        return view('backend.client.create');
+        $countries = Country::orderby('name')->get();
+        return view('backend.client.create',compact('countries'));
     }
 
     /**
@@ -97,6 +99,7 @@ class ClientController extends Controller
     public function edit($id)
     {
         $client = $this->client->find($id);
+        $countries = Country::orderby('name')->get();
         // $roles = $this->role->enum();
 
         // foreach ($roles as $key => $role) {
@@ -109,6 +112,7 @@ class ClientController extends Controller
 
         return view('backend.client.edit',[
             'client'=>$client,
+            'countries' => $countries
             // 'roles'=>$roles
             ]);
     }

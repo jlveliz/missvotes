@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+    $.validator.addMethod("valueNotEquals", function(value, element, arg) {
+        return arg != value;
+    });
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -62,7 +66,7 @@ $(document).ready(function() {
                 })
                 .done(function(data) {
                     $("#login-modal").modal('hide');
-                    location.reload();
+                    window.location = "/account";
                 })
                 .fail(function(reason) {
                     var message = reason.responseJSON.email;
@@ -140,6 +144,16 @@ $(document).ready(function() {
                 required: true,
                 minlength: 6
             },
+            last_name: {
+                required: true,
+                minlength: 6
+            },
+            country_id: {
+                valueNotEquals: "null",
+            },
+            city: {
+                required: true,
+            },
             address: {
                 required: true,
                 minlength: 6
@@ -161,6 +175,16 @@ $(document).ready(function() {
             name: {
                 required: "Nombre requerido",
                 minlength: "Debe tener al menos 6 caracteres"
+            },
+            last_name: {
+                required: "Apellido requerido",
+                minlength: "Debe tener al menos 6 caracteres"
+            },
+            country_id: {
+                valueNotEquals: "Seleccione un País",
+            },
+            city: {
+                required: "Ciudad requerida",
             },
             address: {
                 required: "Dirección requerido",
@@ -369,5 +393,5 @@ $(document).ready(function() {
     /******** ACTIVATION CODE ********/
 
 
-    
+
 });

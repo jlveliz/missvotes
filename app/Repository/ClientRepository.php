@@ -71,6 +71,9 @@ class ClientRepository implements ClientRepositoryInterface
 		if ($client) {
 			// dd($data);
 			$client->name = $data['name'];
+			$client->last_name = $data['last_name'];
+			$client->country_id = $data['country_id'];
+			$client->city = $data['city'];
 			$client->email = $data['email'];
 			$client->address = $data['address'];
 			$client->is_admin = $data['is_admin'];

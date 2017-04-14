@@ -53,6 +53,9 @@ class RegisterClientController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
+            'last_name' => 'required',
+            'country_id' => 'required|exists:country,id',
+            'city' => 'required',
             'email' => 'required|email|max:255|unique:user',
             'address' => 'required',
             'password' => 'required|min:6|confirmed',
@@ -61,6 +64,10 @@ class RegisterClientController extends Controller
         [
             'name.required' => 'El Nombre es requerido',
             'name.max' => 'Por favor ingrese un nombre mas corto',
+            'last_name.required' => 'El Apellido es requerido',
+            "country_id.required" => 'El País es requerido',
+            "country_id.exists" => 'El País no existe',
+            "city.required" => 'La Ciudad es requerida',
             'email.required' => 'Por favor ingrese un correo',
             'email.email' => 'Por favor ingrese un correo válido',
             'email.max' => 'Por favor su correo es muy grande',
@@ -107,6 +114,9 @@ class RegisterClientController extends Controller
 
        return Client::create([
             'name' => $data['name'],
+            'last_name' => $data['last_name'],
+            'country_id' => $data['country_id'],
+            'city' => $data['city'],
             'email' => $data['email'],
             'address' => $data['address'],
             'is_admin' => (new Client())->getInactive(),

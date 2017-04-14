@@ -29,13 +29,37 @@
 					@if ($errors->has('name')) <p class="help-block">{{ $errors->first('name') }}</p> @endif
 				</div>
 
-				<div class="form-group col-md-6 col-sm-6 col-xs-12 @if($errors->has('address')) has-error @endif">
+				<div class="form-group col-md-3 col-sm-3 col-xs-12 @if($errors->has('last_name')) has-error @endif">
+					<label class="control-label">Apellido </label>
+					<input type="text" class="form-control" placeholder="Nombre" name="last_name" value="{{ $client->last_name }}">
+					@if ($errors->has('last_name')) <p class="help-block">{{ $errors->first('last_name') }}</p> @endif
+				</div>
+
+				<div class="form-group col-md-3 col-sm-3 col-xs-12 @if($errors->has('country_id')) has-error @endif">
+					<label class="control-label">País </label>
+					<select class="form-control" name="country_id" id="country">
+						<option value="null">--Seleccione--</option>
+						@foreach ($countries as $element)
+							<option value="{{$element->id}}" @if($client->country_id == $element->id) selected  @endif>{{$element->name}}</option>
+						@endforeach
+					</select>
+					@if ($errors->has('country_id')) <p class="help-block">{{ $errors->first('country_id') }}</p> @endif
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="form-group col-md-3 col-sm-3 col-xs-6 @if($errors->has('city')) has-error @endif">
+					<label class="control-label">Ciudad </label>
+					<input type="text" class="form-control" placeholder="Ciudad" name="city" value="{{ $client->city }}">
+					@if ($errors->has('city')) <p class="help-block">{{ $errors->first('city') }}</p> @endif
+				</div>
+
+				<div class="form-group col-md-6 col-sm-6 col-xs-6 @if($errors->has('address')) has-error @endif">
 					<label class="control-label">Dirección </label>
 					<input type="text" class="form-control" placeholder="Dirección" name="address" value="{{ $client->address }}">
 					@if ($errors->has('address')) <p class="help-block">{{ $errors->first('address') }}</p> @endif
 				</div>
 			</div>
-
 
 			<div class="row">
 				<div class="form-group col-md-3 col-sm-3 col-xs-12 @if($errors->has('password')) has-error @endif">

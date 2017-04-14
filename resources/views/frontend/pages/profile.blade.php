@@ -52,7 +52,16 @@
 		    					<td><b>Nombres: </b> {{Auth::user()->name}}</td>
 		    				</tr>
 		    				<tr>
+		    					<td><b>Apellidos: </b> {{Auth::user()->last_name}}</td>
+		    				</tr>
+		    				<tr>
 		    					<td><b>Correo: </b> {{Auth::user()->email}}</td>
+		    				</tr>
+		    				<tr>
+		    					<td><b>País: </b> @if(Auth::user()->client->country) {{Auth::user()->client->country->name}} @else - @endif </td>
+		    				</tr>
+		    				<tr>
+		    					<td><b>Ciudad: </b> {{Auth::user()->city}}</td>
 		    				</tr>
 		    				<tr>
 		    					<td><b>Dirección: </b> {{Auth::user()->address}}</td>

@@ -25,7 +25,16 @@ class Client extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','address','is_admin','confirmation_code','confirmed'
+        'name', 
+        'last_name',
+        'email',
+        "country_id",
+        "city",
+        'password',
+        'address',
+        'is_admin',
+        'confirmation_code',
+        'confirmed'
     ];
 
     /**
@@ -48,6 +57,11 @@ class Client extends Authenticatable
         return $this->inactive;
     }
 
+    public function country()
+    {
+        return $this->belongsTo('MissVote\Models\Country','country_id');
+    }
+
     public function tickets()
     {
         return $this->hasMany('MissVote\Models\TicketVoteClient','client_id');
@@ -55,7 +69,7 @@ class Client extends Authenticatable
 
     public function memberships()
     {
-        return $this->hasMany('MissVote\Models\MembershipClient','user_id');
+        return $this->hasMany('MissVote\Models\MembershipClient','client_id');
     }
 
     public function current_membership()
