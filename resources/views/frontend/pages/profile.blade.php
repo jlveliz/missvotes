@@ -17,7 +17,7 @@
         <div class="clearfix"></div>
     @endif
 
-	<h2>{{ Auth::user()->name }}</h2>
+	<h2>{{ Auth::user()->name }} {{ Auth::user()->last_name }}</h2>
 	<div class="container-tabs-profile">
 		
 		<ul class="nav nav-tabs" role="tablist">
@@ -41,7 +41,7 @@
 			<div role="tabpanel" class="tab-pane active" id="profile">
 		    	<div class="col-md-3 col-sm-3 col-xs-12 hidden-xs">
 		    		<div class="profile-img">
-		    			<img class="img-responsive" src="{{ asset('public/images/account.png') }}" alt="{{Auth::user()->name}}" title="{{Auth::user()->name}}">
+		    			<img class="img-responsive" src="{{ asset('public/images/account.png') }}" alt="{{Auth::user()->name}}" title="{{Auth::user()->name}} {{Auth::user()->last_name}}">
 		    		</div>
 		    	</div>
 		    	<div class="col-md-9 col-sm-9 col-xs-12">

@@ -137,7 +137,7 @@ class StripeController extends Controller
 
         $customer = Customer::create(array(
         	"email" => Auth::user()->email,
-            "description" => Auth::user()->name,
+            "description" => Auth::user()->name .' '. Auth::user()->last_name,
             "source" => $token
         ));
 
