@@ -46,7 +46,7 @@
                     <ul class="dropdown-menu" role="menu">
                         @if (Auth::user()->is_admin)
                             <li>
-                                <a href="{{ url('backend/clients') }}" title="Mi Cuenta">Ir a Administración</a>
+                                <a href="{{ route('dashboard') }}" title="Mi Cuenta">Ir a Administración</a>
                             </li>
                         @else 
                             <li>
