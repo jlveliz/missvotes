@@ -5,7 +5,7 @@
         <a class="navbar-brand visible-xs navbar-app-mini" href="{{ route('website.home') }}">
             <img title="Miss Panamerican" alt="Miss Panamerican" src="{{ asset('public/images/queen-mini.png') }}" alt="">
         </a>
-        <div class="navbar-brand hidden-xs navbar-app">
+        <div class="navbar-brand hidden-xs navbar-app" style="display: block;">
             <a href="{{ route('website.home') }}">
                 <img class="img-responsive logo" class="logo" src="{{ asset('public/images/queen.png') }}" alt="Logo">
             </a>
