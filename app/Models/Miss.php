@@ -3,6 +3,8 @@
 namespace MissVote\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use MissVote\Scopes\MissScope;
+
 
 class Miss extends Model
 {
@@ -11,7 +13,11 @@ class Miss extends Model
 
     protected $with = ['photos'];
 
-     protected $perPage = 12;
+    protected $perPage = 12;
+
+    private $isPrecandidate = 0;
+
+
 
       /**
      * The attributes that are mass assignable.
@@ -21,15 +27,42 @@ class Miss extends Model
     protected $fillable = [
         'name', 
         'last_name',
+        'code',
         'slug', 
         'country_id',
+        'is_precandidate',
+        'state',
+        'birthdate',
+        'placebirth',
+        'email',
+        'phone_number',
+        'how_did_you_hear_about_us',
         'height',
+        'weight',
+        'address',
+        'city',
+        'state_province',
         'bust_measure',
         'waist_measure',
         'hip_measure',
-        'hobbies',
-        'state'
+        'hair_color',
+        'eye_color',
+        'dairy_philosophy',
+        'why_would_you_win',
     ];
+
+
+     /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new MissScope);
+    }
 
 
     public function country()
