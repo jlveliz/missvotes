@@ -46,10 +46,15 @@
 			<hr class="visible-xs">
 			<p class="description-miss"><b>Nacionalidad</b></p>
 			<p>{{ $miss->country->name }}</p>
+			<p class="description-miss"><b>Ciudad</b></p>
+			<p>{{ $miss->city }} / {{ $miss->state_province }}</p>
 			<p class="description-miss"><b>Medidas</b></p>
-			<p><b>Al: </b> {{ $miss->height }}  / <b>Bu:</b> {{ $miss->bust_measure }} /  <b>Ci:</b> {{ $miss->waist_measure }} / <b>Ca:</b> {{ $miss->hip_measure }}</p>
-			<p><b>Hobbies</b></p>
-			<p>{{ $miss->hobbies }}</p>
+			<p><b>Al: </b> {{ $miss->height }} cms  / <b>Pe: </b> {{ $miss->weight }}  lb / <b>Bu:</b> {{ $miss->bust_measure }} /  <b>Ci:</b> {{ $miss->waist_measure }} / <b>Ca:</b> {{ $miss->hip_measure }}</p>
+			<p><b>Filosofía diaria</b></p>
+			<p>{{ $miss->dairy_philosophy }}</p>
+
+			<p><b>Por qué le gustaría ganar el Miss Panamerican International?</b></p>
+			<p>{{ $miss->why_would_you_win }}</p>
 			
 			<hr>
 			

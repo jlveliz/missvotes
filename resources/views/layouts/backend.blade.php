@@ -53,14 +53,38 @@
                     @if (Auth::user() && Auth::user()->is_admin) 
                        <ul class="nav navbar-nav">
                             <li class="@if(Request::path() == 'backend/dashboard') active @endif"><a href="{{ route('dashboard') }}">Escritorio <span class="sr-only">(current)</span></a></li>
-                             <li class="@if(Request::path() == 'backend/misses') active @endif"><a href="{{ route('misses.index') }}">Candidatas <span class="sr-only">(current)</span></a></li>
-                            <li class="@if(Request::path() == 'backend/tickets-vote') active @endif"><a href="{{ route('tickets-vote.index') }}">Tickets <span class="sr-only">(current)</span></a></li>
-                             <li class="@if(Request::path() == 'backend/memberships') active @endif"><a href="{{ route('memberships.index') }}">Membresias <span class="sr-only">(current)</span></a></li>
-                            <li class="@if(Request::path() == 'backend/clients') active @endif">
-                                <a href="{{ route('clients.index') }}">Clientes <span class="sr-only">(current)</span></a>
+                            
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Participantes <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="@if(Request::path() == 'backend/misses') active @endif">
+                                        <a href="{{ route('misses.index') }}">Candidatas <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="">Pre Candidatas <span class="sr-only">(current)</span></a>
+                                    </li>
+                                </ul>
                             </li>
-                            <li class="@if(Request::path() == 'backend/users') active @endif"><a href="{{ route('users.index') }}">Usuarios <span class="sr-only">(current)</span></a></li>
-                            <li class="@if(Request::path() == 'backend/activities') active @endif"><a href="{{ route('activities.index') }}">Actividades de cliente <span class="sr-only">(current)</span></a></li>
+                            
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Clientes <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="@if(Request::path() == 'backend/clients') active @endif">
+                                        <a href="{{ route('clients.index') }}">Listado <span class="sr-only">(current)</span></a>
+                                    </li>
+                                     <li class="@if(Request::path() == 'backend/activities') active @endif"><a href="{{ route('activities.index') }}">Actividades<span class="sr-only">(current)</span></a></li>
+                                </ul>
+                            </li>
+                            
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Configuración <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="@if(Request::path() == 'backend/users') active @endif"><a href="{{ route('users.index') }}">Usuarios <span class="sr-only">(current)</span></a></li>
+                                    <li class="@if(Request::path() == 'backend/tickets-vote') active @endif"><a href="{{ route('tickets-vote.index') }}">Tickets <span class="sr-only">(current)</span></a></li>
+                                     <li class="@if(Request::path() == 'backend/memberships') active @endif"><a href="{{ route('memberships.index') }}">Membresias <span class="sr-only">(current)</span></a></li>
+                                </ul>
+                            </li>
+                            
                         </ul>
                     @endif
 
