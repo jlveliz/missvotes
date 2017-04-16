@@ -30,6 +30,9 @@
                         <a href="{{ route('website.account') }}" class="btn btn-update-membership-or-buy" title="Actualizar membresia" alt="Actualizar membresia">Actualice su membresia</a>
                     </li>
                 @endif
+                <li>
+                    <a href="{{ route('apply.requirements') }}"  alt="Postulese como candidata" title="Postulese como candidata"> Postulese como candidata</a>
+                </li>
             @endif
         </ul>
 

@@ -15,6 +15,9 @@ Route::get('/', 'WebsiteController@index')->name('website.home');
 Route::get('/miss/{slug}', 'WebsiteController@show')->name('website.miss.show');
 
 
+// votes for miss
+Route::post('/miss/vote', 'VoteController@store')->name('website.miss.vote.store');
+
 Route::group(['prefix'=>'account'],function(){
 	Route::get('/','WebsiteController@myAccount')->name('website.account')->middleware('auth');
 	Route::post('/update','WebsiteController@updateAccount')->name('website.account.update')->middleware('auth');
@@ -25,9 +28,11 @@ Route::group(['prefix'=>'account'],function(){
 	Route::get('pstatus','PaypalController@getPaymentStatus')->name('website.paypal.status')->middleware('auth');
 });
 
-// votes for miss
-Route::post('/miss/vote', 'VoteController@store')->name('website.miss.vote.store');
-
+Route::group(['prefix'=>'apply'],function(){
+	Route::get("requirements","ApplyCandidateController@requirements")->name('apply.requirements')->middleware('auth','isClient');
+	Route::post("requirements","ApplyCandidateController@aceptrequirements")->name('apply.aceptrequirements')->middleware('auth','isClient');
+	Route::get("show-countries","ApplyCandidateController@showCountries")->name('apply.showCountries')->middleware('auth','isClient');
+});
 
 Route::group(['prefix'=>'auth'],function(){
 	// login

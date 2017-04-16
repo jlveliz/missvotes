@@ -1,9 +1,5 @@
 @extends('layouts.frontend')
 @section('content')
-<div class="jumbotron jumbotron-app hidden-xs">
-    <h1>Reinas de belleza</h1>
-    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem, quidem, quibusdam. Ducimus eligendi repudiandae natus error eveniet consectetur veniam in et, nobis hic, laudantium non nostrum deserunt atque praesentium temporibus!</p>
-</div>
 <div class="row text-center">
     {{ $misses->links() }}
 </div>
