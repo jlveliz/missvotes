@@ -393,5 +393,31 @@ $(document).ready(function() {
     /******** ACTIVATION CODE ********/
 
 
+    /******** PROFILE ********/
+    var readURL = function(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                // debugger;
+                $('.profile-img').css('background-image', 'url('+e.target.result+')');
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#profile-section").on('click', function(event) {
+        event.preventDefault();
+       $("#file-profile-upload").click();
+    });
+
+    $("#file-profile-upload").on('change', function(event) {
+        readURL(this);
+        $("#form-update-photo").submit();
+        
+    });
+    /******** PROFILE ********/
+
+
 
 });

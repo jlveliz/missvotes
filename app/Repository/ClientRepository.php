@@ -3,7 +3,7 @@ namespace MissVote\Repository;
 
 use MissVote\RepositoryInterface\ClientRepositoryInterface;
 use MissVote\Models\Client;
-
+use Image;
 /**
 * 
 */
@@ -100,6 +100,34 @@ class ClientRepository implements ClientRepositoryInterface
 			return true;
 		}
 		abort(500);
+	}
+
+	private function pathUplod() {
+		return public_path().'/uploads/profiles';
+	}
+
+
+	public function uploadPhoto($clientId,$photo)
+	{
+		if ($photo->isValid()) {
+			
+			$realPath = $photo->getRealPath();
+			$image = Image::make($realPath);
+			
+			$image->resize(550,550,function($constraint){
+					$constraint->aspectRatio();
+			});
+
+
+			$imageName = $clientId.'_'.str_random().'.'. $photo->getClientOriginalExtension();
+			if($image->save($this->pathUplod().'/'.$imageName)){
+				return 'public/uploads/profiles/'.$imageName; 
+			} else {
+				return false;
+			}
+		}
+
+		return false;
 	}
 
 }

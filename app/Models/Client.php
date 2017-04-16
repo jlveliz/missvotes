@@ -34,7 +34,8 @@ class Client extends Authenticatable
         'address',
         'is_admin',
         'confirmation_code',
-        'confirmed'
+        'confirmed',
+        'photo'
     ];
 
     /**

@@ -94,17 +94,6 @@
     background: rgba(0, 0, 0, 0.075);
 }
 
-.btn-vote {
-    color: #fff;
-    background-color: #b9a035;
-    border-color: #aa9335;
-    border-radius: 2px;
-}
-
-.btn-vote:hover {
-    background-color: #aa9335;
-    color: #fff;
-}
 
 .ready-vote {
     padding: 20px;

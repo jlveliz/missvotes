@@ -19,20 +19,21 @@
 
 	<h2>{{ Auth::user()->name }} {{ Auth::user()->last_name }}</h2>
 	<div class="container-tabs-profile">
-		
 		<ul class="nav nav-tabs" role="tablist">
 		    <li role="presentation" class="active">
 		    	<a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Perfil</a>
 		    </li>
-		    <li role="presentation">
-		    	<a href="#membership" aria-controls="membership" role="tab" data-toggle="tab">Membresia @if(Auth::user()->client && !Auth::user()->client->current_membership()) <small class="upgrade-membership">(Actualice!!)</small> @endif</a>
-		    </li>
-		    <li role="presentation">
-		    	<a href="#tickets" aria-controls="tickets" role="tab" data-toggle="tab">Tickets</a>
-		    </li>
-		    <li role="presentation">
-		    	<a href="#activity" aria-controls="activity" role="tab" data-toggle="tab">Mis Actividades</a>
-		    </li>
+		    @if (!Auth::user()->is_admin)
+			    <li role="presentation">
+			    	<a href="#membership" aria-controls="membership" role="tab" data-toggle="tab">Membresia @if(Auth::user()->client && !Auth::user()->client->current_membership()) <small class="upgrade-membership">(Actualice!!)</small> @endif</a>
+			    </li>
+			    <li role="presentation">
+			    	<a href="#tickets" aria-controls="tickets" role="tab" data-toggle="tab">Tickets</a>
+			    </li>
+			    <li role="presentation">
+			    	<a href="#activity" aria-controls="activity" role="tab" data-toggle="tab">Mis Actividades</a>
+			    </li>
+		    @endif
   		</ul>
 
   		<!-- Tab panes -->
@@ -40,8 +41,27 @@
 			{{-- profile --}}
 			<div role="tabpanel" class="tab-pane active" id="profile">
 		    	<div class="col-md-3 col-sm-3 col-xs-12 hidden-xs">
-		    		<div class="profile-img">
-		    			<img class="img-responsive" src="{{ asset('public/images/account.png') }}" alt="{{Auth::user()->name}}" title="{{Auth::user()->name}} {{Auth::user()->last_name}}">
+		    		<a href="#" id="profile-section">
+		    			<hr>
+		    			<div class="profile-img" style="background-image: url(@if(Auth::user()->client->photo) '{{ config('app.url').'/'. Auth::user()->client->photo}}' @else '{{asset('public/images/account.png')}}'  @endif)" alt="{{Auth::user()->name}}" title="{{Auth::user()->name}} {{Auth::user()->last_name}}">
+		    			</div>
+		    			<div class="middle">
+                        	<div class="text">Cambiar Imagen</div>
+                    	</div>
+		    		</a>
+		    		<form id="form-update-photo" action="{{ route('website.account.update') }}" enctype="multipart/form-data" method="POST">
+		    			{{ csrf_field() }}
+		    			<input type="file" id="file-profile-upload" name="photo" type="file" accept="image/*"/ style="display: none">
+		    		</form>
+		    		<hr>
+		    		<div class="row" class="section-profile-buttons">
+			    		<div class="text-center">
+			    		@if (Auth::user()->is_admin)
+			    			<a href="{{ route('website.account') }}" class="btn btn-primary btn-lg" alt="Ir a Administración" title="Ir a Administración"> <i class="fa fa-code"></i> Ir a Administración</a>
+			    		@else
+			    			<a href="#" class="btn btn-vote btn-lg" alt="Postulese como candidata" title="Ir a Administración"> Postulese a candidata de <br> {{ config('app.name') }}		</a>
+			    		@endif
+			    		</div>
 		    		</div>
 		    	</div>
 		    	<div class="col-md-9 col-sm-9 col-xs-12">
@@ -73,7 +93,7 @@
 		    		</table>
 		    		<h4>Cambiar Contraseña</h4>
 		    		<form action="{{ route('website.account.update') }}" method="POST">
-		    			@if (Session::has('mensaje'))
+		    			@if (Session::has('action') && Session::get('action') == 'update-password')
     						<div class="alert alert-dismissible @if(Session::get('tipo_mensaje') == 'success') alert-info  @endif @if(Session::get('tipo_mensaje') == 'error') alert-danger  @endif" role="alert">
       							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
       							{{session('mensaje')}}
@@ -98,79 +118,82 @@
 		    		</form>
 		    	</div>
 		    </div>
+			@if (!Auth::user()->is_admin)
+			    {{-- membershipss --}}
+			    <div role="tabpanel" class="tab-pane" id="membership" >
+			    	<h4>Membresia</h4> 
+			    	<div class="col-md-12 col-lg-12 col-xs-12">
+			    		@include('frontend.partials.membership',$memberships)
+			    	</div>
+			    </div>
 
-		    {{-- membershipss --}}
-		    <div role="tabpanel" class="tab-pane" id="membership" >
-		    	<h4>Membresia</h4> 
-		    	<div class="col-md-12 col-lg-12 col-xs-12">
-		    		@include('frontend.partials.membership',$memberships)
-		    	</div>
-		    </div>
+			    {{-- tickets --}}
+			    <div role="tabpanel" class="tab-pane" id="tickets">
+			    	<h4>Tickets</h4>
+			    	<div class="col-md-12 col-lg-12 col-xs-12">
+			    		{{-- my tickets --}}
+			    		<h5><b>Mis tickets</b></h5>
+			    		<div class="row">
+			    		@if (count(Auth::user()->client->activeTickets()) > 0)
+			    			@foreach (Auth::user()->client->activeTickets() as $ticketClient)
+			    				<div class="col-xs-4 col-md-2">
+			    					<div class="text-center">
+				    					 <div class="panel panel-primary">
+				    					 	<div class="panel-heading">
+				    					 		<h3 class="panel-title"><span class="badge">x{{$ticketClient->counter}}</span> <i class="fa fa-ticket" aria-hidden="true"></i> {{$ticketClient->ticket->name}}</h3>
+				    					 	</div>
+				    					 	<div class="panel-body">
+				    					 		<table class="table">
+				    					 			<tbody>
+				    					 				<tr>
+				    					 					<td><b>Valor: </b> {{$ticketClient->ticket->val_vote}} Puntos</td>
+				    					 				</tr>
+				    					 			</tbody>
+				    					 		</table>
+				    					 	</div>
+				    					 	{{-- <div class="panel-footer">
+		                						<a href="#" class="btn btn-success" role="button">Usar</a>
+		            						</div> --}}
+				    					 </div>
+			    					</div>
+			    				</div>
+			    			@endforeach
+				    		@else
+				    			<p class="text-center text-warning">
+									<b>Lamentamos que no tenga tickets para usar, compre uno para poder apoyar a su candidata favorita</b> 
+								</p>
+				    		@endif
+			    		</div>
+			    		<div class="row">
+				    		{{-- buy tickets --}}
+				    		@include('frontend.partials.tickets',$tickets)
+			    		</div>
+			    	</div>
+			    </div>
 
-		    {{-- tickets --}}
-		    <div role="tabpanel" class="tab-pane" id="tickets">
-		    	<h4>Tickets</h4>
-		    	<div class="col-md-12 col-lg-12 col-xs-12">
-		    		{{-- my tickets --}}
-		    		<h5><b>Mis tickets</b></h5>
-		    		<div class="row">
-		    		@if (count(Auth::user()->client->activeTickets()) > 0)
-		    			@foreach (Auth::user()->client->activeTickets() as $ticketClient)
-		    				<div class="col-xs-4 col-md-2">
-		    					<div class="text-center">
-			    					 <div class="panel panel-primary">
-			    					 	<div class="panel-heading">
-			    					 		<h3 class="panel-title"><span class="badge">x{{$ticketClient->counter}}</span> <i class="fa fa-ticket" aria-hidden="true"></i> {{$ticketClient->ticket->name}}</h3>
-			    					 	</div>
-			    					 	<div class="panel-body">
-			    					 		<table class="table">
-			    					 			<tbody>
-			    					 				<tr>
-			    					 					<td><b>Valor: </b> {{$ticketClient->ticket->val_vote}} Puntos</td>
-			    					 				</tr>
-			    					 			</tbody>
-			    					 		</table>
-			    					 	</div>
-			    					 	{{-- <div class="panel-footer">
-	                						<a href="#" class="btn btn-success" role="button">Usar</a>
-	            						</div> --}}
-			    					 </div>
-		    					</div>
-		    				</div>
-		    			@endforeach
-			    		@else
-			    			<p class="text-center text-warning">
-								<b>Lamentamos que no tenga tickets para usar, compre uno para poder apoyar a su candidata favorita</b> 
-							</p>
-			    		@endif
-		    		</div>
-		    		<div class="row">
-			    		{{-- buy tickets --}}
-			    		@include('frontend.partials.tickets',$tickets)
-		    		</div>
-		    	</div>
-		    </div>
-		    <div role="tabpanel" class="tab-pane" id="activity">
-		    	<h4>Mis actividades</h4>
-		    	<div class="col-md-12 col-lg-12 col-xs-12">
-		    		<table id="activity-datatable" class="table table-bordered" style="width: 100%">
-				  		<thead>
-					  		<tr>
-					  			<th>Evento</th>
-					  			<th>Fecha de evento</th>
-					  		</tr>
-				  		</thead>
-  						<tbody>
-  						@foreach ($activities as $activity)
-  						<tr>
-  							<td> Usted {{ $activity->name }}</td>
-  							<td>{{ $activity->created_at }}</td>
-  						</tr>
-  						@endforeach
-  						</tbody>
-  					</table>
-		    	</div>
-		    </div>
+			    <div role="tabpanel" class="tab-pane" id="activity">
+			    	<h4>Mis actividades</h4>
+			    	<div class="col-md-12 col-lg-12 col-xs-12">
+			    		<table id="activity-datatable" class="table table-bordered" style="width: 100%">
+					  		<thead>
+						  		<tr>
+						  			<th>Evento</th>
+						  			<th>Fecha de evento</th>
+						  		</tr>
+					  		</thead>
+	  						<tbody>
+	  						@foreach ($activities as $activity)
+	  						<tr>
+	  							<td> Usted {{ $activity->name }}</td>
+	  							<td>{{ $activity->created_at }}</td>
+	  						</tr>
+	  						@endforeach
+	  						</tbody>
+	  					</table>
+			    	</div>
+			    </div>
+				{{-- expr --}}
+			@endif
 		</div>
 		    
 

@@ -363,12 +363,40 @@ hr {
 
 /******PROFILE*******/
 
+.section-profile-buttons {
+    margin-top: 40px
+}
+
 .container-tabs-profile {
     padding: 10px 15px;
 }
 
+#profile-section > .middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+#profile-section > .middle > .text {
+    background: #cdcdcd;
+    color: #ffffff;
+}
+
+#profile-section:hover > .middle {
+    opacity: 1;
+}
+
 .profile-img {
-    padding: 5PX;
+    padding: 5px;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 250px;
+    height: 250px;
 }
 
 .upgrade-membership {
@@ -386,3 +414,25 @@ hr {
 
 
 /******PROFILE*******/
+
+
+/*******VOTE ******/
+
+.btn-vote {
+    color: #fff;
+    background-color: #b9a035;
+    border-color: #aa9335;
+    border-radius: 2px;
+}
+
+.btn-vote:hover {
+    background-color: #aa9335;
+    color: #fff;
+}
+
+.like-vote {
+    color: #ca1b18;
+}
+
+
+/*******VOTE ******/

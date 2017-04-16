@@ -90,19 +90,23 @@ class WebsiteController extends Controller
     {
         $valition = Validator::make($request->all(),
             [
-                'password' => 'required|min:6',
-                'repeat_password' => 'required|same:password'
+                'password' => 'required_with:password|min:6',
+                'repeat_password' => 'required_with:repeat_password|same:password',
+                'photo'=> 'required_with|image'
             ],
             [
-                'password.required' => 'La por favor ingrese una contraseña',
+                'password.required_with' => 'La por favor ingrese una contraseña',
                 'password.min' => 'Ingrese una contraseña mas larga por favor',
                 'repeat_password.same' => 'La contraseñas no coinciden',
-                'repeat_password.required' => 'Por favor ingrese la confirmación de contraseña'
+                'repeat_password.required_with' => 'Por favor ingrese la confirmación de contraseña',
+                'photo.required_with'=> 'Inserte una imagen',
+                'photo.image' => 'Inserte una imagen'
             ]);
 
         $sessionData = [
             'tipo_mensaje' => 'success',
             'mensaje' => '',
+            'action' => '',
         ];
 
         if ($valition->fails()) {
@@ -115,12 +119,32 @@ class WebsiteController extends Controller
             $sessionData['tipo_mensaje'] = 'error';
             $sessionData['mensaje'] = 'Su contraseña no pudo ser actualizada';
         } else {
-            $client->password = Hash::make($request->get('password'));
+            if ($request->has('password')) {
+                $client->password = Hash::make($request->get('password'));
+                $sessionData['mensaje'] = 'Su Contraseña fue actualizada';
+                $sessionData['action'] = 'update-password';
+            }
+
+            if ($request->hasFile('photo')) {
+                $uploadPhoto = $this->clientRepo->uploadPhoto(Auth::user()->id,$request->file('photo'));
+                $sessionData['action'] = 'update-photo-profile';
+                if ($uploadPhoto) {
+                    $client->photo = $uploadPhoto;
+                    $sessionData['mensaje'] = 'Foto de perfil actualizada';
+                } else {
+                    $sessionData['mensaje'] = 'Su Foto de perfil no pudo actualizada';
+                }
+            }
+
             if (!$client->update()) {
                 $sessionData['tipo_mensaje'] = 'error';
-                $sessionData['mensaje'] = 'Su contraseña no pudo ser actualizada';
-            } else {
-                $sessionData['mensaje'] = 'Su Contraseña fue actualizada';
+                if ($request->has('photo')) {
+                    $sessionData['mensaje'] = 'Su Foto de perfil no pudo actualizada';
+                }
+
+                if ($request->has('password')) {
+                    $sessionData['mensaje'] = 'Su contraseña no pudo ser actualizada';
+                }
             }
         }
 
