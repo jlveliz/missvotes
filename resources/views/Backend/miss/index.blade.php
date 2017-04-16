@@ -30,6 +30,9 @@
        				<td>@if($miss->state == '1') Activa @else Inactiva @endif</td>
        				<td>{{$miss->created_at }} / {{$miss->updated_at}}</td>
        				<td class="text-center">
+                <form action="{{ route('misses.destroy',$miss->id) }}" method="POST">
+                  
+                </form>
        					<form action="{{ route('misses.destroy',$miss->id) }}" method="POST">
        						<a href="{{ route('misses.edit',$miss->id) }}" title="Editar" class="btn btn-xs btn-warning"> Editar</a>
          						<input type="hidden" name="_token" value="{{ csrf_token() }}">

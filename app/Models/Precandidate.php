@@ -3,15 +3,13 @@
 namespace MissVote\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use MissVote\Scopes\MissScope;
+use MissVote\Scopes\PrecandidateScope;
 
 
 class Precandidate extends Model
 {
     
     protected $table = "miss";
-
-    protected $with = ['photos'];
 
     protected $perPage = 12;
 
@@ -61,17 +59,12 @@ class Precandidate extends Model
     {
         parent::boot();
 
-        static::addGlobalScope(new MissScope);
+        static::addGlobalScope(new PrecandidateScope);
     }
 
 
     public function country()
     {
     	return $this->belongsTo('MissVote\Models\Country','country_id');
-    }
-
-    public function photos()
-    {
-      return $this->hasMany('MissVote\Models\MissPhoto','miss_id');
     }
 }

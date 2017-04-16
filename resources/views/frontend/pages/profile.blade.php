@@ -57,7 +57,7 @@
 		    		<div class="row" class="section-profile-buttons">
 			    		<div class="text-center">
 			    		@if (Auth::user()->is_admin)
-			    			<a href="{{ route('website.account') }}" class="btn btn-primary btn-lg" alt="Ir a Administración" title="Ir a Administración"> <i class="fa fa-code"></i> Ir a Administración</a>
+			    			<a href="{{ route('dashboard') }}" class="btn btn-primary btn-lg" alt="Ir a Administración" title="Ir a Administración"> <i class="fa fa-code"></i> Ir a Administración</a>
 			    		@else
 			    			<a href="#" class="btn btn-vote btn-lg" alt="Postulese como candidata" title="Ir a Administración"> Postulese a candidata de <br> {{ config('app.name') }}		</a>
 			    		@endif

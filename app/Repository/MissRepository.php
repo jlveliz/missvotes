@@ -27,7 +27,7 @@ class MissRepository implements MissRepositoryInterface
 		}
 
 		if (!$misses) {
-			throw new MissException("No se han encontrado cientes",404);
+			abort(404);
 		}
 		return $misses;
 	}
@@ -48,7 +48,7 @@ class MissRepository implements MissRepositoryInterface
 		}
 
 		if ($returnException) {
-			if (!$miss) throw new MissException("No se ha encontrado a la Candidata solicitada",404);
+			if (!$miss) abort(404);
 		} else {
 			if (!$miss) return false;
 		}
@@ -83,7 +83,9 @@ class MissRepository implements MissRepositoryInterface
 			if (array_key_exists('photos', $data)) {
 				$photos = $data['photos'];
 			}
-			$miss->slug = str_slug($data['name'].' '.$data['last_name'],'-');
+			if (array_key_exists('name', $data) && array_key_exists('last_name', $data)) {
+				$miss->slug = str_slug($data['name'].' '.$data['last_name'],'-');
+			}
 			$miss->fill($data);
 			if($miss->update()){
 				$keyMiss = $miss->getKey();

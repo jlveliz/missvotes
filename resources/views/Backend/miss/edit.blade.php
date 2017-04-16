@@ -14,7 +14,6 @@
 		<form action="{{ route('misses.update',$miss->id) }}" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<input type="hidden" name="_method" value="PUT">
-			<input type="hidden" name="is_precandidate" value="0">
 			<div class="row">
 				<div class="form-group col-md-3 col-sm-3 col-xs-12 @if($errors->has('name')) has-error @endif">
 					<label class="control-label">Nombre </label>
@@ -157,15 +156,22 @@
 					@if ($errors->has('photos')) <p class="help-block">{{ $errors->first('photos') }}</p> @endif
 				</div>
 			</div>
-			<hr>
+	</div>
+	<div class="panel-footer">
 			<div class="row">
 				<div class="form-group col-md-12 col-sm-12 col-xs-12">
 					<a href="{{ route('misses.index') }}" class="btn btn-primary">Cancelar</a>
 	                <button type="submit" class="btn btn-success" id="save">Guardar</button>
+	</form>
+			<form action="{{ route('misses.update',$miss->id) }}" method="POST" style="display: inline">
+				{{ csrf_field() }}
+      			<input type="hidden" name="_method" value="PUT">
+      			<input type="hidden" name="is_precandidate" value="1">
+      		    <button type="submit" class="btn btn-warning" id="save">Descalificar como Candidata</button>
+			</form>
 	            </div>
 			</div>
 
-		</form>
 	</div>
 
 </div>

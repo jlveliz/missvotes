@@ -60,8 +60,8 @@
                                     <li class="@if(Request::path() == 'backend/misses') active @endif">
                                         <a href="{{ route('misses.index') }}">Candidatas <span class="sr-only">(current)</span></a>
                                     </li>
-                                    <li>
-                                        <a href="">Pre Candidatas <span class="sr-only">(current)</span></a>
+                                    <li class="@if(Request::path() == 'backend/precandidates') active @endif">
+                                        <a href="{{ route('precandidates.index') }}">Pre Candidatas <span class="sr-only">(current)</span></a>
                                     </li>
                                 </ul>
                             </li>

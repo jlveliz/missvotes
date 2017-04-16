@@ -119,13 +119,20 @@ class MissController extends Controller
             'mensaje' => '',
         ];
         if ($miss) {
-            $sessionData['mensaje'] = 'Misse Editado Satisfactoriamente';
+            $sessionData['mensaje'] = 'Miss Editado Satisfactoriamente';
+           
+        }elseif (!$miss && $request->has('is_precandidate')) {
+            $sessionData['mensaje'] = 'La Señorita ha sido descalificada como candidata';
         } else {
             $sessionData['tipo_mensaje'] = 'error';
             $sessionData['mensaje'] = 'El misse no pudo ser creado, intente nuevamente';
         }
-        
-        return Redirect::action('MissController@edit',$miss->id)->with($sessionData);
+
+        if ($request->has('is_precandidate')) {
+            return Redirect::action('MissController@index')->with($sessionData);
+        } else {
+            return Redirect::action('MissController@edit',$miss->id)->with($sessionData);
+        }
     }
 
     /**
