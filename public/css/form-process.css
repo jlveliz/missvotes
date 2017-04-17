@@ -1,0 +1,35 @@
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:focus,
+.nav-tabs>li.active>a:hover {
+    color: #fff;
+    background-color: #b9a035;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+    cursor: default;
+}
+
+.process-content {
+    padding: 40px;
+}
+
+#menu-countries > li > a {
+    font-weight: bold;
+    color: #636b6f;
+}
+
+#menu-countries > li > a:hover {
+    text-decoration: none;
+}
+
+#menu-countries > li:hover {
+    background-color: rgba(185, 160, 53, 0.14);
+}
+
+#price-insciption > small {
+	font-size: 13px;
+}
+
+#price-insciption > br > small {
+	padding-top: 1px;
+	font-size: 13px;
+}
