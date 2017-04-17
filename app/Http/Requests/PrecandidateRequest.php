@@ -53,8 +53,8 @@ class PrecandidateRequest extends FormRequest
                 break;
             case "PUT":
                 return [
-                    'state' => 'required_with:state|integer',
-                    'is_precandidate' => 'required_with:is_precandidate|integer',
+                    'state' => 'sometimes|required|integer',
+                    'is_precandidate' => 'sometimes|required|integer',
                     // 'photos'=>'required_with:photos|array',
                 ];
                 break;

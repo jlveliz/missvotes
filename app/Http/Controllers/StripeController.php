@@ -55,7 +55,7 @@ class StripeController extends Controller
 
 
 		//make MAGIC!!
-		$subscribed = $user->charge($request->get('amount'),['description'=>"pago de membresia ".$plan->name.""]);
+		$subscribed = $user->charge($request->get('amount'),['description'=>"pago de membresía ".$plan->name.""]);
 
 		$mensaje = [
 			'payment-type' => 'success',
@@ -67,9 +67,9 @@ class StripeController extends Controller
 			$this->createOrUpdateMembershipTable($plan);
 
 			//insert activity
-            event(new ClientActivity(Auth::user()->id, 'ha actualizado su membresia a ' .$plan->name));
+            event(new ClientActivity(Auth::user()->id, 'ha actualizado su membresía a ' .$plan->name));
 
-			$mensaje['payment-message'] = 'Gracias por la compra de la membresia '. $plan->name;
+			$mensaje['payment-message'] = 'Gracias por la compra de la membresía '. $plan->name;
 		} else {
 			$mensaje['payment-type'] = 'Error';
 			$mensaje['payment-message'] = 'Ocurrió un problema al procesar el pago, intente nuevamente.';

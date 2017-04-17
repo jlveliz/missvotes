@@ -27,7 +27,7 @@ class MembershipRepository implements MembershipRepositoryInterface
 			if (array_key_exists('name', $field)) { 
 				$membership = Membership::where('name',$field['name'])->first();
 			} else {
-				throw new MembershipException("No se puede buscar a la Membresia",500);		
+				throw new MembershipException("No se puede buscar a la Membresía",500);		
 			}
 		} elseif (is_string($field) || is_int($field)) {
 		
@@ -35,7 +35,7 @@ class MembershipRepository implements MembershipRepositoryInterface
 		}
 
 		if ($returnException) {
-			if (!$membership) throw new MembershipException("No se ha encontrado a la Membresia solicitada",404);
+			if (!$membership) throw new MembershipException("No se ha encontrado a la Membresía solicitada",404);
 		} else {
 			if (!$membership) return false;
 		}
@@ -53,7 +53,7 @@ class MembershipRepository implements MembershipRepositoryInterface
 			$keyMembership = $membership->getKey();
 			return  $this->find($keyMembership);
 		} 
-		throw new MembershipException("Ha ocurrido un error al guardar la Membresia solicitada",500);
+		throw new MembershipException("Ha ocurrido un error al guardar la Membresía solicitada",500);
 		
 	}
 
@@ -69,7 +69,7 @@ class MembershipRepository implements MembershipRepositoryInterface
 			}
 		}
 
-		throw new MembershipException("Ha ocurrido un error al actualizar la membresia",500);
+		throw new MembershipException("Ha ocurrido un error al actualizar la membresía",500);
 
 	}
 
@@ -79,7 +79,7 @@ class MembershipRepository implements MembershipRepositoryInterface
 			$membership->delete();
 			return true;
 		}
-		throw new MembershipException("Ha ocurrido un error al eliminar la membresia",500);
+		throw new MembershipException("Ha ocurrido un error al eliminar la membresía",500);
 	}
 
 }

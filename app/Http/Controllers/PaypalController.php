@@ -271,8 +271,8 @@ class PaypalController extends Controller
                 $membership = $this->membershipRepo->find($requestMembership['paypal_membership_id']);
                 $this->createOrUpdateMembershipTable($membership);
                 //insert activity
-                $mensaje['payment-message'] = 'Gracias por la compra de la membresia '.$membership->name;
-                event(new ClientActivity(Auth::user()->id, 'Gracias por la compra de la membresia ' .$membership->name));
+                $mensaje['payment-message'] = 'Gracias por la compra de la membresía '.$membership->name;
+                event(new ClientActivity(Auth::user()->id, 'Gracias por la compra de la membresía ' .$membership->name));
             }
 
             /** it's all right **/

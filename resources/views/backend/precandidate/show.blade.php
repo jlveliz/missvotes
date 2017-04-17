@@ -2,7 +2,6 @@
 @section('content')
 <div class="panel panel-default">
 	<div class="panel-heading">Precandidata</div>
-	<p class="subtitle">Edición de Precandidatas  </p>
 	<div class="panel-body">
 		@if (Session::has('mensaje'))
         <div class="alert alert-dismissible @if(Session::get('tipo_mensaje') == 'success') alert-info  @endif @if(Session::get('tipo_mensaje') == 'error') alert-danger  @endif" role="alert">
@@ -14,7 +13,7 @@
             
       @if ($precandidate->state == '0') 
             <div class="alert alert-dismissible alert-danger" role="alert">
-                  <p class="text-danger text-center"><b>La candidata esta Descalificada </b></p> 
+                  <p class="text-danger text-center"><b>La señorita esta Descalificada </b></p> 
             </div>
             <div class="clearfix"></div>
       @endif
@@ -113,7 +112,7 @@
        		</textarea>	
        	</div>
        	<div class="col-md-6 col-sm-6 col-xs-12">
-       		<label class="control-label" for="best-film-book-in-life">Porque te gustaría ganar el Miss Panamerican US? </label>
+       		<label class="control-label" for="best-film-book-in-life">Porque te gustaría ganar el {{config('app.name')}} ? </label>
        		<textarea class="form-control" name="why_would_you_win" id="why-would-you-win" disabled>
        			{!! trim($precandidate->why_would_you_win) !!}
        		</textarea>	

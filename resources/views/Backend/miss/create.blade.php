@@ -12,9 +12,6 @@
         <div class="clearfix"></div>
        @endif
 		<form action="{{ route('misses.store') }}" method="post" enctype="multipart/form-data" class="dropzone">
-			@foreach ($errors->all() as $error)
-				{{ $error}}
-			@endforeach
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<input type="hidden" name="is_precandidate" value="0">
 
@@ -145,7 +142,7 @@
 					@if($errors->has('dairy_philosophy')) <p class="help-block">{{ $errors->first('dairy_philosophy') }}</p> @endif
 				</div>
 				<div class="col-md-6 col-sm-6 col-xs-12 @if($errors->has('why_would_you_win')) has-error @endif">
-					<label class="control-label" for="best-film-book-in-life">Porque te gustaría ganar el Miss Panamerican US? </label>
+					<label class="control-label" for="best-film-book-in-life">Porque te gustaría ganar el {config('app.name')}} ? </label>
 					<textarea class="form-control" name="why_would_you_win" id="why-would-you-win">
 						{!! trim(old('why_would_you_win')) !!}
 					</textarea>	
@@ -190,8 +187,8 @@
 		theme:'fa',
 		allowedFileTypes: ['image'],
 		showUpload: false,
-		minFileCount: 3,
-		maxFileCount: 5,
+		minFileCount: 1,
+		maxFileCount: 3,
 		autoReplace:true,
 		overwriteInitial:false,
 		showRemove: true,

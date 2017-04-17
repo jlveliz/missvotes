@@ -1,5 +1,6 @@
 @extends('layouts.frontend')
 @section('content')
+<br><br>
 <div class="row text-center">
     {{ $misses->links() }}
 </div>

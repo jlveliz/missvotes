@@ -28,13 +28,13 @@
 @section('js')
 <script type="text/javascript">
   $(document).ready(function(){
-      $('#ranking-datatable').DataTable({
-        "language": {
-          "url": "../public/js/datatables/json/es.json",
-        },
-        "order": [[ 2, "desc" ]],
-        "ordering": true,
-      });
+      // $('#ranking-datatable').DataTable({
+      //   "language": {
+      //     "url": "../public/js/datatables/json/es.json",
+      //   },
+      //   "order": [[ 2, "desc" ]],
+      //   "ordering": false,
+      // });
   });
  </script>
 @endsection

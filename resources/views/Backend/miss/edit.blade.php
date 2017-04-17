@@ -14,6 +14,7 @@
 		<form action="{{ route('misses.update',$miss->id) }}" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<input type="hidden" name="_method" value="PUT">
+			<input type="hidden" name="key" value="{{$miss->id}}">
 			<div class="row">
 				<div class="form-group col-md-3 col-sm-3 col-xs-12 @if($errors->has('name')) has-error @endif">
 					<label class="control-label">Nombre </label>
@@ -141,7 +142,7 @@
 					@if($errors->has('dairy_philosophy')) <p class="help-block">{{ $errors->first('dairy_philosophy') }}</p> @endif
 				</div>
 				<div class="col-md-6 col-sm-6 col-xs-12 @if($errors->has('why_would_you_win')) has-error @endif">
-					<label class="control-label" for="best-film-book-in-life">Porque te gustaría ganar el Miss Panamerican US? </label>
+					<label class="control-label" for="best-film-book-in-life">Porque te gustaría ganar el {{config('app.name')}}? </label>
 					<textarea class="form-control" name="why_would_you_win" id="why-would-you-win">
 						{!! trim($miss->why_would_you_win) !!}
 					</textarea>	
@@ -204,7 +205,8 @@
 		allowedFileTypes: ['image'],
 		// showUpload: true,
 		showRemove: true,
-		maxFileCount: 5,
+		minFileCount: 1,
+		maxFileCount: 3,
 		autoReplace:false,
 		initialPreviewCount: true,
 		showUploadedThumbs: true,

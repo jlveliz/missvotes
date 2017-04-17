@@ -14,6 +14,8 @@ class ReportController extends Controller
 
 	public function __construct(VoteRepositoryInterface $voteRepo)
 	{
+		$this->middleware('auth');
+        $this->middleware('can:acess-backend');
 		$this->voteRepo = $voteRepo;
 	}
 

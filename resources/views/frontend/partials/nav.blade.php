@@ -2,14 +2,6 @@
     <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-        <a class="navbar-brand visible-xs navbar-app-mini" href="{{ route('website.home') }}">
-            <img title="Miss Panamerican" alt="Miss Panamerican" src="{{ asset('public/images/queen-mini.png') }}" alt="">
-        </a>
-        <div class="navbar-brand hidden-xs navbar-app" style="display: block;">
-            <a href="{{ route('website.home') }}">
-                <img class="img-responsive logo" class="logo" src="{{ asset('public/images/queen.png') }}" alt="Logo">
-            </a>
-        </div>
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
@@ -20,14 +12,14 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
         <ul class="nav navbar-nav">
-            <li class="@if(Request::path() == '/') active @endif"><a href="{{ route('website.home') }}">Inicio</a></li>
+            <li class="@if(Request::path() == '/') active @endif"><a href="{{ route('website.home') }}">Candidatas</a></li>
             @if (Auth::user() && !Auth::user()->is_admin)
                 <li >
                     <a href="{{ route('website.account') }}" title="Comprar tickets" @if(Auth::user()->client->current_membership())  class="btn btn-update-membership-or-buy" @endif alt="Comprar tickets">Comprar Tickets</a>
                 </li >
                 @if (!Auth::user()->client->current_membership())
                     <li>
-                        <a href="{{ route('website.account') }}" class="btn btn-update-membership-or-buy" title="Actualizar membresia" alt="Actualizar membresia">Actualice su membresia</a>
+                        <a href="{{ route('website.account') }}" class="btn btn-update-membership-or-buy" title="Actualizar membresía" alt="Actualizar membresía">Actualice su membresía</a>
                     </li>
                 @endif
                 <li>

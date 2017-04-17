@@ -5,7 +5,7 @@
                 <h3 class="panel-title">
                     Free 
                         <br>
-                            <b>(Su membresia Actual)</b>
+                            <b>(Su membresía Actual)</b>
                     </h3>
             </div>
             <div class="panel-body">
@@ -53,7 +53,7 @@
                     {{$membership->name}}
                     @if (Auth::user()->client->current_membership() && (Auth::user()->client->current_membership()->membership_id ==  $membership->id) )
                     <br>
-                        <b>(Su membresia Actual)</b>
+                        <b>(Su membresía Actual)</b>
                 @endif
                 </h3>
             </div>
@@ -84,7 +84,7 @@
                         <input type="hidden" name="paypal_email" value="{{ Auth::user()->email }}">
                         <input type="hidden" name="paypal_membership_id" value="{{ $membership->id }}">
                         <input type="hidden" name="paypal_membership_name" value="{{ $membership->name }}">
-                        <input type="hidden" name="paypal_membership_description" value="Pago de membresia {{ $membership->name }}">
+                        <input type="hidden" name="paypal_membership_description" value="Pago de membresía {{ $membership->name }}">
                         <input type="hidden" name="paypal_membership_amount" value="{{ $membership->price }}">
                         <button type="submit" class="btn  btn-sm btn-success" role="button" title="Usar Paypal"><i class="fa fa-paypal"></i> Usar Paypal</button>
                     </form>

@@ -18,7 +18,7 @@ class ApplyCandidateController extends Controller
     	if ($request->has('acept-terms')) {
     		if ($request->get('acept-terms') == '1') {
     			session()->put('acept-terms',$request->get('acept-terms'));
-    			return redirect()->action('ApplyCandidateController@showCountries');
+    			return redirect()->action('ApplyCandidateController@aplicationProcess');
     		} else {
     			return redirect()->action('ApplyCandidateController@requirements')->with($sessionData);
     		}
@@ -28,13 +28,13 @@ class ApplyCandidateController extends Controller
 
     }
 
-    public function showCountries()
+    public function aplicationProcess()
     {
     	$sessionData['type'] = 'error';
-    	$sessionData['message'] = 'Por favor acepte los terminos y condiciones';
+    	$sessionData['message'] = 'Por favor, acepte los terminos y condiciones de participación';
 
     	if (session()->has('acept-terms')) {
-    		return view('frontend.pages.apply.show-countries');
+    		return view('frontend.pages.apply.form-process');
     	} else {
     		return redirect()->action('ApplyCandidateController@requirements')->with($sessionData);
     	}

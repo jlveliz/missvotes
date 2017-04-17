@@ -47,7 +47,7 @@ class MembershipRequest extends FormRequest
         
         return [
             'name.required' => 'El nombre es requerido',
-            'name.unique' => 'El nombre de la membresia ya existe',
+            'name.unique' => 'El nombre de la membresía ya existe',
             'description.required' => 'La descripción es requerida',
             'description.string' => 'La descripción tiene un formato inválido',
             'price.required' => 'El precio es requerida',
