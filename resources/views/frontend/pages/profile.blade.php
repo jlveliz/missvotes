@@ -25,7 +25,7 @@
 		    </li>
 		    @if (!Auth::user()->is_admin)
 			    <li role="presentation">
-			    	<a href="#membership" aria-controls="membership" role="tab" data-toggle="tab">Membresia @if(Auth::user()->client && !Auth::user()->client->current_membership()) <small class="upgrade-membership">(Actualice!!)</small> @endif</a>
+			    	<a href="#membership" aria-controls="membership" role="tab" data-toggle="tab">Membresia @if(Auth::user()->client && !Auth::user()->client->current_membership()) <small class="upgrade-membership">(Premium!!)</small> @endif</a>
 			    </li>
 			    <li role="presentation">
 			    	<a href="#tickets" aria-controls="tickets" role="tab" data-toggle="tab">Tickets</a>
@@ -59,7 +59,7 @@
 			    		@if (Auth::user()->is_admin)
 			    			<a href="{{ route('dashboard') }}" class="btn btn-primary btn-lg" alt="Ir a Administración" title="Ir a Administración"> <i class="fa fa-code"></i> Ir a Administración</a>
 			    		@else
-			    			<a href="{{ route('apply.requirements') }}" class="btn btn-vote btn-lg" alt="Postulese como candidata" title="Postulese como candidata"> Postulese a candidata de <br> {{ config('app.name') }}		</a>
+			    			<a href="{{ route('apply.requirements') }}" class="btn btn-apply btn-lg" alt="Postulese como candidata" title="Postulese como candidata"> Postulese a candidata de <br> {{ config('app.name') }}		</a>
 			    		@endif
 			    		</div>
 		    		</div>

@@ -19,13 +19,15 @@
                 </li >
                 @if (!Auth::user()->client->current_membership())
                     <li>
-                        <a href="{{ route('website.account') }}" class="btn btn-update-membership-or-buy" title="Actualizar membresía" alt="Actualizar membresía">Actualice su membresía</a>
+                        <a href="{{ route('website.account') }}" title="Actualizar membresía" alt="Actualizar membresía">Actualice su membresía</a>
                     </li>
                 @endif
                 <li>
-                    <a href="{{ route('apply.requirements') }}"  alt="Postulese como candidata" title="Postulese como candidata"> Postulese como candidata</a>
+                    <a href="{{ route('apply.requirements') }}" class="btn btn-update-membership-or-buy"  alt="Postulese como candidata" title="Postulese como candidata"> Postulese!</a>
                 </li>
             @endif
+           
+
         </ul>
 
         @if (!Auth::user())
@@ -66,7 +68,6 @@
                 </li>
             </ul>
         @endif
-
     </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>

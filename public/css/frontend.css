@@ -436,3 +436,18 @@ hr {
 
 
 /*******VOTE ******/
+
+/*******APPLY ******/
+.btn-apply {
+    border-radius: 0PX;
+    background: #333333;
+    color: #ffffff;
+}
+
+.btn-apply:hover {
+    color: #ffffff;
+    background: #403f3f;
+    border:1px solid #b9a035;
+}
+
+/*******APPLY ******/
