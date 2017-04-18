@@ -26,7 +26,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td class="text-justify">
                             Incluye:
                             <ul>
                                 <li>Noticias sobre nuestras candidatas</li>
@@ -92,7 +92,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td class="text-justify">
                             Incluye:
                             <ul>
                                 <li>Noticias sobre nuestras candidatas</li>
