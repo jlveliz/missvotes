@@ -32,7 +32,14 @@ Route::group(['prefix'=>'apply'],function(){
 	Route::get("requirements","ApplyCandidateController@requirements")->name('apply.requirements')->middleware('auth','isClient');
 	Route::post("requirements","ApplyCandidateController@aceptrequirements")->name('apply.aceptrequirements')->middleware('auth','isClient');
 	Route::get("aplication-process","ApplyCandidateController@aplicationProcess")->name('apply.aplicationProcess')->middleware('auth','isClient');
-	Route::post("aplication-process","ApplyCandidateController@aplicationProcess")->name('apply.aplicationProcess')->middleware('auth','isClient');
+	Route::post("update-aplication-process","ApplyCandidateController@updateAplicationProcess")->name('update.apply.aplicationProcess')->middleware('auth','isClient');
+
+	Route::post("pay-paypal-aplication-process",'ApplyCandidateController@payApplyProcess')->name('pay.paypal.aplication')->middleware('auth','isClient');
+	Route::get('pay-paypal-aplication-process','ApplyCandidateController@getPaymentStatus')->name('pay.paypal.aplication.status')->middleware('auth','isClient');
+
+	Route::post("pay-stripe-aplication-process",'ApplyCandidateController@payStripeApplyProcess')->name('pay.stripe.aplication')->middleware('auth','isClient');
+
+	Route::post('insert-precandidate','ApplyCandidateController@insertPrecandidate')->name('insert.precandidate')->middleware('auth','isClient');;
 });
 
 Route::group(['prefix'=>'auth'],function(){

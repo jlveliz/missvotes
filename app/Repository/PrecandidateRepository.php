@@ -31,6 +31,8 @@ class PrecandidateRepository implements PrecandidateRepositoryInterface
 				$precandidate = Precandidate::where('name',$field['name'])->first();
 			} elseif (array_key_exists('slug', $field)) {
 				$precandidate = Precandidate::where('slug',$field['slug'])->first();
+			}elseif (array_key_exists('email', $field)) {
+				$precandidate = Precandidate::where('email',$field['email'])->first();
 			}else {
 				return abort(404);
 			}
@@ -53,8 +55,10 @@ class PrecandidateRepository implements PrecandidateRepositoryInterface
 	{
 		$precandidate = new Precandidate();
 		// $photos = $data['photos'];
-		// $precandidate->slug = str_slug($data['name'].' '.$data['last_name'],'-');
+		$precandidate->slug = str_slug($data['name'].' '.$data['last_name'],'-');
 		$precandidate->fill($data);
+		$precandidate->is_precandidate = 1;
+		$precandidate->state = 1;
 		if ($precandidate->save()) {
 			$keyPrecandidate = $precandidate->getKey();
 			// foreach ($photos as $key => $photo) {

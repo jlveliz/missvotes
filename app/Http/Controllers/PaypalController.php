@@ -8,6 +8,8 @@ use MissVote\RepositoryInterface\TicketVoteRepositoryInterface;
 
 use MissVote\RepositoryInterface\MembershipRepositoryInterface;
 
+use MissVote\RepositoryInterface\ClientApplyProcessRepositoryInterface;
+
 use MissVote\Events\ClientActivity;
 
 use Paypalpayment;
@@ -322,5 +324,8 @@ class PaypalController extends Controller
             'state' => 1
         ]);
     }
+
+
+
 
 }

@@ -21,15 +21,16 @@
     text-decoration: none;
 }
 
-#menu-countries > li:hover {
-    background-color: rgba(185, 160, 53, 0.14);
+#menu-countries > li:hover,
+.country-selected {
+    background-color: rgba(185, 160, 53, 0.34);
 }
 
 #price-insciption > small {
-	font-size: 13px;
+    font-size: 13px;
 }
 
 #price-insciption > br > small {
-	padding-top: 1px;
-	font-size: 13px;
+    padding-top: 1px;
+    font-size: 13px;
 }

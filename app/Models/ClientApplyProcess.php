@@ -18,6 +18,7 @@ class ClientApplyProcess extends Model
     protected $fillable = [
         'client_id',
         'process_status',
+        'country_code_selected',
         'payed_at',
     ];
 
