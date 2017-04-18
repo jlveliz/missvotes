@@ -48,6 +48,7 @@ class PrecandidateRequest extends FormRequest
                     'eye_color'=>'required',
                     'dairy_philosophy'=>'required',
                     'why_would_you_win'=>'required', 
+                    'g-recaptcha-response' => 'sometimes|required|recaptcha',
                     // 'photos'=>'required|array',
                 ];
                 break;

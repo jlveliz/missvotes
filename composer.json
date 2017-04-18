@@ -9,6 +9,7 @@
         "intervention/image": "^2.3",
         "laravel/cashier": "~7.0",
         "anouar/paypalpayment": "~1.0",
+        "greggilbert/recaptcha": "dev-master",
         "laravel/framework": "5.3.*"
     },
     "require-dev": {

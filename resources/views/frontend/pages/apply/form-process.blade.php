@@ -7,16 +7,24 @@
 		<div class="col-md-12 col-xs-12 col-lg-12">
 			<!-- Nav tabs -->
 			 <ul id="process-tab" class="nav nav-tabs" role="tablist">
-			   <li id="country-tab" role="presentation" class="active"><a href="#countries" aria-controls="countries" role="tab" data-toggle="tab">País</a></li>
-			   <li id="pay-tab" role="presentation" class="disabled"><a href="#pay" aria-controls="pay" role="tab" data-toggle="tab">Tasa de solicitud</a></li>
-			   <li id="subscription-tab" role="presentation" class="disabled"><a href="#aplication" aria-controls="aplication" role="tab" data-toggle="tab">Aplicación Online</a></li>
-			   <li role="presentation" class="disabled"><a href="#status" aria-controls="status" role="tab" data-toggle="tab">Estado</a></li>
+			   <li id="country-tab" role="presentation" class="@if($existApply->process_status == 1) active @endif">
+			   		<a href="#countries" aria-controls="countries" role="tab" data-toggle="tab">País</a>
+			   	</li>
+			   <li id="pay-tab" role="presentation" class="@if($existApply->process_status <= 2) disabled @endif  @if($existApply->process_status == 2) active @endif">
+			   		<a href="#pay" aria-controls="pay" role="tab" data-toggle="tab">Tasa de solicitud</a>
+			   	</li>
+			   <li id="subscription-tab" role="presentation" class="@if($existApply->process_status <= 3) disabled @endif @if($existApply->process_status == 3) active @endif">
+			   		<a href="#aplication" aria-controls="aplication" role="tab" data-toggle="tab">Aplicación Online</a>
+			   	</li>
+			   <li id="success-tab" role="presentation" class="@if($existApply->process_status <= 4) disabled @endif @if($existApply->process_status == 4) active @endif">
+			   		<a href="#status" aria-controls="status" role="tab" data-toggle="tab">Estado</a>
+			   	</li>
 			 </ul>
 
 			 <!-- Tab panes -->
 			 <div class="tab-content">
 			 	{{-- countries --}}
-			   <div role="tabpanel" class="tab-pane active" id="countries">
+			   <div role="tabpanel" class="tab-pane fade in active" id="countries">
 			   		<div class="process-content">
 				   		<p><b>1.- Seleccione el país al que desea audicionar</b></p>
 				   		<div class="row">
@@ -43,7 +51,7 @@
 			   		</div>
 			   </div>
 			   {{-- pay --}}
-			   <div role="tabpanel" class="tab-pane" id="pay">
+			   <div role="tabpanel" class="tab-pane fade" id="pay">
 			   		<div class="process-content">
 			   			<p>
 			   				<b>2.- Por favor complete nuestra solicitud en línea, la cuota de la solicitud esde $60.00 </b> <br>
@@ -60,7 +68,7 @@
 			   		</div>
 			   </div>
 			   {{-- aplication --}}
-			   <div role="tabpanel" class="tab-pane" id="aplication">
+			   <div role="tabpanel" class="tab-pane fade" id="aplication">
 			   		<div class="process-content">
 			   			<p><b>3.- Por favor llenar todos los campos requeridos cuidadosamente.</b> </p>
 			   			<hr>
@@ -230,12 +238,13 @@
 					   					</div>
 					   				</div>
 
-					   				<div class="form-group @if($errors->has('why_would_you_win')) has-error @endif">
-					   					
+					   				<div class="form-group @if($errors->has('g-recaptcha-response')) has-error @endif" style="margin-left: 25%">
+					   					{!! Recaptcha::render() !!}
+					   					@if ($errors->has('g-recaptcha-response')) <p class="help-block">{{ $errors->first('g-recaptcha-response') }}</p> @endif
 					   				</div>
 					   				<hr>
 					   				<div class="form-group">
-					   					<button id="subscribe" type="submit" class="btn btn-primary btn-lg btn-block" id="save">Inscribirme</button>
+					   					<button id="subscribe" type="submit" class="subscribe-button btn btn-primary btn-lg btn-block" id="save">Inscribirme</button>
 					   				</div>
 				   				</form>
 			   				</div>
@@ -243,7 +252,7 @@
 			   		</div>
 			   </div>
 			   {{-- hola status --}}
-			   <div role="tabpanel" class="tab-pane" id="status">
+			   <div role="tabpanel" class="tab-pane fade" id="status">
 			   		<div class="process-content">
 			   			<h3>Felicitaciones, su está inscripción completa.</h3>
 			   			<div class="row">
@@ -271,16 +280,36 @@
 
 $(document).ready(function() {
 
-	// Javascript to enable link to tab
-	var url = document.location.toString();
-	if (url.match('#')) {
-	    $('.nav-tabs a[href="#' + url.split('#')[1] + '-tab"]').tab('show');
-	} //add a suffix
+	@if ($existApply->process_status == 1 )
+    	window.location.hash = $("#country-tab a").attr('href');
+    	$('#process-tab a:last').tab('show')
+    @endif
 
-	// Change hash for page-reload
-	$('.nav-tabs a').on('shown.bs.tab', function (e) {
-	    window.location.hash = e.target.hash;
-	});
+    @if ($existApply->process_status == 2 ) 
+    	window.location.hash = $("#pay-tab a").attr('href');
+    	$('#process-tab a:last').tab('show')
+    @endif
+
+    @if ($existApply->process_status == 3 ) 
+    	window.location.hash = $("#subscription-tab a").attr('href');
+    	$('#process-tab a:last').tab('show')
+    @endif 
+
+    @if ($existApply->process_status == 4 ) 
+    	window.location.hash = $("#success-tab a").attr('href');
+    	$('#process-tab a:last').tab('show')
+    @endif
+   	
+
+	var hash = window.location.hash;
+  	hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+
+  $('.nav-tabs a').click(function (e) {
+    $(this).tab('show');
+    var scrollmem = $('body').scrollTop() || $('html').scrollTop();
+    window.location.hash = this.hash;
+    $('html,body').scrollTop(scrollmem);
+  });
 
 
     $('a[data-toggle="tab"]').on('click', function(){
@@ -289,28 +318,27 @@ $(document).ready(function() {
         }
     });
 
+
+
     $(".country-audition").on('click', function(event) {
     	event.preventDefault();
     	var countryCode = $(this).data('code');
     	if(!countryCode) return false;
-    	localStorage['country-code'] = countryCode;
     	$('#process-tab li:eq(1) a').tab('show') // Select third tab (0-indexed)
-    	$("#country-tab").addClass('disabled');
+    	$("#pay-tab").removeClass('disabled')
     });
 
     $(".pay-button").on('click', function(event) {
     	var payment = $(this).data(payment);
     	if(!payment) return false;
-    	localStorage['payment'] = payment;
     	$('#process-tab li:eq(2) a').tab('show') // Select third tab (0-indexed)
-    	$("#pay-tab").addClass('disabled');
-    	/* Act on the event */
+    	$("#subscription-tab").removeClass('disabled');
     });
 
-    $("#subscribe").on('click',  function(event) {
+    $(".subscribe-button").on('click',  function(event) {
     	event.preventDefault();
     	$('#process-tab li:eq(3) a').tab('show') // Select third tab (0-indexed)
-    	$("#subscription-tab").addClass('disabled');
+    	// $("#subscription-tab").removeClass('disabled');
     });
 });
 
