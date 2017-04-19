@@ -27,9 +27,9 @@
 			    <li role="presentation">
 			    	<a href="#membership" aria-controls="membership" role="tab" data-toggle="tab">Membresia @if(Auth::user()->client && !Auth::user()->client->current_membership()) <small class="upgrade-membership">(Premium!!)</small> @endif</a>
 			    </li>
-			    <li role="presentation">
+			    {{-- <li role="presentation">
 			    	<a href="#tickets" aria-controls="tickets" role="tab" data-toggle="tab">Tickets</a>
-			    </li>
+			    </li> --}}
 			    <li role="presentation">
 			    	<a href="#activity" aria-controls="activity" role="tab" data-toggle="tab">Mis Actividades</a>
 			    </li>
@@ -128,10 +128,10 @@
 			    </div>
 
 			    {{-- tickets --}}
-			    <div role="tabpanel" class="tab-pane" id="tickets">
+			   {{--  <div role="tabpanel" class="tab-pane" id="tickets">
 			    	<h4>Tickets</h4>
 			    	<div class="col-md-12 col-lg-12 col-xs-12">
-			    		{{-- my tickets --}}
+			    		
 			    		<h5><b>Mis tickets</b></h5>
 			    		<div class="row">
 			    		@if (count(Auth::user()->client->activeTickets()) > 0)
@@ -151,9 +151,6 @@
 				    					 			</tbody>
 				    					 		</table>
 				    					 	</div>
-				    					 	{{-- <div class="panel-footer">
-		                						<a href="#" class="btn btn-success" role="button">Usar</a>
-		            						</div> --}}
 				    					 </div>
 			    					</div>
 			    				</div>
@@ -165,11 +162,10 @@
 				    		@endif
 			    		</div>
 			    		<div class="row">
-				    		{{-- buy tickets --}}
 				    		@include('frontend.partials.tickets',$tickets)
 			    		</div>
 			    	</div>
-			    </div>
+			    </div> --}}
 
 			    <div role="tabpanel" class="tab-pane" id="activity">
 			    	<h4>Mis actividades</h4>
