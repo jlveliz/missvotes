@@ -31,7 +31,7 @@ class RegisterClientController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/auth/register-success';
 
     /**
      * Create a new controller instance.
@@ -41,6 +41,16 @@ class RegisterClientController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm()
+    {
+        return view('frontend.pages.auth.register');
     }
 
     /**
@@ -76,7 +86,7 @@ class RegisterClientController extends Controller
             'password.required' =>'Por favor ingrese una clave',
             'password.min' => 'Por favor ingrese una clave más larga',
             'password.confirmed' => 'Las claves no coinciden',
-            'password_confirmation' => 'Por favor repita la clave',
+            'password_confirmation.required' => 'Por favor repita la clave',
          ]);
     }
 
@@ -88,10 +98,14 @@ class RegisterClientController extends Controller
      */
     public function register(Request $request)
     {
-        $validator = $this->validator($request->all());
 
-        if ($validator->fails()) {
-             return Response::json(['email'=>$validator->errors("email")->first()],500);
+        if ($request->ajax()) {
+            $validator = $this->validator($request->all());
+            if ($validator->fails()) {
+                 return Response::json(['email'=>$validator->errors("email")->first()],500);
+            }
+        } else {
+             $this->validator($request->all())->validate();
         }
 
         event(new Registered($client = $this->create($request->all())));
@@ -124,6 +138,11 @@ class RegisterClientController extends Controller
             'password' => bcrypt($data['password']),
         ]);
         
+    }
+
+    public function registerSuccess()
+    {
+        return view('frontend.pages.auth.register-success');
     }
 
  

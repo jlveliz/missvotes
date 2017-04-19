@@ -41,14 +41,26 @@ class LoginClientController extends Controller
         $this->middleware('guest', ['except' => 'logout']);
     }
 
+    /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLoginForm()
+    {
+        return view('frontend.pages.auth.login');
+    }
+
   
     public function login(Request $request)
     {
        
         $validate = $this->validateLogin($request);
 
-        if ($validate->fails()) {
-            return response()->json([$this->username() => $validate->errors()->first()],500);
+        if ($request->ajax()) {
+            if ($validate->fails()) {
+                return response()->json([$this->username() => $validate->errors()->first()],500);
+            }
         }
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
@@ -125,7 +137,16 @@ class LoginClientController extends Controller
      */
     protected function sendFailedLoginResponse(Request $request)
     {
-        return response()->json([$this->username() => Lang::get('auth.failed')],500);
+        
+        if ($request->ajax()) {
+            return response()->json([$this->username() => Lang::get('auth.failed')],500);
+        } else {
+            return redirect()->back()
+            ->withInput($request->only($this->username(), 'remember'))
+            ->withErrors([
+                $this->username() => Lang::get('auth.failed'),
+            ]);
+        }
 
     }
 
@@ -142,8 +163,15 @@ class LoginClientController extends Controller
 
         $this->clearLoginAttempts($request);
 
-        // return $this->authenticated($request, $this->guard()->user())
-        return response()->json(['success' => 'echo'],200);
+
+        if ($request->ajax()) {
+            // return $this->authenticated($request, $this->guard()->user())
+            return response()->json(['success' => 'echo'],200);
+        } else {
+            return $this->authenticated($request, $this->guard()->user())
+                    ?: redirect()->intended($this->redirectPath()); 
+        }
+
     }
 
 

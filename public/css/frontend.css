@@ -177,7 +177,7 @@ hr {
 .email-help,
 .register-help {
     margin-top: 10px;
-    font-size: 10px;
+    font-size: 13px;
     text-align: center;
 }
 
@@ -274,6 +274,7 @@ hr {
 }
 
 .thumbnail {
+    padding: 0px;
     position: relative;
     background-color: #fbfbfb;
     width: 300px;
@@ -311,13 +312,9 @@ hr {
 }
 
 .middle {
-    transition: .5s ease;
-    opacity: 0;
-    position: absolute;
-    bottom: 0%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%)
+    top: 91%;
+    position: relative;
+    width: 100%;
 }
 
 .thumbnail:hover .image {
@@ -437,7 +434,9 @@ hr {
 
 /*******VOTE ******/
 
+
 /*******APPLY ******/
+
 .btn-apply {
     border-radius: 0PX;
     background: #333333;
@@ -447,7 +446,15 @@ hr {
 .btn-apply:hover {
     color: #ffffff;
     background: #403f3f;
-    border:1px solid #b9a035;
+    border: 1px solid #b9a035;
 }
 
-/*******APPLY ******/
+
+/*******auth ******/
+
+.container-page-auth {
+    padding: 30px 0px;
+}
+
+
+/*******AUTH ******/

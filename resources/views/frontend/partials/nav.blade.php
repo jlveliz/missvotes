@@ -32,8 +32,8 @@
 
         @if (!Auth::user())
             <ul class="nav navbar-nav navbar-right">
-                <li><a data-toggle="modal" data-target="#login-modal" href="#">Entrar</a></li>
-                <li><a data-toggle="modal" data-target="#register-modal" href="#">Registrarse</a></li>
+                <li><a href="{{ route('client.show.login') }}">Entrar</a></li>
+                <li><a href="{{ route('client.show.register') }}">Registrarse</a></li>
             </ul>
         @else
              <!-- Right Side Of Navbar -->

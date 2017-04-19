@@ -44,11 +44,14 @@ Route::group(['prefix'=>'apply'],function(){
 
 Route::group(['prefix'=>'auth'],function(){
 	// login
+	Route::get('login', 'Auth\LoginClientController@showLoginForm')->name('client.show.login');
 	Route::post('login', 'Auth\LoginClientController@login')->name('client.login');
 	Route::post('logout', 'Auth\LoginClientController@logout')->name('client.logout');
 	
 	// register
+	Route::get('register', 'Auth\RegisterClientController@showRegistrationForm')->name('client.show.register');
 	Route::post('register', 'Auth\RegisterClientController@register')->name('client.register');
+	Route::get('register-success', 'Auth\RegisterClientController@registerSuccess')->name('client.register.success');
 	
 	// activate account
 	Route::get('activate/{activationCode}','Auth\ActivateClientController@activateAccount')->name('client.register.activate');
