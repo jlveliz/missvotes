@@ -8,8 +8,8 @@
         <h2>{{config('app.name')}}</h2>
         
         <div>
-            Gracias por registrarse con nosotros, ahora solo es necesario que active su cuenta para que pueda votar.
-            Por favor presione sobre el link para activar su cuenta.<br> 
+            Bienvenidos al certamen de belleza mas importante en California, Estados Unidos.
+            Gracias por registrarse. Ahora solo debe activar su cuenta para que pueda conocer mas sobre nosotros y por supuesto para votar por tu candidata favorita.<br> 
             <a href="{{ URL::to('auth/activate/' . $confirmation_code) }}" target="_blank">Activar Cuenta</a>
             <br/>
             <small>Si prefiere copie el siguiente enlace y peguelo en su navegador <br> 

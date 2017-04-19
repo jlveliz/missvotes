@@ -31,10 +31,10 @@
         </ul>
 
         @if (!Auth::user())
-            <ul class="nav navbar-nav navbar-right">
+            {{-- <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{ route('client.show.login') }}">Entrar</a></li>
                 <li><a href="{{ route('client.show.register') }}">Registrarse</a></li>
-            </ul>
+            </ul> --}}
         @else
              <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
