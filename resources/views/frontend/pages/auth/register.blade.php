@@ -2,7 +2,7 @@
 @section('content')
   <div class="row">
     <div class="col-md-4 col-lg-4 col-xs-12 col-md-offset-4 container-page-auth">
-        <h1 class="text-center">Registro</h1><br>
+      <h1 class="text-center">Registro</h1><br>
       <form role="form" action="{{ route('client.register') }}" method="POST">
         {{ csrf_field() }}
         <div class="form-group  {{ $errors->has('email') ? ' has-error' : '' }}">

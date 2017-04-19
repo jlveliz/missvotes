@@ -4,8 +4,8 @@
         <meta charset="utf-8">
     </head>
     <body>
-        <img src="{{ asset('public/images/queen-mini.png') }}" alt="Miss Panamerican">
-        <h2>Miss Panamericana</h2>
+        <img src="{{ asset('public/images/queen-mini.png') }}" alt="{{config('app.name')}}" title="{{config('app.name')}}">
+        <h2>{{config('app.name')}}</h2>
         
         <div>
             Gracias por registrarse con nosotros, ahora solo es necesario que active su cuenta para que pueda votar.

@@ -12,6 +12,8 @@ use MissVote\RepositoryInterface\PrecandidateRepositoryInterface;
 
 use MissVote\Models\Country;
 
+use MissVote\Events\PredidateSubscribed;
+
 use Paypalpayment;
 
 use Stripe\Stripe;
@@ -91,7 +93,9 @@ class ApplyCandidateController extends Controller
             if ($existApply->country_code_selected) {
                 $countryselected = Country::select('id')->where('code',$existApply->country_code_selected)->first()->id;
             }
-            $precandidate = $this->precandidate->find(['email'=>Auth::user()->email]);
+            if ($existApply->process_status >= 3) {
+                $precandidate = $this->precandidate->find(['email'=>Auth::user()->email]) ?  $this->precandidate->find(['email'=>Auth::user()->email]) : null;
+            }
     		return view('frontend.pages.apply.form-process',compact('existApply','countryselected','precandidate'));
     	} else {
     		return redirect()->action('ApplyCandidateController@requirements')->with($sessionData);
@@ -301,22 +305,29 @@ class ApplyCandidateController extends Controller
             $existApply = $this->apply->find(['client_id' => Auth::user()->id]);
             $existApply->process_status = 4;
             $existApply->save();
-            return redirect()->to('apply/aplication-process#status',compact('precandidate'))->with($mensaje);
+            event(new PredidateSubscribed($precandidate));
+            return redirect()->to('apply/aplication-process#status')->with($sessionData);
         } else {
             $sessionData['tipo_mensaje'] = 'error';
             $sessionData['mensaje'] = 'Su formulario no pudo ser procesado, intente nuevamente';
-            return redirect()->to('apply/aplication-process#aplication')->with($mensaje);
+            return redirect()->to('apply/aplication-process#aplication')->with($sessionData);
         }
 
     }
 
     private function generateCode($countryId)
     {
-        $country = Country::where('country_id',$countryId)->first();
-        $secuencial = $country->secuencial_code++;
+        $country = Country::find($countryId);
+        $secuencial = $country->secuencial_casting_code+1;
+        $country->secuencial_casting_code++;
         $country->save();
+        $countryCode = substr($country->code,0,1);
+        
+        for ($i=0; $i <= count($secuencial) ; $i++) { 
+            $secuencial = '0'.$secuencial;
+        }
 
-        dd(count($secuencial));
+        return $countryCode.$secuencial;
 
 
     }

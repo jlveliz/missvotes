@@ -35,6 +35,17 @@ class ForgotClientPasswordController extends Controller
     }
 
 
+    /**
+     * Display the form to request a password reset link.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLinkRequestForm()
+    {
+        return view('frontend.pages.auth.email');
+    }
+
+
      /**
      * Send a reset link to the given user.
      *
@@ -43,10 +54,18 @@ class ForgotClientPasswordController extends Controller
      */
     public function sendResetLinkEmail(Request $request)
     {
-        $validator = $this->verifyEmail($request);
-
-        if ($validator->fails()) {
-            return response()->json($validator->errors()->first('email'),500);
+        
+        if ($request->ajax()) {
+            $validator = $this->verifyEmail($request);
+            if ($validator->fails()) {
+                return response()->json($validator->errors()->first('email'),500);
+            }
+        } else {
+            $this->validate($request, ['email' => 'required|exists:user|confirmed_account'],[
+            'email.required' => 'El correo debe ser ingresado',
+            'email.exists' => 'El correo no pertenece a ningún usuario',
+            'email.confirmed_account' => 'Su cuenta no está activa'
+        ]);
         }
 
         // We will send the password reset link to this user. Once we have attempted

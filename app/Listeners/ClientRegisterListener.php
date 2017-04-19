@@ -29,7 +29,7 @@ class ClientRegisterListener
     {
         $mail = Mail::send('frontend.emails.verify',['confirmation_code'=>$registred->user->confirmation_code], function($message) use ($registred) {
             $message->to($registred->user->email , $registred->user->name)
-                ->subject('Bienvenido a Miss Panamerican - Verificación de Cuenta');
+                ->subject('Bienvenido a '.config('app.name').' - Verificación de Cuenta');
         });
     }
 }

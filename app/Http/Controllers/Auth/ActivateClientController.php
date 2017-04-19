@@ -12,6 +12,12 @@ use Response;
 class ActivateClientController extends Controller
 {
    
+    
+    public function showActivationForm()
+    {
+        return view('frontend.pages.auth.activation');
+    }
+
     /**
     * 
     */
@@ -56,8 +62,16 @@ class ActivateClientController extends Controller
     {
         $validator =  $this->verifyEmail($request);
 
-        if ($validator->fails()) {
-            return Response::json($validator->errors()->first('email'),500);
+        if ($request->ajax()) {
+            if ($validator->fails()) {
+                return Response::json($validator->errors()->first('email'),500);
+            }
+        } else {
+            if ($validator->fails()) {
+                return redirect()->back()
+                ->withInput($request->only('email'))
+                ->withErrors($validator);
+            }
         }
 
 
@@ -68,6 +82,7 @@ class ActivateClientController extends Controller
             $client->confirmed = 0;
             $client->save();
             event(new Registered($client));
+            return redirect()->back()->with('status','1');
         }
     }
 

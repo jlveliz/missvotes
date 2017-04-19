@@ -54,11 +54,13 @@ Route::group(['prefix'=>'auth'],function(){
 	Route::get('register-success', 'Auth\RegisterClientController@registerSuccess')->name('client.register.success');
 	
 	// activate account
+	Route::get('activate','Auth\ActivateClientController@showActivationForm')->name('client.show.activate');
 	Route::get('activate/{activationCode}','Auth\ActivateClientController@activateAccount')->name('client.register.activate');
 	Route::post('activate','Auth\ActivateClientController@reSendactivationCode')->name('client.re-send-activate');
 
 	// forgot and change password
-	Route::post('send-reset-email','Auth\ForgotClientPasswordController@sendResetLinkEmail');
+	Route::get('reset-email','Auth\ForgotClientPasswordController@showLinkRequestForm')->name('client.show.reset-email');
+	Route::post('send-reset-email','Auth\ForgotClientPasswordController@sendResetLinkEmail')->name('client.reset-email');
 	Route::get('reset/{token}','Auth\ResetClientPasswordController@showResetForm');
 	Route::post('/password/reset','Auth\ResetClientPasswordController@reset');
 });

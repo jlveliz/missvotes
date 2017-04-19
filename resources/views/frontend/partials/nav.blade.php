@@ -12,8 +12,8 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
         <ul class="nav navbar-nav">
-            <li class="@if(Request::path() == '/') active @endif"><a href="{{ route('website.home') }}">Candidatas</a></li>
             @if (Auth::user() && !Auth::user()->is_admin)
+                <li class="@if(Request::path() == '/') active @endif"><a href="{{ route('website.home') }}">Candidatas</a></li>
                 <li >
                     <a href="{{ route('website.account') }}" title="Comprar tickets" @if(Auth::user()->client->current_membership())  class="btn btn-update-membership-or-buy" @endif alt="Comprar tickets">Comprar Tickets</a>
                 </li >

@@ -8,7 +8,7 @@
         <div class="row">
           <form role="form" action="{{ route('client.login') }}" method="POST">
             {{ csrf_field() }}
-            <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}"">
+            <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
                 <input type="text" class="form-control" name="email" id="login-email" value="{{ old('email') }}" placeholder="Correo" autofocus required>
                 @if ($errors->has('email'))
                     <span class="help-block"><strong>{{ $errors->first('email') }}</strong></span>
@@ -31,8 +31,8 @@
           
           <div class="login-help">
             <a href="{{ route('client.show.register') }}">Registro</a> - 
-            <a href="#" id="go-email">Olvidó su contraseña?</a> - 
-            <a href="#" id="go-activation">No recibió su código de activación?</a>
+            <a href="{{ route('client.show.reset-email') }}">Olvidó su contraseña?</a> - 
+            <a href="{{ route('client.show.activate') }}">No recibió su código de activación?</a>
           </div>
         </div>
     </div>
