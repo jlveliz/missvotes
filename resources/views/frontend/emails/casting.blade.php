@@ -14,8 +14,6 @@
                 <tbody>
                     <tr>
                         <td><b>Código de Inscripción: </b> {{$precandidate->code}} </td>
-                        <td><b>Fecha de casting: </b>  </td>
-                        <td><b>Dirección: </b>  </td>
                     </tr>
                 </tbody>
             </table>
