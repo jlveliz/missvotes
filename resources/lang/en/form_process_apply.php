@@ -23,6 +23,23 @@ return [
 	'lbl_heard' => 'HOW DID YOU HEAR ABOUT US?',
 	'lbl_size' => 'HEIGHT',
 	'lbl_weight' => 'WEIGHT',
+	'lbl_adress' => 'ADRESS',
+	'lbl_city' => 'CITY',
+	'lbl_state' => 'STATE/PROVINCE',
+	'lbl_bust' => 'BUST (CM)',
+	'lbl_waist' => 'WAIST (CM)',
+	'lbl_hip' => 'HIP (CM)',
+	'lbl_hair' => 'HAIR COLOR',
+	'lbl_eye' => 'EYE COLOR',
+	'lbl_phil' => 'YOUR DAILY PHILOSOPHY',
+	'lbl_win' => 'WHY WOULD YOU LIKE TO WIN',
+	'lbl_code' => 'SECURE CODE',
+	'lbl_btn_ins' => 'INCRIBE ME',
+	'lbl_done' => 'Congrats your application is complete!',
+	'lbl_last-message' => 'Your casting number identification and all the information you need to know was sent to your email. 
+Check it out and good luck. We will wait for you.',
+
+
 
 
 ];
