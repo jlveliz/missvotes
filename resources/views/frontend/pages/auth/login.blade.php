@@ -3,8 +3,12 @@
   <div class="row">
     <div class="col-md-4 col-lg-4 col-xs-12 col-md-offset-4 container-page-auth">
         <div class="row">
-          <h1 class="text-center">@lang('auth.login_title')</h1><br>
+          <div class="col-md-12 text-center">
+              <img class="image-responsive"  src="{{ asset('public/images/logo_square.png') }}" alt=" {{config('app.name')}} " title=" {{config('app.name')}} ">
+           </div> 
         </div>
+
+        <h1 class="text-center">@lang('auth.login_title')</h1><br>
         <div class="row">
           <form role="form" action="{{ route('client.login') }}" method="POST">
             {{ csrf_field() }}

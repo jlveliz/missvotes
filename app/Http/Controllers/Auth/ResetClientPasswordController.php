@@ -65,7 +65,7 @@ class ResetClientPasswordController extends Controller
      */
     public function reset(Request $request)
     {
-        $validate = $this->validate($request, $this->rules(), $this->validationErrorMessages());
+        $validate = $this->validate($request, $this->rules());
 
         // Here we will attempt to reset the user's password. If it is successful we
         // will update the password on an actual user model and persist it to the

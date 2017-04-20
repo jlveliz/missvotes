@@ -7,6 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
                 <div class="panel-body">
+                    <img class="image-responsive text-center"  src="{{ asset('public/images/logo_square.png') }}" alt=" {{config('app.name')}} " title=" {{config('app.name')}} ">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
 
