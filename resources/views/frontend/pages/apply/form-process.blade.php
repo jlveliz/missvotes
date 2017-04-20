@@ -32,7 +32,7 @@
 				   				@if ($existApply->process_status < 3)
 					   				<ul class="list-unstyled list-inline text-center" id="menu-countries">
 					   					<li @if($existApply->country_code_selected == 'US') class="country-selected" @endif>
-					   						<a class="country-audition" href="#" data-code="US" title="Estados Unidos" alt="Estados Unidos"><img class="image-responsive" src="{{ asset('public/images/eu_flag.png') }}"> <br> Estados Unidos</a> 
+					   						<a class="country-audition" href="#" data-code="US" title="Estados Unidos" alt="Estados Unidos"><img class="image-responsive" src="{{ asset('public/images/eeuu_flag.png') }}"> <br> Estados Unidos</a> 
 					   					</li>
 					   					<li @if($existApply->country_code_selected == 'MX') class="country-selected" @endif>
 					   						<a class="country-audition" href="#" data-code="MX" title="México" alt="México"><img class="image-responsive" src="{{ asset('public/images/mx_flag.png') }}"> <br> México</a> 
@@ -510,4 +510,12 @@ $(document).ready(function() {
 	});
 
 </script>
+@endsection()
+
+@section('css')
+<style>
+	textarea {
+		resize: none
+	}
+</style>
 @endsection()
