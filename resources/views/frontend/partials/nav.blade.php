@@ -19,12 +19,12 @@
                 </li > --}}
                 @if (!Auth::user()->client->current_membership())
                     <li>
-                        <a href="{{ route('website.account') }}" title="Actualizar membresía" alt="Actualizar membresía">Actualice su membresía</a>
+                        <a href="{{ route('website.account') }}" title="{{ trans('app.update_membership') }}" alt="{{ trans('app.update_membership') }}">{{ trans('app.update_membership') }}</a>
                     </li>
                 @endif
                
                 <li>
-                    <a href="{{ route('apply.requirements') }}" class="btn btn-update-membership-or-buy"  alt="{{ trans('apply.button-nav') }}" title="{{ trans('apply.button-nav') }}"> {{ trans('apply.button-nav') }}</a>
+                    <a href="{{ route('apply.requirements') }}" class="btn btn-update-membership-or-buy"  alt="{{ trans('app.apply_now') }}" title="{{ trans('app.apply_now') }}"> {{ trans('app.apply_now') }}</a>
                 </li>
                
             @endif
@@ -44,7 +44,7 @@
                 @if (App::isLocale('en'))
                     <li>
                         <form action="{{ route('website.locale') }}">
-                            {{ csrf_field() }}
+                            {{-- {{ csrf_field() }} --}}
                             <input type="hidden" name="lang" value="es">
                             <button  type="submit" class="btn btn-update-membership-or-buy" > Spanish</button>
                             
@@ -53,9 +53,9 @@
                 @else
                     <li>
                         <form action="{{ route('website.locale') }}">
-                            {{ csrf_field() }}
+                            {{-- {{ csrf_field() }} --}}
                             <input type="hidden" name="lang" value="en">
-                            <button  type="submit" class="btn btn-update-membership-or-buy"> Inngles</button>
+                            <button  type="submit" class="btn btn-update-membership-or-buy"> Ingles</button>
                             
                         </form>
                     </li>
@@ -69,18 +69,18 @@
                     <ul class="dropdown-menu" role="menu">
                         @if (Auth::user()->is_admin)
                             <li>
-                                <a href="{{ route('dashboard') }}" title="Mi Cuenta">Ir a Administración</a>
+                                <a href="{{ route('dashboard') }}" title="{{ trans('app.go_administration') }}">{{ trans('app.go_administration') }}</a>
                             </li>
                         @else 
                             <li>
-                                <a href="{{ route('website.account') }}" title="Mi Cuenta">Mi Cuenta</a>
+                                <a href="{{ route('website.account') }}" title="{{ trans('app.my_account') }}">{{ trans('app.my_account') }}</a>
                             </li>
                         @endif
                         <li>
                             <a href="{{ url('auth/logout') }}"
                                 onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();">
-                                Salir
+                                {{ trans('app.logout') }}
                             </a>
 
                             <form id="logout-form" action="{{ url('auth/logout') }}" method="POST" style="display: none;">

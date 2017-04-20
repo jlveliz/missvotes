@@ -61,6 +61,8 @@ class LoginClientController extends Controller
             if ($validate->fails()) {
                 return response()->json([$this->username() => $validate->errors()->first()],500);
             }
+        } else {
+            redirect()->back()->withErrors($validate,'login');
         }
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle

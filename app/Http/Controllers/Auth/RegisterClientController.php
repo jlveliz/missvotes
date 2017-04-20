@@ -10,6 +10,7 @@ use Illuminate\Auth\Events\Registered;
 use MissVote\Repository\ClientRepository;
 use Illuminate\Http\Request;
 use Response;
+use Lang;
 
 class RegisterClientController extends Controller
 {
@@ -70,24 +71,7 @@ class RegisterClientController extends Controller
             'address' => 'required',
             'password' => 'required|min:6|confirmed',
             'password_confirmation' => 'required|min:6'
-        ],
-        [
-            'name.required' => 'El Nombre es requerido',
-            'name.max' => 'Por favor ingrese un nombre mas corto',
-            'last_name.required' => 'El Apellido es requerido',
-            "country_id.required" => 'El País es requerido',
-            "country_id.exists" => 'El País no existe',
-            "city.required" => 'La Ciudad es requerida',
-            'email.required' => 'Por favor ingrese un correo',
-            'email.email' => 'Por favor ingrese un correo válido',
-            'email.max' => 'Por favor su correo es muy grande',
-            'email.unique' => 'El correo ya se encuentra registrado',
-            'address.required' => 'Por favor ingrese una dirección',
-            'password.required' =>'Por favor ingrese una clave',
-            'password.min' => 'Por favor ingrese una clave más larga',
-            'password.confirmed' => 'Las claves no coinciden',
-            'password_confirmation.required' => 'Por favor repita la clave',
-         ]);
+        ],Lang::get('auth.validations_register'));
     }
 
     /**

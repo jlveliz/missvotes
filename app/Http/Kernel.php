@@ -15,7 +15,6 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
-        \MissVote\Http\Middleware\LanguageMiddleware::class,
     ];
 
     /**
@@ -30,6 +29,7 @@ class Kernel extends HttpKernel
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \MissVote\Http\Middleware\VerifyCsrfToken::class,
+            \MissVote\Http\Middleware\LanguageMiddleware::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 

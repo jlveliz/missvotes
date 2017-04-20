@@ -4,9 +4,9 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        Free 
+                        @lang('membership.free_lbl') 
                             <br>
-                                <b>(Su membresía Actual)</b>
+                                <b>(@lang('membership.act_membership_lbl'))</b>
                         </h3>
                 </div>
                 <div class="panel-body">
@@ -17,21 +17,17 @@
                     <table class="table">
                         <tr>
                             <td>
-                                <b>Su Voto: </b>1 punto diario por candidata
+                                <b>@lang('membership.lbl_membership_lbl'): </b> 1 @lang('membership.tm_membership_lbl')
                             </td>
                         </tr>
-                        <tr class="active">
-                            <td>
-                                Registro de actividades
-                            </td>
-                        </tr>
+                        
                         <tr>
                             <td class="text-justify">
-                            Incluye:
+                            @lang('membership.includes_membership_lbl'):
                             <ul>
-                                <li>Noticias sobre nuestras candidatas</li>
-                                <li>Podrás votar online por tu candidata favorita. Tu votación diaria equivaldrá a 1 punto.</li>
-                                <li>Acceso a nuestras promociones o sorteos durante todo un año.</li>
+                                <li>@lang('membership.free_1_membership_lbl')</li>
+                                <li>@lang('membership.free_2_membership_lbl')</li>
+                                <li>@lang('membership.free_3_membership_lbl')</li>
                             </ul>
                             </td>
                         </tr>
@@ -39,7 +35,7 @@
                 </div>
                 @if (Auth::user()->client->current_membership())
                     <div class="panel-footer">
-                        <a href="#" class="btn btn-success" role="button">Actualizar</a>
+                        <a href="#" class="btn btn-success" role="button">@lang('membership.update_btn')</a>
                     </div>
                 @endif
 
@@ -64,7 +60,7 @@
                         {{$membership->name}}
                         @if (Auth::user()->client->current_membership() && (Auth::user()->client->current_membership()->membership_id ==  $membership->id) )
                         <br>
-                            <b>(Su membresía Actual)</b>
+                            <b>(@lang('membership.act_membership_lbl'))</b>
                     @endif
                     </h3>
                 </div>
@@ -75,30 +71,20 @@
                         {{-- <small>1 month FREE trial</small> --}}
                     </div>
                     <table class="table">
-                         <tr class="active">
-                            <td>
-                                <b>Su Voto: </b> {{$membership->points_per_vote}} puntos diarios por candidata
-                            </td>
-                        </tr>
                         <tr>
                             <td>
-                               <b> Tiempo : </b>{{$membership->duration_time}} {{$membership->getDurationMode($membership->duration_mode)}}
+                               <b> @lang('membership.lbl_membership_lbl'): </b>{{$membership->duration_time}} @lang('membership.tm_membership_lbl')
                             </td>
                         </tr>
-                       
-                        <tr>
-                            <td>
-                               <b> Registro de actividades
-                            </td>
-                        </tr>
+
                         <tr>
                             <td class="text-justify">
-                            Incluye:
+                            @lang('membership.includes_membership_lbl'):
                             <ul>
-                                <li>Noticias sobre nuestras candidatas</li>
-                                <li>Podrás votar online por tu candidata favorita. Tu votación diaria equivaldrá a 3 puntos.</li>
-                                <li>Acceso a nuestras promociones o sorteos durante todo un año.</li>
-                                <li>Un porcentaje del valor de la suscripción premium se donará a Junior Foundation: niños con cáncer.</li>
+                                <li>@lang('membership.prm_1_membership_lbl')</li>
+                                <li>@lang('membership.prm_2_membership_lbl')</li>
+                                <li>@lang('membership.prm_3_membership_lbl')</li>
+                                <li>@lang('membership.prm_4_membership_lbl')</li>
                             </ul>
                         </tr>
                     </table>
@@ -123,24 +109,17 @@
 </div>
 
 <div class="col-md-4">
-    <p class="text-justify">Este año la organización permitirá que una de las candidatas entre
-    directamente al top 12 en el evento final. Todos podrán votar pero
-    deben estar suscritos a nuestra pagina web para acceder a las
-    votaciones online. Hay dos tipos de suscripciones:
+    <p class="text-justify">@lang('membership.txt_data_1'):
     </p>
-    <p class="text-primary"><strong>Suscripción Gratuita</strong></p>
+    <p class="text-primary"><strong>@lang('membership.free_sus')</strong></p>
     <p class="text-justify">
-    Cada usuario podrá votar una sola vez al día, es decir cada 24 horas.
-    En este tipo de suscripción tu votación diaria equivale a 1 punto.    
+    @lang('membership.txt_free_sus')    
     </p>
-    <p class="text-success"><strong>Suscripción Premium</strong></p>
+    <p class="text-success"><strong>@lang('membership.prem_sus')</strong></p>
     <p class="text-justify">
-    Si quieres que tu candidata favorita esté mas cerca de la corona
-    internacional, tienes la opción de suscribirte en categoría premium, lo
-    cual te permitirá votar una sola vez al día, es decir cada 24 horas,
-    pero tu votación diaria equivaldrá a 3 puntos.
+    @lang('membership.txt_prem_sus')
     </p>
-    <p><strong>La candidata que acumule mas puntos, entrará directamente al top 12.</strong></p>
+    <p><strong>@lang('membership.adi_txt')</strong></p>
 </div>
 
 {{-- the magic form --}}

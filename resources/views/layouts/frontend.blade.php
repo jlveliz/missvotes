@@ -37,7 +37,7 @@
 	<div class="container container-app">
         @yield('content')
 		<footer class="row footer">
-			<p class="text-center">{{date('Y')}}© todos los derechos reservados.</p>
+			<p class="text-center">{{date('Y')}}© {{ trans('app.credits') }}.</p>
 		</footer>
 	</div>
     <script src="{{asset('public/js/app.js')}} "></script>

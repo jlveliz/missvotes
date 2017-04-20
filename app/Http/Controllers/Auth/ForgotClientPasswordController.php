@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Lang;
 use Response;
 
 class ForgotClientPasswordController extends Controller
@@ -61,11 +62,7 @@ class ForgotClientPasswordController extends Controller
                 return response()->json($validator->errors()->first('email'),500);
             }
         } else {
-            $this->validate($request, ['email' => 'required|exists:user|confirmed_account'],[
-            'email.required' => 'El correo debe ser ingresado',
-            'email.exists' => 'El correo no pertenece a ningún usuario',
-            'email.confirmed_account' => 'Su cuenta no está activa'
-        ]);
+            $this->validate($request, ['email' => 'required|exists:user|confirmed_account'],Lang::get('auth.forgot_password_validations'));
         }
 
         // We will send the password reset link to this user. Once we have attempted
@@ -85,10 +82,6 @@ class ForgotClientPasswordController extends Controller
         $data = $request->only('email');
         return Validator::make($data,[
             'email' => 'required|exists:user|confirmed_account'
-        ],[
-            'email.required' => 'El correo debe ser ingresado',
-            'email.exists' => 'El correo no pertenece a ningún usuario',
-            'email.confirmed_account' => 'Su cuenta no está activa'
-        ]);
+        ],Lang::get('auth.forgot_password_validations'));
     }
 }
