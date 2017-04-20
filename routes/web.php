@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'WebsiteController@index')->name('website.home');
+Route::get('/change-language', 'WebsiteController@setLocale')->name('website.locale');
 Route::get('/miss/{slug}', 'WebsiteController@show')->name('website.miss.show');
 
 

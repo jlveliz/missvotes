@@ -14,6 +14,8 @@ use MissVote\RepositoryInterface\TicketVoteRepositoryInterface;
 
 use MissVote\RepositoryInterface\ClientActivityRepositoryInterface;
 
+use App;
+
 use Hash;
 
 use Validator;
@@ -152,5 +154,25 @@ class WebsiteController extends Controller
 
         
         return Redirect::back()->with($sessionData);
+    }
+
+
+    public function setLocale(Request $request)
+    {
+        $rules = [
+            'language' => 'in:es,en' //list of supported languages of your application.
+        ];
+
+        $language = $request->get('lang'); //lang is name of form select field.
+
+        $validator = Validator::make(compact($language),$rules);
+
+        if($validator->passes())
+        {
+            session()->put('locale',$language);
+            App::setLocale($language);
+
+            return redirect()->back();
+        }
     }
 }

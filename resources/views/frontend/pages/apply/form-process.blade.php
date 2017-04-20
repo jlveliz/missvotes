@@ -2,9 +2,10 @@
 @section('content')
 	<div class="row">
 		<h1 class="text-center">PROCESO DE APLICACIÓN</h1>
+		{{ session()->get('locale') }} {!! App::getLocale() !!}
 	</div>
 	<div class="row">
-		<div class="col-md-12 col-xs-12 col-lg-12">
+		<div class="col-md-12 col-xs-12 col-lg-,12">
 			<!-- Nav tabs -->
 			 <ul id="process-tab" class="nav nav-tabs" role="tablist">
 			   <li id="country-tab" role="presentation" class="@if($existApply->process_status == 1) active @endif">

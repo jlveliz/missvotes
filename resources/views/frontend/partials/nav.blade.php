@@ -22,9 +22,11 @@
                         <a href="{{ route('website.account') }}" title="Actualizar membresía" alt="Actualizar membresía">Actualice su membresía</a>
                     </li>
                 @endif
+               
                 <li>
-                    <a href="{{ route('apply.requirements') }}" class="btn btn-update-membership-or-buy"  alt="Postulese como candidata" title="Postulese como candidata"> Postulese!</a>
+                    <a href="{{ route('apply.requirements') }}" class="btn btn-update-membership-or-buy"  alt="{{ trans('apply.button-nav') }}" title="{{ trans('apply.button-nav') }}"> {{ trans('apply.button-nav') }}</a>
                 </li>
+               
             @endif
            
 
@@ -38,6 +40,27 @@
         @else
              <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
+                
+                @if (App::isLocale('en'))
+                    <li>
+                        <form action="{{ route('website.locale') }}">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="lang" value="es">
+                            <button  type="submit" class="btn btn-update-membership-or-buy" > Spanish</button>
+                            
+                        </form>
+                    </li>
+                @else
+                    <li>
+                        <form action="{{ route('website.locale') }}">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="lang" value="en">
+                            <button  type="submit" class="btn btn-update-membership-or-buy"> Inngles</button>
+                            
+                        </form>
+                    </li>
+                @endif
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         {{ Auth::user()->name }} {{ Auth::user()->last_name }}<span class="caret"></span>
