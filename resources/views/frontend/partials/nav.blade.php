@@ -44,7 +44,7 @@
                 @if (App::isLocale('en'))
                     <li>
                         <form action="{{ route('website.locale') }}">
-                            {{ csrf_field() }}
+                            {{-- {{ csrf_field() }} --}}
                             <input type="hidden" name="lang" value="es">
                             <button  type="submit" class="btn btn-update-membership-or-buy" > Spanish</button>
                             
@@ -53,7 +53,7 @@
                 @else
                     <li>
                         <form action="{{ route('website.locale') }}">
-                            {{ csrf_field() }}
+                            {{-- {{ csrf_field() }} --}}
                             <input type="hidden" name="lang" value="en">
                             <button  type="submit" class="btn btn-update-membership-or-buy"> Ingles</button>
                             
