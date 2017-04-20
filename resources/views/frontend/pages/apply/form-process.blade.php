@@ -11,7 +11,7 @@
 			   		<a href="#countries" aria-controls="countries" role="tab" data-toggle="tab">País</a>
 			   	</li>
 			   <li id="pay-tab" role="presentation" class="@if($existApply->process_status <= 1) disabled @endif  @if($existApply->process_status == 2) active @endif">
-			   		<a href="#pay" aria-controls="pay" role="tab" data-toggle="tab">Tasa de solicitud</a>
+			   		<a href="#pay" aria-controls="pay" role="tab" data-toggle="tab">Tasa de Solicitud</a>
 			   	</li>
 			   <li id="subscription-tab" role="presentation" class="@if($existApply->process_status <= 2) disabled @endif @if($existApply->process_status == 3) active @endif">
 			   		<a href="#aplication" aria-controls="aplication" role="tab" data-toggle="tab">Aplicación Online</a>
@@ -89,7 +89,7 @@
 			   				</div>
 			   			@else
 			   			<p>
-			   				<b>2.- Por favor complete nuestra solicitud en línea, la cuota de la solicitud esde $60.00 </b> <br>
+			   				<b>2.- Por favor complete nuestra solicitud en línea. La cuota de la aplicación es de $60.00 </b> <br>
 			   				<small><b>También puede llenar la solicitud en persona los días del casting, pero le costará $80.00</b></small>
 			   			</p>
 			   			<div class="row">
@@ -105,8 +105,8 @@
 					   					{{ csrf_field() }}
 					   					<input type="hidden" name="stripeToken" id="stripe-pay-token">
 					   					<input type="hidden" name="amount" value="6000">
-					   					<input type="hidden" name="description" value="Pay Apply Process Miss Panamerican In">
-					   					<button type="button" id="pay-aplication-stripe" class="btn btn-default btn-lg btn-block pay-button" data-email="{{Auth::user()->email}}" data-amount="6000" data-description="Pay Apply Process Miss Panamerican In"><i class="fa fa-credit-card"> </i> <b>Pagar Con tarjeta de crédito</b></button>
+					   					<input type="hidden" name="description" value="Pay Apply Process Miss Panamerican Int">
+					   					<button type="button" id="pay-aplication-stripe" class="btn btn-default btn-lg btn-block pay-button" data-email="{{Auth::user()->email}}" data-amount="6000" data-description="Pay Apply Process Miss Panamerican Int"><i class="fa fa-credit-card"> </i> <b>Pagar Con tarjeta de crédito</b></button>
 					   					
 					   				</form>
 					   			</div>
@@ -185,7 +185,7 @@
 					   				</div>
 
 					   				<div class="form-group @if($errors->has('how_did_you_hear_about_us')) has-error @endif">
-					   					<label class="control-label col-sm-6 col-md-6" for="how_did_you_hear_about_us">Como escuchó de nosotros? </label>
+					   					<label class="control-label col-sm-6 col-md-6" for="how_did_you_hear_about_us">¿Como escuchó de nosotros? </label>
 					   					<div class="col-sm-6 col-md-6">
 					   						<select class="form-control" name="how_did_you_hear_about_us" id="how_did_you_hear_about_us" @if(isset($precandidate)) selected @endif>
 					   							<option value="null">--Seleccione--</option>
@@ -193,7 +193,6 @@
 					   							<option value="facebook"  @if( (isset($precandidate) && $precandidate->how_did_you_hear_about_us == 'facebook') || old('how_did_you_hear_about_us') == 'facebook') selected @endif>Facebook</option>
 					   							<option value="friend" @if( (isset($precandidate) && $precandidate->how_did_you_hear_about_us == 'friend') || old('how_did_you_hear_about_us') == 'friend') selected @endif>Friend</option>
 					   							<option value="former_constentant" @if( (isset($precandidate) && $precandidate->how_did_you_hear_about_us == 'former_constentant') || old('how_did_you_hear_about_us') == 'former_constentant') selected @endif>Former Constentant</option>
-					   							<option value="la_sf_casting"  @if( (isset($precandidate) && $precandidate->how_did_you_hear_about_us == 'la_sf_casting') || old('how_did_you_hear_about_us') == 'la_sf_casting') selected @endif>LA/SF Casting</option>
 					   							<option value="online_ad"  @if( (isset($precandidate) && $precandidate->how_did_you_hear_about_us == 'online_ad') || old('how_did_you_hear_about_us') == 'online_ad') selected @endif>Online AD</option>
 					   							<option value="school_teacher" @if( (isset($precandidate) && $precandidate->how_did_you_hear_about_us == 'school_teacher') || old('how_did_you_hear_about_us') == 'school_teacher') selected @endif>School Teacher/Coach</option>
 					   							<option value="website_google" @if( (isset($precandidate) && $precandidate->how_did_you_hear_about_us == 'website_google') || old('how_did_you_hear_about_us') == 'website_google') selected @endif>Website / Google Search</option>
@@ -245,8 +244,8 @@
 					   				<div class="form-group @if($errors->has('bust_measure')) has-error @endif">
 					   					<label class="control-label col-sm-6 col-md-6" for="bust_measure">Busto</label>
 					   					<div class="col-sm-3 col-md-3">
-					   						<input type="number" name="bust_measure" id="bust_measure" class="form-control" value="{{ isset($precandidate)  ? $precandidate->bust_measure :  old('bust_measure')}}"  @if(isset($precandidate)) disabled @endif>
-					   						@if ($errors->has('bust_measure')) <p class="help-block">{{ $errors->first('bust_measure') }}</p> @endif
+					   						<input type="number" name="bust_measure" id="bust_measure" class="form-control" value="{{ isset($precandidate)  ? $precandidate->bust_measure :  old('bust_measure')}}"  @if(isset($precandidate)) disabled @endif> 
+					   						@if ($errors->has('bust_measure')) <p class="help-block">{{ $errors->first('bust_measure') }} </p> @endif
 					   					</div>
 					   				</div>
 
@@ -316,11 +315,11 @@
 			   {{-- hola status --}}
 			   <div role="tabpanel" class="tab-pane fade" id="status">
 			   		<div class="process-content">
-			   			<h3>Felicitaciones, su está inscripción completa.</h3>
+			   			<h3>¡Felicitaciones! Su inscripción está completa.</h3>
 			   			<div class="row">
 			   				<div class="col-md-6 col-lg-6 text-center col-md-offset-3">
 			   					<img class="image-responsibe" src="{{ asset('public/images/logo.png') }}" alt="{{config('app.name')}}" title="{{config('app.name')}}">
-			   					<h4>Su identificación de número de casting y toda la información que necesita saber fue enviada a su correo electrónico. Compruébelo y buena suerte. Esperaremos por usted.</h4>
+			   					<h4>Su número de identificación de casting y toda la información que necesita saber fue enviada a su correo electrónico. Compruébelo y buena suerte. ¡Te esperamos!.</h4>
 			   				</div>
 			   			</div>
 			   		</div>
@@ -433,7 +432,7 @@ $(document).ready(function() {
 	  image: '{{ asset('public/images/queen-mini.png') }}',
 	  locale: 'auto',
 	  name: '{{ config('app.name') }}',
-	  description : 'Pay Apply Process Miss Panamerican In',
+	  description : 'Pay Apply Process Miss Panamerican Int',
 	  token : function(token){
 	  	$("#stripe-pay-token").val(token.id);
 	  	//submit the magic form :3
