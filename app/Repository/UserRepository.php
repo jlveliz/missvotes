@@ -50,7 +50,9 @@ class UserRepository implements UserRepositoryInterface
 
 		$data['password'] = \Hash::make($data['password']);
 
+
 		$user->fill($data);
+		$user->confirmed = 1;
 		if ($user->save()) {
 			// $user->roles()->sync($data['roles']);
 			$key = $user->getKey();
@@ -70,6 +72,7 @@ class UserRepository implements UserRepositoryInterface
 			$user->email = $data['email'];
 			$user->address = $data['address'];
 			$user->is_admin = $data['is_admin'];
+			$user->confirmed = 1;
 			if(!empty($data['password'])) {
 				// dd($data['password']);
 				$data['password'] = \Hash::make($data['password']);
