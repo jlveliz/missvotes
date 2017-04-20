@@ -49,6 +49,8 @@ class Miss extends Model
         'eye_color',
         'dairy_philosophy',
         'why_would_you_win',
+        'height_type_measure',
+        'weight_type_measure'
     ];
 
 

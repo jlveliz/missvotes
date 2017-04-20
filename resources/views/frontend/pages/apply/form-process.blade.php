@@ -202,17 +202,31 @@
 					   				</div>
 
 					   				<div class="form-group @if($errors->has('height')) has-error @endif">
-					   					<label class="control-label col-sm-6 col-md-6" for="height">Estatura (Cm) </label>
+					   					<label class="control-label col-sm-6 col-md-6" for="height">Estatura</label>
+					   					<div class="col-sm-2 col-md-2">
+					   						<select name="height_type_measure" id="height_type_measure" class="form-control" @if(isset($precandidate)) disabled @endif>
+					   							<option value="cm" @if( (isset($precandidate) && $precandidate->height_type_measure == 'cm') || old('height_type_measure') == 'cm') selected @endif>cm</option>
+					   							<option value="ft" @if( (isset($precandidate) && $precandidate->height_type_measure == 'ft') || old('height_type_measure') == 'ft') selected @endif>ft</option>
+					   						</select>
+											@if ($errors->has('height')) <p class="help-block">{{ $errors->first('height') }}</p> @endif
+					   					</div>
 					   					<div class="col-sm-3 col-md-3">
-						   					<input type="number" id="height" step="any" min="0.00" name="height" id="height" class="form-control" value="{{ isset($precandidate)  ? $precandidate->height :  old('height')}}"  @if(isset($precandidate)) disabled @endif>
+						   					<input type="number" id="height" step="0.00"  min="1.67" name="height" id="height" class="form-control" value="{{ isset($precandidate)  ? $precandidate->height :  1.67}}"  @if(isset($precandidate)) disabled @endif>
 							@if ($errors->has('height')) <p class="help-block">{{ $errors->first('height') }}</p> @endif
 					   					</div>
 					   				</div>
 
 					   				<div class="form-group @if($errors->has('weight')) has-error @endif">
-					   					<label class="control-label col-sm-6 col-md-6" for="weight">Peso (Kg) </label>
+					   					<label class="control-label col-sm-6 col-md-6" for="weight">Peso</label>
+					   					<div class="col-sm-2 col-md-2">
+					   						<select name="weight_type_measure" id="weight_type_measure" class="form-control" @if(isset($precandidate)) disabled @endif>
+					   							<option value="lb" @if( (isset($precandidate) && $precandidate->weight_type_measure == 'lb') || old('weight_type_measure') == 'lb') selected @endif>lb</option>
+					   							<option value="kg" @if( (isset($precandidate) && $precandidate->weight_type_measure == 'kg') || old('weight_type_measure') == 'kg') selected @endif>kg</option>
+					   						</select>
+											@if ($errors->has('weight_type_measure')) <p class="help-block">{{ $errors->first('weight_type_measure') }}</p> @endif
+					   					</div>
 					   					<div class="col-sm-3 col-md-3">
-					   						<input type="number" step="any" min="0.00" name="weight" id="weight" class="form-control" value="{{ isset($precandidate)  ? $precandidate->weight :  old('weight')}}"  @if(isset($precandidate)) disabled @endif>
+					   						<input type="number" step="1" min="104" name="weight" id="weight" class="form-control" value="{{ isset($precandidate)  ? $precandidate->weight :  104 }}"  @if(isset($precandidate)) disabled @endif>
 											@if ($errors->has('weight')) <p class="help-block">{{ $errors->first('weight') }}</p> @endif
 					   					</div>
 					   				</div>
@@ -242,7 +256,7 @@
 					   				</div>
 
 					   				<div class="form-group @if($errors->has('bust_measure')) has-error @endif">
-					   					<label class="control-label col-sm-6 col-md-6" for="bust_measure">Busto</label>
+					   					<label class="control-label col-sm-6 col-md-6" for="bust_measure">Busto (cm)</label>
 					   					<div class="col-sm-3 col-md-3">
 					   						<input type="number" name="bust_measure" id="bust_measure" class="form-control" value="{{ isset($precandidate)  ? $precandidate->bust_measure :  old('bust_measure')}}"  @if(isset($precandidate)) disabled @endif> 
 					   						@if ($errors->has('bust_measure')) <p class="help-block">{{ $errors->first('bust_measure') }} </p> @endif
@@ -250,7 +264,7 @@
 					   				</div>
 
 					   				<div class="form-group @if($errors->has('waist_measure')) has-error @endif">
-					   					<label class="control-label col-sm-6 col-md-6" for="waist_measure">Cintura</label>
+					   					<label class="control-label col-sm-6 col-md-6" for="waist_measure">Cintura (cm)</label>
 					   					<div class="col-sm-3 col-md-3">
 					   						<input type="number" name="waist_measure" id="waist_measure" class="form-control" value="{{ isset($precandidate)  ? $precandidate->waist_measure :  old('waist_measure')}}"  @if(isset($precandidate)) disabled @endif>
 					   						@if ($errors->has('waist_measure')) <p class="help-block">{{ $errors->first('waist_measure') }}</p> @endif
@@ -258,7 +272,7 @@
 					   				</div>
 
 					   				<div class="form-group @if($errors->has('hip_measure')) has-error @endif">
-					   					<label class="control-label col-sm-6 col-md-6" for="hip_measure">Cadera</label>
+					   					<label class="control-label col-sm-6 col-md-6" for="hip_measure">Cadera (cm)</label>
 					   					<div class="col-sm-3 col-md-3">
 					   						<input type="number" name="hip_measure" id="hip_measure" class="form-control" value="{{ isset($precandidate)  ? $precandidate->hip_measure :  old('hip_measure')}}"  @if(isset($precandidate)) disabled @endif>
 					   						@if ($errors->has('hip_measure')) <p class="help-block">{{ $errors->first('waist_measure') }}</p> @endif
@@ -292,7 +306,7 @@
 					   				<div class="form-group @if($errors->has('why_would_you_win')) has-error @endif">
 					   					<label class="col-sm-6 col-md-6 control-label" for="why_would_you_win">Porque te gustaría ganar el {{config('app.name')}} ? </label>
 					   					<div class="col-sm-6 col-md-6">
-					   						<input class="form-control" type="text" name="why_would_you_win" id="why_would_you_win"  value="{{ isset($precandidate)  ? $precandidate->why_would_you_win :  old('why_would_you_win')}}"  @if(isset($precandidate)) disabled @endif>
+					   						<textarea class="form-control" name="why_would_you_win" id="why_would_you_win" @if(isset($precandidate)) disabled @endif rezise>{{ isset($precandidate)  ? $precandidate->why_would_you_win :  old('why_would_you_win')}}</textarea>
 					   						@if ($errors->has('why_would_you_win')) <p class="help-block">{{ $errors->first('why_would_you_win') }}</p> @endif
 					   					</div>
 					   				</div>
@@ -452,6 +466,37 @@ $(document).ready(function() {
    	});
 
 
+   	$("#height_type_measure").on('change', function(event) {
+   		var value = $(this).val();
+   		if(value == 'cm') {
+   			$("#height").attr({
+   				min: '1.67',
+   				value: '1.67'
+   			});
+   		} else {
+   			$("#height").attr({
+   				min: '5.5',
+   				value: '5.5'
+   			});
+   		}
+   	});	
+
+   	$("#weight_type_measure").on('change', function(event) {
+   		var value = $(this).val();
+   		if(value == 'lb') {
+   			$("#weight").attr({
+   				min: '104',
+   				value: '104'
+   			});
+   		} else {
+   			$("#weight").attr({
+   				min: '57',
+   				value: '57'
+   			});
+   		}
+   	});
+
+
 });
 
 	 // Close Checkout on page navigation:
@@ -460,4 +505,12 @@ $(document).ready(function() {
 	});
 
 </script>
+@endsection()
+
+@section('css')
+<style>
+	textarea {
+		resize: none
+	}
+</style>
 @endsection()

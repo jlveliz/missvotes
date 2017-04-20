@@ -75,10 +75,10 @@
        	<div class="form-group col-md-7 col-sm-7 col-xs-12">
        		<label class="control-label col-md-12 col-sm-12 col-xs-12 no-padding">Medidas </label>
        		<div class="form-group col-md-3 col-sm-2 col-xs-4 no-padding-left">
-       			<input type="text"  name="height" id="height" class="form-control" value="Altura: {{$precandidate->height}} cms" disabled>
+       			<input type="text"  name="height" id="height" class="form-control" value="Altura: {{$precandidate->height}} {{ $precandidate->height_type_measure }}" disabled>
        		</div>
        		<div class="form-group col-md-3 col-sm-2 col-xs-4 no-padding-left">
-       			<input type="text" placeholder="Peso (lb)" name="weight" id="weight" class="form-control" value="Peso: {{$precandidate->weight}} lbs" disabled>
+       			<input type="text" placeholder="Peso (lb)" name="weight" id="weight" class="form-control" value="Peso: {{$precandidate->weight}} {{ $precandidate->weight_type_measure }}" disabled>
        		</div>
        		<div class="form-group col-md-2 col-sm-2 col-xs-4 no-padding-left">
        			<input type="text" placeholder="Busto" name="bust_measure" id="bust_measure" class="form-control" value="bus: {{$precandidate->bust_measure}}" disabled>
