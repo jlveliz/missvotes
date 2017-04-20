@@ -1,23 +1,23 @@
 @extends('layouts.frontend')
 @section('content')
 	<div class="row">
-		<h1 class="text-center">PROCESO DE APLICACIÓN</h1>
+		<h1 class="text-center"> @lang('form_process_apply.tittle_process')</h1>
 	</div>
 	<div class="row">
 		<div class="col-md-12 col-xs-12 col-lg-,12">
 			<!-- Nav tabs -->
 			 <ul id="process-tab" class="nav nav-tabs" role="tablist">
 			   <li id="country-tab" role="presentation" class="@if($existApply->process_status == 1) active @endif">
-			   		<a href="#countries" aria-controls="countries" role="tab" data-toggle="tab">País</a>
+			   		<a href="#countries" aria-controls="countries" role="tab" data-toggle="tab">@lang('form_process_apply.country_tab')</a>
 			   	</li>
 			   <li id="pay-tab" role="presentation" class="@if($existApply->process_status <= 1) disabled @endif  @if($existApply->process_status == 2) active @endif">
-			   		<a href="#pay" aria-controls="pay" role="tab" data-toggle="tab">Tasa de Solicitud</a>
+			   		<a href="#pay" aria-controls="pay" role="tab" data-toggle="tab">@lang('form_process_apply.fee_tab')</a>
 			   	</li>
 			   <li id="subscription-tab" role="presentation" class="@if($existApply->process_status <= 2) disabled @endif @if($existApply->process_status == 3) active @endif">
-			   		<a href="#aplication" aria-controls="aplication" role="tab" data-toggle="tab">Aplicación Online</a>
+			   		<a href="#aplication" aria-controls="aplication" role="tab" data-toggle="tab">@lang('form_process_apply.app_tab')</a>
 			   	</li>
 			   <li id="success-tab" role="presentation" class="@if($existApply->process_status <= 3) disabled @endif @if($existApply->process_status == 4) active @endif">
-			   		<a href="#status" aria-controls="status" role="tab" data-toggle="tab">Estado</a>
+			   		<a href="#status" aria-controls="status" role="tab" data-toggle="tab">@lang('form_process_apply.status_tab')</a>
 			   	</li>
 			 </ul>
 
@@ -26,43 +26,43 @@
 			 	{{-- countries --}}
 			   <div role="tabpanel" class="tab-pane fade in active" id="countries">
 			   		<div class="process-content">
-				   		<p><b>1.- Seleccione el país al que desea audicionar</b></p>
+				   		<p><b>1.- @lang('form_process_apply.sel_country_lbl')</b></p>
 				   		<div class="row">
 				   			<div class="col-md-12 col-lg-12">
 				   				@if ($existApply->process_status < 3)
 					   				<ul class="list-unstyled list-inline text-center" id="menu-countries">
 					   					<li @if($existApply->country_code_selected == 'US') class="country-selected" @endif>
-					   						<a class="country-audition" href="#" data-code="US" title="Estados Unidos" alt="Estados Unidos"><img class="image-responsive" src="{{ asset('public/images/eeuu_flag.png') }}"> <br> Estados Unidos</a> 
+					   						<a class="country-audition" href="#" data-code="US" title="Estados Unidos" alt="Estados Unidos"><img class="image-responsive" src="{{ asset('public/images/eeuu_flag.png') }}"> <br> US</a> 
 					   					</li>
 					   					<li @if($existApply->country_code_selected == 'MX') class="country-selected" @endif>
-					   						<a class="country-audition" href="#" data-code="MX" title="México" alt="México"><img class="image-responsive" src="{{ asset('public/images/mx_flag.png') }}"> <br> México</a> 
+					   						<a class="country-audition" href="#" data-code="MX" title="México" alt="México"><img class="image-responsive" src="{{ asset('public/images/mx_flag.png') }}"> <br> MÉXICO</a> 
 					   					</li>
 					   					<li @if($existApply->country_code_selected == 'HN') class="country-selected" @endif>
-					   						<a class="country-audition" href="#" data-code="HN" title="Honduras" alt="Honduras"><img class="image-responsive" src="{{ asset('public/images/ho_flag.png') }}"> <br> Honduras</a> 
+					   						<a class="country-audition" href="#" data-code="HN" title="Honduras" alt="Honduras"><img class="image-responsive" src="{{ asset('public/images/ho_flag.png') }}"> <br> HONDURAS</a> 
 					   					</li>
 					   					<li @if($existApply->country_code_selected == 'GT') class="country-selected" @endif>
-					   						<a class="country-audition" href="#" data-code="GT" title="Guatemala" alt="Guatemala" title=""><img class="image-responsive" src="{{ asset('public/images/gu_flag.png') }}"> <br> Guatemala</a> 
+					   						<a class="country-audition" href="#" data-code="GT" title="Guatemala" alt="Guatemala" title=""><img class="image-responsive" src="{{ asset('public/images/gu_flag.png') }}"> <br> GUATEMALA</a> 
 					   					</li>
 					   					<li @if($existApply->country_code_selected == 'SV') class="country-selected" @endif>
-					   						<a class="country-audition" href="#" data-code="SV" title="El Salvador" alt="El Salvador"><img class="image-responsive" src="{{ asset('public/images/sl_flag.png') }}"> <br> El Salvador</a> 
+					   						<a class="country-audition" href="#" data-code="SV" title="El Salvador" alt="El Salvador"><img class="image-responsive" src="{{ asset('public/images/sl_flag.png') }}"> <br> EL SALVADOR</a> 
 					   					</li>
 					   				</ul>
 				   				@else
 				   					<ul class="list-unstyled list-inline text-center" id="">
 					   					<li @if($existApply->country_code_selected == 'US') class="country-selected" @endif>
-					   						<img class="image-responsive clickable" src="{{ asset('public/images/eu_flag.png') }}"> <br> Estados Unidos</a> 
+					   						<img class="image-responsive clickable" src="{{ asset('public/images/eu_flag.png') }}"> <br> US</a> 
 					   					</li>
 					   					<li @if($existApply->country_code_selected == 'MX') class="country-selected" @endif>
-					   						<img class="image-responsive" src="{{ asset('public/images/mx_flag.png') }}"> <br> México
+					   						<img class="image-responsive" src="{{ asset('public/images/mx_flag.png') }}"> <br> MÉXICO
 					   					</li>
 					   					<li @if($existApply->country_code_selected == 'HN') class="country-selected" @endif>
-					   						<img class="image-responsive" src="{{ asset('public/images/ho_flag.png') }}"> <br> Honduras
+					   						<img class="image-responsive" src="{{ asset('public/images/ho_flag.png') }}"> <br> HONDURAS
 					   					</li>
 					   					<li @if($existApply->country_code_selected == 'GT') class="country-selected" @endif>
-					   						<img class="image-responsive" src="{{ asset('public/images/gu_flag.png') }}"> <br> Guatemala
+					   						<img class="image-responsive" src="{{ asset('public/images/gu_flag.png') }}"> <br> GUATEMALA
 					   					</li>
 					   					<li @if($existApply->country_code_selected == 'SV') class="country-selected" @endif>
-					   						<img class="image-responsive" src="{{ asset('public/images/sl_flag.png') }}"> <br> El Salvador
+					   						<img class="image-responsive" src="{{ asset('public/images/sl_flag.png') }}"> <br> EL SALVADOR
 					   					</li>
 					   				</ul>
 				   				@endif
@@ -85,19 +85,19 @@
 			   			
 			   			@if ($existApply->payed_at)
 			   				<div class="row">
-			   					<h2 class="text-center text-success"> Gracias por su pago. </h2>
+			   					<h2 class="text-center text-success"> @lang('form_process_apply.txt_pay_thanks_lbl'). </h2>
 			   				</div>
 			   			@else
 			   			<p>
-			   				<b>2.- Por favor complete nuestra solicitud en línea. La cuota de la aplicación es de $60.00 </b> <br>
-			   				<small><b>También puede llenar la solicitud en persona los días del casting, pero le costará $80.00</b></small>
+			   				<b>2.- @lang('form_process_apply.txt_price_lbl')</b> <br>
+			   				<small><b>@lang('form_process_apply.txt_price_off_lbl')</b></small>
 			   			</p>
 			   			<div class="row">
 					   			<div class="col-md-4 col-lg-4 col-sm-8 col-xs-12 col-md-offset-4 text-center">
 					   				<h2 id="price-insciption"><small>$</small> 60.00 <br> <small> USD </small></h2>
 					   				<form action="{{ route('pay.paypal.aplication') }}" method="POST" accept-charset="utf-8">
 					   					{{ csrf_field() }}
-					   					<button type="submit" class="btn btn-primary btn-lg btn-block pay-button" data-payment="paypal"><i class="fa fa-paypal"> </i> <b>Pagar con Paypal</b></button>
+					   					<button type="submit" class="btn btn-primary btn-lg btn-block pay-button" data-payment="paypal"><i class="fa fa-paypal"> </i> <b>@lang('form_process_apply.lbl_paypal_')</b></button>
 					   					
 					   				</form>
 					   				<h3>O</h3>
@@ -106,7 +106,7 @@
 					   					<input type="hidden" name="stripeToken" id="stripe-pay-token">
 					   					<input type="hidden" name="amount" value="6000">
 					   					<input type="hidden" name="description" value="Pay Apply Process Miss Panamerican Int">
-					   					<button type="button" id="pay-aplication-stripe" class="btn btn-default btn-lg btn-block pay-button" data-email="{{Auth::user()->email}}" data-amount="6000" data-description="Pay Apply Process Miss Panamerican Int"><i class="fa fa-credit-card"> </i> <b>Pagar Con tarjeta de crédito</b></button>
+					   					<button type="button" id="pay-aplication-stripe" class="btn btn-default btn-lg btn-block pay-button" data-email="{{Auth::user()->email}}" data-amount="6000" data-description="Pay Apply Process Miss Panamerican Int"><i class="fa fa-credit-card"> </i> <b>@lang('form_process_apply.lbl_cc_')</b></button>
 					   					
 					   				</form>
 					   			</div>
@@ -126,7 +126,7 @@
 		   					</div>
 		   			        <div class="clearfix"></div>
 		   			    @endif
-			   			<p><b>3.- Por favor llenar todos los campos requeridos cuidadosamente.</b> </p>
+			   			<p><b>3.- @lang('form_process_apply.lbl_pls_fill')</b> </p>
 			   			<hr>
 			   			<div class="row">
 			   				<div class="col-md-7 col-lg-7 col-sm-12 col-xs-12 col-md-offset-2">
@@ -137,7 +137,7 @@
 				   					@endif
 				   						<input type="hidden" name="is_precandidate" value="1">
 				   					<div class="form-group @if($errors->has('name')) has-error @endif">
-				   						<label class="control-label col-sm-6 col-md-6 ">Nombre </label>
+				   						<label class="control-label col-sm-6 col-md-6 ">@lang('form_process_apply.lbl_name') </label>
 				   						<div class="col-sm-6 col-md-6">
 											<input type="text" class="form-control" name="name" value="{{ isset($precandidate) ?  $precandidate->name :   Auth::user()->name }}" autofocus @if(isset($precandidate)) disabled @endif>
 												@if ($errors->has('name')) <p class="help-block">{{ $errors->first('name') }}</p> @endif
@@ -145,7 +145,7 @@
 				   					</div>
 
 				   					<div class="form-group  @if($errors->has('last_name')) has-error @endif">
-				   						<label class="control-label col-sm-6 col-md-6">Apellido </label>
+				   						<label class="control-label col-sm-6 col-md-6">@lang('form_process_apply.lbl_last_name') </label>
 				   						<div class="col-sm-6 col-md-6">
 											<input type="text" class="form-control" name="last_name" value="{{ isset($precandidate) ? $precandidate->last_name : Auth::user()->last_name  }}"  @if(isset($precandidate)) disabled @endif>
 												@if ($errors->has('last_name')) <p class="help-block">{{ $errors->first('last_name') }}</p> @endif
@@ -153,7 +153,7 @@
 				   					</div>
 
 				   					<div class="form-group @if($errors->has('birthdate')) has-error @endif">
-				   						<label class="control-label col-sm-6 col-md-6">Fecha de nacimiento </label>
+				   						<label class="control-label col-sm-6 col-md-6">@lang('form_process_apply.lbl_bday') </label>
 				   						<div class="col-sm-6 col-md-6">
 					   						<input type="date" class="form-control"  name="birthdate" value="{{ isset($precandidate) ? $precandidate->birthdate : old('birthdate') }}" @if(isset($precandidate)) disabled @endif>
 					   						@if ($errors->has('birthdate')) <p class="help-block">{{ $errors->first('birthdate') }}</p> @endif
@@ -161,7 +161,7 @@
 				   					</div>
 
 				   					<div class="form-group @if($errors->has('placebirth')) has-error @endif">
-					   					<label class="control-label col-sm-6 col-md-6">Lugar de nacimiento </label>
+					   					<label class="control-label col-sm-6 col-md-6">@lang('form_process_apply.lbl_bplace') </label>
 					   					<div class="col-sm-6 col-md-6">
 						   					<input type="text" class="form-control" name="placebirth" value="{{ isset($precandidate) ? $precandidate->placebirth : old('placebirth') }}" @if(isset($precandidate)) disabled @endif>
 						   					@if ($errors->has('placebirth')) <p class="help-block">{{ $errors->first('placebirth') }}</p> @endif
@@ -169,7 +169,7 @@
 					   				</div>
 
 					   				<div class="form-group @if($errors->has('email')) has-error @endif">
-					   					<label class="control-label col-sm-6 col-md-6" for="email">Email </label>
+					   					<label class="control-label col-sm-6 col-md-6" for="email">@lang('form_process_apply.lbl_email') </label>
 					   					<div class="col-sm-6 col-md-6">
 						   					<input class="form-control" type="email" name="email" id="email" value="{{ isset($precandidate) ? $precandidate->email  : Auth::user()->email }}" readonly>
 						   					@if ($errors->has('email')) <p class="help-block">{{ $errors->first('email') }}</p> @endif
@@ -177,7 +177,7 @@
 					   				</div>
 
 					   				<div class="form-group @if($errors->has('phone_number')) has-error @endif">
-					   					<label class="control-label col-sm-6 col-md-6" for="phone_number">Número teléfonico </label>
+					   					<label class="control-label col-sm-6 col-md-6" for="phone_number">@lang('form_process_apply.lbl_phone') </label>
 					   					<div class="col-sm-6 col-md-6">
 						   					<input type="text" class="form-control" name="phone_number" id="phone_number" value="{{ isset($precandidate) ?  $precandidate->phone_number : old('phone_number') }}" @if(isset($precandidate)) disabled @endif>
 						   					@if ($errors->has('phone_number')) <p class="help-block">{{ $errors->first('phone_number') }}</p> @endif
@@ -185,7 +185,7 @@
 					   				</div>
 
 					   				<div class="form-group @if($errors->has('how_did_you_hear_about_us')) has-error @endif">
-					   					<label class="control-label col-sm-6 col-md-6" for="how_did_you_hear_about_us">¿Como escuchó de nosotros? </label>
+					   					<label class="control-label col-sm-6 col-md-6" for="how_did_you_hear_about_us">@lang('form_process_apply.lbl_heard') </label>
 					   					<div class="col-sm-6 col-md-6">
 					   						<select class="form-control" name="how_did_you_hear_about_us" id="how_did_you_hear_about_us" @if(isset($precandidate)) selected @endif>
 					   							<option value="null">--Seleccione--</option>
@@ -202,7 +202,7 @@
 					   				</div>
 
 					   				<div class="form-group @if($errors->has('height')) has-error @endif">
-					   					<label class="control-label col-sm-6 col-md-6" for="height">Estatura</label>
+					   					<label class="control-label col-sm-6 col-md-6" for="height">@lang('form_process_apply.size')</label>
 					   					<div class="col-sm-2 col-md-2">
 					   						<select name="height_type_measure" id="height_type_measure" class="form-control" @if(isset($precandidate)) disabled @endif>
 					   							<option value="cm" @if( (isset($precandidate) && $precandidate->height_type_measure == 'cm') || old('height_type_measure') == 'cm') selected @endif>cm</option>
@@ -217,7 +217,7 @@
 					   				</div>
 
 					   				<div class="form-group @if($errors->has('weight')) has-error @endif">
-					   					<label class="control-label col-sm-6 col-md-6" for="weight">Peso</label>
+					   					<label class="control-label col-sm-6 col-md-6" for="weight">@lang('form_process_apply.lbl_weight')</label>
 					   					<div class="col-sm-2 col-md-2">
 					   						<select name="weight_type_measure" id="weight_type_measure" class="form-control" @if(isset($precandidate)) disabled @endif>
 					   							<option value="lb" @if( (isset($precandidate) && $precandidate->weight_type_measure == 'lb') || old('weight_type_measure') == 'lb') selected @endif>lb</option>
