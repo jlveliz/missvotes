@@ -170,8 +170,7 @@ class WebsiteController extends Controller
         if($validator->passes())
         {
             session()->put('locale',$language);
-            App::setLocale($language);
-
+            app()->setLocale($language);
             return redirect()->back();
         }
     }
