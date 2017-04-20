@@ -55,7 +55,7 @@
                         <form action="{{ route('website.locale') }}">
                             {{ csrf_field() }}
                             <input type="hidden" name="lang" value="en">
-                            <button  type="submit" class="btn btn-update-membership-or-buy"> Inngles</button>
+                            <button  type="submit" class="btn btn-update-membership-or-buy"> Ingles</button>
                             
                         </form>
                     </li>
