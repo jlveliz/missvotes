@@ -232,7 +232,7 @@
 					   				</div>
 
 					   				<div class="form-group @if($errors->has('address')) has-error @endif">
-					   					<label class="control-label col-sm-6 col-md-6" for="address">Dirección </label>
+					   					<label class="control-label col-sm-6 col-md-6" for="address">@lang('form_process_apply.lbl_adress') </label>
 					   					<div class="col-sm-6 col-md-6">
 						   					<input type="text" id="address" class="form-control" name="address" value="{{ isset($precandidate) && $precandidate->address ?  $precandidate->address : old('address') }}" @if(isset($precandidate)) disabled @endif>
 						   					@if ($errors->has('address')) <p class="help-block">{{ $errors->first('address') }}</p> @endif
@@ -240,7 +240,7 @@
 					   				</div>
 
 					   				<div class="form-group @if($errors->has('city')) has-error @endif">
-					   					<label class="control-label col-sm-6 col-md-6" for="city">Ciudad </label>
+					   					<label class="control-label col-sm-6 col-md-6" for="city">@lang('form_process_apply.lbl_city') </label>
 					   					<div class="col-sm-6 col-md-6">
 					   						<input type="text" class="form-control" name="city" value="{{ isset($precandidate) && $precandidate->city ?  $precandidate->city : old('city') }}" @if(isset($precandidate)) disabled @endif>
 					   						@if ($errors->has('address')) <p class="help-block">{{ $errors->first('city') }}</p> @endif
@@ -248,7 +248,7 @@
 					   				</div>
 
 					   				<div class="form-group @if($errors->has('state_province')) has-error @endif">
-					   					<label class="control-label col-sm-6 col-md-6" for="state_province">Estado / Provincia  </label>
+					   					<label class="control-label col-sm-6 col-md-6" for="state_province">@lang('form_process_apply.lbl_state')  </label>
 					   					<div class="col-sm-6 col-md-6">
 					   						<input type="text" class="form-control" id="state_province" name="state_province" value="{{ isset($precandidate) && $precandidate->state_province ?  $precandidate->state_province : old('state_province') }}" @if(isset($precandidate)) disabled @endif>
 					   						@if ($errors->has('state_province')) <p class="help-block">{{ $errors->first('state_province') }}</p> @endif
@@ -256,7 +256,7 @@
 					   				</div>
 
 					   				<div class="form-group @if($errors->has('bust_measure')) has-error @endif">
-					   					<label class="control-label col-sm-6 col-md-6" for="bust_measure">Busto (cm)</label>
+					   					<label class="control-label col-sm-6 col-md-6" for="bust_measure">@lang('form_process_apply.lbl_bust')</label>
 					   					<div class="col-sm-3 col-md-3">
 					   						<input type="number" name="bust_measure" id="bust_measure" class="form-control" value="{{ isset($precandidate)  ? $precandidate->bust_measure :  old('bust_measure')}}"  @if(isset($precandidate)) disabled @endif> 
 					   						@if ($errors->has('bust_measure')) <p class="help-block">{{ $errors->first('bust_measure') }} </p> @endif
@@ -264,7 +264,7 @@
 					   				</div>
 
 					   				<div class="form-group @if($errors->has('waist_measure')) has-error @endif">
-					   					<label class="control-label col-sm-6 col-md-6" for="waist_measure">Cintura (cm)</label>
+					   					<label class="control-label col-sm-6 col-md-6" for="waist_measure">@lang('form_process_apply.lbl_waist')</label>
 					   					<div class="col-sm-3 col-md-3">
 					   						<input type="number" name="waist_measure" id="waist_measure" class="form-control" value="{{ isset($precandidate)  ? $precandidate->waist_measure :  old('waist_measure')}}"  @if(isset($precandidate)) disabled @endif>
 					   						@if ($errors->has('waist_measure')) <p class="help-block">{{ $errors->first('waist_measure') }}</p> @endif
@@ -272,7 +272,7 @@
 					   				</div>
 
 					   				<div class="form-group @if($errors->has('hip_measure')) has-error @endif">
-					   					<label class="control-label col-sm-6 col-md-6" for="hip_measure">Cadera (cm)</label>
+					   					<label class="control-label col-sm-6 col-md-6" for="hip_measure">@lang('form_process_apply.lbl_hip')</label>
 					   					<div class="col-sm-3 col-md-3">
 					   						<input type="number" name="hip_measure" id="hip_measure" class="form-control" value="{{ isset($precandidate)  ? $precandidate->hip_measure :  old('hip_measure')}}"  @if(isset($precandidate)) disabled @endif>
 					   						@if ($errors->has('hip_measure')) <p class="help-block">{{ $errors->first('waist_measure') }}</p> @endif
@@ -280,7 +280,7 @@
 					   				</div>
 
 					   				<div class="form-group @if($errors->has('hair_color')) has-error @endif">
-					   					<label class="control-label col-sm-6 col-md-6" for="hair_color">Color de cabello</label>
+					   					<label class="control-label col-sm-6 col-md-6" for="hair_color">@lang('form_process_apply.lbl_hair')</label>
 					   					<div class="col-sm-3 col-md-3">
 						   					<input class="form-control" type="text" name="hair_color" id="hair-color"   value="{{ isset($precandidate)  ? $precandidate->hair_color :  old('hair_color')}}"  @if(isset($precandidate)) disabled @endif>
 						   					@if ($errors->has('hair_color')) <p class="help-block">{{ $errors->first('hair_color') }}</p> @endif				
@@ -288,7 +288,7 @@
 					   				</div>
 
 					   				<div class="form-group @if($errors->has('eye_color')) has-error @endif">
-					   					<label class="control-label col-sm-6 col-md-6" for="eye_color">Color de ojos</label>
+					   					<label class="control-label col-sm-6 col-md-6" for="eye_color">@lang('form_process_apply.lbl_eye')</label>
 					   					<div class="col-sm-3 col-md-3">
 					   						<input class="form-control" type="text" name="eye_color" id="eye-color"   value="{{ isset($precandidate)  ? $precandidate->eye_color :  old('eye_color')}}"  @if(isset($precandidate)) disabled @endif>
 					   						@if ($errors->has('eye_color')) <p class="help-block">{{ $errors->first('eye_color') }}</p> @endif
@@ -296,7 +296,7 @@
 					   				</div>
 
 					   				<div class="form-group @if($errors->has('dairy_philosophy')) has-error @endif">
-					   					<label class="col-sm-6 col-md-6 control-label" for="dairy_philosophy">Filosofía Diaria </label>
+					   					<label class="col-sm-6 col-md-6 control-label" for="dairy_philosophy">@lang('form_process_apply.lbl_phil') </label>
 					   					<div class="col-sm-6 col-md-6">
 					   						<textarea class="form-control" name="dairy_philosophy" id="dairy_philosophy"@if(isset($precandidate)) disabled @endif>{{isset($precandidate)? $precandidate->dairy_philosophy : old('dairy_philosophy')}}</textarea>
 					   						@if ($errors->has('dairy_philosophy')) <p class="help-block">{{ $errors->first('dairy_philosophy') }}</p> @endif
@@ -304,7 +304,7 @@
 					   				</div>
 
 					   				<div class="form-group @if($errors->has('why_would_you_win')) has-error @endif">
-					   					<label class="col-sm-6 col-md-6 control-label" for="why_would_you_win">Porque te gustaría ganar el {{config('app.name')}} ? </label>
+					   					<label class="col-sm-6 col-md-6 control-label" for="why_would_you_win">@lang('form_process_apply.lbl_win') {{config('app.name')}} ? </label>
 					   					<div class="col-sm-6 col-md-6">
 					   						<textarea class="form-control" name="why_would_you_win" id="why_would_you_win" @if(isset($precandidate)) disabled @endif rezise>{{ isset($precandidate)  ? $precandidate->why_would_you_win :  old('why_would_you_win')}}</textarea>
 					   						@if ($errors->has('why_would_you_win')) <p class="help-block">{{ $errors->first('why_would_you_win') }}</p> @endif
@@ -318,7 +318,7 @@
 					   				</div>
 					   				<hr>
 					   				<div class="form-group">
-					   					<button id="subscribe" type="submit" class="subscribe-button btn btn-primary btn-lg btn-block" id="save">Inscribirme</button>
+					   					<button id="subscribe" type="submit" class="subscribe-button btn btn-primary btn-lg btn-block" id="save">@lang('form_process_apply.lbl_btn_ins')</button>
 					   				</div>
 					   				@endif
 				   				</form>
@@ -329,11 +329,11 @@
 			   {{-- hola status --}}
 			   <div role="tabpanel" class="tab-pane fade" id="status">
 			   		<div class="process-content">
-			   			<h3>¡Felicitaciones! Su inscripción está completa.</h3>
+			   			<h3>@lang('form_process_apply.lbl_done')</h3>
 			   			<div class="row">
 			   				<div class="col-md-6 col-lg-6 text-center col-md-offset-3">
 			   					<img class="image-responsibe" src="{{ asset('public/images/logo.png') }}" alt="{{config('app.name')}}" title="{{config('app.name')}}">
-			   					<h4>Su número de identificación de casting y toda la información que necesita saber fue enviada a su correo electrónico. Compruébelo y buena suerte. ¡Te esperamos!.</h4>
+			   					<h4>@lang('form_process_apply.lbl_last-message')</h4>
 			   				</div>
 			   			</div>
 			   		</div>
