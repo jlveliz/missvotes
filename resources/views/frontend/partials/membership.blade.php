@@ -60,7 +60,7 @@
                         {{$membership->name}}
                         @if (Auth::user()->client->current_membership() && (Auth::user()->client->current_membership()->membership_id ==  $membership->id) )
                         <br>
-                            <b>(Su membresía Actual)</b>
+                            <b>(@lang('membership.act_membership_lbl'))</b>
                     @endif
                     </h3>
                 </div>

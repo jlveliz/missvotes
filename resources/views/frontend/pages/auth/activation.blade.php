@@ -16,7 +16,7 @@
 		<form role="form" action="{{ route('client.re-send-activate') }}" method="POST">
 			{{ csrf_field() }}
 		  <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
-		     <input type="email" class="form-control" name="email" id="activation-email" placeholder="{{ trans('auth.activation_page_fields.email') }}" autofocus value="{{old('email')}}">
+		     <input type="email" class="form-control" name="email" id="activation-email" placeholder="{{ trans('auth.activation_page_fields.email') }}" autofocus value="{{old('email')}}" required>
 		     @if ($errors->has('email'))
                 <span class="help-block"><strong>{{ $errors->first('email') }}</strong></span>
             @endif

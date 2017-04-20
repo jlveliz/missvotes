@@ -52,6 +52,24 @@ return [
         'login' => 'Ingresar'
     ],
 
+    'validations_register' => [
+        'name.required' => 'Por favor, Ingrese su nombre',
+        'name.max' => 'Por favor, ingrese un nombre mas corto',
+        'last_name.required' => 'Por favor, Ingrese su apellido',
+        "country_id.required" => 'Por favor, ingrese un País',
+        "country_id.exists" => 'El País no existe',
+        "city.required" => 'La Ciudad es requerida',
+        'email.required' => 'Por favor ingrese un correo',
+        'email.email' => 'Por favor ingrese un correo válido',
+        'email.max' => 'Por favor su correo es muy grande',
+        'email.unique' => 'El correo ya se encuentra registrado',
+        'address.required' => 'Por favor ingrese una dirección',
+        'password.required' =>'Por favor ingrese una contraseña',
+        'password.min' => 'Por favor ingrese una contraseña más larga',
+        'password.confirmed' => 'Las contraseñas no coinciden',
+        'password_confirmation.required' => 'Por favor repita la contraseña',
+    ],
+
 
 
 
@@ -70,11 +88,16 @@ return [
         'reset_password' => 'Resetear Contraseña'
     ],
     'forgot_password_message' => 'Se ha enviado el correo para poder cambiar su contraseña, no olvide de revisar en su bandeja de correo no deseado. Por favor reviselo y siga las instrucciones.',
+    'forgot_password_validations' => [
+        'email.required' => 'Por favor, ingrese un correo',
+        'email.exists' => 'El correo no pertenece a ningún usuario',
+        'email.confirmed_account' => 'Su cuenta no está activa'
+    ],
 
     
     /***
     /
-    / FORGOT PASSWORD
+    / ACTIVATION
     /
     ***/
     'activation_page_title' => 'Activación de Usuario',
@@ -86,10 +109,15 @@ return [
     'activation_page_options' =>[
         'submit' => 'Enviar email de confirmación'
     ],
+    'validations_activation' => [
+        'email.required' => 'Por favor ingrese un Correo Electrónico',
+        'email.exists' => 'El correo Electrónico ya pertenece a Usuario',
+        'email.is_confirmed_account' => 'Su cuenta ya ha sido confirmada',
+    ],
 
   /***
     /
-    / ACTIVATION 
+    / RESET 
     /
     ***/
     'reset_password_title' => 'Cambiar Contraseña',
@@ -101,7 +129,14 @@ return [
     'reset_password_options' => [
         'submit' => 'Cambiar Contraseña'
     ],
-
+    'reset_password_validations' => [
+        'email.token' => 'El token es inválido',
+        'email.required' => 'Por favor, ingrese un Correo Electrónico',
+        'email.email' => 'Por favor, ingrese un correo válido',
+        'password.required' => 'Por favor, ingrese una nueva contraseña',
+        'password.confirmed' => 'Las contraseñas no coinciden',
+        'password.min' => 'Por favor ingrese una contraseña de al menos 6 caracteres',
+    ],
 
 
 

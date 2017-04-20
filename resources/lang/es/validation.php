@@ -98,8 +98,8 @@ return [
     */
 
     'custom' => [
-        'email' => [
-            'confirmed_account' => 'Su cuenta no esta activa',
+        'attribute-name' => [
+            'rule-name' => 'custom-message',
         ],
     ],
 

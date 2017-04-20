@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
+use Lang;
 
 class ResetClientPasswordController extends Controller
 {
@@ -85,15 +86,8 @@ class ResetClientPasswordController extends Controller
     }
 
 
-     protected function validationErrorMessages()
+    protected function validationErrorMessages()
     {
-        return [
-            'email.token' => 'El token es inválido',
-            'email.required' => 'Por favor ingrese un email por favor',
-            'email.email' => 'Por favor ingrese un email válido',
-            'password.required' => 'Por favor ingrese una nueva contraseña',
-            'password.confirmed' => 'Las contraseñas no coinciden',
-            'password.min' => 'Por favor ingrese una contraseña de al menos 6 caracteres',
-        ];
+        return Lang::get('auth.reset_password_validations');
     }
 }

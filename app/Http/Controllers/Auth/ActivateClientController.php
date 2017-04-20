@@ -8,6 +8,7 @@ use MissVote\Repository\ClientRepository;
 use Illuminate\Auth\Events\Registered;
 use Validator;
 use Response;
+use Lang;
 
 class ActivateClientController extends Controller
 {
@@ -25,11 +26,9 @@ class ActivateClientController extends Controller
         $data = $request->only('email');
         return Validator::make($data,[
             'email' => 'required|exists:user|is_confirmed_account'
-        ],[
-            'email.required' => 'Por favor ingrese un correo',
-            'email.exists' => 'No existe una cuenta con el correo ingresado',
-            'email.is_confirmed_account' => 'Su cuenta ya ha sido confirmada',
-        ]);
+        ],
+            Lang::get('auth.validations_activation')
+        );
 
         return true;
     }

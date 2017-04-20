@@ -15,7 +15,7 @@
 		<form role="form" action="{{ route('client.reset-email') }}" method="POST">
 		{{ csrf_field() }}
 		<div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
-		    <input type="email" class="form-control" name="email" id="email-email" placeholder="{{ trans('auth.forgot_password_fields.email') }}" autofocus>
+		    <input type="email" class="form-control" name="email" id="email-email" placeholder="{{ trans('auth.forgot_password_fields.email') }}" autofocus required>
 		    @if ($errors->has('email'))
                 <span class="help-block"><strong>{{ $errors->first('email') }}</strong></span>
             @endif

@@ -22,5 +22,6 @@ return [
 	'img_btn_data' => 'Change image',
 	'event_lbl_data' => 'Event',
 	'd_event_lbl_data' => 'Event Date',
+	'you' => 'You'
 
 ];

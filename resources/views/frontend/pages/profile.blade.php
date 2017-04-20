@@ -180,7 +180,7 @@
 	  						<tbody>
 	  						@foreach ($activities as $activity)
 	  						<tr>
-	  							<td> Usted {{ $activity->name }}</td>
+	  							<td> {{ trans('account_profile.you') }} {{ $activity->name }}</td>
 	  							<td>{{ $activity->created_at }}</td>
 	  						</tr>
 	  						@endforeach

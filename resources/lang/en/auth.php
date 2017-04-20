@@ -52,6 +52,24 @@ return [
         'login' => 'Login'
     ],
 
+    'validations_register' => [
+        'name.required' => 'Please, insert your name',
+        'name.max' => 'Please, insert a better name',
+        'last_name.required' => 'Please, Insert your last name',
+        "country_id.required" => 'Please, insert a country',
+        "country_id.exists" => 'Please, insert a existing name',
+        "city.required" => 'Please, insert a city',
+        'email.required' => 'Please, insert a email',
+        'email.email' => 'Please, insert a valid email',
+        'email.max' => 'Please, insert a valid email',
+        'email.unique' => 'The :attribute has already been taken.',
+        'address.required' => 'Please, insert a address',
+        'password.required' =>'Please, insert a password',
+        'password.min' => 'The :attribute must be at least :min.',
+        'password.confirmed' => 'The :attribute confirmation does not match.',
+        'password_confirmation.required' => 'The :attribute confirmation does not match.',
+    ],
+
 
 
 
@@ -70,6 +88,11 @@ return [
         'reset_password' => 'Reset Password'
     ],
     'forgot_password_message' => 'Your email has been sent in order to change your password, do not forget to check it in your junk mail. Please check it and follow the instructions.',
+    'forgot_password_validations' => [
+        'email.required' => 'Please, insert a email',
+        'email.exists' => 'The selected :attribute is invalid.',
+        'email.confirmed_account' => "Your account isn't confirmed"
+    ],
 
     
     
@@ -80,18 +103,23 @@ return [
     ***/
     'activation_page_title' => 'Activation User',
     'activation_page_description'=> 'The activation code can take up to 30 minutes to arrive. Check in your junk mail box',
-    'activation_message' => 'Activation email has been sent. Please check your email and do not forget to check it in your junk mail.',
+    'activation_page_message' => 'Activation email has been sent. Please check your email and do not forget to check it in your junk mail.',
     'activation_page_fields' =>[
         'email' => 'Email'
     ],
     'activation_page_options' =>[
         'submit' => 'Send Email Activation'
     ],
+    'validations_activation' => [
+        'email.required' => 'Please, insert a email',
+        'email.exists' => 'The selected :attribute is invalid.',
+        'email.is_confirmed_account' => 'Your account is confirmed',
+    ],
 
 
     /***
     /
-    / ACTIVATION 
+    / RESET 
     /
     ***/
     'reset_password_title' => 'Change Password',
@@ -103,6 +131,15 @@ return [
     'reset_password_options' => [
         'submit' => 'Change Password'
     ],
+    'reset_password_validations' => [
+        'email.token' => 'The token es invalid',
+        'email.required' => 'Please, insert a email',
+        'email.email' => 'Please, insert a valid email',
+        'password.required' =>'Please, insert a password',
+        'password.min' => 'The :attribute must be at least :min.',
+        'password.confirmed' => 'The :attribute confirmation does not match.',
+        'password_confirmation.required' => 'The :attribute confirmation does not match.',
+    ]
 
 
 
