@@ -298,7 +298,7 @@
 					   				<div class="form-group @if($errors->has('dairy_philosophy')) has-error @endif">
 					   					<label class="col-sm-6 col-md-6 control-label" for="dairy_philosophy">Filosofía Diaria </label>
 					   					<div class="col-sm-6 col-md-6">
-					   						<input class="form-control" type="text" name="dairy_philosophy" id="dairy_philosophy"   value="{{ isset($precandidate)  ? $precandidate->dairy_philosophy :  old('dairy_philosophy')}}"  @if(isset($precandidate)) disabled @endif>
+					   						<textarea class="form-control" name="dairy_philosophy" id="dairy_philosophy"@if(isset($precandidate)) disabled @endif>{{isset($precandidate)? $precandidate->dairy_philosophy : old('dairy_philosophy')}}</textarea>
 					   						@if ($errors->has('dairy_philosophy')) <p class="help-block">{{ $errors->first('dairy_philosophy') }}</p> @endif
 					   					</div>
 					   				</div>
@@ -347,6 +347,11 @@
 
 @section('css')
 <link rel="stylesheet" type="text/css" href="{{ asset('public/css/form-process.css') }}">
+<style>
+	textarea {
+		resize: none
+	}
+</style>
 @endsection
 
 
@@ -505,12 +510,4 @@ $(document).ready(function() {
 	});
 
 </script>
-@endsection()
-
-@section('css')
-<style>
-	textarea {
-		resize: none
-	}
-</style>
 @endsection()
