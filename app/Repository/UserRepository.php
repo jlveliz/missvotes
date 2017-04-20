@@ -66,6 +66,7 @@ class UserRepository implements UserRepositoryInterface
 
 		if ($user) {
 			$user->name = $data['name'];
+			$user->last_name = $data['last_name'];
 			$user->email = $data['email'];
 			$user->address = $data['address'];
 			$user->is_admin = $data['is_admin'];

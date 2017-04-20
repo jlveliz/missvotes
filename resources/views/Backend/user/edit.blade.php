@@ -29,7 +29,13 @@
 					@if ($errors->has('name')) <p class="help-block">{{ $errors->first('name') }}</p> @endif
 				</div>
 
-				<div class="form-group col-md-6 col-sm-6 col-xs-12 @if($errors->has('address')) has-error @endif">
+				<div class="form-group col-md-3 col-sm-3 col-xs-12 @if($errors->has('last_name')) has-error @endif">
+					<label class="control-label">Apellido </label>
+					<input type="text" class="form-control" placeholder="Apellido" name="last_name" value="{{ $user->last_name }}">
+					@if ($errors->has('name')) <p class="help-block">{{ $errors->first('last_name') }}</p> @endif
+				</div>
+
+				<div class="form-group col-md-3 col-sm-3 col-xs-12 @if($errors->has('address')) has-error @endif">
 					<label class="control-label">Dirección </label>
 					<input type="text" class="form-control" placeholder="Dirección" name="address" value="{{ $user->address }}">
 					@if ($errors->has('address')) <p class="help-block">{{ $errors->first('address') }}</p> @endif
