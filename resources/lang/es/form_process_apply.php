@@ -32,7 +32,7 @@ return [
 	'lbl_hair' => 'COLOR DE CABELLO',
 	'lbl_eye' => 'COLOR DE OJOS',
 	'lbl_phil' => 'TU FILOSOFÍA DIARIA',
-	'lbl_win' => '¿POR QUÉ TE GUSTARÍA GANAR EL',
+	'lbl_win' => '¿POR QUÉ TE GUSTARÍA GANAR EL MISS PANAMERICAN INTL?',
 	'lbl_code' => '¿CÓDIGO DE SEGURIDAD',
 	'lbl_btn_ins' => 'INSCRIBIRME',
 	'lbl_done' => '¡Felicitaciones! Su inscripción está completa.',
