@@ -181,14 +181,16 @@ class ApplyCandidateController extends Controller
             if (config('app.debug')) {
                 $mensaje['payment-type'] = 'error';
                 $mensaje['payment-message'] = Lang::get('paypal.paypal_error_connection');
-               return redirect()->route('pay.paypal.aplication.status')->with($mensaje);
+               // return redirect()->route('pay.paypal.aplication.status')->with($mensaje);
+                return redirect()->away('http://www.misspanamint.com/login/')->with($mensaje);
                 /** echo "Exception: " . $ex->getMessage() . PHP_EOL; **/
                 /** $err_data = json_decode($ex->getData(), true); **/
                 /** exit; **/
             } else {
                $mensaje['payment-type'] = 'error';
                 $mensaje['payment-message'] = Lang::get('paypal.general_error');
-               return redirect()->url("pay.paypal.aplication.status")->with($mensaje);
+               // return redirect()->url("pay.paypal.aplication.status")->with($mensaje);
+                return redirect()->away('http://www.misspanamint.com/login/')->with($mensaje);
                 /** die('Some error occur, sorry for inconvenient'); **/
             }
         }
@@ -211,6 +213,8 @@ class ApplyCandidateController extends Controller
         $mensaje['payment-type'] = 'error';
         $mensaje['payment-message'] = Lang::get('paypal.paypal_error_connection');
         return redirect()->url("apply/aplication-process#pay")->with($mensaje);
+        return redirect()->url("apply/aplication-process#pay")->with($mensaje);
+        return redirect()->url("apply/aplication-process#pay")->with($mensaje);
         
     }
 
@@ -224,7 +228,8 @@ class ApplyCandidateController extends Controller
         if (empty($request->get('PayerID')) || empty($request->get('token'))) {
             $mensaje['payment-type'] = 'error';
             $mensaje['payment-message'] =  Lang::get('paypal.paypal_error_transaction');
-            return redirect()->to('apply/aplication-process#pay')->with($mensaje);
+            // return redirect()->to('apply/aplication-process#pay')->with($mensaje);
+            return redirect()->away('http://www.misspanamint.com/login/')->with($mensaje);
         }
         $payer = Paypalpayment::payer();
 
@@ -250,12 +255,14 @@ class ApplyCandidateController extends Controller
             /** Here Write your database logic like that insert record or value in database if you want **/
             $mensaje['payment-type'] = 'success';
             $mensaje['payment-message'] = Lang::get('paypal.pay_apply');
-            return redirect()->to('apply/aplication-process#aplication')->with($mensaje);
+            // return redirect()->to('apply/aplication-process#aplication')->with($mensaje);
+            return redirect()->away('http://www.misspanamint.com/login/')->with($mensaje);
         }
 
         $mensaje['payment-type'] = 'error';
         $mensaje['payment-message'] = Lang::get('paypal.error_pay_apply');;
-        return redirect()->to('apply/aplication-process#pay')->with($mensaje);
+        // return redirect()->to('apply/aplication-process#pay')->with($mensaje);
+        return redirect()->away('http://www.misspanamint.com/login/')->with($mensaje);
 
     }
 
@@ -283,11 +290,13 @@ class ApplyCandidateController extends Controller
             /** Here Write your database logic like that insert record or value in database if you want **/
             $mensaje['payment-type'] = 'success';
             $mensaje['payment-message'] = Lang::get('stripe.pay_apply');
-            return redirect()->to('apply/aplication-process#aplication')->with($mensaje);
+            // return redirect()->to('apply/aplication-process#aplication')->with($mensaje);
+            return redirect()->away('http://www.misspanamint.com/login/')->with($mensaje);
         } else {
             $mensaje['payment-type'] = 'error';
             $mensaje['payment-message'] = Lang::get('stripe.error_pay_apply');
-            return redirect()->to('apply/aplication-process#pay')->with($mensaje);
+            // return redirect()->to('apply/aplication-process#pay')->with($mensaje);
+            return redirect()->away('http://www.misspanamint.com/login/')->with($mensaje);
         }
     }
 
@@ -308,11 +317,13 @@ class ApplyCandidateController extends Controller
             $existApply->process_status = 4;
             $existApply->save();
             event(new PredidateSubscribed($precandidate));
-            return redirect()->to('apply/aplication-process#status')->with($sessionData);
+            // return redirect()->to('apply/aplication-process#status')->with($sessionData);
+            return redirect()->away('http://www.misspanamint.com/login/')->with($mensaje);
         } else {
             $sessionData['tipo_mensaje'] = 'error';
             $sessionData['mensaje'] = Lang::get('form_process_apply.error_subscribe');
-            return redirect()->to('apply/aplication-process#aplication')->with($sessionData);
+            // return redirect()->to('apply/aplication-process#aplication')->with($sessionData);
+            return redirect()->away('http://www.misspanamint.com/login/')->with($mensaje);
         }
 
     }
