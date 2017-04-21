@@ -3,7 +3,7 @@
 return [
 	
 	'free_lbl' => 'Free',
-	'act_membership_lbl' => 'Your current memebership',
+	'act_membership_lbl' => 'Your current membership',
 	'lbl_membership_lbl' => 'For',
 	'tm_membership_lbl' => 'year',
 	'includes_membership_lbl' => 'Includes',

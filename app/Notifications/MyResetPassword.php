@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Lang;
 
 class MyResetPassword extends Notification
 {
@@ -45,9 +46,10 @@ class MyResetPassword extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('Ha recibido un requerimiento de cambio de contraseña.')
-                    ->action('Presione para resetear', url('auth/reset', $this->token))
-                    ->line('Si no requirió el cambio de contraseña. Por favor ignore este mensaje');
+                    ->view('frontend.emails.forgot')
+                    ->line(Lang::get('auth.forgot_password_email.recivied'))
+                    ->action('Reset Password', url('auth/reset', $this->token))
+                    ->line('If you did not requiere the password change, please ignore this message.');
     }
 
     /**

@@ -30,7 +30,7 @@ return [
 
 	'verify' => [
 		'welcome' => 'Welcome to the most important beauty contest in California, United States.',
-		'thanks' => ' Thank you for registering. Now you just activate your account so you can know more about us and of course to vote for your favorite candidate.',
+		'thanks' => ' Thank you for subscribe. Now, please click in activate account, to know more about us and of course to vote for your favorite candidate.',
 		'activate_button' => 'Activate Account',
 		'if_prefeer' => 'If you prefer, please copy the following link and paste it into your browser',
 

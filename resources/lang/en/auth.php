@@ -91,11 +91,14 @@ return [
     'forgot_password_options' => [
         'reset_password' => 'Reset Password'
     ],
-    'forgot_password_message' => 'Your email has been sent in order to change your password, do not forget to check it in your junk mail. Please check it and follow the instructions.',
+    'forgot_password_message' => 'A password recovery mail has been sent to your email. Check your inbox and follow the instructions. Do no forget to check your spam email.',
     'forgot_password_validations' => [
         'email.required' => 'Please, insert a email',
         'email.exists' => 'The selected :attribute is invalid.',
         'email.confirmed_account' => "Your account isn't confirmed"
+    ],
+    'forgot_password_email'=>[
+        'recivied' => 'You have recieved a password change request.',
     ],
 
     
