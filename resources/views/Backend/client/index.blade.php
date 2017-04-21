@@ -15,6 +15,7 @@
      		<caption>Listado de Clientes <a class="pull-right btn btn-primary" href="{{ route('clients.create') }}" title="Crear">Crear Cliente</a></caption>
      		<thead>
      			<tr>
+            <th>Cuenta</th>
      				<th>Nombre</th>
      				<th>Email</th>
      				<th>Dirección</th>
@@ -26,6 +27,7 @@
      		<tbody>
      			@foreach ($clients as $client)
        			<tr>
+              <td>{{ $client->current_membership() ? $client->current_membership()->membership->name : 'Free' }}</td>
        				<td>{{$client->name}}</td>
        				<td>{{$client->email}}</td>
        				<td>{{$client->address}}</td>
