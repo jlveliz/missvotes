@@ -16,7 +16,7 @@ return [
 	'repeat_pass_data' => 'Repetir contraseña nueva',
 	'btn_change_pass_data' => 'Cambiar contraseña',
 	'membership_tab_data' => 'Membresía',
-	'be_btn_data' => 'Postulese a Candidata de',
+	'be_btn_data' => 'Postúlese a Candidata de',
 	'status_apply'=>'Revise el estado de su postulación a',
 	'admin_btn_data' => 'Ir a administración',
 	'activities_tab_data' => 'Mis actividades',

@@ -25,7 +25,7 @@ return [
         'code_not_recivied' => "Didn't recieve the activation code?"
     ],
 
-    'failed' => 'These credentials do not match our records.',
+    'failed' => 'These credentials do not match in our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
 
@@ -70,7 +70,7 @@ return [
         'password_confirmation.required' => 'The :attribute confirmation does not match.',
     ],
 
-     'register_success' => 'Register successful!',
+     'register_success' => 'Subscribe Successful!',
     'register_success_message'=>'Your account was created successfully but we need to verify your email address. We have sent a confirmation email to your inbox. Simply click on the link you receive in the mail to activate your account. Do not forget to look also in your Spam inbox. Thank you!',
     'register_success_submit' => 'Ok',
 
