@@ -108,7 +108,7 @@ class PaypalController extends Controller
                 /** exit; **/
             } else {
                $mensaje['payment-type'] = 'error';
-                $mensaje['payment-message'] = 'Ocurrió un error.';
+                $mensaje['payment-message'] = Lang::get('paypal.general_error');
                return redirect()->route('website.account')->with($mensaje);
                 /** die('Some error occur, sorry for inconvenient'); **/
             }
@@ -128,7 +128,7 @@ class PaypalController extends Controller
             return redirect()->away($redirectUrl);
         }
         $mensaje['payment-type'] = 'error';
-        $mensaje['payment-message'] = 'Ocurrió un error de conexión con Paypal.';
+        $mensaje['payment-message'] = Lang::get('paypal.paypal_error_connection');
         return redirect()->route('website.account')->with($mensaje);
 
 
@@ -195,14 +195,14 @@ class PaypalController extends Controller
         } catch (\PayPal\Exception\PPConnectionException $ex) {
             if (config('app.debug')) {
             	$mensaje['payment-type'] = 'error';
-				$mensaje['payment-message'] = 'Ocurrió un error de conexión con Paypal.';
+				$mensaje['payment-message'] = Lang::get('paypal.paypal_error_connection');
                return redirect()->route('website.account')->with($mensaje);
                 /** echo "Exception: " . $ex->getMessage() . PHP_EOL; **/
                 /** $err_data = json_decode($ex->getData(), true); **/
                 /** exit; **/
             } else {
                $mensaje['payment-type'] = 'error';
-				$mensaje['payment-message'] = 'Ocurrió un error.';
+				$mensaje['payment-message'] = Lang::get('paypal.general_error');
                return redirect()->route('website.account')->with($mensaje);
                 /** die('Some error occur, sorry for inconvenient'); **/
             }
@@ -222,7 +222,7 @@ class PaypalController extends Controller
             return redirect()->away($redirectUrl);
         }
         $mensaje['payment-type'] = 'error';
-		$mensaje['payment-message'] = 'Ocurrió un error de conexión con Paypal.';
+		$mensaje['payment-message'] = Lang::get('paypal.paypal_error_connection');
        	return redirect()->route('website.account')->with($mensaje);
 
 
@@ -240,7 +240,7 @@ class PaypalController extends Controller
         Session::forget('paypal_payment_id');
         if (empty($request->get('PayerID')) || empty($request->get('token'))) {
             $mensaje['payment-type'] = 'error';
-            $mensaje['payment-message'] = 'Ocurrió un error en la transacción con Paypal.';
+            $mensaje['payment-message'] = Lang::get('paypal.paypal_error_connection.paypal_error_transaction');
             return redirect()->route('website.account')->with($mensaje);
         }
         $payer = Paypalpayment::payer();
@@ -275,8 +275,8 @@ class PaypalController extends Controller
                 $membership = $this->membershipRepo->find($requestMembership['paypal_membership_id']);
                 $this->createOrUpdateMembershipTable($membership);
                 //insert activity
-                $mensaje['payment-message'] = 'Gracias por la compra de la membresía '.$membership->name;
-                event(new ClientActivity(Auth::user()->id, 'Gracias por la compra de la membresía ' .$membership->name));
+                $mensaje['payment-message'] = Lang::get('paypal.thanks_buy_membership') .' '.$membership->name;
+                event(new ClientActivity(Auth::user()->id, Lang::get('paypal.thanks_buy_membership').' '.$membership->name));
             }
 
             /** it's all right **/
@@ -285,7 +285,7 @@ class PaypalController extends Controller
             return redirect()->route('website.account')->with($mensaje);
         }
         $mensaje['payment-type'] = 'error';
-        $mensaje['payment-message'] = 'Ocurrió un error en la transacción con Paypal.';
+        $mensaje['payment-message'] = Lang::get('paypal.paypal_error_connection.paypal_error_transaction');
         return redirect()->route('website.account')->with($mensaje);
     }
 

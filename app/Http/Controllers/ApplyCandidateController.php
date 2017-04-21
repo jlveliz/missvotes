@@ -187,7 +187,7 @@ class ApplyCandidateController extends Controller
                 /** exit; **/
             } else {
                $mensaje['payment-type'] = 'error';
-                $mensaje['payment-message'] = 'Ocurrió un error.';
+                $mensaje['payment-message'] = Lang::get('paypal.general_error');
                return redirect()->url("pay.paypal.aplication.status")->with($mensaje);
                 /** die('Some error occur, sorry for inconvenient'); **/
             }
@@ -209,7 +209,7 @@ class ApplyCandidateController extends Controller
             return redirect()->away($redirectUrl);
         }
         $mensaje['payment-type'] = 'error';
-        $mensaje['payment-message'] = 'Ocurrió un error de conexión con Paypal.';
+        $mensaje['payment-message'] = Lang::get('paypal.paypal_error_connection');
         return redirect()->url("apply/aplication-process#pay")->with($mensaje);
         
     }
@@ -223,7 +223,7 @@ class ApplyCandidateController extends Controller
         session()->forget('paypal_payment_id');
         if (empty($request->get('PayerID')) || empty($request->get('token'))) {
             $mensaje['payment-type'] = 'error';
-            $mensaje['payment-message'] = 'Ocurrió un error en la transacción con Paypal.';
+            $mensaje['payment-message'] =  Lang::get('paypal.paypal_error_transaction');
             return redirect()->to('apply/aplication-process#pay')->with($mensaje);
         }
         $payer = Paypalpayment::payer();
@@ -249,12 +249,12 @@ class ApplyCandidateController extends Controller
              /** it's all right **/
             /** Here Write your database logic like that insert record or value in database if you want **/
             $mensaje['payment-type'] = 'success';
-            $mensaje['payment-message'] = 'Gracias por su pago, por favor llene el formulario de inscripción';
+            $mensaje['payment-message'] = Lang::get('paypal.pay_apply');
             return redirect()->to('apply/aplication-process#aplication')->with($mensaje);
         }
 
         $mensaje['payment-type'] = 'error';
-        $mensaje['payment-message'] = 'Ocurrió un error en la transacción con Paypal.';
+        $mensaje['payment-message'] = Lang::get('paypal.error_pay_apply');;
         return redirect()->to('apply/aplication-process#pay')->with($mensaje);
 
     }

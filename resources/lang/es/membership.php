@@ -22,4 +22,6 @@ return [
 	'txt_prem_sus' => 'Si quieres que tu candidata favorita esté mas cerca de la corona internacional, tienes la opción de suscribirte en categoría premium, lo cual te permitirá votar una sola vez al día, es decir cada 24 horas,  pero tu votación diaria equivaldrá a 3 puntos.',
 	'adi_txt' => 'La candidata que acumule mas puntos, entrará directamente al top 12.',
 
+	'thanks_premium_membership' => 'Gracias por ser parte de nuestra familia Premium',
+
 ];

@@ -22,4 +22,6 @@ return [
 	'txt_prem_sus' => 'If you want your favorite candidate to be closer to the international crown, you have the option to subscribe in the premium category, which will allow you to vote once a day but your daily vote will equal 3 points.',
 	'adi_txt' => 'The candidate who accumulates more points, will enter directly to the top 12.',
 
+	'thanks_premium_membership' => 'Thank you for being part of our Premium family.',
+
 ];

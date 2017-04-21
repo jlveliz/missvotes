@@ -38,7 +38,7 @@ return [
 	'lbl_done' => '¡Felicitaciones! Su inscripción está completa.',
 	'lbl_last-message' => 'Su número de identificación de casting y toda la información que necesita saber fue enviada a su correo electrónico. Compruébelo y buena suerte. ¡Te esperamos!.',
 
-	'thanks_subscribe' => 'Thank you for signing up', 
+	'thanks_subscribe' => 'Gracias por subscibirse', 
 	'error_subscribe' => 'Su formulario no pudo ser procesado, intente nuevamente',
 
 ];

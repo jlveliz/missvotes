@@ -106,6 +106,16 @@
             </div>
         </div>
     @endforeach
+    @if (Auth::user()->client->current_membership())
+        <div class="col-xs-12 col-md-6" style="padding-top: 25%">
+            <div class="text-center">
+                <img style="width: 70%" src="{{ asset('public/images/logo_square.png') }}" alt="{{ config('app.name') }}" title="{{ config('app.name') }}">
+            </div>
+            <div class="row">
+                <h5 class="text-center">{{ trans('membership.thanks_premium_membership') }}</h5>
+            </div>
+        </div>
+    @endif
 </div>
 
 <div class="col-md-4">
