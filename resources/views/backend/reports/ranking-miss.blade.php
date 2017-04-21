@@ -1,5 +1,3 @@
-@extends('layouts.backend')
-@section('content')
 <div class="panel panel-default">
   <div class="panel-heading">Ranking</div>
   <div class="panel-body">
@@ -23,18 +21,3 @@
   	</table>
   </div>
 </div>
-@endsection
-
-@section('js')
-<script type="text/javascript">
-  $(document).ready(function(){
-      // $('#ranking-datatable').DataTable({
-      //   "language": {
-      //     "url": "../public/js/datatables/json/es.json",
-      //   },
-      //   "order": [[ 2, "desc" ]],
-      //   "ordering": false,
-      // });
-  });
- </script>
-@endsection
