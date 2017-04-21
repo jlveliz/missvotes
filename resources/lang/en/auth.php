@@ -12,11 +12,11 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-    'login_title' => 'Log in',
+    'login_title' => 'Log in / Iniciar Sesión',
     'login_fields' => [
-        'email' => 'Email',
-        'password' => 'Password',
-        'remember_me' => 'Remember me'
+        'email' => 'Email / Correo Electrónico',
+        'password' => 'Password / Contraseña',
+        'remember_me' => 'Remember me / Recordarme'
     ],
     'login_options' => [
         'login_button' => 'Log in',

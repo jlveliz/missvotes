@@ -133,7 +133,7 @@ class ClientRepository implements ClientRepositoryInterface
 
 	public function countUserMemberships() 
 	{
-		return Client::selectRaw('membership.name,membership_client.membership_id as membership, count(*) AS counter')
+		return Client::selectRaw("membership_client.membership_id as membership, count(*) AS counter")
 				->leftJoin('membership_client','user.id','=','membership_client.client_id')
 				->leftJoin('membership','membership.id','=','membership_client.membership_id')
 				->where('user.is_admin',(new Client())->getInactive())

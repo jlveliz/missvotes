@@ -12,7 +12,7 @@
 	  		@foreach ($countUserMemberships as $index =>  $userMembership)
 	  	 		<tr>
 	  	 			<td>
-	  	 				{{ !$userMembership->name ? 'Free' : $userMembership->name}}
+	  	 				{{ !$userMembership->membership ? 'Free' : 'Premium' }}
 	  	 			</td>
 	  	 			<td>
 	  	 				{{$userMembership->counter}}
