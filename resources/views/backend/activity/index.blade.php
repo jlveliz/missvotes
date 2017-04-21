@@ -3,12 +3,12 @@
 <div class="panel panel-default">
   <div class="panel-heading">Candidatas</div>
   <div class="panel-body">
-  	<caption>Listado de actividades de clientes </caption>
+  	<caption>@lang('activities.tittle_lbl') </caption>
   	<table id="activity-datatable" class="table table-bordered">
   		<thead>
 	  		<tr>
-	  			<th>Evento</th>
-	  			<th>Fecha de evento</th>
+	  			<th>@lang('activities.lbl_event')</th>
+	  			<th>@lang('activities.lbl_devent')</th>
 	  		</tr>
   		</thead>
   		<tbody>
