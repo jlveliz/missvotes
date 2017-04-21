@@ -192,7 +192,7 @@
 					   							<option value="brochure" @if( (isset($precandidate) && $precandidate->how_did_you_hear_about_us == 'brochure') || old('how_did_you_hear_about_us') == 'brochure') selected @endif>Brochure</option>
 					   							<option value="facebook"  @if( (isset($precandidate) && $precandidate->how_did_you_hear_about_us == 'facebook') || old('how_did_you_hear_about_us') == 'facebook') selected @endif>Facebook</option>
 					   							<option value="friend" @if( (isset($precandidate) && $precandidate->how_did_you_hear_about_us == 'friend') || old('how_did_you_hear_about_us') == 'friend') selected @endif>Friend</option>
-					   							<option value="former_constentant" @if( (isset($precandidate) && $precandidate->how_did_you_hear_about_us == 'former_constentant') || old('how_did_you_hear_about_us') == 'former_constentant') selected @endif>Former Constentant</option>
+					   							<option value="former_contestant" @if( (isset($precandidate) && $precandidate->how_did_you_hear_about_us == 'former_contestant') || old('how_did_you_hear_about_us') == 'former_contecostumetant') selected @endif>Former Contestant</option>
 					   							<option value="online_ad"  @if( (isset($precandidate) && $precandidate->how_did_you_hear_about_us == 'online_ad') || old('how_did_you_hear_about_us') == 'online_ad') selected @endif>Online AD</option>
 					   							<option value="school_teacher" @if( (isset($precandidate) && $precandidate->how_did_you_hear_about_us == 'school_teacher') || old('how_did_you_hear_about_us') == 'school_teacher') selected @endif>School Teacher/Coach</option>
 					   							<option value="website_google" @if( (isset($precandidate) && $precandidate->how_did_you_hear_about_us == 'website_google') || old('how_did_you_hear_about_us') == 'website_google') selected @endif>Website / Google Search</option>
@@ -202,7 +202,7 @@
 					   				</div>
 
 					   				<div class="form-group @if($errors->has('height')) has-error @endif">
-					   					<label class="control-label col-sm-6 col-md-6" for="height">@lang('form_process_apply.size')</label>
+					   					<label class="control-label col-sm-6 col-md-6" for="height">@lang('form_process_apply.lbl_size')</label>
 					   					<div class="col-sm-2 col-md-2">
 					   						<select name="height_type_measure" id="height_type_measure" class="form-control" @if(isset($precandidate)) disabled @endif>
 					   							<option value="cm" @if( (isset($precandidate) && $precandidate->height_type_measure == 'cm') || old('height_type_measure') == 'cm') selected @endif>cm</option>
@@ -304,7 +304,7 @@
 					   				</div>
 
 					   				<div class="form-group @if($errors->has('why_would_you_win')) has-error @endif">
-					   					<label class="col-sm-6 col-md-6 control-label" for="why_would_you_win">@lang('form_process_apply.lbl_win') {{config('app.name')}} ? </label>
+					   					<label class="col-sm-6 col-md-6 control-label" for="why_would_you_win">@lang('form_process_apply.lbl_win')</label>
 					   					<div class="col-sm-6 col-md-6">
 					   						<textarea class="form-control" name="why_would_you_win" id="why_would_you_win" @if(isset($precandidate)) disabled @endif rezise>{{ isset($precandidate)  ? $precandidate->why_would_you_win :  old('why_would_you_win')}}</textarea>
 					   						@if ($errors->has('why_would_you_win')) <p class="help-block">{{ $errors->first('why_would_you_win') }}</p> @endif
