@@ -121,6 +121,7 @@ return [
     ],
     'activation_success_message' => 'The account has been successfully activated.',
     'activation_error_message' => 'Account could not be activated.',
+    'activation_loading' => 'Loading...',
 
 
     /***

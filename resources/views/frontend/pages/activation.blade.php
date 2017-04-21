@@ -21,7 +21,7 @@
 			<div class="col-md-6 col-md-offset-3 alert alert-dismissible @if($flagData['tipo_mensaje'] == 'success') alert-info  @endif @if($flagData['tipo_mensaje'] == 'error') alert-danger  @endif" role="alert" >
 				<p class="text-center"><strong>{{$flagData['mensaje']}}</strong></p>
 				<p class="text-center"><i class="fa fa-spinner fa-spin fa-1x fa-fw"></i>
-				<span class="sr-only">Cargando...</span></p>
+				<span class="sr-only">{{ trans('auth.activation_loading') }}</span></p>
 			</div>
 		</div>
 	</div>

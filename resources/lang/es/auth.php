@@ -120,6 +120,7 @@ return [
     ],
     'activation_success_message' => 'La cuenta ha sido activada correctamente.',
     'activation_error_message' => 'La cuenta no pudo ser activada.',
+    'activation_loading' => 'Cargando...',
 
   /***
     /
