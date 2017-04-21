@@ -14,13 +14,7 @@
                         <h1>
                             $0.00<span class="subscript"></span></h1>
                     </div>
-                    <table class="table">
-                        <tr>
-                            <td>
-                                <b>@lang('membership.lbl_membership_lbl'): </b> 1 @lang('membership.tm_membership_lbl')
-                            </td>
-                        </tr>
-                        
+                    <table class="table">                        
                         <tr>
                             <td class="text-justify">
                             @lang('membership.includes_membership_lbl'):
