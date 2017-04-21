@@ -35,7 +35,7 @@ return [
     / REGISTER
     /
     ***/
-
+        
     'register_title' => 'Subscribe',
     'register_fields' => [
         'email' => 'Email',
