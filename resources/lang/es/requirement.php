@@ -9,7 +9,7 @@ return [
 	'txt_03' => 'Conocer la historia, situación económica y política de su país.',
 	'txt_04' => 'Tener edad entre 18 a 28 años: La candidata debe tener 18 años o tenerlo antes del evento. La candidata debe tener 28 años de edad al iniciar el evento y cumplir 29 años antes de octubre del año siguiente.',
 	'txt_05' => 'Tener estudio mínimo: Preparatoria (High School) o equivalente',
-	'txt_06' => 'Tener estatura mínima sin zapatos:  5.7 ft / 1.70 cm (no menos que la estatura aquí establecida)',
+	'txt_06' => 'Tener estatura mínima sin zapatos:  5.5 ft / 1.65 cm (no menos que la estatura aquí establecida)',
 	'txt_07' => 'Tener hermosa armonía estética de rostro y cuerpo. ',
 	'txt_08' => 'Gozar de perfecta salud física y mental.',
 	'txt_09' => 'Tener el peso proporcionado de acuerdo a su estatura.',

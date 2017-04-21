@@ -243,7 +243,7 @@ class PaypalController extends Controller
         Session::forget('paypal_payment_id');
         if (empty($request->get('PayerID')) || empty($request->get('token'))) {
             $mensaje['payment-type'] = 'error';
-            $mensaje['payment-message'] = Lang::get('paypal.paypal_error_connection.paypal_error_transaction');
+            $mensaje['payment-message'] = Lang::get('paypal.paypal_error_transaction');
             return redirect()->route('website.account')->with($mensaje);
         }
         $payer = Paypalpayment::payer();
@@ -267,7 +267,7 @@ class PaypalController extends Controller
                 $ticket = $this->ticketRepo->find($requestTicket['paypal_ticket_id']);
                 $this->createUserTicket($ticket);
                 //insert activity
-                event(new ClientActivity(Auth::user()->id, 'ha comprado un ticket ' .$ticket->name));
+                event(new ClientActivity(Auth::user()->id, 'Has bought a ' .$ticket->name));
                 $mensaje['payment-message'] = 'Gracias por la compra de un ticket '. $ticket->name;
             } 
 
@@ -289,7 +289,7 @@ class PaypalController extends Controller
             // return redirect()->route('website.account')->with($mensaje);
         }
         $mensaje['payment-type'] = 'error';
-        $mensaje['payment-message'] = Lang::get('paypal.paypal_error_connection.paypal_error_transaction');
+        $mensaje['payment-message'] = Lang::get('paypal.paypal_error_transaction');
         // return redirect()->route('website.account')->with($mensaje);
         return redirect()->away('http://www.misspanamint.com/login/')->with($mensaje);
     }

@@ -8,11 +8,12 @@
         <h2>{{config('app.name')}}</h2>
         
         <div>
-            Bienvenidos al certamen de belleza mas importante en California, Estados Unidos.
-            Gracias por registrarse. Ahora solo debe activar su cuenta para que pueda conocer mas sobre nosotros y por supuesto para votar por tu candidata favorita.<br> 
-            <a href="{{ URL::to('auth/activate/' . $confirmation_code) }}" target="_blank">Activar Cuenta</a>
+            <p>{{ trans('email.verify.welcome') }}</p>
+            <br>
+            {{ trans('email.verify.thanks') }}<br> 
+            <a href="{{ URL::to('auth/activate/' . $confirmation_code) }}" target="_blank">{{ trans('email.verify.activate_button') }}</a>
             <br/>
-            <small>Si prefiere copie el siguiente enlace y peguelo en su navegador <br> 
+            <small>{{ trans('email.verify.if_prefeer') }} <br> 
                 {{ URL::to('auth/activate/' . $confirmation_code) }}
             </small>
         </div>

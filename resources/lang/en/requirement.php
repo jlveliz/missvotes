@@ -9,7 +9,7 @@ return [
 	'txt_03' => 'Know the history, economic and political situation of her country.',
 	'txt_04' => 'Age 18 to 28 years: The candidate must be 18 years or have it before the event. The candidate must be 28 years old when starting the event and turn 29 years before October of the following year.',
 	'txt_05' => 'Minimum study: High School or equivalent.',
-	'txt_06' => 'Minimum height without footwear: 5.7 ft. / 1.70 cm (not less than the height established here)',
+	'txt_06' => 'Minimum height without footwear: 5.5 ft. / 1.65 cm (not less than the height established here)',
 	'txt_07' => 'Beautiful aesthetic harmony of face and body',
 	'txt_08' => 'Enjoy perfect physical and mental health.',
 	'txt_09' => 'Weight provided according to her height.',

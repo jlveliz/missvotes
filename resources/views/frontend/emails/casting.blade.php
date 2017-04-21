@@ -6,17 +6,28 @@
     <body>
        <img src="{{ asset('public/images/queen-mini.png') }}" alt="{{config('app.name')}}" title="{{config('app.name')}}">
         <h2>{{config('app.name')}}</h2>
-        
+        <br>
+        <br>
         <div>
-            <p>Hola <b>{{$precandidate->name}} {{$precandidate->last_name}}</b>, Gracias por embarcarse en este nuevo sueño de ser la futura reina <b>{{config('app.name')}}</b>.<br>
-            A continuación detallamos sus datos de inscripción.</p>
-            <table style="border:none">
-                <tbody>
-                    <tr>
-                        <td><b>Código de Inscripción: </b> {{$precandidate->code}} </td>
-                    </tr>
-                </tbody>
-            </table>
+            <p>{{ trans('email.casting.hi') }} <b>{{$precandidate->name}} {{$precandidate->last_name}}</b>, {{ trans('email.casting.thanks') }} <b> {{ trans('email.casting.welcome') }}</p>
+            <br>
+            <br>
+            <h2>{{ trans('email.casting.casting_code') }} {{ $precandidate->code }}</h2>
+            <br>
+            <br>
+
+            <p>{{ trans('email.casting.title_data') }}</p>
+
+            <br>
+            <br>
+
+            <p><u>{{ trans('email.casting.place') }}</u></p>
+            <p>Moda 2000 <br> 845 N. Euclid St. Anaheim CA 92801</p>
+
+            <br>
+            <br>
+            <p><u>{{ trans('email.casting.days_hours_casting') }}</u></p>
+            
         </div>
 
     </body>

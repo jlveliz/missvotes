@@ -272,9 +272,9 @@
   	$.fn.dataTable.moment( 'dddd, MMMM Do, YYYY' );
 
       $('#activity-datatable').DataTable({
-        "language": {
-          "url": "../public/js/datatables/json/es.json"
-        },
+        // "language": {
+        //   "url": "../public/js/datatables/json/es.json"
+        // },
         "order": [[ 1, "desc" ]],
       });
 

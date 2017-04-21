@@ -109,10 +109,10 @@ class VoteController extends Controller
                 //insert activity
 
                 if ($request->has('ticket_id')) {
-                    event(new ClientActivity(Auth::user()->id, 'ha usado un ticket '.$data['type']));  
+                    event(new ClientActivity(Auth::user()->id, 'has been used a ticket '.$data['type']));  
                 }
 
-                event(new ClientActivity(Auth::user()->id, 'ha votado '.$vote->value.' puntos por '.$vote->miss->name.' '.$vote->miss->last_name.''));
+                event(new ClientActivity(Auth::user()->id, 'Has voted '.$vote->value.' puntos por '.$vote->miss->name.' '.$vote->miss->last_name.''));
             }
         } else {
             $sessionData['tipo_mensaje'] = 'error';

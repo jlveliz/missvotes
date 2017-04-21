@@ -70,6 +70,10 @@ return [
         'password_confirmation.required' => 'Por favor repita la contraseña',
     ],
 
+    'register_success' => 'Registro completo!',
+    'register_success_message'=>'Su cuenta se creó correctamente, pero debemos verificar su correo electrónico. Hemos enviado un correo de confirmación a su bandeja de entrada. Simplemente debe hacer clic en el enlace que reciba para activar su cuenta. No olvide buscar también en su bandeja de correos no deseados. ¡Gracias!',
+    'register_success_submit' => 'Aceptar',
+
 
 
 

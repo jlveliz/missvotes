@@ -16,7 +16,7 @@ return [
 	'repeat_pass_data' => 'Repeat New Password',
 	'btn_change_pass_data' => 'Change Password',
 	'membership_tab_data' => 'Membership',
-	'be_btn_data' => 'Be a constestant',
+	'be_btn_data' => 'Be a contestant',
 	'status_apply'=>'View apply status of',
 	'admin_btn_data' => 'Control Panel',
 	'activities_tab_data' => 'My activities',

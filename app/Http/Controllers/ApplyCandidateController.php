@@ -212,9 +212,9 @@ class ApplyCandidateController extends Controller
         }
         $mensaje['payment-type'] = 'error';
         $mensaje['payment-message'] = Lang::get('paypal.paypal_error_connection');
-        return redirect()->url("apply/aplication-process#pay")->with($mensaje);
-        return redirect()->url("apply/aplication-process#pay")->with($mensaje);
-        return redirect()->url("apply/aplication-process#pay")->with($mensaje);
+        return redirect()->away('http://www.misspanamint.com/login/')->with($mensaje);
+        // return redirect()->url("apply/aplication-process#pay")->with($mensaje);
+        // return redirect()->url("apply/aplication-process#pay")->with($mensaje);
         
     }
 
@@ -318,12 +318,12 @@ class ApplyCandidateController extends Controller
             $existApply->save();
             event(new PredidateSubscribed($precandidate));
             // return redirect()->to('apply/aplication-process#status')->with($sessionData);
-            return redirect()->away('http://www.misspanamint.com/login/')->with($mensaje);
+            return redirect()->away('http://www.misspanamint.com/login/')->with($sessionData);
         } else {
             $sessionData['tipo_mensaje'] = 'error';
             $sessionData['mensaje'] = Lang::get('form_process_apply.error_subscribe');
             // return redirect()->to('apply/aplication-process#aplication')->with($sessionData);
-            return redirect()->away('http://www.misspanamint.com/login/')->with($mensaje);
+            return redirect()->away('http://www.misspanamint.com/login/')->with($sessionData);
         }
 
     }

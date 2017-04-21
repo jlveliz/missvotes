@@ -187,7 +187,7 @@
 					   				<div class="form-group @if($errors->has('how_did_you_hear_about_us')) has-error @endif">
 					   					<label class="control-label col-sm-6 col-md-6" for="how_did_you_hear_about_us">@lang('form_process_apply.lbl_heard') </label>
 					   					<div class="col-sm-6 col-md-6">
-					   						<select class="form-control" name="how_did_you_hear_about_us" id="how_did_you_hear_about_us" @if(isset($precandidate)) selected @endif>
+					   						<select class="form-control" name="how_did_you_hear_about_us" id="how_did_you_hear_about_us" @if(isset($precandidate)) disabled @endif>
 					   							<option value="null">--Seleccione--</option>
 					   							<option value="brochure" @if( (isset($precandidate) && $precandidate->how_did_you_hear_about_us == 'brochure') || old('how_did_you_hear_about_us') == 'brochure') selected @endif>Brochure</option>
 					   							<option value="facebook"  @if( (isset($precandidate) && $precandidate->how_did_you_hear_about_us == 'facebook') || old('how_did_you_hear_about_us') == 'facebook') selected @endif>Facebook</option>
@@ -211,7 +211,7 @@
 											@if ($errors->has('height')) <p class="help-block">{{ $errors->first('height') }}</p> @endif
 					   					</div>
 					   					<div class="col-sm-3 col-md-3">
-						   					<input type="number" id="height" step="0.00"  min="1.67" name="height" id="height" class="form-control" value="{{ isset($precandidate)  ? $precandidate->height :  1.67}}"  @if(isset($precandidate)) disabled @endif>
+						   					<input type="text" id="height"  name="height" id="height" class="form-control" value="{{ isset($precandidate)  ? $precandidate->height :  old('height')}}"  @if(isset($precandidate)) disabled @endif>
 							@if ($errors->has('height')) <p class="help-block">{{ $errors->first('height') }}</p> @endif
 					   					</div>
 					   				</div>
@@ -226,7 +226,7 @@
 											@if ($errors->has('weight_type_measure')) <p class="help-block">{{ $errors->first('weight_type_measure') }}</p> @endif
 					   					</div>
 					   					<div class="col-sm-3 col-md-3">
-					   						<input type="number" step="1" min="104" name="weight" id="weight" class="form-control" value="{{ isset($precandidate)  ? $precandidate->weight :  104 }}"  @if(isset($precandidate)) disabled @endif>
+					   						<input type="text" name="weight" id="weight" class="form-control" value="{{ isset($precandidate)  ? $precandidate->weight :  old('weight') }}"  @if(isset($precandidate)) disabled @endif>
 											@if ($errors->has('weight')) <p class="help-block">{{ $errors->first('weight') }}</p> @endif
 					   					</div>
 					   				</div>
@@ -258,7 +258,7 @@
 					   				<div class="form-group @if($errors->has('bust_measure')) has-error @endif">
 					   					<label class="control-label col-sm-6 col-md-6" for="bust_measure">@lang('form_process_apply.lbl_bust')</label>
 					   					<div class="col-sm-3 col-md-3">
-					   						<input type="number" name="bust_measure" id="bust_measure" class="form-control" value="{{ isset($precandidate)  ? $precandidate->bust_measure :  old('bust_measure')}}"  @if(isset($precandidate)) disabled @endif> 
+					   						<input type="number" step="1" min="1" name="bust_measure" id="bust_measure" class="form-control" value="{{ isset($precandidate)  ? $precandidate->bust_measure :  old('bust_measure')}}"  @if(isset($precandidate)) disabled @endif> 
 					   						@if ($errors->has('bust_measure')) <p class="help-block">{{ $errors->first('bust_measure') }} </p> @endif
 					   					</div>
 					   				</div>
@@ -266,7 +266,7 @@
 					   				<div class="form-group @if($errors->has('waist_measure')) has-error @endif">
 					   					<label class="control-label col-sm-6 col-md-6" for="waist_measure">@lang('form_process_apply.lbl_waist')</label>
 					   					<div class="col-sm-3 col-md-3">
-					   						<input type="number" name="waist_measure" id="waist_measure" class="form-control" value="{{ isset($precandidate)  ? $precandidate->waist_measure :  old('waist_measure')}}"  @if(isset($precandidate)) disabled @endif>
+					   						<input type="number" step="1" min="1" name="waist_measure" id="waist_measure" class="form-control" value="{{ isset($precandidate)  ? $precandidate->waist_measure :  old('waist_measure')}}"  @if(isset($precandidate)) disabled @endif>
 					   						@if ($errors->has('waist_measure')) <p class="help-block">{{ $errors->first('waist_measure') }}</p> @endif
 					   					</div>
 					   				</div>
@@ -274,7 +274,7 @@
 					   				<div class="form-group @if($errors->has('hip_measure')) has-error @endif">
 					   					<label class="control-label col-sm-6 col-md-6" for="hip_measure">@lang('form_process_apply.lbl_hip')</label>
 					   					<div class="col-sm-3 col-md-3">
-					   						<input type="number" name="hip_measure" id="hip_measure" class="form-control" value="{{ isset($precandidate)  ? $precandidate->hip_measure :  old('hip_measure')}}"  @if(isset($precandidate)) disabled @endif>
+					   						<input type="number" step="1" min="1" name="hip_measure" id="hip_measure" class="form-control" value="{{ isset($precandidate)  ? $precandidate->hip_measure :  old('hip_measure')}}"  @if(isset($precandidate)) disabled @endif>
 					   						@if ($errors->has('hip_measure')) <p class="help-block">{{ $errors->first('waist_measure') }}</p> @endif
 					   					</div>
 					   				</div>
@@ -475,13 +475,13 @@ $(document).ready(function() {
    		var value = $(this).val();
    		if(value == 'cm') {
    			$("#height").attr({
-   				min: '1.67',
-   				value: '1.67'
+   				// min: '1.67',
+   				// value: '1.67'
    			});
    		} else {
    			$("#height").attr({
-   				min: '5.5',
-   				value: '5.5'
+   				// min: '5.5',
+   				// value: '5.5'
    			});
    		}
    	});	
@@ -500,6 +500,38 @@ $(document).ready(function() {
    			});
    		}
    	});
+
+ //   	 $("#height").keydown(function (e) {
+ //        // Allow: backspace, delete, tab, escape, enter and .
+ //        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+ //             // Allow: Ctrl+A, Command+A
+ //            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || 
+ //             // Allow: home, end, left, right, down, up
+ //            (e.keyCode >= 35 && e.keyCode <= 40)) {
+ //                 // let it happen, don't do anything
+ //                 return;
+ //        }
+ //        // Ensure that it is a number and stop the keypress
+ //        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+ //            e.preventDefault();
+ //        }
+ //    });
+	
+	// $("#weight").keydown(function (e) {
+ //        // Allow: backspace, delete, tab, escape, enter and .
+ //        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+ //             // Allow: Ctrl+A, Command+A
+ //            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || 
+ //             // Allow: home, end, left, right, down, up
+ //            (e.keyCode >= 35 && e.keyCode <= 40)) {
+ //                 // let it happen, don't do anything
+ //                 return;
+ //        }
+ //        // Ensure that it is a number and stop the keypress
+ //        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+ //            e.preventDefault();
+ //        }
+ //    });
 
 
 });

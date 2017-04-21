@@ -70,6 +70,10 @@ return [
         'password_confirmation.required' => 'The :attribute confirmation does not match.',
     ],
 
+     'register_success' => 'Register successful!',
+    'register_success_message'=>'Your account was created successfully but we need to verify your email address. We have sent a confirmation email to your inbox. Simply click on the link you receive in the mail to activate your account. Do not forget to look also in your Spam inbox. Thank you!',
+    'register_success_submit' => 'Ok',
+
 
 
 
