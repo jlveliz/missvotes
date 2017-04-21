@@ -119,6 +119,8 @@ return [
         'email.exists' => 'The selected :attribute is invalid.',
         'email.is_confirmed_account' => 'Your account is confirmed',
     ],
+    'activation_success_message' => 'The account has been successfully activated.',
+    'activation_error_message' => 'Account could not be activated.',
 
 
     /***

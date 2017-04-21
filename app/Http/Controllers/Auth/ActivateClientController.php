@@ -53,10 +53,10 @@ class ActivateClientController extends Controller
         $flagData = [];
         if ($client->save()) {
             $flagData['tipo_mensaje'] = "success";
-            $flagData['mensaje'] = "La cuenta ha sido activada correctamente";
+            $flagData['mensaje'] = Lang::get('auth.activation_success_message');
         } else {
             $flagData['tipo_mensaje'] = "error";
-            $flagData['mensaje'] = "La cuenta ha sido activada correctamente";
+            $flagData['mensaje'] = Lang::get('auth.activation_error_message');
         }
 
         return view('frontend.pages.activation',['flagData'=>$flagData]);

@@ -29,7 +29,7 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			window.setTimeout(function() {
-				window.location.href = '{{url("/")}}';
+				window.location.href = 'http://www.misspanamint.com/login/';
 			}, 3000);
 		});
 	</script>

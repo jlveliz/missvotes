@@ -118,6 +118,8 @@ return [
         'email.exists' => 'El correo Electrónico ya pertenece a Usuario',
         'email.is_confirmed_account' => 'Su cuenta ya ha sido confirmada',
     ],
+    'activation_success_message' => 'La cuenta ha sido activada correctamente.',
+    'activation_error_message' => 'La cuenta no pudo ser activada.',
 
   /***
     /

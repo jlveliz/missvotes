@@ -3,6 +3,7 @@
 namespace MissVote\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Lang;
 
 class PrecandidateRequest extends FormRequest
 {
@@ -66,39 +67,6 @@ class PrecandidateRequest extends FormRequest
     public function messages()
     {
         
-        return [
-            'name.required' => 'Escriba sus nombres por favor',
-            'last_name.required' => 'Escriba sus apellidos por favor',
-            'is_precandidate.required' => 'la precandidatura es requerida',
-            'country_id.required' => 'El País es requerido',
-            'country_id.exists' => 'El País que intenta ingresar no existe',
-            // 'state.required' => 'El estado es requerida',
-            // 'state.integer' => 'El estado es inválido',
-            'birthdate.required' => 'Ingrese una fecha de nacimiento',
-            'birthdate.date' => 'La fecha de nacimiento es inválida',
-            'placebirth.required'=>'Ingrese un lugar de nacimiento',
-            'email.required'=>'Ingrese un correo electrónico',
-            'email.email' => 'EL correo electrónico es inválido',
-            'phone_number.required'=>'Ingrese un número telefónico por favor', 
-            'how_did_you_hear_about_us.required'=>'Por favor ingrese ',
-            'how_did_you_hear_about_us.not_in'=>'Por favor ingrese una forma de como escuchó de nosotros ',
-            'height.required' => 'Ingrese una altura',
-            'weight.required' => 'Ingrese un peso',
-            'address.required'=>'Ingrese una dirección',
-            'city.required'=>'Ingrese una ciudad',
-            'state_province.required'=>'Ingrese un estado o provincia',
-            'bust_measure.required' => 'Ingrese una medida de busto',
-            'bust_measure.integer' => 'Ingrese una medida de busto valida', 
-            'waist_measure.required' => 'Ingrese una medida de cintura',
-            'waist_measure.integer' => 'Ingrese una medida de cintura valida',
-            'hip_measure.required' => 'Ingrese una meddida de cadera',
-            'hip_measure.integer' => 'Ingrese una meddida de cadera válida',
-            'hair_color.required'=>'Ingrese un color de cabello',
-            'eye_color.required'=>'Ingrese un color de ojos',
-            'dairy_philosophy.required'=>'Ingrese una filosofía diaria',
-            'why_would_you_win.required'=>'Ingrese porque le gustaría Ganar '.config('app.name'),
-            'g-recaptcha-response.required' => 'Valide si usted es humano'  
-
-        ];
+        return Lang::get('precandidate');
     }
 }
