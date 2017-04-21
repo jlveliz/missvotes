@@ -12,14 +12,14 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-    'login_title' => 'Login',
+    'login_title' => 'Log in',
     'login_fields' => [
         'email' => 'Email',
         'password' => 'Password',
         'remember_me' => 'Remember me'
     ],
     'login_options' => [
-        'login_button' => 'Login',
+        'login_button' => 'Log in',
         'go_register' => 'Subscribe',
         'forgot_password' => 'Forgot your password?',
         'code_not_recivied' => "Didn't recieve the activation code?"
@@ -49,7 +49,7 @@ return [
     ],
     'register_options' => [
         'register' => 'Subscribe',
-        'login' => 'Login'
+        'login' => 'Log in'
     ],
 
     'validations_register' => [
