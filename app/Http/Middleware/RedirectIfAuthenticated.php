@@ -23,6 +23,10 @@ class RedirectIfAuthenticated
             } else {
                 return redirect('backend/login');
             }
+        } else {
+            if (Auth::guard()->check()) {
+                return redirect('/account');
+            }
         }
 
         return $next($request);

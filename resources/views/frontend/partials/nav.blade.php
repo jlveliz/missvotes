@@ -41,6 +41,28 @@
              <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
                 
+                @if (Auth::user()->is_admin)
+                    <li>
+                        <a href="{{ route('dashboard') }}" title="{{ trans('app.go_administration') }}">{{ trans('app.go_administration') }}</a>
+                    </li>
+                @else 
+                    <li>
+                        <a href="{{ route('website.account') }}" title="{{ trans('app.my_account') }}">{{ trans('app.my_account') }}</a>
+                    </li>
+                @endif
+
+                <li>
+                    <a href="{{ url('auth/logout') }}"
+                        onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                        {{ trans('app.logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ url('auth/logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                </li>
+
                 @if (App::isLocale('en'))
                     <li>
                         <form action="{{ route('website.locale') }}">
@@ -61,34 +83,16 @@
                     </li>
                 @endif
 
-                <li class="dropdown">
+               {{--  <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         {{ Auth::user()->name }} {{ Auth::user()->last_name }}<span class="caret"></span>
                     </a>
 
                     <ul class="dropdown-menu" role="menu">
-                        @if (Auth::user()->is_admin)
-                            <li>
-                                <a href="{{ route('dashboard') }}" title="{{ trans('app.go_administration') }}">{{ trans('app.go_administration') }}</a>
-                            </li>
-                        @else 
-                            <li>
-                                <a href="{{ route('website.account') }}" title="{{ trans('app.my_account') }}">{{ trans('app.my_account') }}</a>
-                            </li>
-                        @endif
-                        <li>
-                            <a href="{{ url('auth/logout') }}"
-                                onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();">
-                                {{ trans('app.logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ url('auth/logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
-                        </li>
+                      
+                        
                     </ul>
-                </li>
+                </li> --}}
             </ul>
         @endif
     </div><!-- /.navbar-collapse -->

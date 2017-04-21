@@ -57,9 +57,13 @@
 		    		<div class="row" class="section-profile-buttons">
 			    		<div class="text-center">
 			    		@if (Auth::user()->is_admin)
-			    			<a href="{{ route('dashboard') }}" class="btn btn-primary btn-lg" alt="@lang('account_profile.admin_btn_data')" title="Ir a Administración"> <i class="fa fa-code"></i>@lang('account_profile.admin_btn_data')</a>
+			    			<a href="{{ route('dashboard') }}" class="btn btn-primary btn-block btn-lg" alt="@lang('account_profile.admin_btn_data')" title="Ir a Administración"> <i class="fa fa-code"></i>@lang('account_profile.admin_btn_data')</a>
 			    		@else
-			    			<a href="{{ route('apply.requirements') }}" class="btn btn-apply btn-lg" alt="@lang('account_profile.be_btn_data')" title="@lang('account_profile.be_btn_data')">@lang('account_profile.be_btn_data') <br> {{ config('app.name') }}		</a>
+			    			@if (Auth::user()->client->hasApply())
+			    				<a href="{{ route('apply.requirements') }}" class="btn btn-apply btn-block btn-lg" alt="@lang('account_profile.be_btn_data')" title="@lang('account_profile.be_btn_data')">@lang('account_profile.status_apply') <br> {{ config('app.name') }}		</a>
+			    			@else
+			    				<a href="{{ route('apply.requirements') }}" class="btn btn-apply btn-block btn-lg" alt="@lang('account_profile.be_btn_data')" title="@lang('account_profile.be_btn_data')">@lang('account_profile.be_btn_data') <br> {{ config('app.name') }}		</a>
+			    			@endif
 			    		@endif
 			    		</div>
 		    		</div>

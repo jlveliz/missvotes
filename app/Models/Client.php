@@ -78,6 +78,16 @@ class Client extends Authenticatable
         return $this->memberships()->whereRaw("date_format(ends_at,'%Y/%m/%d') >= date_format(now(),'%Y/%m/%d')")->first();
     }
 
+    public function aplies()
+    {
+        return $this->hasMany('MissVote\Models\ClientApplyProcess','client_id');
+    }
+
+    public function hasApply()
+    {
+        return $this->aplies()->first() ? true : false;
+    }
+
     public function activeTickets()
     {
         return  $this->tickets()->select(\DB::raw("count(ticket_vote_id) as counter"),'ticket_vote_id')->where('state','1')->groupBy('ticket_vote_id')->get();

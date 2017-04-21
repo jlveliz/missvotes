@@ -17,6 +17,7 @@ return [
 	'btn_change_pass_data' => 'Change Password',
 	'membership_tab_data' => 'Membership',
 	'be_btn_data' => 'Be a constestant',
+	'status_apply'=>'View apply status of',
 	'admin_btn_data' => 'Control Panel',
 	'activities_tab_data' => 'My activities',
 	'img_btn_data' => 'Change image',

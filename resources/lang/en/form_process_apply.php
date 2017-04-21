@@ -39,6 +39,9 @@ return [
 	'lbl_last-message' => 'Your casting number identification and all the information you need to know was sent to your email. 
 Check it out and good luck. We will wait for you.',
 
+	'thanks_subscribe' => 'Thank you for signing up', 
+	'error_subscribe' => 'Your form could not be processed, try again',
+
 
 
 

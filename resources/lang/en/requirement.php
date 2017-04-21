@@ -3,6 +3,7 @@
 return [
 	
 	'tittle_process' => 'APPLICATION PROCESS',
+	'accept_requirements_message' => 'Please accept the terms and conditions of participation', 
 	'txt_01' => 'Be native of the country she wants to represents.',
 	'txt_02' => 'Must be a female by birth.',
 	'txt_03' => 'Know the history, economic and political situation of her country.',

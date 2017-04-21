@@ -20,6 +20,8 @@ use Carbon\Carbon;
 
 use Auth;
 
+use Lang;
+
 class PaypalController extends Controller
 {
     
@@ -99,7 +101,7 @@ class PaypalController extends Controller
         } catch (\PayPal\Exception\PPConnectionException $ex) {
             if (config('app.debug')) {
                 $mensaje['payment-type'] = 'error';
-                $mensaje['payment-message'] = 'Ocurrió un error de conexión con Paypal.';
+                $mensaje['payment-message'] = Lang::get('paypal.paypal_error_connection');
                return redirect()->route('website.account')->with($mensaje);
                 /** echo "Exception: " . $ex->getMessage() . PHP_EOL; **/
                 /** $err_data = json_decode($ex->getData(), true); **/

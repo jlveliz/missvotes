@@ -14,6 +14,12 @@ class ActivateClientController extends Controller
 {
    
     
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+    
+
     public function showActivationForm()
     {
         return view('frontend.pages.auth.activation');

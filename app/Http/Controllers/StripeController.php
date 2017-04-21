@@ -20,6 +20,8 @@ use Carbon\Carbon;
 
 use Redirect;
 
+use Lang;
+
 use Auth;
 
 class StripeController extends Controller
@@ -55,7 +57,7 @@ class StripeController extends Controller
 
 
 		//make MAGIC!!
-		$subscribed = $user->charge($request->get('amount'),['description'=>"pago de membresía ".$plan->name.""]);
+		$subscribed = $user->charge($request->get('amount'),['description'=>Lang::get('stripe.pay_membership').' '.$plan->name]);
 
 		$mensaje = [
 			'payment-type' => 'success',
@@ -67,12 +69,12 @@ class StripeController extends Controller
 			$this->createOrUpdateMembershipTable($plan);
 
 			//insert activity
-            event(new ClientActivity(Auth::user()->id, 'ha actualizado su membresía a ' .$plan->name));
+            event(new ClientActivity(Auth::user()->id, Lang::get('stripe.update_membership').' '.$plan->name));
 
-			$mensaje['payment-message'] = 'Gracias por la compra de la membresía '. $plan->name;
+			$mensaje['payment-message'] = Lang::get('stripe.thanks_buy_membership').' '. $plan->name;
 		} else {
-			$mensaje['payment-type'] = 'Error';
-			$mensaje['payment-message'] = 'Ocurrió un problema al procesar el pago, intente nuevamente.';
+			$mensaje['payment-type'] = 'error';
+			$mensaje['payment-message'] = Lang::get('stripe.error_buy_membership');
 		}
 		
 

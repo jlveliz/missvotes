@@ -3,6 +3,7 @@
 return [
 	
 	'tittle_process' => 'PROCESO DE APLICACIÓN',
+	'accept_requirements_message' => 'Por favor, acepte los terminos y condiciones de participación', 
 	'txt_01' => 'Ser originaria del país que representa.',
 	'txt_02' => 'Ser mujer de nacimiento.',
 	'txt_03' => 'Conocer la historia, situación económica y política de su país.',

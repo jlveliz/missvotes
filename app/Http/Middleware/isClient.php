@@ -18,8 +18,8 @@ class isClient
     public function handle($request, Closure $next, $guard = null)
     {
         if (!Auth::guard($guard)->check() && !Auth::user()->is_admin) {
-            return redirect('/');
-        }
+            return redirect('/auth/login');
+        } 
 
         return $next($request);
     }

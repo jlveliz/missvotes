@@ -24,6 +24,8 @@ use Auth;
 
 use Carbon\Carbon;
 
+use Lang;
+
 
 class ApplyCandidateController extends Controller
 {
@@ -59,7 +61,7 @@ class ApplyCandidateController extends Controller
     {
 
         $sessionData['type'] = 'error';
-    	$sessionData['message'] = 'Por favor acepte los terminos y condiciones';
+    	$sessionData['message'] = Lang::get('requirement.accept_requirements_message');
     	if ($request->has('acept-terms')) {
     		if ($request->get('acept-terms') == '1') {
     			$dataApply = [
@@ -83,7 +85,7 @@ class ApplyCandidateController extends Controller
     public function aplicationProcess()
     {
     	$sessionData['type'] = 'error';
-    	$sessionData['message'] = 'Por favor, acepte los terminos y condiciones de participación';
+    	$sessionData['message'] = Lang::get('requirement.accept_requirements_message');
         
         $existApply = $this->apply->find(['client_id' => Auth::user()->id]);
 
@@ -178,7 +180,7 @@ class ApplyCandidateController extends Controller
         } catch (\PayPal\Exception\PPConnectionException $ex) {
             if (config('app.debug')) {
                 $mensaje['payment-type'] = 'error';
-                $mensaje['payment-message'] = 'Ocurrió un error de conexión con Paypal.';
+                $mensaje['payment-message'] = Lang::get('paypal.paypal_error_connection');
                return redirect()->route('pay.paypal.aplication.status')->with($mensaje);
                 /** echo "Exception: " . $ex->getMessage() . PHP_EOL; **/
                 /** $err_data = json_decode($ex->getData(), true); **/
@@ -280,11 +282,11 @@ class ApplyCandidateController extends Controller
             /** it's all right **/
             /** Here Write your database logic like that insert record or value in database if you want **/
             $mensaje['payment-type'] = 'success';
-            $mensaje['payment-message'] = 'Gracias por su pago, por favor llene el formulario de inscripción';
+            $mensaje['payment-message'] = Lang::get('stripe.pay_apply');
             return redirect()->to('apply/aplication-process#aplication')->with($mensaje);
         } else {
             $mensaje['payment-type'] = 'error';
-            $mensaje['payment-message'] = 'Ocurrió un error en la transacción con Su tarjeta de crédito.';
+            $mensaje['payment-message'] = Lang::get('stripe.error_pay_apply');
             return redirect()->to('apply/aplication-process#pay')->with($mensaje);
         }
     }
@@ -299,7 +301,7 @@ class ApplyCandidateController extends Controller
         $precandidate = $this->precandidate->save($data);
         $sessionData = [
             'tipo_mensaje' => 'success',
-            'mensaje' => 'Gracias por Inscribirse',
+            'mensaje' => Lang::get('form_process_apply.thanks_subscribe'),
         ];
         if ($precandidate) {
             $existApply = $this->apply->find(['client_id' => Auth::user()->id]);
@@ -309,7 +311,7 @@ class ApplyCandidateController extends Controller
             return redirect()->to('apply/aplication-process#status')->with($sessionData);
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = 'Su formulario no pudo ser procesado, intente nuevamente';
+            $sessionData['mensaje'] = Lang::get('form_process_apply.error_subscribe');
             return redirect()->to('apply/aplication-process#aplication')->with($sessionData);
         }
 

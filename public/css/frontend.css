@@ -438,9 +438,10 @@ hr {
 /*******APPLY ******/
 
 .btn-apply {
-    border-radius: 0PX;
+    border-radius: 0px;
     background: #333333;
     color: #ffffff;
+    font-size: 15px
 }
 
 .btn-apply:hover {
