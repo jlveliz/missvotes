@@ -262,7 +262,7 @@ class ApplyCandidateController extends Controller
         $mensaje['payment-type'] = 'error';
         $mensaje['payment-message'] = Lang::get('paypal.error_pay_apply');;
         // return redirect()->to('apply/aplication-process#pay')->with($mensaje);
-        return redirect()->away('http://www.misspanamint.com/login/')->with($mensaje);
+        return redirect()->away('http://www.misspanamint.com/online-application')->with($mensaje);
 
     }
 
@@ -296,7 +296,7 @@ class ApplyCandidateController extends Controller
             $mensaje['payment-type'] = 'error';
             $mensaje['payment-message'] = Lang::get('stripe.error_pay_apply');
             // return redirect()->to('apply/aplication-process#pay')->with($mensaje);
-            return redirect()->away('http://www.misspanamint.com/login/')->with($mensaje);
+            return redirect()->away('http://www.misspanamint.com/online-application')->with($mensaje);
         }
     }
 
@@ -317,13 +317,13 @@ class ApplyCandidateController extends Controller
             $existApply->process_status = 4;
             $existApply->save();
             event(new PredidateSubscribed($precandidate));
-            // return redirect()->to('apply/aplication-process#status')->with($sessionData);
-            return redirect()->away('http://www.misspanamint.com/login/')->with($sessionData);
+            return redirect()->to('apply/aplication-process#status')->with($sessionData);
+            // return redirect()->away('http://www.misspanamint.com/online-application')->with($sessionData);
         } else {
             $sessionData['tipo_mensaje'] = 'error';
             $sessionData['mensaje'] = Lang::get('form_process_apply.error_subscribe');
-            // return redirect()->to('apply/aplication-process#aplication')->with($sessionData);
-            return redirect()->away('http://misspanamint.com/online-application')->with($sessionData);
+            return redirect()->to('apply/aplication-process#aplication')->with($sessionData);
+            // return redirect()->away('http://misspanamint.com/online-application')->with($sessionData);
         }
 
     }

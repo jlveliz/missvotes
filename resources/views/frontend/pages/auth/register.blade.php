@@ -7,7 +7,6 @@
               <img class="image-responsive"  src="{{ asset('public/images/logo_square.png') }}" alt=" {{config('app.name')}} " title=" {{config('app.name')}} ">
            </div> 
         </div>
-
       <h1 class="text-center">{{ trans('auth.register_title') }}</h1><br>
       <form role="form" action="{{ route('client.register') }}" method="POST">
         {{ csrf_field() }}

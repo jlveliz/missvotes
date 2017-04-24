@@ -17,7 +17,7 @@ return [
 	'btn_change_pass_data' => 'Cambiar contraseña',
 	'membership_tab_data' => 'Membresía',
 	'be_btn_data' => 'Postúlese a Candidata de',
-	'status_apply'=>'Revise el estado de su postulación a',
+	'status_apply'=>'Revise estado de postulación',
 	'admin_btn_data' => 'Ir a administración',
 	'activities_tab_data' => 'Mis actividades',
 	'img_btn_data' => 'Cambiar imágen',

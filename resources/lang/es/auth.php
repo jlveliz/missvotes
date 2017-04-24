@@ -24,6 +24,7 @@ return [
         'forgot_password' => 'Olvidó Su contraseña?',
         'code_not_recivied' => "No recibió el código de Activación?",
         'message_close_session'=> 'Si quiere subscribirse con otro correo electrónico debe primero cerrar su sesión ',
+        'message_app_session'=> 'Para tener acceso a la aplicación en línea debes suscribirte primero / Si ya eres un usuario ingresa a tu cuenta ',
     ],
 
     'failed' => 'Las credenciales no coinciden con nuestros registros.',
