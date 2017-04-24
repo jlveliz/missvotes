@@ -17,11 +17,6 @@
                 {{-- <li >
                     <a href="{{ route('website.account') }}" title="Comprar tickets" @if(Auth::user()->client->current_membership())  class="btn btn-update-membership-or-buy" @endif alt="Comprar tickets">Comprar Tickets</a>
                 </li > --}}
-                @if (!Auth::user()->client->current_membership())
-                    <li>
-                        <a href="{{ route('website.account') }}" title="{{ trans('app.update_membership') }}" alt="{{ trans('app.update_membership') }}">{{ trans('app.update_membership') }}</a>
-                    </li>
-                @endif
                
                 <li>
                     <a href="{{ route('apply.requirements') }}" class="btn btn-update-membership-or-buy"  alt="{{ trans('app.apply_now') }}" title="{{ trans('app.apply_now') }}"> {{ trans('app.apply_now') }}</a>
@@ -77,7 +72,7 @@
                         <form action="{{ route('website.locale') }}">
                             {{-- {{ csrf_field() }} --}}
                             <input type="hidden" name="lang" value="en">
-                            <button  type="submit" class="btn btn-update-membership-or-buy"> Ingles</button>
+                            <button  type="submit" class="btn btn-update-membership-or-buy"> Inglés</button>
                             
                         </form>
                     </li>

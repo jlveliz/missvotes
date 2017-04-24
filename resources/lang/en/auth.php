@@ -22,7 +22,8 @@ return [
         'login_button' => 'Log in',
         'go_register' => 'Subscribe',
         'forgot_password' => 'Forgot your password?',
-        'code_not_recivied' => "Didn't recieve the activation code?"
+        'code_not_recivied' => "Didn't recieve the activation code?",
+        'message_close_session'=> 'If you want to subscribe with another email you must first close your session',
     ],
 
     'failed' => 'These credentials do not match in our records.',
@@ -149,8 +150,24 @@ return [
         'password.min' => 'The :attribute must be at least :min.',
         'password.confirmed' => 'The :attribute confirmation does not match.',
         'password_confirmation.required' => 'The :attribute confirmation does not match.',
-    ]
+    ],
 
+
+    'profile' => [
+        'validations'=>[
+            'password.required_with' => 'The :attribute is required',
+            'password.min' => 'The :attribute must be at least :min.',
+            'repeat_password.same' => 'The Repeat Password and :other must match.',
+            'repeat_password.required_with' => 'The Repeat Password field is required when :values is present.',
+            'photo.required_with'=> 'The :attribute field is required when :values is present.',
+            'photo.image' => 'The :attribute must be an image.'   
+        ],
+        'change_password' => [
+            'cant_change' => 'Your password could not be updated',
+            'change_success' => 'Your Password was updated',
+
+        ],
+    ],
 
 
 ];

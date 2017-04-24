@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
+use MissVote\Events\ClientActivity;
 use Lang;
 
 class ResetClientPasswordController extends Controller
@@ -89,5 +90,19 @@ class ResetClientPasswordController extends Controller
     protected function validationErrorMessages()
     {
         return Lang::get('auth.reset_password_validations');
+    }
+
+
+    /**
+     * Get the response for a successful password reset.
+     *
+     * @param  string  $response
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function sendResetResponse($response)
+    {
+        event(new ClientActivity(Auth::user()->id,'Have changed your password'));  
+        return redirect($this->redirectPath())
+                            ->with('status', trans($response));
     }
 }

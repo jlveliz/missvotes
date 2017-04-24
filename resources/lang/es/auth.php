@@ -22,7 +22,8 @@ return [
         'login_button' => 'Ingresar',
         'go_register' => 'Subscribirse',
         'forgot_password' => 'Olvidó Su contraseña?',
-        'code_not_recivied' => "No recibió el código de Activación?"
+        'code_not_recivied' => "No recibió el código de Activación?",
+        'message_close_session'=> 'Si quiere subscribirse con otro correo electrónico debe primero cerrar su sesión ',
     ],
 
     'failed' => 'Las credenciales no coinciden con nuestros registros.',
@@ -147,7 +148,21 @@ return [
 
 
 
+    'profile' => [
+        'validations'=>[
+            'password.required_with' => 'Por favor ingrese una contraseña',
+            'password.min' => 'Ingrese una contraseña mas larga por favor',
+            'repeat_password.same' => 'La contraseñas no coinciden',
+            'repeat_password.required_with' => 'Por favor ingrese la confirmación de contraseña',
+            'photo.required_with'=> 'Inserte una imagen',
+            'photo.image' => 'Inserte una imagen'   
+        ],
+        'change_password' => [
+            'cant_change' => 'Su contraseña no pudo ser actualizada',
+            'change_success' => 'Su Contraseña fue actualizada',
 
+        ],
+    ],
 
 
 ];
