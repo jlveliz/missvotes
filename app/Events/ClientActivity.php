@@ -17,15 +17,18 @@ class ClientActivity
 
     public $activity;
 
+    public $params;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($userId,$activity)
+    public function __construct($userId,$activity, array $params = null)
     {
         $this->userId = $userId;
         $this->activity = $activity;
+        $this->params = $params;
     }
 
     /**

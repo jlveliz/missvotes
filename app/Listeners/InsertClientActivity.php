@@ -30,6 +30,7 @@ class InsertClientActivity
         $activity = new ModelClientAcitity();
         $activity->client_id = $event->userId;
         $activity->name = $event->activity;
+        $activity->params = serialize($event->params);
         $activity->save();
     }
 }
