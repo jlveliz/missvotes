@@ -79,7 +79,7 @@ class StripeController extends Controller
 		
 
 		// return redirect()->route('website.account')->with($mensaje);
-		return redirect()->away('http://www.misspanamint.com/login/')->with($mensaje);
+		return redirect()->away('http://www.misspanamericaninternational.com/login/')->with($mensaje);
 
 	}
 
@@ -123,7 +123,7 @@ class StripeController extends Controller
 		
 
 		// return redirect()->route('website.account')->with($mensaje);
-		return redirect()->away('http://www.misspanamint.com/login/')->with($mensaje);
+		return redirect()->away('http://www.misspanamericaninternational.com/login/')->with($mensaje);
 	}
 
 
