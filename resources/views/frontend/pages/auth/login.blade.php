@@ -2,14 +2,14 @@
 @section('content')
   <div class="row">
     <div class="col-md-4 col-lg-4 col-xs-12 col-md-offset-4 container-page-auth">
-        <div class="row">
-          <div class="col-md-12 text-center">
+        <div class="col-xs-12 col-md-12">
+          <div class="text-center">
               <img class="image-responsive"  src="{{ asset('public/images/logo_square.png') }}" alt=" {{config('app.name')}} " title=" {{config('app.name')}} ">
            </div> 
         </div>
 
         <h1 class="text-center">@lang('auth.login_title')</h1><br>
-        <div class="row">
+        <div class="col-xs-12 col-md-12">
           <form role="form" action="{{ route('client.login') }}" method="POST">
             {{ csrf_field() }}
             <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
@@ -41,9 +41,10 @@
           </div>
         </div>
     </div>
-    <div class="row">
-      <div class="col-md-3 col-md-offset-7" style="position: absolute;bottom: 16%;left: 15%;">
-            <p class="text-muted text-center">
+    <br>
+    <div class="col-md-12 col-xs-12">
+      <div class="col-md-3 col-md-offset-8">
+            <p class="text-muted text-right">
                 {{ trans('auth.login_options.message_close_session') }}
             </p>
       </div>
