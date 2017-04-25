@@ -8,3 +8,4 @@ Homestead.yaml
 .env
 public/uploads/
 sftp-config.json
+sftp-config-alt.json

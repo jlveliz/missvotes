@@ -14,6 +14,8 @@ use MissVote\RepositoryInterface\TicketVoteRepositoryInterface;
 
 use MissVote\RepositoryInterface\ClientActivityRepositoryInterface;
 
+use MissVote\Events\ClientActivity;
+
 use App;
 
 use Hash;
@@ -23,6 +25,8 @@ use Validator;
 use Redirect;
 
 use Auth;
+
+use Lang;
 
 class WebsiteController extends Controller
 {
@@ -98,14 +102,7 @@ class WebsiteController extends Controller
                 'repeat_password' => 'required_with:repeat_password|same:password',
                 'photo'=> 'required_with|image'
             ],
-            [
-                'password.required_with' => 'La por favor ingrese una contraseña',
-                'password.min' => 'Ingrese una contraseña mas larga por favor',
-                'repeat_password.same' => 'La contraseñas no coinciden',
-                'repeat_password.required_with' => 'Por favor ingrese la confirmación de contraseña',
-                'photo.required_with'=> 'Inserte una imagen',
-                'photo.image' => 'Inserte una imagen'
-            ]);
+            Lang::get('auth.profile.validations'));
 
         $sessionData = [
             'tipo_mensaje' => 'success',
@@ -121,12 +118,14 @@ class WebsiteController extends Controller
         
         if (!$client) {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = 'Su contraseña no pudo ser actualizada';
+            $sessionData['mensaje'] = Lang::get('auth.profile.change_password.cant_change');
         } else {
             if ($request->has('password')) {
                 $client->password = Hash::make($request->get('password'));
-                $sessionData['mensaje'] = 'Su Contraseña fue actualizada';
+                $sessionData['mensaje'] = Lang::get('auth.profile.change_password.change_success');
                 $sessionData['action'] = 'update-password';
+                 event(new ClientActivity(Auth::user()->id,'activity.auth.change_password'));
+
             }
 
             if ($request->hasFile('photo')) {

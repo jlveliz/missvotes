@@ -100,7 +100,7 @@
 					   					<button type="submit" class="btn btn-primary btn-lg btn-block pay-button" data-payment="paypal"><i class="fa fa-paypal"> </i> <b>@lang('form_process_apply.lbl_paypal_')</b></button>
 					   					
 					   				</form>
-					   				<h3>O</h3>
+					   				{{-- <h3>O</h3>
 					   				<form id="pay-stripe-aplication" action="{{ route('pay.stripe.aplication') }}" method="post">
 					   					{{ csrf_field() }}
 					   					<input type="hidden" name="stripeToken" id="stripe-pay-token">
@@ -108,7 +108,7 @@
 					   					<input type="hidden" name="description" value="Pay Apply Process Miss Panamerican Int">
 					   					<button type="button" id="pay-aplication-stripe" class="btn btn-default btn-lg btn-block pay-button" data-email="{{Auth::user()->email}}" data-amount="6000" data-description="Pay Apply Process Miss Panamerican Int"><i class="fa fa-credit-card"> </i> <b>@lang('form_process_apply.lbl_cc_')</b></button>
 					   					
-					   				</form>
+					   				</form> --}}
 					   			</div>
 			   			</div>
 			   			@endif

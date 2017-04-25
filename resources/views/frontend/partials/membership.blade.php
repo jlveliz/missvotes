@@ -85,7 +85,7 @@
                 </div>
                 @if (!Auth::user()->client->current_membership() || !(Auth::user()->client->current_membership()->membership_id ==  $membership->id) )
                     <div class="panel-footer panel-footer-payments">
-                        <button type="button" class="btn btn-sm btn-success pay-membership-with-stripe" data-email="{{Auth::user()->email}}" data-amount="{{ (int) $membership->price.'00'}}" data-membership="{{$membership->id}}" data-description="Pago de Membresia {{$membership->name}}" role="button"> <i class="fa fa-credit-card"></i> Usar Tarjeta</button>
+                        {{-- <button type="button" class="btn btn-sm btn-success pay-membership-with-stripe" data-email="{{Auth::user()->email}}" data-amount="{{ (int) $membership->price.'00'}}" data-membership="{{$membership->id}}" data-description="Pago de Membresia {{$membership->name}}" role="button"> <i class="fa fa-credit-card"></i> Usar Tarjeta</button> --}}
                         <form action="{{ route('website.paypal.subscribe') }}" method="post" style="display: inline">
                             {{ csrf_field() }}
                             <input type="hidden" name="paypal_email" value="{{ Auth::user()->email }}">

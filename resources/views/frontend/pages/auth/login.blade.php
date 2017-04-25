@@ -33,12 +33,20 @@
             <input type="submit" name="login" id="login" class="login btn btn-primary btn-block loginmodal-submit" value="@lang('auth.login_options.login_button')">
           </form>
           
+          
           <div class="login-help">
             <a href="{{ route('client.show.register') }}">@lang('auth.login_options.go_register')</a> - 
             <a href="{{ route('client.show.reset-email') }}">@lang('auth.login_options.forgot_password')</a> - 
             <a href="{{ route('client.show.activate') }}">@lang('auth.login_options.code_not_recivied')</a>
           </div>
         </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-md-offset-7" style="position: absolute;bottom: 16%;left: 15%;">
+            <p class="text-muted text-center">
+                {{ trans('auth.login_options.message_close_session') }}
+            </p>
+      </div>
     </div>
   </div>
     

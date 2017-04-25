@@ -149,7 +149,7 @@ class PrecandidateController extends Controller
             'mensaje' => '',
         ];
         
-        if ($miss) {
+        if ($precandidate) {
             $sessionData['mensaje'] = 'Precandidata Eliminado Satisfactoriamente';
         } else {
             $sessionData['tipo_mensaje'] = 'error';

@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'credits' => 'Todos los derechos reservados.',
+	'credits' => 'Todos los derechos reservados',
 	'update_membership'=>'Actualice su membresía',
 	'apply_now' => 'Postularse',
 	'my_account' => 'Mi Cuenta',

@@ -14,6 +14,8 @@ use MissVote\RepositoryInterface\TicketVoteRepositoryInterface;
 
 use MissVote\Events\ClientActivity;
 
+use Lang;
+
 use Response;
 
 use Redirect;
@@ -109,10 +111,10 @@ class VoteController extends Controller
                 //insert activity
 
                 if ($request->has('ticket_id')) {
-                    event(new ClientActivity(Auth::user()->id, 'has been used a ticket '.$data['type']));  
+                    event(new ClientActivity(Auth::user()->id,'activity.ticket.used'));  
                 }
 
-                event(new ClientActivity(Auth::user()->id, 'Has voted '.$vote->value.' puntos por '.$vote->miss->name.' '.$vote->miss->last_name.''));
+                event(new ClientActivity(Auth::user()->id, 'voted'));
             }
         } else {
             $sessionData['tipo_mensaje'] = 'error';

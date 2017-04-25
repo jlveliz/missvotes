@@ -169,8 +169,8 @@ class PaypalController extends Controller
         // payment approval/ cancellation.
         // $baseUrl = 'http://misses.dev';
         $redirectUrls = Paypalpayment::redirectUrls();
-        $redirectUrls->setReturnUrl("http://www.misspanamint.com/login/")
-            ->setCancelUrl("http://www.misspanamint.com/login/");
+        $redirectUrls->setReturnUrl("http://www.misspanamericaninternational.com/login/")
+            ->setCancelUrl("http://www.misspanamericaninternational.com/login/");
 
 
         // ### Payment
@@ -197,7 +197,7 @@ class PaypalController extends Controller
             	$mensaje['payment-type'] = 'error';
 				$mensaje['payment-message'] = Lang::get('paypal.paypal_error_connection');
                // return redirect()->route('website.account')->with($mensaje);
-                return redirect()->away('http://www.misspanamint.com/login/')->with($mensaje);
+                return redirect()->away('http://www.misspanamericaninternational.com/login/')->with($mensaje);
                 /** echo "Exception: " . $ex->getMessage() . PHP_EOL; **/
                 /** $err_data = json_decode($ex->getData(), true); **/
                 /** exit; **/
@@ -205,7 +205,7 @@ class PaypalController extends Controller
                $mensaje['payment-type'] = 'error';
 				$mensaje['payment-message'] = Lang::get('paypal.general_error');
                // return redirect()->route('website.account')->with($mensaje);
-                return redirect()->away('http://www.misspanamint.com/login/')->with($mensaje);
+                return redirect()->away('http://www.misspanamericaninternational.com/login/')->with($mensaje);
                 /** die('Some error occur, sorry for inconvenient'); **/
             }
         }
@@ -226,7 +226,7 @@ class PaypalController extends Controller
         $mensaje['payment-type'] = 'error';
 		$mensaje['payment-message'] = Lang::get('paypal.paypal_error_connection');
        	// return redirect()->route('website.account')->with($mensaje);
-        return redirect()->away('http://www.misspanamint.com/login/')->with($mensaje);
+        return redirect()->away('http://www.misspanamericaninternational.com/login/')->with($mensaje);
 
 
     }
@@ -267,7 +267,7 @@ class PaypalController extends Controller
                 $ticket = $this->ticketRepo->find($requestTicket['paypal_ticket_id']);
                 $this->createUserTicket($ticket);
                 //insert activity
-                event(new ClientActivity(Auth::user()->id, 'Has bought a ' .$ticket->name));
+                event(new ClientActivity(Auth::user()->id,'activity.ticket.bought'));
                 $mensaje['payment-message'] = 'Gracias por la compra de un ticket '. $ticket->name;
             } 
 
@@ -279,19 +279,19 @@ class PaypalController extends Controller
                 $this->createOrUpdateMembershipTable($membership);
                 //insert activity
                 $mensaje['payment-message'] = Lang::get('paypal.thanks_buy_membership') .' '.$membership->name;
-                event(new ClientActivity(Auth::user()->id, Lang::get('paypal.thanks_buy_membership').' '.$membership->name));
+                event(new ClientActivity(Auth::user()->id,'activity.membership.bought'));
             }
 
             /** it's all right **/
             /** Here Write your database logic like that insert record or value in database if you want **/
             $mensaje['payment-type'] = 'success';
-            return redirect()->away('http://www.misspanamint.com/login/')->with($mensaje);
+            return redirect()->away('http://www.misspanamericaninternational.com/login/')->with($mensaje);
             // return redirect()->route('website.account')->with($mensaje);
         }
         $mensaje['payment-type'] = 'error';
         $mensaje['payment-message'] = Lang::get('paypal.paypal_error_transaction');
         // return redirect()->route('website.account')->with($mensaje);
-        return redirect()->away('http://www.misspanamint.com/login/')->with($mensaje);
+        return redirect()->away('http://www.misspanamericaninternational.com/login/')->with($mensaje);
     }
 
 

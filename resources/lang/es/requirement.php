@@ -17,7 +17,7 @@ return [
 	'txt_11' => 'Nunca haber tenido hijos.',
 	'txt_12' => 'Tener facilidad de expresión corporal y oral.',
 	'txt_13' => 'Contar con pasaporte vigente del país de origen o certificado de nacimiento',
-	'txt_14' => 'Tener buenos modales y que no haber cometido felonías.',
+	'txt_14' => 'Tener buenos modales y no haber cometido felonías.',
 	'txt_15' => 'Desarrollar una idea turística sobre su país de origen.',
 	'txt_16' => 'Estar de acuerdo con las reglas y disciplina del certamen Miss Panamerican International.',
 	'txt_terms' => 'La candidata acepta poseer las características y requisitos mencionados arriba para representar a su país.',
