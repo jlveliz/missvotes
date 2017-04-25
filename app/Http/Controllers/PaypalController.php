@@ -267,7 +267,7 @@ class PaypalController extends Controller
                 $ticket = $this->ticketRepo->find($requestTicket['paypal_ticket_id']);
                 $this->createUserTicket($ticket);
                 //insert activity
-                event(new ClientActivity(Auth::user()->id, 'Has bought a ' .$ticket->name));
+                event(new ClientActivity(Auth::user()->id,'activity.ticket.bought'));
                 $mensaje['payment-message'] = 'Gracias por la compra de un ticket '. $ticket->name;
             } 
 
@@ -279,7 +279,7 @@ class PaypalController extends Controller
                 $this->createOrUpdateMembershipTable($membership);
                 //insert activity
                 $mensaje['payment-message'] = Lang::get('paypal.thanks_buy_membership') .' '.$membership->name;
-                event(new ClientActivity(Auth::user()->id, Lang::get('paypal.thanks_buy_membership').' '.$membership->name));
+                event(new ClientActivity(Auth::user()->id,'activity.membership.bought'));
             }
 
             /** it's all right **/

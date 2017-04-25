@@ -124,7 +124,7 @@ class WebsiteController extends Controller
                 $client->password = Hash::make($request->get('password'));
                 $sessionData['mensaje'] = Lang::get('auth.profile.change_password.change_success');
                 $sessionData['action'] = 'update-password';
-                 event(new ClientActivity(Auth::user()->id,'Have changed your password'));
+                 event(new ClientActivity(Auth::user()->id,'activity.auth.change_password'));
 
             }
 

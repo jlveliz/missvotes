@@ -101,7 +101,7 @@ class ResetClientPasswordController extends Controller
      */
     protected function sendResetResponse($response)
     {
-        event(new ClientActivity(Auth::user()->id,'Have changed your password'));  
+        event(new ClientActivity(Auth::user()->id,'activity.auth.change_password'));  
         return redirect($this->redirectPath())
                             ->with('status', trans($response));
     }

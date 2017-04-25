@@ -69,7 +69,7 @@ class StripeController extends Controller
 			$this->createOrUpdateMembershipTable($plan);
 
 			//insert activity
-            event(new ClientActivity(Auth::user()->id, Lang::get('stripe.update_membership').' '.$plan->name));
+            event(new ClientActivity(Auth::user()->id,'activity.membership.bought');
 
 			$mensaje['payment-message'] = Lang::get('stripe.thanks_buy_membership').' '. $plan->name;
 		} else {
@@ -113,7 +113,7 @@ class StripeController extends Controller
 			$this->createUserTicket($ticket);
 
 			//insert activity
-            event(new ClientActivity(Auth::user()->id, 'ha comprado un ticket ' .$ticket->name));
+            event(new ClientActivity(Auth::user()->id, 'activity.ticket.bought'));
 
 			$mensaje['payment-message'] = 'Gracias por la compra de un ticket '. $ticket->name;
 		} else {

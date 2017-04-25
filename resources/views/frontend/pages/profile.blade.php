@@ -266,7 +266,7 @@
 	  						<tbody>
 	  						@foreach ($activities as $activity)
 	  						<tr>
-	  							<td>{{ $activity->name }}</td>
+	  							<td>{{ trans($activity->name) }}</td>
 	  							<td>{{ $activity->created_at }}</td>
 	  						</tr>
 	  						@endforeach
