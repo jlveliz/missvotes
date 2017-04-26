@@ -34,7 +34,9 @@
 	<div class="row">
 		{{-- tickets --}}
 		<div class="col-md-10 col-xs-8">
-			<h1>Hola Tickets</h1>	
+			@foreach ($paginatedSearchResults as $paginate)
+				{{ $paginate }}
+			@endforeach
 		</div>
 		{{-- cart --}}
 		<div class="col-md-2 col-xs-4">
