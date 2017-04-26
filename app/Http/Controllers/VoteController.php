@@ -114,7 +114,7 @@ class VoteController extends Controller
                     event(new ClientActivity(Auth::user()->id,'activity.ticket.used'));  
                 }
 
-                event(new ClientActivity(Auth::user()->id, 'voted'));
+                event(new ClientActivity(Auth::user()->id, 'voted',['value'=>$vote->value,'candidate'=>$vote->miss->name .' '.$vote->miss->last_name ]));
             }
         } else {
             $sessionData['tipo_mensaje'] = 'error';

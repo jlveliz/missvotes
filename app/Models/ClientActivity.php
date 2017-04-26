@@ -10,9 +10,15 @@ class ClientActivity extends Model
     protected $table = "client_activity";
 
     protected $fillable = [
+    	'client_id',
     	'name',
-    	'client_id'
+    	'params'
     ];
+
+    public function getParamsAttribute($value)
+    {
+        return unserialize($value);
+    }
 
 
     public function client()
