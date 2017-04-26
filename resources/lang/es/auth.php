@@ -151,6 +151,12 @@ return [
 
     'profile' => [
         'validations'=>[
+            'name.required'=>'Su nombre es requerido',
+            'last_name.required'=>'Su apellido es requerido',
+            'country_id.required' => 'El País es requerido',
+            'country_id.exists' =>'El País no existe',
+            'city.required'=>'La ciudad es requerida',
+            'address.required' => 'La dirección es requerida',
             'password.required_with' => 'Por favor ingrese una contraseña',
             'password.min' => 'Ingrese una contraseña mas larga por favor',
             'repeat_password.same' => 'La contraseñas no coinciden',
@@ -163,6 +169,7 @@ return [
             'change_success' => 'Su Contraseña fue actualizada',
 
         ],
+        'update_profile' => 'Perfil Actualizado correctamente',
     ],
 
 

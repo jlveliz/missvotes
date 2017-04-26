@@ -3,6 +3,8 @@
 return [
 	
 	'tab_name' => 'Perfil',
+	'edit_profile'=>'Editar Perfil',
+	'cancel_edit_profile'=>'Cancelar',
 	'personal_data' => 'Información Personal',
 	'name_data' => 'Nombre',
 	'last_name_data' => 'Apellido',
@@ -11,10 +13,11 @@ return [
 	'city_data' => 'Ciudad',
 	'adress_data' => 'Dirección',
 	'last_login_data' => 'Último acceso',
-	'change_pass_data' => 'Cambiar contraseña',
+	'btn_save_data' => 'Guardar',
 	'new_pass_data' => 'Nueva contraseña',
 	'repeat_pass_data' => 'Repetir contraseña nueva',
 	'btn_change_pass_data' => 'Cambiar contraseña',
+	'btn_save_data' => 'Guardar',
 	'membership_tab_data' => 'Membresía',
 	'be_btn_data' => 'Postúlese a Candidata de',
 	'status_apply'=>'Revise estado de postulación',

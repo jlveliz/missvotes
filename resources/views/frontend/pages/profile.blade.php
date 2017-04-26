@@ -68,57 +68,111 @@
 		    		</div>
 		    	</div>
 		    	<div class="col-md-9 col-sm-9 col-xs-12">
-		    		<h4>@lang('account_profile.personal_data')</h4>
-		    		<table class="table table-striped ">
-		    			<tbody>
-		    				<tr>
-		    					<td><b>@lang('account_profile.name_data'): </b> {{Auth::user()->name}}</td>
-		    				</tr>
-		    				<tr>
-		    					<td><b>@lang('account_profile.last_name_data'): </b> {{Auth::user()->last_name}}</td>
-		    				</tr>
-		    				<tr>
-		    					<td><b>@lang('account_profile.email_data'): </b> {{Auth::user()->email}}</td>
-		    				</tr>
-		    				<tr>
-		    					<td><b>@lang('account_profile.country_data'): </b> @if(Auth::user()->client->country) {{Auth::user()->client->country->name}} @else - @endif </td>
-		    				</tr>
-		    				<tr>
-		    					<td><b>@lang('account_profile.city_data'): </b> {{Auth::user()->city}}</td>
-		    				</tr>
-		    				<tr>
-		    					<td><b>@lang('account_profile.adress_data'): </b> {{Auth::user()->address}}</td>
-		    				</tr>
-		    				<tr>
-		    					<td><b>@lang('account_profile.last_login_data'): </b> {{Auth::user()->last_login}}</td>
-		    				</tr>
-		    			</tbody>
-		    		</table>
-		    		<h4>@lang('account_profile.change_pass_data')</h4>
-		    		<form action="{{ route('website.account.update') }}" method="POST">
-		    			@if (Session::has('action') && Session::get('action') == 'update-password')
-    						<div class="alert alert-dismissible @if(Session::get('tipo_mensaje') == 'success') alert-info  @endif @if(Session::get('tipo_mensaje') == 'error') alert-danger  @endif" role="alert">
-      							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-      							{{session('mensaje')}}
-       						</div>
-    						<div class="clearfix"></div>
-   						@endif
-		    			{{ csrf_field() }}
-		    			<div class="form-group col-md-4 col-sm-4 col-xs-12 @if($errors->has('password')) has-error @endif">
-		    				<label class="control-label">@lang('account_profile.new_pass_data') </label>
-							<input type="password" class="form-control" placeholder="@lang('account_profile.new_pass_data')" name="password" value="{{ old('password') }}">
-							@if ($errors->has('password')) <p class="help-block">{{ $errors->first('password') }}</p> @endif
-		    			</div>
-		    			<div class="form-group col-md-4 col-sm-4 col-xs-12 @if($errors->has('repeat_password')) has-error @endif">
-		    				<label class="control-label">@lang('account_profile.repeat_pass_data') </label>
-							<input type="password" class="form-control" placeholder="@lang('account_profile.repeat_pass_data') " name="repeat_password" value="{{ old('repeat_password') }}">
-							@if ($errors->has('repeat_password')) <p class="help-block">{{ $errors->first('repeat_password') }}</p> @endif
-		    			</div>
-		    			<div class="form-group col-md-4 col-sm-4 col-xs-12" style="padding-top: 4px">
-		    				<br>
-		    				<button type="submit" name="submit" class="btn btn-default">@lang('account_profile.btn_change_pass_data')</button>
-		    			</div>
-		    		</form>
+		    		<h4>
+		    			@lang('account_profile.personal_data')
+		    			@if (session()->get('edit-account'))
+		    				<a href="{{ route('website.account.edit') }}" title="{{ trans('account_profile.cancel_edit_profile') }}" alt="{{ trans('account_profile.cancel_edit_profile') }}" class="btn btn-danger pull-right btn-xs"><i class="fa fa-ban"></i> {{ trans('account_profile.cancel_edit_profile') }}</a>
+		    			@else
+		    				<a href="{{ route('website.account.edit') }}" title="{{ trans('account_profile.edit_profile') }}" alt="{{ trans('account_profile.edit_profile') }}" class="btn btn-primary pull-right btn-xs"><i class="fa fa-pencil"></i> {{ trans('account_profile.edit_profile') }}</a>
+		    			@endif 
+		    		</h4>
+		    		@if (Session::has('action'))
+						<div class="alert alert-dismissible @if(Session::get('tipo_mensaje') == 'success') alert-info  @endif @if(Session::get('tipo_mensaje') == 'error') alert-danger  @endif" role="alert">
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+								{{session('mensaje')}}
+							</div>
+						<div class="clearfix"></div>
+	   				@endif
+			    		
+		    		@if (!session()->get('edit-account'))
+			    		<table class="table table-striped ">
+			    			<tbody>
+			    				<tr>
+			    					<td><b>@lang('account_profile.name_data'): </b> {{Auth::user()->name}}</td>
+			    				</tr>
+			    				<tr>
+			    					<td><b>@lang('account_profile.last_name_data'): </b> {{Auth::user()->last_name}}</td>
+			    				</tr>
+			    				<tr>
+			    					<td><b>@lang('account_profile.email_data'): </b> {{Auth::user()->email}}</td>
+			    				</tr>
+			    				<tr>
+			    					<td><b>@lang('account_profile.country_data'): </b> @if(Auth::user()->client->country) {{Auth::user()->client->country->name}} @else - @endif </td>
+			    				</tr>
+			    				<tr>
+			    					<td><b>@lang('account_profile.city_data'): </b> {{Auth::user()->city}}</td>
+			    				</tr>
+			    				<tr>
+			    					<td><b>@lang('account_profile.adress_data'): </b> {{Auth::user()->address}}</td>
+			    				</tr>
+			    				<tr>
+			    					<td><b>@lang('account_profile.last_login_data'): </b> {{Auth::user()->last_login}}</td>
+			    				</tr>
+			    			</tbody>
+			    		</table>
+		    		@else
+		    			<form class="form-horizontal" action="{{ route('website.account.update') }}" method="POST">
+		    				{{ csrf_field() }}
+			    		<div class="form-group @if($errors->has('name')) has-error @endif">
+			    			<label for="name" id="name" class="col-sm-2 control-label text-left"><b>@lang('account_profile.name_data'): </b></label>
+			    			<div class="col-sm-6">
+			    				<input type="text" name="name" id="name" class="form-control" value="{{Auth::user()->name}}">
+			    				@if ($errors->has('name')) <p class="help-block">{{ $errors->first('name') }}</p> @endif
+			    			</div>
+			    		</div>
+
+			    		<div class="form-group @if($errors->has('last_name')) has-error @endif">
+			    			<label for="last_name" class="col-sm-2 control-label text-left"><b>@lang('account_profile.last_name_data'): </b></label>
+			    			<div class="col-sm-6">
+			    				<input type="text" name="last_name" id="last_name" class="form-control" value="{{Auth::user()->last_name}}">
+			    				@if ($errors->has('last_name')) <p class="help-block">{{ $errors->first('last_name') }}</p> @endif
+			    			</div>
+			    		</div>
+
+			    		<div class="form-group @if($errors->has('country_id')) has-error @endif">
+			    			<label for="country_id" class="col-sm-2 control-label text-left"><b>@lang('account_profile.country_data'): </b></label>
+			    			<div class="col-sm-6">
+			    				<select name="country_id" id="country_id" class="form-control">
+			    					@foreach ($countries as $country)
+			    						<option value="{{ $country->id }}" @if($country->id == Auth::user()->country_id) selected @endif>{{ $country->name }}</option>	
+			    					@endforeach
+			    				</select>
+			    				@if ($errors->has('country_id')) <p class="help-block">{{ $errors->first('country_id') }}</p> @endif
+			    			</div>
+			    		</div>
+
+			    		<div class="form-group @if($errors->has('city')) has-error @endif">
+			    			<label for="city" class="col-sm-2 control-label text-left"><b>@lang('account_profile.city_data'): </b></label>
+			    			<div class="col-sm-6">
+			    				<input type="text" name="city" id="city" class="form-control" value="{{Auth::user()->city}}">
+			    				@if ($errors->has('city')) <p class="help-block">{{ $errors->first('city') }}</p> @endif
+			    			</div>
+			    		</div>
+
+			    		<div class="form-group @if($errors->has('address')) has-error @endif">
+			    			<label for="address" class="col-sm-2 control-label text-left"><b>@lang('account_profile.adress_data'): </b></label>
+			    			<div class="col-sm-6">
+			    				<input type="text" name="address" id="address" class="form-control" value="{{Auth::user()->address}}">
+			    				@if ($errors->has('address')) <p class="help-block">{{ $errors->first('address') }}</p> @endif
+			    			</div>
+			    		</div>
+			    		<h4>@lang('account_profile.change_pass_data')</h4>
+			    			<div class="form-group col-md-4 col-sm-4 col-xs-12 @if($errors->has('password')) has-error @endif" style="margin-right: 15px!important">
+			    				<label class="control-label">@lang('account_profile.new_pass_data') </label>
+								<input type="password" class="form-control" placeholder="@lang('account_profile.new_pass_data')" name="password" value="{{ old('password') }}">
+								@if ($errors->has('password')) <p class="help-block">{{ $errors->first('password') }}</p> @endif
+			    			</div>
+			    			<div class="form-group col-md-4 col-sm-4 col-xs-12 @if($errors->has('repeat_password')) has-error @endif" style="margin-right: 15px!important">
+			    				<label class="control-label">@lang('account_profile.repeat_pass_data') </label>
+								<input type="password" class="form-control" placeholder="@lang('account_profile.repeat_pass_data') " name="repeat_password" value="{{ old('repeat_password') }}">
+								@if ($errors->has('repeat_password')) <p class="help-block">{{ $errors->first('repeat_password') }}</p> @endif
+			    			</div>
+			    			<div class="form-group col-md-12 col-xs-12 text-left">
+			    				<br>
+			    				<button type="submit" name="submit" class="btn btn-primary"> @lang('account_profile.btn_save_data')</button>
+			    			</div>
+			    		</form>
+		    		@endif
 		    	</div>
 			</div>
 		@if (!Auth::user()->is_admin)

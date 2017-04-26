@@ -16,6 +16,8 @@ use MissVote\RepositoryInterface\ClientActivityRepositoryInterface;
 
 use MissVote\Events\ClientActivity;
 
+use MissVote\Models\Country;
+
 use App;
 
 use Hash;
@@ -88,7 +90,19 @@ class WebsiteController extends Controller
         $memberships = $this->membershipRepo->enum();
         $tickets = $this->ticketVoteRepo->enum();
         $activities = $this->clientActRepo->enum(['client_id'=>Auth::user()->id]);
-        return view('frontend.pages.profile',compact('memberships','tickets','activities'));
+        $countries = Country::orderby('name')->get();
+        return view('frontend.pages.profile',compact('memberships','tickets','activities','countries'));
+    }
+
+
+    public function editAccount()
+    {
+        if (session()->has('edit-account')) {
+            session()->forget('edit-account');
+        } else {
+            session()->put('edit-account',true);
+        }
+        return redirect()->route('website.account');
     }
 
     /***
@@ -98,6 +112,11 @@ class WebsiteController extends Controller
     {
         $valition = Validator::make($request->all(),
             [
+                'name' => 'required',
+                'last_name'=>'required',
+                'country_id' => 'required|exists:country,id',
+                'city' => 'required',
+                'address' => 'required',
                 'password' => 'required_with:password|min:6',
                 'repeat_password' => 'required_with:repeat_password|same:password',
                 'photo'=> 'required_with|image'
@@ -114,29 +133,28 @@ class WebsiteController extends Controller
             return Redirect::back()->withErrors($valition);
         }
 
+        session()->forget('edit-account');
         $client = $this->clientRepo->find(Auth::user()->id);
         
         if (!$client) {
             $sessionData['tipo_mensaje'] = 'error';
             $sessionData['mensaje'] = Lang::get('auth.profile.change_password.cant_change');
         } else {
+
+            $client->fill($request->all());
+
+            $sessionData['mensaje'] = Lang::get('auth.profile.update_profile');
+            $sessionData['action'] = 'update';
+            
             if ($request->has('password')) {
                 $client->password = Hash::make($request->get('password'));
                 $sessionData['mensaje'] = Lang::get('auth.profile.change_password.change_success');
-                $sessionData['action'] = 'update-password';
                  event(new ClientActivity(Auth::user()->id,'activity.auth.change_password'));
 
             }
 
             if ($request->hasFile('photo')) {
                 $uploadPhoto = $this->clientRepo->uploadPhoto(Auth::user()->id,$request->file('photo'));
-                $sessionData['action'] = 'update-photo-profile';
-                if ($uploadPhoto) {
-                    $client->photo = $uploadPhoto;
-                    $sessionData['mensaje'] = 'Foto de perfil actualizada';
-                } else {
-                    $sessionData['mensaje'] = 'Su Foto de perfil no pudo actualizada';
-                }
             }
 
             if (!$client->update()) {
@@ -151,7 +169,6 @@ class WebsiteController extends Controller
             }
         }
 
-        
         return Redirect::back()->with($sessionData);
     }
 

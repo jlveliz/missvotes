@@ -9,7 +9,7 @@ return [
 	'status_tab' => 'Estado de Aplicación',
 	'sel_country_lbl' => 'Seleccione el país al que desea audicionar',
 	'txt_pay_thanks_lbl' => 'Gracias por su pago',
-	'txt_price_lbl' => 'Por favor complete nuestra solicitud en línea. La cuota de la aplicación es de $60.00',
+	'txt_price_lbl' => 'Por favor complete nuestra solicitud en línea. La cuota de inscripción no reembolsable es de $60 dólares',
 	'txt_price_off_lbl' => 'También puede llenar la solicitud en persona los días del casting, pero le costará $80.00',
 	'lbl_paypal_' =>'Pagar con Paypal',
 	'lbl_cc_' =>'Pagar con Tarjeta de Crédito',

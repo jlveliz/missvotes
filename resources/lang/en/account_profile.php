@@ -3,6 +3,8 @@
 return [
 	
 	'tab_name' => 'Profile',
+	'edit_profile'=>'Edit Profile',
+	'cancel_edit_profile'=>'Cancel',
 	'personal_data' => ' Basic Information ',
 	'name_data' => 'Name',
 	'last_name_data' => 'Lastname',
@@ -15,6 +17,7 @@ return [
 	'new_pass_data' => 'New Password',
 	'repeat_pass_data' => 'Repeat New Password',
 	'btn_change_pass_data' => 'Change Password',
+	'btn_save_data' => 'Save',
 	'membership_tab_data' => 'Membership',
 	'be_btn_data' => 'Be a contestant',
 	'status_apply'=>'View apply status of',

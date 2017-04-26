@@ -156,6 +156,12 @@ return [
 
     'profile' => [
         'validations'=>[
+            'name.required'=>'The name is required',
+            'last_name.required'=>'The lastname is required',
+            'country_id.required' => 'The country is required',
+            'country_id.exists' =>'The country does not exist',
+            'city.required'=>'The :attribute is required',
+            'address.required' => 'The :attribute is required',
             'password.required_with' => 'The :attribute is required',
             'password.min' => 'The :attribute must be at least :min.',
             'repeat_password.same' => 'The Repeat Password and :other must match.',
@@ -168,6 +174,7 @@ return [
             'change_success' => 'Your Password was updated',
 
         ],
+        'update_profile' => 'Profile updated Successfully',
     ],
 
 

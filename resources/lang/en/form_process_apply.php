@@ -9,7 +9,7 @@ return [
 	'status_tab' => 'Application Status',
 	'sel_country_lbl' => 'Select the country you want to audition',
 	'txt_pay_thanks_lbl' => 'Thanks for you payment',
-	'txt_price_lbl' => 'Please complete our online application, with an application fee of $60.',
+	'txt_price_lbl' => 'Please complete our online application with a non-refundable $60.00 application fee.',
 	'txt_price_off_lbl' => 'You can also filling out the application in person in the castings days, but it will cost you $80.',
 	'lbl_paypal_' =>'Pay with Paypal',
 	'lbl_cc_' =>'Pay with Credit Card',
