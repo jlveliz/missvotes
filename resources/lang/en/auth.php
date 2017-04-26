@@ -43,7 +43,7 @@ return [
         'email' => 'Email / Correo Electr&oacute;nico',
         'name' => 'Name / Nombre',
         'last_name' => 'Last Name / Apellido',
-        'country-select' => 'Select a Country / Seleccione Pa&iacute;s',
+        'country-select' => 'Select a Country / Seleccione un Pa&iacute;s',
         'city' => 'City / Ciudad',
         'address' => 'Address / Domicilio',
         'password' => 'Password / Contrase&ntilde;a',
