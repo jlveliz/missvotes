@@ -14,5 +14,6 @@
 
 		'auth' => [
 			'change_password' =>'Have changed your password',
+			'update_profile' =>'Have updated your profile',
 		],
 	];

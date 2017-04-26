@@ -149,13 +149,15 @@ class WebsiteController extends Controller
             if ($request->has('password')) {
                 $client->password = Hash::make($request->get('password'));
                 $sessionData['mensaje'] = Lang::get('auth.profile.change_password.change_success');
-                 event(new ClientActivity(Auth::user()->id,'activity.auth.change_password'));
+                event(new ClientActivity(Auth::user()->id,'activity.auth.change_password'));
 
+            } else {
+                event(new ClientActivity(Auth::user()->id,'activity.auth.update_profile'));
             }
 
             if ($request->hasFile('photo')) {
                 $uploadPhoto = $this->clientRepo->uploadPhoto(Auth::user()->id,$request->file('photo'));
-            }
+            } 
 
             if (!$client->update()) {
                 $sessionData['tipo_mensaje'] = 'error';
