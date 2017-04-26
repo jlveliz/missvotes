@@ -58,16 +58,16 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Participantes <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="@if(Request::path() == 'backend/misses') active @endif">
-                                        <a href="{{ route('misses.index') }}">Candidatas <span class="sr-only">(current)</span></a>
+                                        <a href="{{ route('misses.index') }}">Candidatas del certamen <span class="sr-only">(current)</span></a>
                                     </li>
                                     <li class="@if(Request::path() == 'backend/precandidates') active @endif">
-                                        <a href="{{ route('precandidates.index') }}">Pre Candidatas <span class="sr-only">(current)</span></a>
+                                        <a href="{{ route('precandidates.index') }}">Registro de Aplicación <span class="sr-only">(current)</span></a>
                                     </li>
                                 </ul>
                             </li>
                             
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Clientes <span class="caret"></span></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Miembros <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="@if(Request::path() == 'backend/clients') active @endif">
                                         <a href="{{ route('clients.index') }}">Listado <span class="sr-only">(current)</span></a>

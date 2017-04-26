@@ -14,12 +14,13 @@
         <ul class="nav navbar-nav">
             @if (Auth::user() && !Auth::user()->is_admin)
                 {{-- <li class="@if(Request::path() == '/') active @endif"><a href="{{ route('website.home') }}">Candidatas</a></li> --}}
-                {{-- <li >
-                    <a href="{{ route('website.account') }}" title="Comprar tickets" @if(Auth::user()->client->current_membership())  class="btn btn-update-membership-or-buy" @endif alt="Comprar tickets">Comprar Tickets</a>
-                </li > --}}
                
                 <li>
                     <a href="{{ route('apply.requirements') }}" class="btn btn-update-membership-or-buy"  alt="{{ trans('app.apply_now') }}" title="{{ trans('app.apply_now') }}"> {{ trans('app.apply_now') }}</a>
+                </li>
+
+                <li style="margin-left: 2px">
+                    <a href="{{ route('list.buy.ticket') }}" class="btn btn-update-membership-or-buy"  alt="{{ trans('app.win_travel') }}" title="{{ trans('app.win_travel') }}"> {{ trans('app.win_travel') }}</a>
                 </li>
                
             @endif

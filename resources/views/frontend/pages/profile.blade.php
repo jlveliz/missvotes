@@ -27,9 +27,9 @@
 			    <li role="presentation">
 			    	<a href="#membership" aria-controls="membership" role="tab" data-toggle="tab">@lang('account_profile.membership_tab_data') @if(Auth::user()->client && !Auth::user()->client->current_membership()) <small class="upgrade-membership">(Premium!!)</small> @endif</a>
 			    </li>
-			    {{-- <li role="presentation">
-			    	<a href="#tickets" aria-controls="tickets" role="tab" data-toggle="tab">Tickets</a>
-			    </li> --}}
+			    <li role="presentation">
+			    	<a href="#tickets" aria-controls="tickets" role="tab" data-toggle="tab">{{ trans('raffle_ticket.tab_name') }}</a>
+			    </li>
 			    <li role="presentation">
 			    	<a href="#activity" aria-controls="activity" role="tab" data-toggle="tab">@lang('account_profile.activities_tab_data')</a>
 			    </li>
@@ -185,11 +185,11 @@
 			    </div>
 
 			    {{-- tickets --}}
-			   {{--  <div role="tabpanel" class="tab-pane" id="tickets">
+			    <div role="tabpanel" class="tab-pane" id="tickets">
 			    	<h4>Tickets</h4>
 			    	<div class="col-md-12 col-lg-12 col-xs-12">
 			    		
-			    		<h5><b>Mis tickets</b></h5>
+			    		<h5><b>{{ trans('raffle_ticket.my_tickets') }}</b></h5>
 			    		<div class="row">
 			    		@if (count(Auth::user()->client->activeTickets()) > 0)
 			    			@foreach (Auth::user()->client->activeTickets() as $ticketClient)
@@ -203,7 +203,7 @@
 				    					 		<table class="table">
 				    					 			<tbody>
 				    					 				<tr>
-				    					 					<td><b>Valor: </b> {{$ticketClient->ticket->val_vote}} Puntos</td>
+				    					 					<td><b>Val: </b> {{$ticketClient->ticket->val_vote}} Puntos</td>
 				    					 				</tr>
 				    					 			</tbody>
 				    					 		</table>
@@ -214,15 +214,12 @@
 			    			@endforeach
 				    		@else
 				    			<p class="text-center text-warning">
-									<b>Lamentamos que no tenga tickets para usar, compre uno para poder apoyar a su candidata favorita</b> 
+				    				<b>{{ trans('raffle_ticket.tickets_not_found') }}</b>
 								</p>
 				    		@endif
 			    		</div>
-			    		<div class="row">
-				    		@include('frontend.partials.tickets',$tickets)
-			    		</div>
 			    	</div>
-			    </div> --}}
+			    </div>
 			    {{-- profile --}}
 			<div role="tabpanel" class="tab-pane @if(Auth::user()->is_admin) active @endif" id="profile">
 		    	<div class="col-md-3 col-sm-3 col-xs-12 hidden-xs">

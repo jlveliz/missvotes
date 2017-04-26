@@ -21,9 +21,7 @@ class TicketVoteController extends Controller
 
     public function __construct(TicketVoteRepositoryInterface $voteTicket)
     {
-        $this->middleware('auth');
-        $this->middleware('can:acess-backend');
-        $this->voteTicket = $voteTicket;
+       $this->voteTicket = $voteTicket;
     }
 
     /**
@@ -37,7 +35,7 @@ class TicketVoteController extends Controller
         $data = [
             'voteTickets' => $voteTickets
         ];
-        return view('backend.ticket-vote.index',$data);
+        return view('frontend.pages.raffle-ticket-vote.index',$data);
     }
 
     /**

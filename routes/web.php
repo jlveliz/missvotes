@@ -30,6 +30,11 @@ Route::group(['prefix'=>'account'],function(){
 	Route::get('pstatus','PaypalController@getPaymentStatus')->name('website.paypal.status')->middleware('auth');
 });
 
+Route::group(['prefix'=>'tickets'],function(){
+
+	Route::get('/','TicketVoteController@index')->name('list.buy.ticket')->middleware('auth','isClient');
+});
+
 Route::group(['prefix'=>'apply'],function(){
 	Route::get("requirements","ApplyCandidateController@requirements")->name('apply.requirements')->middleware('auth','isClient');
 	Route::post("requirements","ApplyCandidateController@aceptrequirements")->name('apply.aceptrequirements')->middleware('auth','isClient');
