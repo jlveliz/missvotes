@@ -55,7 +55,7 @@
 			</div>
 		</div>
 		{{-- cart --}}
-		<div class="col-md-3 col-xs-4 affix">
+		<div class="col-md-3 col-xs-4 cart-place">
 			<h1>Shopping Cart</h1><hr>
 				<table class="table table-striped table-hover table-bordered">
 			        <tbody>
