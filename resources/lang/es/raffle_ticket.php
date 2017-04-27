@@ -15,4 +15,6 @@
 			'note'=>'Nota: Si el/la ganador(a) del sorteo, no posee visa americana y es del mismo país que la nueva Miss Panamerican Int. 2017, el viaje de premio será al país de nuestra virreina panamericana 2017.  (2018) 
 			Los trámites de visa u otros,  para ingresar al país destino del sorteo corren por cuenta de los ganadores.'
 		],
+		'add_cart'=>'Añadir al carrito',
+		'no_ticket_selected' => 'No existe un ticket Seleccionado',
 	];

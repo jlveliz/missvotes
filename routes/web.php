@@ -30,7 +30,7 @@ Route::group(['prefix'=>'account'],function(){
 	Route::get('pstatus','PaypalController@getPaymentStatus')->name('website.paypal.status')->middleware('auth');
 });
 
-Route::group(['prefix'=>'tickets'],function(){
+Route::group(['prefix'=>'raffles'],function(){
 
 	Route::get('/','TicketVoteController@index')->name('list.buy.ticket')->middleware('auth','isClient');
 });

@@ -6,4 +6,6 @@ return [
 	
 	'vote-default' => 1,
 
+	'raffle-numbers'=>2000,
+
 ];

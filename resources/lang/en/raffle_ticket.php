@@ -15,4 +15,5 @@
 			'note'=>'Note: If the winner of the draw does not have an American visa and is from the same country as the new Miss Panamerican Int. 2017, the prize trip will be to the country of our 2017 Pan American viceroy. (2018)
 Visa or other procedures, to enter the destination country of the lottery are run by the winners.'
 		],
+		'add_cart'=>'Add to Cart',
 	];

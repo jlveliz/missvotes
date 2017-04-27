@@ -2,6 +2,8 @@
 namespace MissVote\Repository;
 
 use MissVote\RepositoryInterface\TicketVoteRepositoryInterface;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use MissVote\Models\TicketVote;
 use Carbon\Carbon;
 
@@ -11,6 +13,8 @@ use Carbon\Carbon;
 class TicketVoteRepository implements TicketVoteRepositoryInterface
 {
 	
+	public $raffles = [];
+
 	public function enum($params = null)
 	{
 		$ticketVotes = TicketVote::all();
@@ -80,6 +84,37 @@ class TicketVoteRepository implements TicketVoteRepositoryInterface
 		return false;
 	}
 
+
+
+	/**
+	 * RAFFLE
+	 */
+
+	public function generateRaffle()
+	{
+		$valRuffle = 1;
+		for ($i=0; $i < config('vote.raffle-numbers') ; $i++) { 
+			$this->raffles[$i] = $valRuffle++;
+		}
+
+		return $this;
+	}
+
+	public function paginate()
+	{
+		//Get current page form url e.g. &page=6
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        //Create a new Laravel collection from the array data
+        $collection = new Collection($this->raffles);
+
+        //Define how many items we want to be visible in each page
+        $perPage = 200;
+
+        //Slice the collection to get the items to display in current page
+        $currentPageSearchResults = $collection->slice(($currentPage - 1) * $perPage, $perPage)->all();
+        //Create our paginator and pass it to the view
+        return  new LengthAwarePaginator($currentPageSearchResults, count($collection), $perPage,null,['path'=>'raffles']);
+	}
 
 
 }

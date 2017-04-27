@@ -1,0 +1,14 @@
+.used {
+    background-color: #b9a035;
+}
+
+.selected {
+    background-color: #b9a035;
+}
+
+.cart-place {
+	height: 100%;
+    border-left: 1px solid #cdcdcd;
+    position: fixed;
+    right: 5% 
+}
