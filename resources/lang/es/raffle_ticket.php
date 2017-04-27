@@ -16,5 +16,7 @@
 			Los trámites de visa u otros,  para ingresar al país destino del sorteo corren por cuenta de los ganadores.'
 		],
 		'add_cart'=>'Añadir al carrito',
-		'no_ticket_selected' => 'No existe un ticket Seleccionado',
+		'no_ticket_selected' => 'No existe un ticket Seleccionado. Añada tickets a su carrito',
+		'shopping_cart_title'=>'Carrito de compras',
+		'buy_ticket_button'=>'Comprar',
 	];

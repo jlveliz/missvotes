@@ -33,6 +33,7 @@ Route::group(['prefix'=>'account'],function(){
 Route::group(['prefix'=>'raffles'],function(){
 
 	Route::get('/','TicketVoteController@index')->name('list.buy.ticket')->middleware('auth','isClient');
+	Route::post('/add','TicketVoteController@add')->name('list.buy.ticket.add')->middleware('auth','isClient');
 });
 
 Route::group(['prefix'=>'apply'],function(){

@@ -16,4 +16,7 @@
 Visa or other procedures, to enter the destination country of the lottery are run by the winners.'
 		],
 		'add_cart'=>'Add to Cart',
+		'no_ticket_selected' => 'There is no ticket selected. Add tickets to your cart',
+		'shopping_cart_title'=>'Shopping Cart',
+		'buy_ticket_button'=>'Buy',
 	];

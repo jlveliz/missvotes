@@ -147,4 +147,17 @@ class TicketVoteController extends Controller
         
     }
 
+    public function add(Request $request)
+    {
+        $item = [];
+        $item['raffle_number'] = $request->get('raffle_number');
+        $item['points'] = config('vote.vote-raffle-point');
+        $item['price'] = config('vote.vote-raffle-price');
+        session()->push('cart',$item);
+        //sum total
+        $total = session()->has('total_sum') ? session()->get('total_sum') : 0 ;
+        session()->put('total_sum',($total + $item['price']));
+        return redirect()->back();
+    }
+
 }

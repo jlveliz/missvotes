@@ -7,8 +7,9 @@
 }
 
 .cart-place {
-	height: 100%;
-    border-left: 1px solid #cdcdcd;
+    height: 100%;
+    /* border-left: 1px solid #cdcdcd; */
     position: fixed;
-    right: 5% 
+    right: 16%;
+    width: 17%;
 }
