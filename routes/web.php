@@ -25,7 +25,6 @@ Route::group(['prefix'=>'account'],function(){
 	Route::post('/update','WebsiteController@updateAccount')->name('website.account.update')->middleware('auth');
 	Route::post('subscribe','StripeController@subscribe')->name('website.stripe.subscribe')->middleware('auth');
 	Route::post('ticket','StripeController@buyTicket')->name('website.stripe.buyticket')->middleware('auth');
-	Route::post('pticket','PaypalController@buyTicket')->name('website.paypal.buyticket')->middleware('auth');
 	Route::post('psubscribe','PaypalController@subscribe')->name('website.paypal.subscribe')->middleware('auth');
 	Route::get('pstatus','PaypalController@getPaymentStatus')->name('website.paypal.status')->middleware('auth');
 });
@@ -34,6 +33,9 @@ Route::group(['prefix'=>'raffles'],function(){
 
 	Route::get('/','TicketVoteController@index')->name('list.buy.ticket')->middleware('auth','isClient');
 	Route::post('/add','TicketVoteController@add')->name('list.buy.ticket.add')->middleware('auth','isClient');
+	Route::post('/remove','TicketVoteController@remove')->name('list.buy.ticket.remove')->middleware('auth','isClient');
+	Route::post('/pay','TicketVoteController@remove')->name('list.buy.ticket.remove')->middleware('auth','isClient');
+	Route::post('pticket','PaypalController@buyTicket')->name('website.paypal.buyticket')->middleware('auth');
 });
 
 Route::group(['prefix'=>'apply'],function(){

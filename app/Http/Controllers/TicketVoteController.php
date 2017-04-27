@@ -14,6 +14,8 @@ use Response;
 
 use Redirect;
 
+use Lang;
+
 
 class TicketVoteController extends Controller
 {
@@ -32,7 +34,7 @@ class TicketVoteController extends Controller
      */
     public function index()
     {
-       $raffles = $this->voteTicket->generateRaffle()->paginate();
+       $raffles = $this->voteTicket->generateListRaffle()->paginate();
        return view('frontend.pages.raffle-ticket-vote.index',compact('raffles'));
     }
 
@@ -149,15 +151,46 @@ class TicketVoteController extends Controller
 
     public function add(Request $request)
     {
-        $item = [];
-        $item['raffle_number'] = $request->get('raffle_number');
-        $item['points'] = config('vote.vote-raffle-point');
-        $item['price'] = config('vote.vote-raffle-price');
+        
+        if (existOnCart($request->get('raffle_number'))) {
+            $sessionData['tipo_mensaje'] = 'error';
+            $sessionData['mensaje'] = Lang::get('raffle_ticket.cant_insert_same_number');
+            return redirect()->back()->with($sessionData);
+        }
+
+        $item = $this->voteTicket->generateRaffle($request->get('raffle_number'));
         session()->push('cart',$item);
+        
         //sum total
         $total = session()->has('total_sum') ? session()->get('total_sum') : 0 ;
         session()->put('total_sum',($total + $item['price']));
         return redirect()->back();
+    }
+
+    public function remove(Request $request)
+    {
+        if (existOnCart($request->get('raffle_number'))) {
+            $cart = session()->get('cart');
+            $ruffle = $this->voteTicket->generateRaffle($request->get('raffle_number'));
+            foreach ($cart as $key => $itemCart) {
+                if ($itemCart['raffle_number'] == $request->get('raffle_number')) {
+                    unset($cart[$key]);
+                }
+            }
+
+            //sum total
+            $total = session()->has('total_sum') ? session()->get('total_sum') : 0 ;
+            session()->put('total_sum',($total - $ruffle['price']));
+            
+            //validate if remove cache key
+            if (count($cart) > 0) {
+                session()->put('cart',$cart);
+            } else {
+                session()->forget('cart');
+            }
+
+            return redirect()->back();
+        }
     }
 
 }

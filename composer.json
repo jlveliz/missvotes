@@ -25,7 +25,10 @@
         ],
         "psr-4": {
             "MissVote\\": "app/"
-        }
+        },
+        "files": [
+            "app/Helpers/helpers.php"
+        ]
     },
     "autoload-dev": {
         "classmap": [

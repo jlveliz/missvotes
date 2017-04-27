@@ -90,11 +90,20 @@ class TicketVoteRepository implements TicketVoteRepositoryInterface
 	 * RAFFLE
 	 */
 
-	public function generateRaffle()
+	public function generateRaffle($value)
+	{
+		return [
+			'raffle_number' => $value,
+			'points' => config('vote.vote-raffle-point'),
+			'price' => config('vote.vote-raffle-price')
+		];
+	}
+
+	public function generateListRaffle()
 	{
 		$valRuffle = 1;
 		for ($i=0; $i < config('vote.raffle-numbers') ; $i++) { 
-			$this->raffles[$i] = $valRuffle++;
+			$this->raffles[$i] = $this->generateRaffle($valRuffle++);
 		}
 
 		return $this;
