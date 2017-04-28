@@ -17,7 +17,7 @@ class TicketVoteClientRepository implements TicketVoteClientRepositoryInterface
 
 	public function enum($params = null)
 	{
-		$ticketVotes = TicketVoteClient::all();
+		$ticketVotes = TicketVoteClient::orderBy('client_id')->get();
 		
 		if (!$ticketVotes) {
 			return false;
