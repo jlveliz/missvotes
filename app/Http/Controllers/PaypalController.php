@@ -112,6 +112,8 @@ class PaypalController extends Controller
                return redirect()->route('website.account')->with($mensaje);
                 /** die('Some error occur, sorry for inconvenient'); **/
             }
+        }  catch (PayPal\Exception\PayPalConnectionException $ex) {
+            dd($ex);
         }
 
         foreach($payment->getLinks() as $link) {
@@ -195,6 +197,7 @@ class PaypalController extends Controller
         try {
             $payment->create($this->apiContext);
         } catch (\PayPal\Exception\PPConnectionException $ex) {
+            dd($ex);
             if (config('app.debug')) {
             	$mensaje['payment-type'] = 'error';
 				$mensaje['payment-message'] = Lang::get('paypal.paypal_error_connection');
