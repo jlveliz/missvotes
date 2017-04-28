@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-  <div class="panel-heading">Ranking</div>
+  <div class="panel-heading">Tickets</div>
   <div class="panel-body">
   	<table id="ticket-datatable" class="table table-bordered">
   		<thead>
