@@ -26,4 +26,8 @@ Visa or other procedures, to enter the destination country of the lottery are ru
 			'selected' => 'Your Tickets',
 			'available' => 'Available'
 		],
+		'raffle_paypal' => [
+			'item_description' => 'Ticket # :numRiffle  for :val points',
+			'transaction_description' => 'Buy of Ticket for ' .config('app.name'),
+		],
 	];

@@ -40,7 +40,7 @@
 			<div class="col-md-12 col-xs-12">
 				<div class="alert alert-dismissible @if(Session::get('tipo_mensaje') == 'success') alert-info  @endif @if(Session::get('tipo_mensaje') == 'error') alert-danger  @endif" role="alert">
 		  			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-		  			{{session('mensaje')}}
+		  			{{ session('mensaje') }}
 		   		</div>
 				<div class="clearfix"></div>
 			</div>
@@ -95,27 +95,27 @@
 					<div class="panel-body">
 						@if (session()->has('cart'))
 							<div class="row">
-								@foreach (session()->get('cart') as $key =>  $item) 
-									<div class="col-xs-4">
-										<h6 class="product-name"><strong>Ticket # {{ $item['raffle_number'] }} </strong></h6>
-									</div>
-									<div class="col-xs-3">
-										<h6><strong>{{ $item['points'] }} Pnts.</h6>
-									</div>
-									<div class="col-xs-3">
-										<h6><strong>$ {{ $item['price'] }}</h6>
-									</div>
-									<div class="col-xs-2">
-										<form action="{{ route('list.buy.ticket.remove') }}" method="POST">
-											{{  csrf_field() }}
-											<input type="hidden" name="ticket_index" value="{{$key}}">
-											<input type="hidden" name="raffle_number" value="{{ $item['raffle_number'] }}">
-											<button type="submit" class="btn btn-link btn-xs btn-remove" alt="{{ trans('raffle_ticket.delete_cart') }}" title="{{ trans('raffle_ticket.delete_cart') }}">
-												<span class="glyphicon glyphicon-trash"> </span>
-											</button>
-										</form>
-									</div>
-								@endforeach
+								<table class="table">
+									@foreach (session()->get('cart') as $key =>  $item) 
+										<tr>
+											<td>
+												<strong>Ticket # {{ $item['raffle_number'] }} </strong>
+											</td>
+											<td><strong>{{ $item['points'] }} Pnts.</strong></td>
+											<td><strong>$ {{ $item['price'] }}<strong></td>
+											<td>
+												<form action="{{ route('list.buy.ticket.remove') }}" method="POST">
+													{{  csrf_field() }}
+													<input type="hidden" name="ticket_index" value="{{ $key }}">
+													<input type="hidden" name="raffle_number" value="{{ $item['raffle_number'] }}">
+													<button type="submit" class="btn btn-link btn-xs btn-remove" alt="{{ trans('raffle_ticket.delete_cart') }}" title="{{ trans('raffle_ticket.delete_cart') }}">
+														<span class="glyphicon glyphicon-trash"> </span>
+													</button>
+												</form>
+											</td>
+										</tr>
+									@endforeach
+								</table>
 							</div>
 							<hr>
 						@else
@@ -129,12 +129,19 @@
 								<h4 class="text-right">Total <strong>$ {{ session()->has('total_sum') ?  session()->get('total_sum') : "0.00" }}   </strong></h4>
 							</div>
 							<div class="col-xs-6">
-								<form action="{{ route('website.paypal.buyticket') }}" method="post">
-									{{  csrf_field() }}
-									<button type="button" class="btn btn-success btn-block" alt="{{ trans('raffle_ticket.buy_ticket_button') }}" title="{{ trans('raffle_ticket.buy_ticket_button') }}">
-										<i class="fa fa-paypal" aria-hidden="true"></i> {{ trans('raffle_ticket.buy_ticket_button') }}
-									</button>
-								</form>
+									@if (session()->has('cart'))
+									<form action="{{ route('website.paypal.buyticket') }}" method="post">
+										{{  csrf_field() }}
+											@foreach (session()->get('cart') as $key =>  $item) 
+												<input type="hidden" name="tickets[{{ $key }}][description]" value="Ticket #{{ $item['raffle_number'] }}">
+												<input type="hidden" name="tickets[{{ $key }}][ticket_vote_id]" value="{{ $item['raffle_number'] }}">
+											@endforeach
+										<input type="hidden" name="amount" value="{{ session()->has('total_sum') }}">
+										<button type="submit" class="btn btn-success btn-block" alt="{{ trans('raffle_ticket.buy_ticket_button') }}" title="{{ trans('raffle_ticket.buy_ticket_button') }}">
+											<i class="fa fa-paypal" aria-hidden="true"></i> {{ trans('raffle_ticket.buy_ticket_button') }}
+										</button>
+									</form>
+									@endif
 							</div>
 						</div>
 					</div>

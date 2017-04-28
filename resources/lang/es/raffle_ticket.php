@@ -26,4 +26,8 @@
 			'selected' => 'Sus Tickets',
 			'available' => 'Disponible'
 		],
+		'raffle_paypal' => [
+			'item_description' => 'Ticket # :numRiffle  por :val puntos',
+			'transaction_description' => 'Compra de tickets para ' .config('app.name'),
+		],
 	];

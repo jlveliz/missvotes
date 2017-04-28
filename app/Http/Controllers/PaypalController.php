@@ -142,26 +142,28 @@ class PaypalController extends Controller
     	$payer = Paypalpayment::payer();
     	$payer->setPaymentMethod("paypal");
 
-    	$item = Paypalpayment::item();
-        $item->setName($request->get('paypal_ticket_name'))
-                ->setDescription($request->get('paypal_ticket_description'))
-                ->setCurrency('USD')
-                ->setQuantity(1)
-                ->setPrice($request->get('paypal_ticket_amount'));
-
+        $items = [];
+    	foreach ($request->get('tickets') as $key => $ticket) {
+            $item = Paypalpayment::item();
+            $items[] = $item->setName($ticket['description'])
+                    ->setDescription(Lang::get('raffle_ticket.raffle_paypal.item_description',['numRiffle'=>$ticket['ticket_vote_id'],'val'=>config('vote.vote-raffle-point')]))
+                    ->setCurrency('USD')
+                    ->setQuantity(1)
+                    ->setPrice(config('vote.vote-raffle-price'));
+        }
 
         $itemList = Paypalpayment::itemList();
-        $itemList->setItems(array($item));
+        $itemList->setItems($items);
     	
 
         $amount = Paypalpayment::amount();
-        $amount->setCurrency("USD")->setTotal($request->get('paypal_ticket_amount'));
+        $amount->setCurrency("USD")->setTotal($request->get('amount'));
 
 
         $transaction = Paypalpayment::transaction();
         $transaction->setAmount($amount)
             ->setItemList($itemList)
-            ->setDescription($request->get('paypal_ticket_description'))
+            ->setDescription(Lang::get('raffle_ticket.raffle_paypal.transaction_description'))
             ->setInvoiceNumber(uniqid());
 
         // ### Redirect urls

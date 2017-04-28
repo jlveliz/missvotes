@@ -21,7 +21,7 @@ return array(
 		'EndPoint' => env('PAYPAL_ENDPOINT'),
 	),
 
-	'mode' => env('PAYPAL_MODE'),
+	// 'mode' => env('PAYPAL_MODE'),
 
 
 	# Logging Information
