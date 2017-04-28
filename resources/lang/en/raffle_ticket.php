@@ -24,10 +24,14 @@ Visa or other procedures, to enter the destination country of the lottery are ru
 		'signals' => [
 			'reserved' => 'Reserved',
 			'selected' => 'Your Tickets',
-			'available' => 'Available'
+			'available' => 'Available',
 		],
 		'raffle_paypal' => [
 			'item_description' => 'Ticket # :numRiffle  for :val points',
 			'transaction_description' => 'Buy of Ticket for ' .config('app.name'),
+		],
+
+		'validations'=>[
+ 			'exist' => 'The ticket :ticket belongs to another user',
 		],
 	];

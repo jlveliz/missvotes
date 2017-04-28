@@ -4,7 +4,7 @@ namespace MissVote\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use MissVote\RepositoryInterface\TicketVoteRepositoryInterface;
+use MissVote\RepositoryInterface\TicketVoteClientRepositoryInterface;
 
 use MissVote\RepositoryInterface\MembershipRepositoryInterface;
 
@@ -32,7 +32,7 @@ class PaypalController extends Controller
     private $membershipRepo;
 
 
-    public function __construct(TicketVoteRepositoryInterface $ticketRepo, MembershipRepositoryInterface $membershipRepo)
+    public function __construct(TicketVoteClientRepositoryInterface $ticketRepo, MembershipRepositoryInterface $membershipRepo)
     {
     	$this->apiContext = Paypalpayment::apiContext(config('paypal_payment.Account.ClientId'),config('paypal_payment.Account.ClientSecret'));
     	$config = config('paypal_payment'); // Get all config items as multi dimensional array
@@ -45,6 +45,10 @@ class PaypalController extends Controller
 
     public function subscribe(Request $request)
     {
+        
+        session()->forget('cart'); // DELETE TICKETS? 
+        session()->forget('total_sum'); // DELETE TICKETS?
+        
         $payer = Paypalpayment::payer();
         $payer->setPaymentMethod("paypal");
 
@@ -112,7 +116,11 @@ class PaypalController extends Controller
                return redirect()->route('website.account')->with($mensaje);
                 /** die('Some error occur, sorry for inconvenient'); **/
             }
-        }  catch (PayPal\Exception\PayPalConnectionException $ex) {
+        } catch (PayPal\Exception\PayPalConnectionException $ex) {
+            echo $ex->getCode(); // Prints the Error Code
+            echo $ex->getData(); // Prints the detailed error message 
+            dd($ex);    
+        } catch (Exception $ex) {
             dd($ex);
         }
 
@@ -140,15 +148,36 @@ class PaypalController extends Controller
 
     public function buyTicket(Request $request)
     {
+        /**
+         * verify if existe ticket available
+         */
+    	$isTicketReserved = null;
+        foreach ($request->get('tickets') as $key => $ticket) {
+            $existTicket = $this->ticketRepo->find($ticket);
+            if ($existTicket) { 
+                $isTicketReserved = $existTicket;
+                break;
+            }
+        }
+        
+        if ($isTicketReserved) {
+             $sessionData = [
+                'tipo_mensaje' => 'error',
+                'mensaje' => Lang::get('raffle_ticket.validations.exist',['ticket'=>$isTicketReserved->description]),
+            ];
+            return redirect()->back()->with($sessionData);
+        }
 
-    	$payer = Paypalpayment::payer();
+
+
+        $payer = Paypalpayment::payer();
     	$payer->setPaymentMethod("paypal");
 
         $items = [];
     	foreach ($request->get('tickets') as $key => $ticket) {
             $item = Paypalpayment::item();
             $items[] = $item->setName($ticket['description'])
-                    ->setDescription(Lang::get('raffle_ticket.raffle_paypal.item_description',['numRiffle'=>$ticket['ticket_vote_id'],'val'=>config('vote.vote-raffle-point')]))
+                    ->setDescription(Lang::get('raffle_ticket.raffle_paypal.item_description',['numRiffle'=>$ticket['raffle_vote_id'],'val'=>config('vote.vote-raffle-point')]))
                     ->setCurrency('USD')
                     ->setQuantity(1)
                     ->setPrice(config('vote.vote-raffle-price'));
@@ -173,8 +202,8 @@ class PaypalController extends Controller
         // payment approval/ cancellation.
         // $baseUrl = 'http://misses.dev';
         $redirectUrls = Paypalpayment::redirectUrls();
-        $redirectUrls->setReturnUrl("http://www.misspanamericaninternational.com/login/")
-            ->setCancelUrl("http://www.misspanamericaninternational.com/login/");
+        $redirectUrls->setReturnUrl(route('list.buy.ticket.status'))
+            ->setCancelUrl(route("list.buy.ticket.status"));
 
 
         // ### Payment
@@ -197,7 +226,6 @@ class PaypalController extends Controller
         try {
             $payment->create($this->apiContext);
         } catch (\PayPal\Exception\PPConnectionException $ex) {
-            dd($ex);
             if (config('app.debug')) {
             	$mensaje['payment-type'] = 'error';
 				$mensaje['payment-message'] = Lang::get('paypal.paypal_error_connection');
@@ -213,6 +241,12 @@ class PaypalController extends Controller
                 return redirect()->away('http://www.misspanamericaninternational.com/login/')->with($mensaje);
                 /** die('Some error occur, sorry for inconvenient'); **/
             }
+        }catch (PayPal\Exception\PayPalConnectionException $ex) {
+            echo $ex->getCode(); // Prints the Error Code
+            echo $ex->getData(); // Prints the detailed error message 
+            dd($ex);    
+        } catch (\Exception $ex) {
+            dd($ex);
         }
 
         foreach($payment->getLinks() as $link) {
@@ -249,7 +283,12 @@ class PaypalController extends Controller
         if (empty($request->get('PayerID')) || empty($request->get('token'))) {
             $mensaje['payment-type'] = 'error';
             $mensaje['payment-message'] = Lang::get('paypal.paypal_error_transaction');
-            return redirect()->route('website.account')->with($mensaje);
+            if (session()->has('ticket')) { 
+                return redirect()->route('list.buy.ticket')->with($mensaje);
+            } else {
+                return redirect()->route('website.account')->with($mensaje);
+                
+            }
         }
         $payer = Paypalpayment::payer();
 
@@ -269,11 +308,17 @@ class PaypalController extends Controller
                 //save a ticket on DB
                 $requestTicket = Session::get('ticket');
                 session()->forget('ticket');
-                $ticket = $this->ticketRepo->find($requestTicket['paypal_ticket_id']);
-                $this->createUserTicket($ticket);
-                //insert activity
-                event(new ClientActivity(Auth::user()->id,'activity.ticket.bought',['name'=>$ticket->name]));
-                $mensaje['payment-message'] = 'Gracias por la compra de un ticket '. $ticket->name;
+                foreach ($requestTicket['tickets'] as $key => $item) {
+                    $ticketToSaved = $this->createUserTicket($item['raffle_vote_id']);
+                    //insert activity
+                    event(new ClientActivity(Auth::user()->id,'activity.ticket.bought',['name'=>$item['description']]));
+                }
+
+                
+                Session::forget('cart');
+                Session::forget('total_sum');
+                $mensaje['payment-message'] = Lang::get('paypal.thanks_buy_ticket');
+               
             } 
 
             if (session()->has('membership')) {
@@ -331,8 +376,10 @@ class PaypalController extends Controller
     public function createUserTicket($ticket)
     {
         Auth::user()->client->tickets()->create([
-            'ticket_vote_id' => $ticket->id,
+            'raffle_vote_id' => $ticket,
             'payment_type' => 'paypal',
+            'val_vote' => config('vote.vote-raffle-point'),
+            'description' => config('vote.vote-raffle-description').' '.$ticket,
             'state' => 1
         ]);
     }

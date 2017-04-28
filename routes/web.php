@@ -31,11 +31,12 @@ Route::group(['prefix'=>'account'],function(){
 
 Route::group(['prefix'=>'raffles'],function(){
 
-	Route::get('/','TicketVoteController@index')->name('list.buy.ticket')->middleware('auth','isClient');
-	Route::post('/add','TicketVoteController@add')->name('list.buy.ticket.add')->middleware('auth','isClient');
-	Route::post('/remove','TicketVoteController@remove')->name('list.buy.ticket.remove')->middleware('auth','isClient');
-	Route::post('/pay','TicketVoteController@remove')->name('list.buy.ticket.remove')->middleware('auth','isClient');
+	Route::get('/','TicketVoteClientController@index')->name('list.buy.ticket')->middleware('auth','isClient');
+	Route::post('/add','TicketVoteClientController@add')->name('list.buy.ticket.add')->middleware('auth','isClient');
+	Route::post('/remove','TicketVoteClientController@remove')->name('list.buy.ticket.remove')->middleware('auth','isClient');
+	Route::post('/pay','TicketVoteClientController@remove')->name('list.buy.ticket.remove')->middleware('auth','isClient');
 	Route::post('pticket','PaypalController@buyTicket')->name('website.paypal.buyticket')->middleware('auth');
+	Route::get('pstatus','PaypalController@getPaymentStatus')->name('list.buy.ticket.status')->middleware('auth');
 });
 
 Route::group(['prefix'=>'apply'],function(){

@@ -8,8 +8,10 @@ return [
 
 	'raffle-numbers'=>2000,
 
-	'vote-raffle-point'=>5,
+	'vote-raffle-point'=>"5",
 
-	'vote-raffle-price'=>5.00,
+	'vote-raffle-price'=>"5.00",
+
+	'vote-raffle-description' => 'Ticket #',
 
 ];

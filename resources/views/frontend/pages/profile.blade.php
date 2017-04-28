@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" type="text/css" href="{{ asset('public/css/profile.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('public/css/raffles.css') }}">
 @endsection()
 
 @section('content')
@@ -28,7 +29,7 @@
 			    	<a href="#membership" aria-controls="membership" role="tab" data-toggle="tab">@lang('account_profile.membership_tab_data') @if(Auth::user()->client && !Auth::user()->client->current_membership()) <small class="upgrade-membership">(Premium!!)</small> @endif</a>
 			    </li>
 			    <li role="presentation">
-			    	<a href="#tickets" aria-controls="tickets" role="tab" data-toggle="tab">{{ trans('raffle_ticket.tab_name') }}</a>
+			    	<a href="#tickets" aria-controls="tickets" role="tab" data-toggle="tab">{{ trans('raffle_ticket.tab_name') }} @if (count(Auth::user()->client->tickets) > 0) <strong> ({{count(Auth::user()->client->tickets)}}) </strong> @endif</a>
 			    </li>
 			    <li role="presentation">
 			    	<a href="#activity" aria-controls="activity" role="tab" data-toggle="tab">@lang('account_profile.activities_tab_data')</a>
@@ -186,35 +187,27 @@
 
 			    {{-- tickets --}}
 			    <div role="tabpanel" class="tab-pane" id="tickets">
-			    	<h4>Tickets</h4>
+			    	<h4>Tickets / <small><b>{{$availableTickets}} {{ trans('my_tickets.counter') }} {{$totalTickets}} {{ trans('my_tickets.points') }}</b></small></h4>
 			    	<div class="col-md-12 col-lg-12 col-xs-12">
 			    		
 			    		<h5><b>{{ trans('raffle_ticket.my_tickets') }}</b></h5>
 			    		<div class="row">
-			    		@if (count(Auth::user()->client->activeTickets()) > 0)
-			    			@foreach (Auth::user()->client->activeTickets() as $ticketClient)
-			    				<div class="col-xs-4 col-md-2">
-			    					<div class="text-center">
-				    					 <div class="panel panel-primary">
-				    					 	<div class="panel-heading">
-				    					 		<h3 class="panel-title"><span class="badge">x{{$ticketClient->counter}}</span> <i class="fa fa-ticket" aria-hidden="true"></i> {{$ticketClient->ticket->name}}</h3>
-				    					 	</div>
-				    					 	<div class="panel-body">
-				    					 		<table class="table">
-				    					 			<tbody>
-				    					 				<tr>
-				    					 					<td><b>Val: </b> {{$ticketClient->ticket->val_vote}} Puntos</td>
-				    					 				</tr>
-				    					 			</tbody>
-				    					 		</table>
-				    					 	</div>
-				    					 </div>
-			    					</div>
+			    		@if (count(Auth::user()->client->tickets) > 0)
+			    			@foreach (Auth::user()->client->tickets as $ticketClient)
+			    				<div class="col-md-2 col-xs-4">
+									<div class="panel panel-success">
+					  					<div class="panel-body body-ticket">
+											<h1 class="text-center"><b>{{ $ticketClient->raffle_vote_id }}</b></h1>
+					  					</div>
+					  					<div class="panel-footer footer-ticket @if($ticketClient->state == 1) footer-my-available-tickets @else footer-my-used-tickets @endif">
+					  						<p><strong>@if($ticketClient->state == 1) {{ trans('my_tickets.signals.available') }} @else {{ trans('my_tickets.signals.used') }} @endif</strong></p>
+					  					</div>
+									</div>
 			    				</div>
 			    			@endforeach
 				    		@else
 				    			<p class="text-center text-warning">
-				    				<b>{{ trans('raffle_ticket.tickets_not_found') }}</b>
+				    				<b>{{ trans('my_tickets.tickets_not_found') }}</b>
 								</p>
 				    		@endif
 			    		</div>

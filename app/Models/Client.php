@@ -90,7 +90,7 @@ class Client extends Authenticatable
 
     public function activeTickets()
     {
-        return  $this->tickets()->select(\DB::raw("count(ticket_vote_id) as counter"),'ticket_vote_id')->where('state','1')->groupBy('ticket_vote_id')->get();
+        return  $this->tickets()->where('state','1')->get();
         
     }
 }

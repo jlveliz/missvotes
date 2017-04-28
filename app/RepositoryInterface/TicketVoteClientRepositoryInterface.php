@@ -1,7 +1,7 @@
 <?php
 namespace  MissVote\RepositoryInterface;
 
-interface  TicketVoteRepositoryInterface extends CoreRepositoryInterface {
+interface  TicketVoteClientRepositoryInterface extends CoreRepositoryInterface {
 	
 	public function generateRaffle($value);
 

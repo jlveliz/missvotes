@@ -46,6 +46,17 @@
 			</div>
 		</div>
 	@endif
+	@if (Session::has('payment-message'))
+		<div class="row">
+			<div class="col-md-12 col-xs-12">
+		        <div class="alert alert-dismissible @if(Session::get('payment-type') == 'success') alert-info  @endif @if(Session::get('payment-type') == 'error') alert-danger  @endif" role="alert">
+		          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+		          {{session('payment-message')}}
+		        </div>
+			</div>
+		</div>
+        <div class="clearfix"></div>
+    @endif
 
 	<div class="row">
 		{{-- tickets --}}
@@ -64,11 +75,11 @@
 					<input type="hidden" name="raffle_number" value="{{ $raffle['raffle_number'] }}">
 					<div class="col-md-2 col-xs-4">
 						<div class="panel panel-success">
-		  					<div class="panel-body body-ticket @if(existOnCart($raffle['raffle_number'])) selected-now @else available @endif">
+		  					<div class="panel-body body-ticket @if(existOnCart($raffle['raffle_number'])) selected-now @else available @endif @if(isReserved($raffle['raffle_number'])) reserved @else available @endif">
 								<h1 class="text-center"><b>{{ $raffle['raffle_number'] }}</b></h1>
 		  					</div>
 		  					<div class="panel-footer footer-ticket">
-		  						<button class="btn btn-primary btn-block btn-xs text-center btn-add-cart-ticket" @if(existOnCart($raffle['raffle_number'])) disabled @endif title="{{ trans('raffle_ticket.add_cart') }}" alt="{{ trans('raffle_ticket.add_cart') }}"><i class="fa fa-cart-plus"></i></button>
+		  						<button class="btn btn-primary btn-block btn-xs text-center btn-add-cart-ticket" @if(existOnCart($raffle['raffle_number']) || isReserved($raffle['raffle_number'])) disabled @endif title="{{ trans('raffle_ticket.add_cart') }}" alt="{{ trans('raffle_ticket.add_cart') }}"><i class="fa fa-cart-plus"></i></button>
 		  					</div>
 						</div>
 					</div>
@@ -134,9 +145,9 @@
 										{{  csrf_field() }}
 											@foreach (session()->get('cart') as $key =>  $item) 
 												<input type="hidden" name="tickets[{{ $key }}][description]" value="Ticket #{{ $item['raffle_number'] }}">
-												<input type="hidden" name="tickets[{{ $key }}][ticket_vote_id]" value="{{ $item['raffle_number'] }}">
+												<input type="hidden" name="tickets[{{ $key }}][raffle_vote_id]" value="{{ $item['raffle_number'] }}">
 											@endforeach
-										<input type="hidden" name="amount" value="{{ session()->has('total_sum') }}">
+										<input type="hidden" name="amount" value="{{ session()->get('total_sum') }}">
 										<button type="submit" class="btn btn-success btn-block" alt="{{ trans('raffle_ticket.buy_ticket_button') }}" title="{{ trans('raffle_ticket.buy_ticket_button') }}">
 											<i class="fa fa-paypal" aria-hidden="true"></i> {{ trans('raffle_ticket.buy_ticket_button') }}
 										</button>

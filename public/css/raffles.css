@@ -69,3 +69,17 @@ h6 {
 .reserved-color {
     color: #0072BC;
 }
+
+.footer-my-available-tickets {
+    background-color: #2579a9;
+}
+
+.footer-my-used-tickets {
+    background-color: #bfbfbf;
+}
+
+.footer-my-available-tickets > p,
+.footer-my-used-tickets > p {
+    color: #ffffff;
+    margin: 0px!important;
+}

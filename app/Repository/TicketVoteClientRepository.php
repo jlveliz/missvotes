@@ -1,23 +1,23 @@
 <?php
 namespace MissVote\Repository;
 
-use MissVote\RepositoryInterface\TicketVoteRepositoryInterface;
+use MissVote\RepositoryInterface\TicketVoteClientRepositoryInterface;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
-use MissVote\Models\TicketVote;
+use MissVote\Models\TicketVoteClient;
 use Carbon\Carbon;
 
 /**
 * 
 */
-class TicketVoteRepository implements TicketVoteRepositoryInterface
+class TicketVoteClientRepository implements TicketVoteClientRepositoryInterface
 {
 	
 	public $raffles = [];
 
 	public function enum($params = null)
 	{
-		$ticketVotes = TicketVote::all();
+		$ticketVotes = TicketVoteClient::all();
 		
 		if (!$ticketVotes) {
 			return false;
@@ -28,14 +28,16 @@ class TicketVoteRepository implements TicketVoteRepositoryInterface
 	public function find($field)
 	{
 		if (is_array($field)) {
-			if (array_key_exists('name', $field)) { 
-				$miss = TicketVote::where('name',$field['name'])->first();
+			if (array_key_exists('client_id', $field)) { 
+				$miss = TicketVoteClient::where('client_id',$field['client_id'])->first();
+			} elseif (array_key_exists('raffle_vote_id', $field)) {
+				$miss = TicketVoteClient::where('raffle_vote_id',$field['raffle_vote_id'])->first();
 			} else {
 				return false;	
 			}
 		} elseif (is_string($field) || is_int($field)) {
 		
-			$miss = TicketVote::where('id',$field)->first();
+			$miss = TicketVoteClient::where('id',$field)->first();
 		}
 
 		
@@ -49,7 +51,7 @@ class TicketVoteRepository implements TicketVoteRepositoryInterface
 	//TODO
 	public function save($data)
 	{
-		$miss = new TicketVote();
+		$miss = new TicketVoteClient();
 		$miss->fill($data);
 		if ($miss->save()) {
 			$keyMiss = $miss->getKey();
@@ -95,7 +97,7 @@ class TicketVoteRepository implements TicketVoteRepositoryInterface
 		return [
 			'raffle_number' => $value,
 			'points' => config('vote.vote-raffle-point'),
-			'price' => config('vote.vote-raffle-price')
+			'price' => config('vote.vote-raffle-price'),
 		];
 	}
 

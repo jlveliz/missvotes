@@ -24,10 +24,13 @@
 		'signals' => [
 			'reserved' => 'Reservado',
 			'selected' => 'Sus Tickets',
-			'available' => 'Disponible'
+			'available' => 'Disponible',
 		],
 		'raffle_paypal' => [
 			'item_description' => 'Ticket # :numRiffle  por :val puntos',
 			'transaction_description' => 'Compra de tickets para ' .config('app.name'),
+		],
+		'validations'=>[
+ 			'exist' => 'The ticket :ticket le pertenece a otro usuario',
 		],
 	];

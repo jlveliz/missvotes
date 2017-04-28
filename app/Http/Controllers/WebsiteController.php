@@ -1,96 +1,35 @@
 <?php
 
-
-
 namespace MissVote\Http\Controllers;
 
 
 
 use Illuminate\Http\Request;
-
-
-
 use MissVote\RepositoryInterface\MissRepositoryInterface;
-
-
-
 use MissVote\RepositoryInterface\ClientRepositoryInterface;
-
-
-
 use MissVote\RepositoryInterface\MembershipRepositoryInterface;
-
-
-
-use MissVote\RepositoryInterface\TicketVoteRepositoryInterface;
-
-
-
 use MissVote\RepositoryInterface\ClientActivityRepositoryInterface;
-
-
-
 use MissVote\Events\ClientActivity;
-
-
-
 use MissVote\Models\Country;
-
-
-
 use App;
-
-
-
 use Hash;
-
-
-
 use Validator;
-
-
-
 use Redirect;
-
-
-
 use Auth;
-
-
-
 use Lang;
 
 
 
 class WebsiteController extends Controller
-
 {
 
-    
-
     private $missRepo;
-
-
-
     private $clientRepo;
-
-
-
     private $membershipRepo;
-
-
-
-    private $ticketVoteRepo;
-
-
-
 	private $clientActRepo;
 
 
-
-
-
-	public function __construct(MissRepositoryInterface $missRepo, ClientRepositoryInterface $clientRepo, MembershipRepositoryInterface $membershipRepo, TicketVoteRepositoryInterface $ticketVoteRepo, ClientActivityRepositoryInterface $clientActRepo)
+	public function __construct(MissRepositoryInterface $missRepo, ClientRepositoryInterface $clientRepo, MembershipRepositoryInterface $membershipRepo,ClientActivityRepositoryInterface $clientActRepo)
 
 	{
 
@@ -99,8 +38,6 @@ class WebsiteController extends Controller
         $this->clientRepo = $clientRepo;
 
         $this->membershipRepo = $membershipRepo;
-
-        $this->ticketVoteRepo = $ticketVoteRepo;
 
 		$this->clientActRepo = $clientActRepo;
 
@@ -178,13 +115,21 @@ class WebsiteController extends Controller
 
         $memberships = $this->membershipRepo->enum();
 
-        $tickets = $this->ticketVoteRepo->enum();
-
         $activities = $this->clientActRepo->enum(['client_id'=>Auth::user()->id]);
 
         $countries = Country::orderby('name')->get();
 
-        return view('frontend.pages.profile',compact('memberships','tickets','activities','countries'));
+        $availableTickets = 0;
+        $totalTickets = 0;
+
+        foreach (Auth::user()->client->tickets()->get() as $key => $ticket) {
+            if ($ticket->state == 1) {
+                $availableTickets+=$ticket->val_vote;
+            }
+            $totalTickets+=$ticket->val_vote;
+        }
+
+        return view('frontend.pages.profile',compact('memberships','tickets','activities','countries','availableTickets','totalTickets'));
 
     }
 

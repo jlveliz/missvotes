@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use MissVote\RepositoryInterface\MembershipRepositoryInterface;
 
-use MissVote\RepositoryInterface\TicketVoteRepositoryInterface;
+use MissVote\RepositoryInterface\TicketVoteClientRepositoryInterface;
 
 use MissVote\Models\User;
 
@@ -33,7 +33,7 @@ class StripeController extends Controller
 	private $ticketRepo; 
 
 
-	public function __construct(MembershipRepositoryInterface  $membershipRepo, TicketVoteRepositoryInterface $ticketRepo)
+	public function __construct(MembershipRepositoryInterface  $membershipRepo, TicketVoteClientRepositoryInterface $ticketRepo)
 	{
 		$this->membershipRepo = $membershipRepo;
 		$this->ticketRepo = $ticketRepo;
@@ -193,7 +193,7 @@ class StripeController extends Controller
     public function createUserTicket($ticket)
     {
     	Auth::user()->client->tickets()->create([
-    		'ticket_vote_id' => $ticket->id,
+    		'raffle_vote_id' => $ticket->id,
     		'payment_type' => 'credit_card',
     		'state' => 1
     	]);

@@ -4,9 +4,9 @@ namespace MissVote\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use MissVote\Http\Requests\TicketVoteRequest;
+use MissVote\Http\Requests\TicketVoteClientRequest;
 
-use MissVote\RepositoryInterface\TicketVoteRepositoryInterface;
+use MissVote\RepositoryInterface\TicketVoteClientRepositoryInterface;
 
 use MissVote\Models\TicketVote;
 
@@ -17,14 +17,14 @@ use Redirect;
 use Lang;
 
 
-class TicketVoteController extends Controller
+class TicketVoteClientController extends Controller
 {
     
-    private $voteTicket;
+    private $voteTicketClient;
 
-    public function __construct(TicketVoteRepositoryInterface $voteTicket)
+    public function __construct(TicketVoteClientRepositoryInterface $voteTicketClient)
     {
-       $this->voteTicket = $voteTicket;
+       $this->voteTicketClient = $voteTicketClient;
     }
 
     /**
@@ -34,7 +34,8 @@ class TicketVoteController extends Controller
      */
     public function index()
     {
-       $raffles = $this->voteTicket->generateListRaffle()->paginate();
+       
+       $raffles = $this->voteTicketClient->generateListRaffle()->paginate();
        return view('frontend.pages.raffle-ticket-vote.index',compact('raffles'));
     }
 
@@ -53,22 +54,22 @@ class TicketVoteController extends Controller
      *
      * @return Response
      */
-    public function store(TicketVoteRequest $request)
+    public function store(TicketVoteClientRequest $request)
     {
         $data = $request->all();
-        $voteTicket = $this->voteTicket->save($data);
+        $voteTicketClient = $this->voteTicketClient->save($data);
         $sessionData = [
             'tipo_mensaje' => 'success',
             'mensaje' => '',
         ];
-        if ($voteTicket) {
+        if ($voteTicketClient) {
             $sessionData['mensaje'] = 'Tickets creado Satisfactoriamente';
         } else {
             $sessionData['tipo_mensaje'] = 'error';
             $sessionData['mensaje'] = 'El Tickets no pudo ser creado, intente nuevamente';
         }
         
-        return Redirect::action('TicketVoteController@edit',$voteTicket->id)->with($sessionData);
+        return Redirect::action('TicketVoteController@edit',$voteTicketClient->id)->with($sessionData);
         
     }
 
@@ -91,9 +92,9 @@ class TicketVoteController extends Controller
      */
     public function edit($id)
     {
-        $voteTicket = $this->voteTicket->find($id);
+        $voteTicketClient = $this->voteTicketClient->find($id);
         return view('backend.ticket-vote.edit',[
-            'voteTicket'=>$voteTicket
+            'voteTicketClient'=>$voteTicketClient
             ]);
     }
 
@@ -103,22 +104,22 @@ class TicketVoteController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(TicketVoteRequest $request, $id)
+    public function update(TicketVoteClientRequest $request, $id)
     {
         $data = $request->all();
-        $voteTicket = $this->voteTicket->edit($id,$data);
+        $voteTicketClient = $this->voteTicketClient->edit($id,$data);
         $sessionData = [
             'tipo_mensaje' => 'success',
             'mensaje' => '',
         ];
-        if ($voteTicket) {
+        if ($voteTicketClient) {
             $sessionData['mensaje'] = 'Ticket editado Satisfactoriamente';
         } else {
             $sessionData['tipo_mensaje'] = 'error';
             $sessionData['mensaje'] = 'El Ticket no pudo ser creado, intente nuevamente';
         }
         
-        return Redirect::action('TicketVoteController@edit',$voteTicket->id)->with($sessionData);
+        return Redirect::action('TicketVoteController@edit',$voteTicketClient->id)->with($sessionData);
     }
 
     /**
@@ -130,14 +131,14 @@ class TicketVoteController extends Controller
     public function destroy($id)
     {
         
-        $voteTicket = $this->voteTicket->remove($id);
+        $voteTicketClient = $this->voteTicketClient->remove($id);
         
         $sessionData = [
             'tipo_mensaje' => 'success',
             'mensaje' => '',
         ];
         
-        if ($voteTicket) {
+        if ($voteTicketClient) {
             $sessionData['mensaje'] = 'El ticket eliminado Satisfactoriamente';
         } else {
             $sessionData['tipo_mensaje'] = 'error';
@@ -158,7 +159,7 @@ class TicketVoteController extends Controller
             return redirect()->back()->with($sessionData);
         }
 
-        $item = $this->voteTicket->generateRaffle($request->get('raffle_number'));
+        $item = $this->voteTicketClient->generateRaffle($request->get('raffle_number'));
         session()->push('cart',$item);
         
         //sum total
@@ -171,7 +172,7 @@ class TicketVoteController extends Controller
     {
         if (existOnCart($request->get('raffle_number'))) {
             $cart = session()->get('cart');
-            $ruffle = $this->voteTicket->generateRaffle($request->get('raffle_number'));
+            $ruffle = $this->voteTicketClient->generateRaffle($request->get('raffle_number'));
             foreach ($cart as $key => $itemCart) {
                 if ($itemCart['raffle_number'] == $request->get('raffle_number')) {
                     unset($cart[$key]);

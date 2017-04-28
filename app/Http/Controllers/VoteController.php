@@ -10,7 +10,7 @@ use MissVote\RepositoryInterface\VoteRepositoryInterface;
 
 use MissVote\RepositoryInterface\ClientRepositoryInterface;
 
-use MissVote\RepositoryInterface\TicketVoteRepositoryInterface;
+use MissVote\RepositoryInterface\TicketVoteClientRepositoryInterface;
 
 use MissVote\Events\ClientActivity;
 
@@ -32,7 +32,7 @@ class VoteController extends Controller
     public $ticketVoteRepo;
 
    
-    public function __construct(VoteRepositoryInterface $vote, ClientRepositoryInterface $clientRepo, TicketVoteRepositoryInterface $ticketVoteRepo)
+    public function __construct(VoteRepositoryInterface $vote, ClientRepositoryInterface $clientRepo, TicketVoteClientRepositoryInterface $ticketVoteRepo)
     {
         $this->vote = $vote;
         $this->clientRepo =  $clientRepo;
@@ -81,7 +81,7 @@ class VoteController extends Controller
                 $valVote = $ticketVote->val_vote;
                 $data['type'] = 'ticket';
                 //update the ticket client 
-                $ticketVoteUpdate = $client->tickets()->where('ticket_vote_id',$ticketVote->id)->where('state','1')->first();
+                $ticketVoteUpdate = $client->tickets()->where('raffle_vote_id',$ticketVote->id)->where('state','1')->first();
                 $ticketVoteUpdate->state = 0;
                 $ticketVoteUpdate->save();
             } else {

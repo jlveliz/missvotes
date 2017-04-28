@@ -4,7 +4,7 @@ namespace MissVote\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TicketVoteRequest extends FormRequest
+class TicketVoteClientRequest extends FormRequest
 {
      /**
      * Determine if the user is authorized to make this request.
@@ -24,20 +24,12 @@ class TicketVoteRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'client_id'=>'required',
+            'raffle_vote_id' => 'required|unique',
+            'payment_type'=>'required',
             'val_vote' => 'required',
-            'price' => 'required',
+            'state' => 'required',
         ];
            
-    }
-
-    public function messages()
-    {
-        
-        return [
-            'name.required' => 'El nombre es requerido',
-            'val_vote.required' => 'El valor del voto es requerido',
-            'price.required' => 'El precio es requerido',
-        ];
     }
 }

@@ -9,9 +9,11 @@ class TicketVoteClient extends Model
     protected $table = "ticket_vote_client";
 
     protected $fillable = [
-    	'ticket_vote_id',
+    	'raffle_vote_id',
     	'client_id',
-    	'payment_type',
+        'payment_type',
+        'val_vote',
+        'description',
     	'state'
     ];
 
@@ -19,10 +21,5 @@ class TicketVoteClient extends Model
     public function client()
     {
     	return $this->belongsTo('MissVote\Models\Client','client_id');
-    }
-
-    public function ticket()
-    {
-    	return $this->belongsTo('MissVote\Models\TicketVote','ticket_vote_id');
     }
 }
