@@ -11,12 +11,8 @@ h6 {
 }
 
 .cart-place {
-    position: fixed;
     width: 290px;
-    height: 200px;
-    left: 68%;
-    top: 50%;
-    margin-right: -304px;
+    margin-left: -25px;
 }
 
 .body-ticket {

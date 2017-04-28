@@ -92,7 +92,7 @@
 		</div>
 		{{-- cart --}}
 		<div class="col-md-3 col-xs-6">
-			<div class="cart-place">
+			<div class="cart-place" data-spy="affix">
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<div class="panel-title">
