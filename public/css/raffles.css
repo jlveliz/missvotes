@@ -24,6 +24,10 @@ h6 {
     color: #ffffff;
 }
 
+.my-ticket > h1 {
+    color: #6b6b6b
+}
+
 .footer-ticket {
     padding: 0px;
 }

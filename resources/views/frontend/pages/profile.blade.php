@@ -196,7 +196,7 @@
 			    			@foreach (Auth::user()->client->tickets as $ticketClient)
 			    				<div class="col-md-2 col-xs-4">
 									<div class="panel panel-success">
-					  					<div class="panel-body body-ticket">
+					  					<div class="panel-body body-ticket my-ticket">
 											<h1 class="text-center"><b>{{ $ticketClient->raffle_vote_id }}</b></h1>
 					  					</div>
 					  					<div class="panel-footer footer-ticket @if($ticketClient->state == 1) footer-my-available-tickets @else footer-my-used-tickets @endif">

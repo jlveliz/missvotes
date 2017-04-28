@@ -75,11 +75,13 @@
 					<input type="hidden" name="raffle_number" value="{{ $raffle['raffle_number'] }}">
 					<div class="col-md-2 col-xs-4">
 						<div class="panel panel-success">
-		  					<div class="panel-body body-ticket @if(existOnCart($raffle['raffle_number'])) selected-now @else available @endif @if(isReserved($raffle['raffle_number'])) reserved @else available @endif">
+		  					<div class="panel-body body-ticket @if(existOnCart($raffle['raffle_number']) && !isReserved($raffle['raffle_number'])) selected-now @endif @if(!existOnCart($raffle['raffle_number']) && isReserved($raffle['raffle_number'])) reserved @endif @if(!existOnCart($raffle['raffle_number']) && !isReserved($raffle['raffle_number'])) available @endif">
 								<h1 class="text-center"><b>{{ $raffle['raffle_number'] }}</b></h1>
 		  					</div>
 		  					<div class="panel-footer footer-ticket">
-		  						<button class="btn btn-primary btn-block btn-xs text-center btn-add-cart-ticket" @if(existOnCart($raffle['raffle_number']) || isReserved($raffle['raffle_number'])) disabled @endif title="{{ trans('raffle_ticket.add_cart') }}" alt="{{ trans('raffle_ticket.add_cart') }}"><i class="fa fa-cart-plus"></i></button>
+		  						<button class="btn btn-primary btn-block btn-xs text-center btn-add-cart-ticket" 
+		  						@if(existOnCart($raffle['raffle_number']) || isReserved($raffle['raffle_number'])) disabled @endif 
+		  						@if(!isReserved($raffle['raffle_number']))  title="{{ trans('raffle_ticket.add_cart') }}" alt="{{ trans('raffle_ticket.add_cart') }}" @endif ><i class="fa fa-cart-plus"></i></button>
 		  					</div>
 						</div>
 					</div>
