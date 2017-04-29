@@ -6,6 +6,7 @@ use MissVote\Events\PredidateSubscribed;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Mail;
+use Lang;
 
 
 class SendDataToPrecandidate
@@ -30,7 +31,7 @@ class SendDataToPrecandidate
     {
        $mail = Mail::send('frontend.emails.casting',['precandidate'=>$registred->precandidate], function($message) use ($registred) {
             $message->to($registred->precandidate->email , $registred->precandidate->name .' '. $registred->precandidate->last_name)
-                ->subject('Bienvenido a '.config('app.name').' - Datos de postulación a casting');
+                ->subject(Lang::get('email.casting',['name'=>config('app.name')]));
         });
     }
 }

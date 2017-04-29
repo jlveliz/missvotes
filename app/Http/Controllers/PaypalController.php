@@ -12,6 +12,8 @@ use MissVote\RepositoryInterface\ClientApplyProcessRepositoryInterface;
 
 use MissVote\Events\ClientActivity;
 
+use MissVote\Events\BuyTicket;
+
 use Paypalpayment;
 
 use Session;
@@ -314,9 +316,9 @@ class PaypalController extends Controller
                     event(new ClientActivity(Auth::user()->id,'activity.ticket.bought',['name'=>$item['description']]));
                 }
 
-                
                 Session::forget('cart');
                 Session::forget('total_sum');
+                event( new BuyTicket($requestTicket['tickets']) );
                 $mensaje['payment-message'] = Lang::get('paypal.thanks_buy_ticket');
                
             } 

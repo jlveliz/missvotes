@@ -3,6 +3,7 @@
 return [
 	
 	'casting' => [
+		'subject' => 'Welcome to :name  - Data Postulation',
 		'hi' => 'Hi, ',
 		'thanks' => 'Thank you for postulating!',
 		'welcome' => 'It is nice to know that you want to be part of our international event.',
@@ -35,6 +36,14 @@ return [
 		'if_prefeer' => 'If you prefer, please copy the following link and paste it into your browser',
 
 
+	],
+
+	'buy_ticket' => [
+		'subject' => 'name: - Raffle ticket purchase',
+		'greeting' => 'Hello',
+		'line_1' => 'Thank you for your purchase, below we detail the tickets.',
+		'points' => 'Points',
+		'price' =>'Price',
 	],
 
 ];

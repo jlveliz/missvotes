@@ -3,6 +3,7 @@
 return [
 	
 	'casting' => [
+		'subject' =>'Bienvenido a :name - Datos de postulación a casting', 
 		'hi' => 'Hola, ',
 		'thanks' => '¡Gracias por postularte!',
 		'welcome' => 'Es grato saber que deseas formar parte de nuestro evento internacional.',
@@ -32,6 +33,18 @@ return [
 		'thanks' => ' Gracias por registrarse. Ahora solo debe activar su cuenta para que pueda conocer mas sobre nosotros y por supuesto para votar por tu candidata favorita.',
 		'activate_button' => 'Activar Cuenta',
 		'if_prefeer' => 'Si prefiere copie el siguiente enlace y peguelo en su navegador',
+	],
+
+	'buy_ticket' => [
+		'subject' => 'name: - Compra de tickets de rifa'
+	],
+
+	'buy_ticket' => [
+		'subject' => 'name: - Compra de tickets de rifa',
+		'greeting' => 'Hola',
+		'line_1' => 'Gracias por su compra. A continuación detallamos su compra',
+		'points' => 'Puntos',
+		'price' =>'Precio',
 	],
 
 ];
