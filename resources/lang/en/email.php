@@ -1,7 +1,10 @@
 <?php
 
 return [
-	
+	'regards' => 'Regards',
+
+	'right_reserved' => 'All rights reserved',
+
 	'casting' => [
 		'subject' => 'Welcome to :name  - Data Postulation',
 		'hi' => 'Hi, ',
@@ -44,6 +47,18 @@ return [
 		'line_1' => 'Thank you for your purchase, below we detail the tickets.',
 		'points' => 'Points',
 		'price' =>'Price',
+	],
+
+	'buy_membership' => [
+		'duration_year'=>'Year(s)',
+		'duration_month'=>'Month(s)',
+		'subject' => 'name: - Membership purchase',
+		'greeting' => 'Hello',
+		'line_1' => 'Thank you for your purchase, below we detail the membership.',
+		'duration' => 'Duration',
+		'points' => 'Points per Vote',
+		'price' =>'Price',
+		'name'=> 'Membership',
 	],
 
 ];

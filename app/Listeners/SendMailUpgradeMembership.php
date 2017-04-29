@@ -2,14 +2,14 @@
 
 namespace MissVote\Listeners;
 
-use MissVote\Events\BuyTicket;
+use MissVote\Events\UpgradeMembership;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Mail;
 use Lang;
 use Auth;
 
-class SendMailBuyTicket
+class SendMailUpgradeMembership
 {
     /**
      * Create the event listener.
@@ -24,14 +24,14 @@ class SendMailBuyTicket
     /**
      * Handle the event.
      *
-     * @param  BuyTicket  $event
+     * @param  UpgradeMembership  $event
      * @return void
      */
-    public function handle(BuyTicket $event)
+    public function handle(UpgradeMembership $event)
     {
-        Mail::send('frontend.emails.tickets',['tickets'=>$event->tickets], function($message) {
+        Mail::send('frontend.emails.membership',['membership'=>$event->membership], function($message) {
             $message->to(Auth::user()->email , Auth::user()->name .' '. Auth::user()->last_name)
-                ->subject(Lang::get('email.buy_ticket.subject',['name'=>config('app.name')]));
+                ->subject(Lang::get('email.buy_membership.subject',['name'=>config('app.name')]));
         });
     }
 }

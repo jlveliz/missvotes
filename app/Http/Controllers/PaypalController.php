@@ -14,6 +14,8 @@ use MissVote\Events\ClientActivity;
 
 use MissVote\Events\BuyTicket;
 
+use MissVote\Events\UpgradeMembership;
+
 use Paypalpayment;
 
 use Session;
@@ -244,11 +246,13 @@ class PaypalController extends Controller
                 /** die('Some error occur, sorry for inconvenient'); **/
             }
         }catch (PayPal\Exception\PayPalConnectionException $ex) {
-            echo $ex->getCode(); // Prints the Error Code
-            echo $ex->getData(); // Prints the detailed error message 
-            dd($ex);    
+            $mensaje['payment-type'] = 'error';
+            $mensaje['payment-message'] = Lang::get('paypal.general_error');  
+            return redirect()->back()->with($mensaje);
         } catch (\Exception $ex) {
-            dd($ex);
+           $mensaje['payment-type'] = 'error';
+            $mensaje['payment-message'] = Lang::get('paypal.general_error');  
+            return redirect()->back()->with($mensaje);
         }
 
         foreach($payment->getLinks() as $link) {
@@ -332,6 +336,7 @@ class PaypalController extends Controller
                 //insert activity
                 $mensaje['payment-message'] = Lang::get('paypal.thanks_buy_membership') .' '.$membership->name;
                 event(new ClientActivity(Auth::user()->id,'activity.membership.bought',['name'=>$membership->name]));
+                event( new UpgradeMembership($membership));
             }
 
             /** it's all right **/

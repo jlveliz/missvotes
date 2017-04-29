@@ -193,6 +193,14 @@ class ApplyCandidateController extends Controller
                 return redirect()->away('http://misspanamericaninternational.com/online-application')->with($mensaje);
                 /** die('Some error occur, sorry for inconvenient'); **/
             }
+        }catch (PayPal\Exception\PayPalConnectionException $ex) {
+            $mensaje['payment-type'] = 'error';
+            $mensaje['payment-message'] = Lang::get('paypal.general_error');  
+            return redirect()->back()->with($mensaje);
+        } catch (\Exception $ex) {
+           $mensaje['payment-type'] = 'error';
+            $mensaje['payment-message'] = Lang::get('paypal.general_error');  
+            return redirect()->back()->with($mensaje);
         }
 
         foreach($payment->getLinks() as $link) {

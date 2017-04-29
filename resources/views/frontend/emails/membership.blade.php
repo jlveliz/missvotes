@@ -96,19 +96,21 @@ $style = [
                                         <table style="{{ $style['body_action'] }}" align="center" width="100%" cellpadding="0" cellspacing="0">
                                             <tr>
                                                 <td align="center">
-                                                  Ticket
+                                                  {{ trans('email.buy_membership.name') }}
                                                 </td>
-                                                <td align="center">{{ trans('email.buy_ticket.price') }}</td>
-                                                <td align="center">{{ trans('email.buy_ticket.points') }}</td>
+                                                <td align="center">{{ trans('email.buy_membership.duration') }}</td>
+                                                <td align="center">{{ trans('email.buy_membership.price') }}</td>
+                                                <td align="center">{{ trans('email.buy_membership.points') }}</td>
                                             </tr>
-                                            <?php foreach ($tickets as $key => $value): ?>
-                                                <tr>
-                                                    <td>{{ $value['description'] }}</td>
-                                                    <td>{{ config('vote.vote-raffle-price') }}</td>
-                                                    <td>{{ config('vote.vote-raffle-point') }}</td>
-                                                </tr>
+                                          
+                                            <tr>
+                                                <td>{{ $membership->name }}</td>
+                                                <td>{{$membership->duration_time}} @if($membership->duration_mode == 1) {{ trans('email.buy_membership.duration_month') }} @else {{ trans('email.buy_membership.duration_year') }} @endif</td>
+                                                <td>{{$membership->price}}</td>
+                                                <td>{{$membership->points_per_vote}}</td>
+                                            </tr>
                                                 
-                                            <?php endforeach ?>
+                                          
                                         </table>
 
                                         <!-- Salutation -->

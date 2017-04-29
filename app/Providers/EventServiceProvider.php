@@ -27,6 +27,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         'MissVote\Events\BuyTicket' => [
             'MissVote\Listeners\SendMailBuyTicket'
+        ],
+        'MissVote\Events\UpgradeMembership' => [
+            'MissVote\Listeners\SendMailUpgradeMembership'
         ]
     ];
 

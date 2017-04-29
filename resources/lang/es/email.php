@@ -2,6 +2,10 @@
 
 return [
 	
+	'regards' => 'Saludos',
+
+	'right_reserved' => 'Todos los derechos reservados',
+	
 	'casting' => [
 		'subject' =>'Bienvenido a :name - Datos de postulación a casting', 
 		'hi' => 'Hola, ',
@@ -36,15 +40,23 @@ return [
 	],
 
 	'buy_ticket' => [
-		'subject' => 'name: - Compra de tickets de rifa'
-	],
-
-	'buy_ticket' => [
 		'subject' => 'name: - Compra de tickets de rifa',
 		'greeting' => 'Hola',
 		'line_1' => 'Gracias por su compra. A continuación detallamos su compra',
 		'points' => 'Puntos',
 		'price' =>'Precio',
+	],
+
+	'buy_membership' => [
+		'duration_year'=>'Año(s)',
+		'duration_month'=>'Mes(es)',
+		'subject' => 'name: - Compra de Membresía',
+		'greeting' => 'Hola',
+		'line_1' => 'Gracias por su compra, A continuación detallamos la membresía.',
+		'duration' => 'Duración',
+		'points' => 'Puntos por voto',
+		'price' =>'Precio',
+		'name'=> 'Membresía',
 	],
 
 ];
