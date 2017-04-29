@@ -13,11 +13,12 @@
 
 Route::get('/', 'WebsiteController@index')->name('website.home');
 Route::get('/change-language', 'WebsiteController@setLocale')->name('website.locale');
+Route::get('/miss', 'WebsiteController@showMisses')->name('website.miss.index');
 Route::get('/miss/{slug}', 'WebsiteController@show')->name('website.miss.show');
 
 
 // votes for miss
-Route::post('/miss/vote', 'VoteController@store')->name('website.miss.vote.store');
+Route::post('/miss/vote', 'VoteController@store')->name('website.miss.vote.store')->middleware('auth','isClient');
 
 Route::group(['prefix'=>'account'],function(){
 	Route::get('/','WebsiteController@myAccount')->name('website.account')->middleware('auth');

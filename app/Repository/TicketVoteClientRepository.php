@@ -119,7 +119,7 @@ class TicketVoteClientRepository implements TicketVoteClientRepositoryInterface
         $collection = new Collection($this->raffles);
 
         //Define how many items we want to be visible in each page
-        $perPage = 204;
+        $perPage = 60;
 
         //Slice the collection to get the items to display in current page
         $currentPageSearchResults = $collection->slice(($currentPage - 1) * $perPage, $perPage)->all();

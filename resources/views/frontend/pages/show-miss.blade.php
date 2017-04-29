@@ -112,7 +112,7 @@
 												<select class="form-control" id="select-tickets">
 													<option value=''>--Seleccione--</option>
 													@foreach (Auth::user()->client->activeTickets() as $ticketClient)
-														<option value="{{ $ticketClient->raffle_vote_id }}"><i>x({{$ticketClient->counter}})</i> {{ $ticketClient->ticket->name }} <i>({{ $ticketClient->ticket->val_vote }} Puntos)</i> </option>
+														<option value="{{ $ticketClient->id }}">{{ $ticketClient->description }} <i>({{ $ticketClient->val_vote }} Puntos)</i> </option>
 													@endforeach
 												</select>
 											</div>
@@ -126,7 +126,7 @@
 						@endif
 					@endcan
 				@else 
-					Para votar, <a href="#" id="go-login" title="Iniciar Sesión"><span>Inicie Sesión</span></a> o  <a href="#" id="go-register" title="Registrarse"><span>Registrese</span></a>
+					Para votar, <a href="{{ route('client.show.login') }}"  title="Iniciar Sesión"><span>Inicie Sesión</span></a> o  <a href="{{ route('client.show.register') }}" title="Registrarse"><span>Registrese</span></a>
 				@endif
 			</div>
 			<hr>

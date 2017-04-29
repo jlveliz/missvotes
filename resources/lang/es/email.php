@@ -40,7 +40,7 @@ return [
 	],
 
 	'buy_ticket' => [
-		'subject' => 'name: - Compra de tickets de rifa',
+		'subject' => ':name - Compra de tickets de rifa',
 		'greeting' => 'Hola',
 		'line_1' => 'Gracias por su compra. A continuación detallamos su compra',
 		'points' => 'Puntos',
@@ -50,7 +50,7 @@ return [
 	'buy_membership' => [
 		'duration_year'=>'Año(s)',
 		'duration_month'=>'Mes(es)',
-		'subject' => 'name: - Compra de Membresía',
+		'subject' => ':name - Compra de Membresía',
 		'greeting' => 'Hola',
 		'line_1' => 'Gracias por su compra, A continuación detallamos la membresía.',
 		'duration' => 'Duración',

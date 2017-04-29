@@ -59,10 +59,14 @@ class WebsiteController extends Controller
 
     	return redirect()->route('website.account');
 
+    }
+
+
+    public function showMisses()
+    {
         $misses = $this->missRepo->paginate();
 
-    	return view('frontend.pages.home',['misses'=>$misses]);
-
+        return view('frontend.pages.home',['misses'=>$misses]);
     }
 
 
@@ -77,9 +81,7 @@ class WebsiteController extends Controller
 
     {
 
-    	return redirect()->route('website.account');
-
-        if (!$slug) abort(404);
+    	if (!$slug) abort(404);
 
     	$miss = $this->missRepo->find(['slug' => $slug]);
 

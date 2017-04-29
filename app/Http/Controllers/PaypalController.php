@@ -121,11 +121,13 @@ class PaypalController extends Controller
                 /** die('Some error occur, sorry for inconvenient'); **/
             }
         } catch (PayPal\Exception\PayPalConnectionException $ex) {
-            echo $ex->getCode(); // Prints the Error Code
-            echo $ex->getData(); // Prints the detailed error message 
-            dd($ex);    
-        } catch (Exception $ex) {
-            dd($ex);
+            $mensaje['payment-type'] = 'error';
+            $mensaje['payment-message'] = Lang::get('paypal.general_error');  
+            return redirect()->back()->with($mensaje);
+        } catch (\Exception $ex) {
+           $mensaje['payment-type'] = 'error';
+            $mensaje['payment-message'] = Lang::get('paypal.general_error');  
+            return redirect()->back()->with($mensaje);
         }
 
         foreach($payment->getLinks() as $link) {

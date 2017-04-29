@@ -30,9 +30,7 @@
         </div>
     </div>
 	<header id="header">
-        @if (Auth::user())
-		  @include('frontend.partials.nav')
-        @endif
+        @include('frontend.partials.nav')
 	</header><!-- /header -->
 	<div class="container container-app">
         @yield('content')

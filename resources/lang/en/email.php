@@ -42,7 +42,7 @@ return [
 	],
 
 	'buy_ticket' => [
-		'subject' => 'name: - Raffle ticket purchase',
+		'subject' => ':name - Raffle ticket purchase',
 		'greeting' => 'Hello',
 		'line_1' => 'Thank you for your purchase, below we detail the tickets.',
 		'points' => 'Points',
@@ -52,7 +52,7 @@ return [
 	'buy_membership' => [
 		'duration_year'=>'Year(s)',
 		'duration_month'=>'Month(s)',
-		'subject' => 'name: - Membership purchase',
+		'subject' => ':name - Membership purchase',
 		'greeting' => 'Hello',
 		'line_1' => 'Thank you for your purchase, below we detail the membership.',
 		'duration' => 'Duration',

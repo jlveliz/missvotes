@@ -77,13 +77,14 @@ class VoteController extends Controller
             
             //vote for ticket
             if ($request->has('ticket_id')) {
-                $ticketVote = $this->ticketVoteRepo->find($request->get('ticket_id'));
-                $valVote = $ticketVote->val_vote;
-                $data['type'] = 'ticket';
                 //update the ticket client 
-                $ticketVoteUpdate = $client->tickets()->where('raffle_vote_id',$ticketVote->id)->where('state','1')->first();
-                $ticketVoteUpdate->state = 0;
-                $ticketVoteUpdate->save();
+                $ticketClientVote = $this->ticketVoteRepo->find($request->get('ticket_id'));
+                $ticketClientVote->state = 0;
+                $ticketClientVote->save();
+                
+                $valVote = $ticketClientVote->val_vote;
+                $data['type'] = 'ticket';
+                
             } else {
                 //vote for membership
                 //find a val vote
@@ -108,8 +109,8 @@ class VoteController extends Controller
                 $sessionData['tipo_mensaje'] = 'error';
                 $sessionData['mensaje'] = 'El voto no pudo ser procesado, intente nuevamente.';  
             } else {
-                //insert activity
 
+                //insert activity
                 if ($request->has('ticket_id')) {
                     event(new ClientActivity(Auth::user()->id,'activity.ticket.used'));  
                 }
