@@ -22,6 +22,8 @@ class TicketVoteClientController extends Controller
     
     private $voteTicketClient;
 
+    public $raffles;
+
     public function __construct(TicketVoteClientRepositoryInterface $voteTicketClient)
     {
        $this->voteTicketClient = $voteTicketClient;
@@ -34,7 +36,6 @@ class TicketVoteClientController extends Controller
      */
     public function index()
     {
-       
        $raffles = $this->voteTicketClient->generateListRaffle()->paginate();
        return view('frontend.pages.raffle-ticket-vote.index',compact('raffles'));
     }
@@ -192,6 +193,23 @@ class TicketVoteClientController extends Controller
 
             return redirect()->back();
         }
+    }
+
+    /**
+     * search a ticket
+     */
+    public function query(Request $request)
+    {
+        if (!$request->has('query')) return redirect()->route('list.buy.ticket');
+        
+        $query = $request->get('query');
+        $raffles = $this->voteTicketClient->generateListRaffle()->search($query)->paginate();
+        if (!$raffles->total() > 0) {
+            $message = Lang::get('raffle_ticket.tickets_not_found_query',['param'=>$query]);
+            return view('frontend.pages.raffle-ticket-vote.index',compact('raffles','query','message'));
+        }
+
+        return view('frontend.pages.raffle-ticket-vote.index',compact('raffles','query'));
     }
 
 }

@@ -173,21 +173,21 @@ class WebsiteController extends Controller
 
             [
 
-                'name' => 'required',
+                'name' => 'required_with:name',
 
-                'last_name'=>'required',
+                'last_name'=>'required_with:last_name',
 
-                'country_id' => 'required|exists:country,id',
+                'country_id' => 'required_with:country_id|exists:country,id',
 
-                'city' => 'required',
+                'city' => 'required_with:city',
 
-                'address' => 'required',
+                'address' => 'required_with:address',
 
                 'password' => 'required_with:password|min:6',
 
                 'repeat_password' => 'required_with:repeat_password|same:password',
 
-                'photo'=> 'required_with|image'
+                'photo'=> 'required_with'
 
             ],
 
@@ -262,6 +262,7 @@ class WebsiteController extends Controller
             if ($request->hasFile('photo')) {
 
                 $uploadPhoto = $this->clientRepo->uploadPhoto(Auth::user()->id,$request->file('photo'));
+                $client->photo = $uploadPhoto;
 
             } 
 

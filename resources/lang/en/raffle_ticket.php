@@ -5,6 +5,12 @@
 		'my_tickets' => 'My Tickets',
 		'tickets_not_found' => 'We regret that you do not have tickets to use, buy one to support your favorite candidate',
 		'tittle_raffle' => 'GREAT RIFF WINNER!',
+		'tickets_not_found_query' =>'Ticket :param not found',
+		'search_form' => [
+			'label' => 'Search',
+			'input' => 'Insert a ticket',
+			'button' => 'Go'
+		],
 		'policies' => [
 			'title'=>'Competition policy',
 			'policy_1' => 'Each raffle number is worth $ 5 dollars.',

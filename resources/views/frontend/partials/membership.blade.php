@@ -1,6 +1,6 @@
 <div class="col-md-8 col-xs-12">
     @if (!Auth::user()->client->current_membership())
-        <div class="col-xs-12 col-md-6">
+        <div class="col-md-6">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">
@@ -38,7 +38,7 @@
     @endif
     {{-- memberships --}}
     @foreach ($memberships as $membership)
-        <div class="col-xs-12 col-md-6">
+        <div class="col-md-6">
             <div class="panel @if (Auth::user()->client->current_membership() && (Auth::user()->client->current_membership()->membership_id ==  $membership->id) ) panel-primary @else  panel-success @endif">
                       {{--   @if ($membership->name == 'Premium')
                 <div class="cnrflash">
@@ -101,7 +101,8 @@
         </div>
     @endforeach
     @if (Auth::user()->client->current_membership())
-        <div class="col-xs-12 col-md-6" style="padding-top: 25%">
+        <hr class="visible-xs">    
+        <div class="col-md-6" style="padding-top: 25%">
             <div class="text-center">
                 <img style="width: 70%" src="{{ asset('public/images/logo_square.png') }}" alt="{{ config('app.name') }}" title="{{ config('app.name') }}">
             </div>
@@ -109,6 +110,7 @@
                 <h5 class="text-center">{{ trans('membership.thanks_premium_membership') }}</h5>
             </div>
         </div>
+        <hr class="visible-xs">
     @endif
 </div>
 

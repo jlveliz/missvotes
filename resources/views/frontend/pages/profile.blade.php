@@ -40,10 +40,10 @@
   		<!-- Tab panes -->
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="profile">
-		    	<div class="col-md-3 col-sm-3 col-xs-12">
+		    	<div class="col-md-4 col-sm-6 col-xs-12">
 		    		<a href="#" id="profile-section">
 		    			<hr>
-		    			<div class="profile-img" style="background-image: url(@if(Auth::user()->client->photo) '{{ config('app.url').'/'. Auth::user()->client->photo}}' @else '{{asset('public/images/account.png')}}'  @endif)" alt="{{Auth::user()->name}}" title="{{Auth::user()->name}} {{Auth::user()->last_name}}">
+		    			<div class="profile-img center-block" style="background-image: url(@if(Auth::user()->client->photo) '{{ config('app.url').'/'. Auth::user()->client->photo}}' @else '{{asset('public/images/account.png')}}'  @endif)" alt="{{Auth::user()->name}} {{Auth::user()->last_name}}" title="{{Auth::user()->name}} {{Auth::user()->last_name}}">
 		    			</div>
 		    			<div class="middle">
                         	<div class="text">@lang('account_profile.img_btn_data')</div>
@@ -68,7 +68,7 @@
 			    		</div>
 		    		</div>
 		    	</div>
-		    	<div class="col-md-9 col-sm-9 col-xs-12">
+		    	<div class="col-md-8 col-sm-6 col-xs-12">
 		    		<h4>
 		    			@lang('account_profile.personal_data')
 		    			@if (session()->get('edit-account'))
@@ -86,7 +86,7 @@
 	   				@endif
 			    		
 		    		@if (!session()->get('edit-account'))
-			    		<table class="table table-striped ">
+			    		<table class="table table-striped table-responsive">
 			    			<tbody>
 			    				<tr>
 			    					<td><b>@lang('account_profile.name_data'): </b> {{Auth::user()->name}}</td>
@@ -194,7 +194,7 @@
 			    		<div class="row">
 			    		@if (count(Auth::user()->client->tickets) > 0)
 			    			@foreach (Auth::user()->client->tickets as $ticketClient)
-			    				<div class="col-md-2 col-xs-4">
+			    				<div class="col-md-2 col-xs-6 col-sm-3">
 									<div class="panel panel-success">
 					  					<div class="panel-body body-ticket my-ticket">
 											<h1 class="text-center"><b>{{ $ticketClient->raffle_vote_id }}</b></h1>
@@ -215,7 +215,7 @@
 			    </div>
 			    {{-- profile --}}
 			<div role="tabpanel" class="tab-pane @if(Auth::user()->is_admin) active @endif" id="profile">
-		    	<div class="col-md-3 col-sm-3 col-xs-12 hidden-xs">
+		    	<div class="col-md-4 col-sm-3 col-xs-12 hidden-xs">
 		    		<a href="#" id="profile-section">
 		    			<hr>
 		    			<div class="profile-img" style="background-image: url(@if(Auth::user()->client->photo) '{{ config('app.url').'/'. Auth::user()->client->photo}}' @else '{{asset('public/images/account.png')}}'  @endif)" alt="{{Auth::user()->name}}" title="{{Auth::user()->name}} {{Auth::user()->last_name}}">
@@ -243,9 +243,9 @@
 			    		</div>
 		    		</div>
 		    	</div>
-		    	<div class="col-md-9 col-sm-9 col-xs-12">
+		    	<div class="col-md-8 col-sm-9 col-xs-12">
 		    		<h4>@lang('account_profile.personal_data')</h4>
-		    		<table class="table table-striped ">
+		    		<table class="table table-striped table-responsive">
 		    			<tbody>
 		    				<tr>
 		    					<td><b>@lang('account_profile.name_data'): </b> {{Auth::user()->name}}</td>
@@ -299,8 +299,8 @@
 		    </div>
 			    <div role="tabpanel" class="tab-pane" id="activity">
 			    	<h4>@lang('account_profile.activities_tab_data')</h4>
-			    	<div class="col-md-12 col-lg-12 col-xs-12">
-			    		<table id="activity-datatable" class="table table-bordered" style="width: 100%">
+			    	<div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+			    		<table id="activity-datatable" class="table table-bordered table-responsive" style="width: 100%">
 					  		<thead>
 						  		<tr>
 						  			<th>@lang('account_profile.event_lbl_data')</th>

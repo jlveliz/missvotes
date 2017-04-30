@@ -12,7 +12,6 @@ h6 {
 
 .cart-place {
     width: 290px;
-    margin-left: -25px;
 }
 
 .body-ticket {
@@ -37,12 +36,26 @@ h6 {
     border-radius: 0px;
 }
 
-@media screen and (max-width: 860px) {
+/* @media screen and (max-width: 860px) {
     .cart-place {
         height: 100%;
-        position: fixed;
         right: 9%;
         width: 21%;
+    }
+} */
+/* 
+@media (min-width: 768px) {
+    .affix {
+        position: fixed;
+    }
+} */
+
+@media (min-width: 50px) and (max-width: 800px) {
+    .affix {
+        position: relative!important;
+        width: 90%;
+        right: 0;
+        margin: 0 auto
     }
 }
 
@@ -82,4 +95,8 @@ h6 {
 .footer-my-used-tickets > p {
     color: #ffffff;
     margin: 0px!important;
+}
+
+.ticket-not-found {
+    margin: 60px 0px;
 }

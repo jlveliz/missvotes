@@ -128,4 +128,17 @@ class TicketVoteClientRepository implements TicketVoteClientRepositoryInterface
 	}
 
 
+	public function search($value)
+	{
+		$results =  array_where($this->raffles, function($raffle , $key) use ($value){
+			if(strpos($raffle['raffle_number'], $value) !== false ){
+				return $raffle;
+			}
+		});
+		
+		$this->raffles = $results;
+		return $this;
+	}
+
+
 }

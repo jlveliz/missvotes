@@ -33,6 +33,7 @@ Route::group(['prefix'=>'account'],function(){
 Route::group(['prefix'=>'raffles'],function(){
 
 	Route::get('/','TicketVoteClientController@index')->name('list.buy.ticket')->middleware('auth','isClient');
+	Route::get('/query','TicketVoteClientController@query')->name('list.buy.ticket.query')->middleware('auth','isClient');
 	Route::post('/add','TicketVoteClientController@add')->name('list.buy.ticket.add')->middleware('auth','isClient');
 	Route::post('/remove','TicketVoteClientController@remove')->name('list.buy.ticket.remove')->middleware('auth','isClient');
 	Route::post('/pay','TicketVoteClientController@remove')->name('list.buy.ticket.remove')->middleware('auth','isClient');

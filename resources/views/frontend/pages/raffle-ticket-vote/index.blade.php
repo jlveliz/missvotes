@@ -37,7 +37,7 @@
 
 	@if (Session::has('mensaje'))
 		<div class="row">
-			<div class="col-md-12 col-xs-12">
+			<div class="col-md-12 col-sm-12 col-xs-12">
 				<div class="alert alert-dismissible @if(Session::get('tipo_mensaje') == 'success') alert-info  @endif @if(Session::get('tipo_mensaje') == 'error') alert-danger  @endif" role="alert">
 		  			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
 		  			{{ session('mensaje') }}
@@ -59,41 +59,8 @@
     @endif
 
 	<div class="row">
-		{{-- tickets --}}
-		<div class="col-md-9 col-xs-6">
-
-			{{-- signals --}}
-			<ul class="list-unstyled text-center list-inline">
-				<li><i class="fa fa-square reserved-color fa-lg""></i> <b> {{ trans('raffle_ticket.signals.reserved') }}</b></li>
-				<li><i class="fa fa-square selected-now-color fa-lg"> </i> <b> {{ trans('raffle_ticket.signals.selected') }}</b></li>
-				<li><i class="fa fa-square available-color fa-lg"></i> <b> {{ trans('raffle_ticket.signals.available') }}</b></li>
-			</ul>
-			<hr>
-			@foreach ($raffles as $key => $raffle)
-				<form action="{{ route('list.buy.ticket.add') }}" method="POST">
-					{{  csrf_field() }}
-					<input type="hidden" name="raffle_number" value="{{ $raffle['raffle_number'] }}">
-					<div class="col-md-2 col-xs-4">
-						<div class="panel panel-success">
-		  					<div class="panel-body body-ticket @if(existOnCart($raffle['raffle_number']) && !isReserved($raffle['raffle_number'])) selected-now @endif @if(!existOnCart($raffle['raffle_number']) && isReserved($raffle['raffle_number'])) reserved @endif @if(!existOnCart($raffle['raffle_number']) && !isReserved($raffle['raffle_number'])) available @endif">
-								<h1 class="text-center"><b>{{ $raffle['raffle_number'] }}</b></h1>
-		  					</div>
-		  					<div class="panel-footer footer-ticket">
-		  						<button class="btn btn-primary btn-block btn-xs text-center btn-add-cart-ticket" 
-		  						@if(existOnCart($raffle['raffle_number']) || isReserved($raffle['raffle_number'])) disabled @endif 
-		  						@if(!isReserved($raffle['raffle_number']))  title="{{ trans('raffle_ticket.add_cart') }}" alt="{{ trans('raffle_ticket.add_cart') }}" @endif ><i class="fa fa-cart-plus"></i></button>
-		  					</div>
-						</div>
-					</div>
-				</form>
-			@endforeach
-			<div class="clearfix"></div>
-			<div class="row text-center">
-				{{ $raffles->links() }}
-			</div>
-		</div>
 		{{-- cart --}}
-		<div class="col-md-3 col-xs-6">
+		<div class="col-md-3 col-sm-12 col-xs-12">
 			<div class="cart-place" data-spy="affix">
 				<div class="panel panel-info">
 					<div class="panel-heading">
@@ -161,5 +128,61 @@
 				</div>
 			</div>
 		</div>
+		{{-- tickets --}}
+		<div class="col-md-9 col-xs-12">
+
+			{{-- signals --}}
+			<ul class="list-unstyled text-center list-inline">
+				<li><i class="fa fa-square reserved-color fa-lg""></i> <b> {{ trans('raffle_ticket.signals.reserved') }}</b></li>
+				<li><i class="fa fa-square selected-now-color fa-lg"> </i> <b> {{ trans('raffle_ticket.signals.selected') }}</b></li>
+				<li><i class="fa fa-square available-color fa-lg"></i> <b> {{ trans('raffle_ticket.signals.available') }}</b></li>
+			</ul>
+			<hr>
+			<div class="col-md-12 col-xs-12 col-sm-6 text-right">
+				<form action="{{ route('list.buy.ticket.query') }}" method="GET" class="form-inline">
+					<div class="form-group">
+						    <label for="exampleInputEmail2">{{ trans('raffle_ticket.search_form.label') }}</label>
+						    <input type="text" class="form-control" name="query" id="" placeholder="{{ trans('raffle_ticket.search_form.input') }}" value="@if(isset($query)){{$query}}@endif">
+					  </div>
+					  <button type="submit" class="btn btn-primary" title="{{ trans('raffle_ticket.search_form.button') }}" alt="{{ trans('raffle_ticket.search_form.button') }}"> <i class="fa fa-search"></i></button>
+				</form>
+			</div>
+			<div class="clearfix"></div>
+			@if (isset($message))
+				<div class="alert alert-dismissible alert-danger ticket-not-found" role="alert">
+		          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+		          {{$message}}
+		        </div>
+			@endif
+			<br>
+			@if ($raffles)
+				@foreach ($raffles as $key => $raffle)
+					<form action="{{ route('list.buy.ticket.add') }}" method="POST">
+						{{  csrf_field() }}
+						<input type="hidden" name="raffle_number" value="{{ $raffle['raffle_number'] }}">
+						<div class="col-md-2 col-xs-6 col-sm-3">
+							<div class="panel panel-success">
+			  					<div class="panel-body body-ticket @if(existOnCart($raffle['raffle_number']) && !isReserved($raffle['raffle_number'])) selected-now @endif @if(!existOnCart($raffle['raffle_number']) && isReserved($raffle['raffle_number'])) reserved @endif @if(!existOnCart($raffle['raffle_number']) && !isReserved($raffle['raffle_number'])) available @endif">
+									<h1 class="text-center"><b>{{ $raffle['raffle_number'] }}</b></h1>
+			  					</div>
+			  					<div class="panel-footer footer-ticket">
+			  						<button class="btn btn-primary btn-block btn-xs text-center btn-add-cart-ticket" 
+			  						@if(existOnCart($raffle['raffle_number']) || isReserved($raffle['raffle_number'])) disabled @endif 
+			  						@if(!isReserved($raffle['raffle_number']))  title="{{ trans('raffle_ticket.add_cart') }}" alt="{{ trans('raffle_ticket.add_cart') }}" @endif ><i class="fa fa-cart-plus"></i></button>
+			  					</div>
+							</div>
+						</div>
+					</form>
+				@endforeach
+				<div class="clearfix"></div>
+				<div class="row text-center">
+					<div class="col-md-12 col-xs-12 col-sm-12">
+						{{ $raffles->links() }}
+					</div>
+				</div>
+				{{-- expr --}}
+			@endif
+		</div>
+		
 	</div>
 @endsection
