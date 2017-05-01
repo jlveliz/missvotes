@@ -96,7 +96,6 @@ Route::group(['prefix'=>'backend'],function(){
 	Route::resource('/memberships', 'MembershipController');
 	Route::resource('/misses', 'MissController');
 	Route::resource('/precandidates', 'PrecandidateController',['only'=>['index','show','update','destroy']]);
-	Route::resource('/tickets-vote', 'TicketVoteController');
 	Route::resource('/activities', 'ClientActivityController',['only'=>['index']]);
 	Route::post('/upload-photo', 'MissController@uploadPhoto');
 	Route::post('/delete-photo', 'MissController@deletePhoto');

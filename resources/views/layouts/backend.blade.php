@@ -80,7 +80,6 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Configuración <span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="@if(Request::path() == 'backend/users') active @endif"><a href="{{ route('users.index') }}">Usuarios <span class="sr-only">(current)</span></a></li>
-                                    <li class="@if(Request::path() == 'backend/tickets-vote') active @endif"><a href="{{ route('tickets-vote.index') }}">Tickets <span class="sr-only">(current)</span></a></li>
                                      <li class="@if(Request::path() == 'backend/memberships') active @endif"><a href="{{ route('memberships.index') }}">Membresias <span class="sr-only">(current)</span></a></li>
                                 </ul>
                             </li>
