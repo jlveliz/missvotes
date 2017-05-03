@@ -20,14 +20,52 @@
 					</div>
 					<div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
 					    <div class="panel-body">
-					        <ul>
-		        				<li>{{ trans('raffle_ticket.policies.policy_1') }}</li>
-		        				<li>{{ trans('raffle_ticket.policies.policy_2') }}</li>
-		        				<li>{{ trans('raffle_ticket.policies.policy_3') }}</li>
-		        				<li>{{ trans('raffle_ticket.policies.policy_4') }}</li>
-		        				<li>{{ trans('raffle_ticket.policies.policy_5') }}</li>
-					        </ul>
-					        <p class="text-muted text-justify"><b>{{ trans('raffle_ticket.policies.note') }}</b></p>
+					        <ol class="text-justify">
+		        				<li><strong>{{ trans('raffle_ticket.policies.policy_1') }}</strong> </li>
+		        				<li>
+		        					<strong>{{ trans('raffle_ticket.policies.policy_2') }}</strong> {{ trans('raffle_ticket.policies.policy_2_1') }}
+		        					<ul>
+		        						<li>{{ trans('raffle_ticket.policies.policy_2_1_1') }}</li>
+		        						<li>{{ trans('raffle_ticket.policies.policy_2_1_2') }}</li>
+		        						<ul>
+		        							<li>{{ trans('raffle_ticket.policies.policy_2_1_2_1') }}</li>
+		        						</ul>
+		        					</ul>
+		        				</li>
+		        				<li><strong>{{ trans('raffle_ticket.policies.policy_3') }}</strong> {{ trans('raffle_ticket.policies.policy_3_1') }}</li>
+		        				<li>
+		        					<strong>{{ trans('raffle_ticket.policies.policy_4') }}</strong>
+		        					{{ trans('raffle_ticket.policies.policy_4_1') }}
+		        				</li>
+		        				<li>
+		        					<strong>{{ trans('raffle_ticket.policies.policy_5') }}</strong>
+		        					{{ trans('raffle_ticket.policies.policy_5_1') }}
+		        					<ul>
+		        						<li>{{ trans('raffle_ticket.policies.policy_5_1_1') }}</li>
+		        						<li>{{ trans('raffle_ticket.policies.policy_5_1_2') }}</li>
+		        						<li>{{ trans('raffle_ticket.policies.policy_5_1_3') }}</li>
+		        						<li>{{ trans('raffle_ticket.policies.policy_5_1_4') }}</li>
+		        						<li>{{ trans('raffle_ticket.policies.policy_5_1_5') }}</li>
+		        						<li>{{ trans('raffle_ticket.policies.policy_5_1_6') }}</li>
+		        					</ul>
+		        				</li>
+		        				<li>
+		        					<strong>{{ trans('raffle_ticket.policies.policy_6') }}</strong>
+		        					{{ trans('raffle_ticket.policies.policy_6_1') }}
+		        				</li>
+		        				<li>
+		        					<strong>{{ trans('raffle_ticket.policies.policy_7') }}</strong>
+		        					{{ trans('raffle_ticket.policies.policy_7_1') }}
+		        				</li>
+		        				<li>
+		        					<strong>{{ trans('raffle_ticket.policies.policy_8') }}</strong>
+		        					{{ trans('raffle_ticket.policies.policy_8_1') }}
+		        				</li>
+		        				<li>
+		        					<strong>{{ trans('raffle_ticket.policies.policy_9') }}</strong>
+		        					{{ trans('raffle_ticket.policies.policy_9_1') }}
+		        				</li>
+					        </ol>
 					    </div>
 					</div>
 				</div>
