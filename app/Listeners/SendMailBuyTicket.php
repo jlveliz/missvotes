@@ -29,7 +29,13 @@ class SendMailBuyTicket
      */
     public function handle(BuyTicket $event)
     {
-        Mail::send('frontend.emails.tickets',['tickets'=>$event->tickets], function($message) {
+        $totalTickets = 0;
+        
+        for ($i=0; $i < count($event->tickets) ; $i++) { 
+             $totalTickets+= config('vote.vote-raffle-point');
+        }
+
+        Mail::send('frontend.emails.tickets',['tickets'=>$event->tickets,'totalTickets'=>$totalTickets], function($message) {
             $message->to(Auth::user()->email , Auth::user()->name .' '. Auth::user()->last_name)
                 ->subject(Lang::get('email.buy_ticket.subject',['name'=>config('app.name')]));
         });

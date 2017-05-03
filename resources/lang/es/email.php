@@ -42,9 +42,18 @@ return [
 	'buy_ticket' => [
 		'subject' => ':name - Compra de tickets de rifa',
 		'greeting' => 'Hola',
-		'line_1' => 'Gracias por su compra. A continuación detallamos su compra',
+		'line_1' => '¡Gracias por su apoyo y por participar! ¡Puede adquirir más números si deseas! Recuerda: Las probabilidades de ganar dependerán de la cantidad de números de rifa comprados.',
+		'line_2' => 'Junior Foundation agradece su contribución personal.',
+		'total_raffle_numbers'=>'Número total de rifas',
+		'total_amount_points'=>'Cantidad total de puntos',
 		'points' => 'Puntos',
-		'price' =>'Precio',
+		'total_amount_online'=>'Cantidad total de votos online para tu candidata favorita',
+		'each_vote'=>'Cada voto',
+		'through_ruffle'=>'a través del número de rifa vale ',
+		'remember_title' => 'Recuerda',
+		'remember_content' => 'Cuando des tus puntos a la candidata de tu preferencia, se te descontarán 5 puntos de tu cantidad total de puntos por cada voto dado.',
+		'price' =>'Price',
+		'raffle_tickets' => 'Número de rifas',
 	],
 
 	'buy_membership' => [

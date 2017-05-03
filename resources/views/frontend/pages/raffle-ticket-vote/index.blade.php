@@ -5,6 +5,7 @@
 @section('content')
 	<div class="row">
 		<h1 class="text-center"> @lang('raffle_ticket.tittle_raffle')</h1>
+		<h3 class="text-center"> {{ trans('raffle_ticket.subtitle_raffle') }}</h3>
 	</div>
 	
 	<div class="row">

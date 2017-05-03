@@ -4,7 +4,8 @@
 		'tab_name' => "Ticket's Raffle",
 		'my_tickets' => 'My Tickets',
 		'tickets_not_found' => 'We regret that you do not have tickets to use, buy one to support your favorite candidate',
-		'tittle_raffle' => 'GREAT RIFF WINNER!',
+		'tittle_raffle' => 'WIN A TRIP!',
+		'subtitle_raffle' => 'Get all the raffle numbers you want! Good luck!',
 		'tickets_not_found_query' =>'Ticket :param not found',
 		'search_form' => [
 			'label' => 'Search',

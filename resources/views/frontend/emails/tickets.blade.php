@@ -91,12 +91,17 @@ $style = [
                                         <p style="{{ $style['paragraph'] }}">
                                             {{ trans('email.buy_ticket.line_1') }}
                                         </p>
+
+                                        <!-- Intro -->
+                                        <p style="{{ $style['paragraph'] }}text-align: center;">
+                                            {{ trans('email.buy_ticket.line_2') }}
+                                        </p>
                                         
                                         <!-- Action Button -->
                                         <table style="{{ $style['body_action'] }}" align="center" width="100%" cellpadding="0" cellspacing="0">
                                             <tr>
                                                 <td align="center">
-                                                  Ticket
+                                                  {{ trans('email.buy_ticket.raffle_tickets') }}
                                                 </td>
                                                 <td align="center">{{ trans('email.buy_ticket.price') }}</td>
                                                 <td align="center">{{ trans('email.buy_ticket.points') }}</td>
@@ -111,10 +116,34 @@ $style = [
                                             <?php endforeach ?>
                                         </table>
 
+                                        <!-- count tickets -->
+                                        <p style="{{ $style['paragraph'] }}">
+                                            <b>{{ trans('email.buy_ticket.total_raffle_numbers')}}:</b> {{ count($tickets) }}
+                                        </p>
+
+                                        <!-- count tickets -->
+                                        <p style="{{ $style['paragraph'] }}">
+                                            <b>{{ trans('email.buy_ticket.total_amount_points')}}:</b> {{ $totalTickets }}
+                                        </p>
+
+                                        <br>
+
                                         <!-- Salutation -->
+                                        <p style="{{ $style['paragraph'] }}">
+                                            <b>{{ trans('email.buy_ticket.total_amount_online') }}: </b> {{ count($tickets) }} <b>{{ trans('email.buy_ticket.each_vote') }}</b> {{ trans('email.buy_ticket.through_ruffle') }} {{config('vote.vote-raffle-point')}} {{ trans('email.buy_ticket.points') }} 
+                                        </p>                                        
+
+                                        <!-- remember -->
+                                        <p style="{{ $style['paragraph'] }}">
+                                           <b>{{ trans('email.buy_ticket.remember_title') }}:</b> {{ trans('email.buy_ticket.remember_content') }}
+                                        </p>
+                                         <!-- Salutation -->
                                         <p style="{{ $style['paragraph'] }}">
                                             {{ trans('email.regards')}}, {{ config('app.name') }}
                                         </p>
+
+                                        
+
                                     </td>
                                 </tr>
                             </table>

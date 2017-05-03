@@ -44,9 +44,18 @@ return [
 	'buy_ticket' => [
 		'subject' => ':name - Raffle ticket purchase',
 		'greeting' => 'Hello',
-		'line_1' => 'Thank you for your purchase, below we detail the tickets.',
+		'line_1' => 'Thanks for your support and for participating! You can get more numbers if you want! Remember: Odds of winning will depend on the quantity of raffle numbers purchased.',
+		'line_2' => 'Junior Foundation thanks you for your personal contribution.',
+		'total_raffle_numbers'=>'Total raffle numbers',
+		'total_amount_points'=>'Total amount of points',
 		'points' => 'Points',
+		'total_amount_online'=>'Total amount of online votes for your favorite candidate',
+		'each_vote'=>'Each vote',
+		'through_ruffle'=>'through the raffle number worth',
+		'remember_title' => 'Remember',
+		'remember_content' => 'when you give your points to the candidate of your preference, you will be deducted 5 points from your total amount of points for each given vote.',
 		'price' =>'Price',
+		'raffle_tickets' => 'Raffle numbers',
 	],
 
 	'buy_membership' => [
