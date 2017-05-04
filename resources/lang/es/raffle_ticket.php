@@ -1,7 +1,7 @@
 <?php
 
 	return [
-		'tab_name' => "Tickets de Rifa",
+		'tab_name' => "Números de Rifa",
 		'my_tickets' => 'Mis Tickets',
 		'tickets_not_found' => 'Lamentamos que no tenga tickets para usar, compre uno para poder apoyar a su candidata favorita',
 		'tittle_raffle' => '¡GANE UN VIAJE!',

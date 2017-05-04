@@ -1,7 +1,7 @@
 <?php
 
 	return [
-		'tab_name' => "Ticket's Raffle",
+		'tab_name' => "Raffle Numbers",
 		'my_tickets' => 'My Tickets',
 		'tickets_not_found' => 'We regret that you do not have tickets to use, buy one to support your favorite candidate',
 		'tittle_raffle' => 'WIN A TRIP!',

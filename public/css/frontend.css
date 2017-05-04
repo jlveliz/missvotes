@@ -41,13 +41,13 @@ hr {
 }
 
 .btn-update-membership-or-buy {
-    background-color: #b9a035;
+    background-color: #ddcc33;
     border-radius: 0px;
     color: #ffffff!important;
 }
 
 .btn-update-membership-or-buy:hover {
-    background-color: #aa9335!important;
+    background-color: #ddbd33!important;
 }
 
 @media (min-width: 768px) {
@@ -84,7 +84,7 @@ hr {
 }
 
 .container-page h2 {
-    border-bottom: 1px solid #b9a035;
+    border-bottom: 1px solid #ddcc33;
     padding-bottom: 5px;
 }
 
@@ -326,7 +326,7 @@ hr {
 }
 
 .text {
-    background-color: #b9a035;
+    background-color: #ddcc33;
     color: white;
     font-size: 14px;
     padding: 5px 5px;
@@ -397,12 +397,12 @@ hr {
 }
 
 .upgrade-membership {
-    color: #b9a035;
+    color: #ddcc33;
 }
 
 
 /*.upgrade-membership:hover {
-    color: #b9a035!important;
+    color: #ddcc33!important;
 }*/
 
 .panel-footer-payments {
@@ -417,7 +417,7 @@ hr {
 
 .btn-vote {
     color: #fff;
-    background-color: #b9a035;
+    background-color: #ddcc33;
     border-color: #aa9335;
     border-radius: 2px;
 }
@@ -447,7 +447,7 @@ hr {
 .btn-apply:hover {
     color: #ffffff;
     background: #403f3f;
-    border: 1px solid #b9a035;
+    border: 1px solid #ddcc33;
 }
 
 

@@ -101,6 +101,11 @@
 		{{-- cart --}}
 		<div class="col-md-3 col-sm-12 col-xs-12">
 			<div class="cart-place" data-spy="affix">
+				<ul class="list-inline text-center">
+					<li style="display: inline;"><img style="width: 25%" src="{{ asset('public/images/trip.jpg') }}" alt="Trip" title="Trip"></li>
+					<li style="display: inline;"><img style="width: 25%" src="{{ asset('public/images/junior.png') }}" alt="Junior Foundation" title="Junior Foundation"></li>
+					<li style="display: inline;"><img style="width: 25%" src="{{ asset('public/images/5ptos.jpg') }}" alt="5 Points" title="5 Points"></li>
+				</ul>
 				<div class="panel panel-info">
 					<div class="panel-heading">
 						<div class="panel-title">
@@ -200,7 +205,7 @@
 						{{  csrf_field() }}
 						<input type="hidden" name="raffle_number" value="{{ $raffle['raffle_number'] }}">
 						<div class="col-md-2 col-xs-6 col-sm-3">
-							<div class="panel panel-success">
+							<div class="panel panel-success tickets">
 			  					<div class="panel-body body-ticket @if(existOnCart($raffle['raffle_number']) && !isReserved($raffle['raffle_number'])) selected-now @endif @if(!existOnCart($raffle['raffle_number']) && isReserved($raffle['raffle_number'])) reserved @endif @if(!existOnCart($raffle['raffle_number']) && !isReserved($raffle['raffle_number'])) available @endif">
 									<h1 class="text-center"><b>{{ $raffle['raffle_number'] }}</b></h1>
 			  					</div>
