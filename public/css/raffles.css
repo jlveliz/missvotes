@@ -63,7 +63,20 @@ h6 {
 }
 
 .selected-now {
-    background-color: #ddcc33;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ddcc33+0,afaf2a+46,b5c12e+49,f7db3b+100 */
+    background: #ddcc33;
+    /* Old browsers */
+    background: url("../images/queen-mini.png"), -moz-linear-gradient(top, #ddcc33 0%, #cbce31 47%, #dddd35 49%, #f4e486 100%); /* FF3.6-15 */
+    /* FF3.6-15 */
+    background: url("../images/queen-mini.png"), -webkit-linear-gradient(top, #ddcc33 0%,#cbce31 47%,#dddd35 49%,#f4e486 100%); /* Chrome10-25,Safari5.1-6 */
+    /* Chrome10-25,Safari5.1-6 */
+    background: url("../images/queen-mini.png"),linear-gradient(to bottom, #ddcc33 0%,#cbce31 47%,#dddd35 49%,#f4e486 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ddcc33', endColorstr='#f4e486',GradientType=0 ); /* IE6-9 */
+    /* IE6-9 */
+    /* IE6-9 */
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .selected-now-color {
@@ -71,39 +84,69 @@ h6 {
 }
 
 .available {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#bfbfbf+1,b2b2b2+50,aaaaaa+51,969696+100 */
     background-color: #bfbfbf;
+    /* Old browsers */
+    background-image: url("../images/queen-mini.png"), -moz-linear-gradient(top, #bfbfbf 1%, #b2b2b2 50%, #aaaaaa 51%, #d6d6d6 100%);
+    /* FF3.6-15 */
+    ;
+    /* FF3.6-15 */
+    background-image: url("../images/queen-mini.png"), -webkit-linear-gradient(top, #bfbfbf 1%, #b2b2b2 50%, #aaaaaa 51%, #d6d6d6 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    ;
+    /* Chrome10-25,Safari5.1-6 */
+    background-image: url("../images/queen-mini.png"), linear-gradient(to bottom, #bfbfbf 1%, #b2b2b2 50%, #aaaaaa 51%, #d6d6d6 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    ;
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#bfbfbf', endColorstr='#d6d6d6', GradientType=0);
+    /* IE6-9 */
+    /* IE6-9 */
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
+
+}
 .available-color {
     color: #bfbfbf;
 }
-
 .reserved {
-    background-color: #0072BC;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#0072bc+0,2989d8+50,207cca+51,7db9e8+100 */
+    
+    background-color: #0072bc;
+    /* Old browsers */
+    
+    background-image: url("../images/queen-mini.png"), -moz-linear-gradient(top, #0072bc 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%)!important;
+    /* FF3.6-15 */
+    
+    background-image: url("../images/queen-mini.png"), -webkit-linear-gradient(top, #0072bc 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%)!important;
+    /* Chrome10-25,Safari5.1-6 */
+    
+    background-image: url("../images/queen-mini.png"), linear-gradient(to bottom, #0072bc 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%)!important;
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#0072bc', endColorstr='#7db9e8', GradientType=0)!important;
+    background-position: center;
+    background-repeat: no-repeat;
 }
-
 .reserved-color {
     color: #0072BC;
 }
-
 .footer-my-available-tickets {
     background-color: #2579a9;
 }
-
 .footer-my-used-tickets {
     background-color: #bfbfbf;
 }
-
 .footer-my-available-tickets > p,
 .footer-my-used-tickets > p {
     color: #ffffff;
     margin: 0px!important;
 }
-
 .ticket-not-found {
     margin: 60px 0px;
 }
-
 .tickets {
     -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4), 0 1px 5px rgba(130, 130, 130, 0.35);
     -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4), 0 1px 5px rgba(130, 130, 130, 0.35);
