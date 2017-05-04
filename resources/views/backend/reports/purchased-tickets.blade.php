@@ -1,11 +1,11 @@
 <div class="panel panel-default">
-  <div class="panel-heading">Tickets</div>
+  <div class="panel-heading">{{ trans('backend.dashboard.tickets_block.title') }}</div>
   <div class="panel-body">
   	<table id="ticket-datatable" class="table table-bordered">
   		<thead>
 	  		<tr>
-	  			<th>Cliente</th>
-	  			<th>Ticket</th>
+	  			<th>{{ trans('backend.dashboard.tickets_block.th_client') }}</th>
+	  			<th>{{ trans('backend.dashboard.tickets_block.th_ticket') }}</th>
 	  		</tr>
   		</thead>
   		<tbody>

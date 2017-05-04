@@ -1,7 +1,7 @@
 @extends('layouts.backend')
 @section('content')
 <div class="panel panel-default">
-  <div class="panel-heading">Candidatas</div>
+  <div class="panel-heading">{{ trans('backend.misses.index.panel_title') }}</div>
 
   <div class="panel-body">
   	   @if (Session::has('mensaje'))
@@ -12,14 +12,14 @@
         <div class="clearfix"></div>
        @endif
      	<table id="miss-datatable" class="table table-bordered">
-     		<caption>Listado de Candidatas <a class="pull-right btn btn-primary" href="{{ route('misses.create') }}" title="Crear">Crear Candidata </a></caption>
+     		<caption>{{ trans('backend.misses.index.panel_caption') }} <a class="pull-right btn btn-primary" href="{{ route('misses.create') }}" title="{{ trans('backend.misses.index.btn_create') }}" alt="{{ trans('backend.misses.index.btn_create') }}">{{ trans('backend.misses.index.btn_create') }} </a></caption>
      		<thead>
      			<tr>
-     				<th>Nombres</th>
-            <th>País</th>
-     				<th>Estado</th>
-     				<th>Fecha creación/Actualización</th>
-     				<th>Acción</th>
+     				<th>{{ trans('backend.misses.index.th_names') }}</th>
+            <th>{{ trans('backend.misses.index.th_country') }}</th>
+     				<th>{{ trans('backend.misses.index.th_state') }}</th>
+     				<th>{{ trans('backend.misses.index.th_creation_date') }}/{{ trans('backend.misses.index.th_upgrade') }}</th>
+     				<th>{{ trans('backend.misses.index.th_action') }}</th>
      			</tr>
      		</thead>
      		<tbody>
@@ -27,17 +27,17 @@
        			<tr>
        				<td>{{$miss->name}} {{$miss->last_name}}</td>
        				<td>@if($miss->country) {{$miss->country->name}} @else - @endif</td>
-       				<td>@if($miss->state == '1') Activa @else Inactiva @endif</td>
+       				<td>@if($miss->state == '1') {{ trans('backend.misses.index.td_state_active') }} @else {{ trans('backend.misses.index.td_state_inactive') }} @endif</td>
        				<td>{{$miss->created_at }} / {{$miss->updated_at}}</td>
        				<td class="text-center">
                 <form action="{{ route('misses.destroy',$miss->id) }}" method="POST">
                   
                 </form>
        					<form action="{{ route('misses.destroy',$miss->id) }}" method="POST">
-       						<a href="{{ route('misses.edit',$miss->id) }}" title="Editar" class="btn btn-xs btn-warning"> Editar</a>
+       						<a href="{{ route('misses.edit',$miss->id) }}" title="{{ trans('backend.misses.index.td_edit') }}" class="btn btn-xs btn-warning"> {{ trans('backend.misses.index.td_edit') }}</a>
          						<input type="hidden" name="_token" value="{{ csrf_token() }}">
          						<input type="hidden" name="_method" value="DELETE">
-         						<button type="submit" title="Eliminar" class="btn btn-xs btn-danger"> Eliminar</button>
+         						<button type="submit" title="{{ trans('backend.misses.index.td_delete') }}" class="btn btn-xs btn-danger"> {{ trans('backend.misses.index.td_delete') }}</button>
        					</form>
        				</td>
        			</tr>
@@ -53,9 +53,11 @@
 <script type="text/javascript">
   $(document).ready(function(){
       $('#miss-datatable').DataTable({
+        @if (App::isLocale('es'))
         "language": {
           "url": "../public/js/datatables/json/es.json"
         }
+        @endif
       });
   });
  </script>

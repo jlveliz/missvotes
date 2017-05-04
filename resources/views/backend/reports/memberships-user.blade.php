@@ -1,11 +1,11 @@
 <div class="panel panel-default">
-  <div class="panel-heading">Membresias</div>
+  <div class="panel-heading">{{ trans('backend.dashboard.membership_block.title') }}</div>
   <div class="panel-body">
   	<table id="memberships-datatable" class="table table-bordered">
   		<thead>
 	  		<tr>
-	  			<th>Membresia</th>
-	  			<th>Número de Usuarios</th>
+	  			<th>{{ trans('backend.dashboard.membership_block.th_membership') }}</th>
+	  			<th>{{ trans('backend.dashboard.membership_block.th_number_user') }}</th>
 	  		</tr>
   		</thead>
   		<tbody>
