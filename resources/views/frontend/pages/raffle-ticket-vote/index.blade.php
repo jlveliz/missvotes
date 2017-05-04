@@ -100,7 +100,7 @@
 	<div class="row">
 		{{-- cart --}}
 		<div class="col-md-3 col-sm-12 col-xs-12">
-			<div class="cart-place" data-spy="affix">
+			<div class="cart-place" data-spy="affix" data-offset-top="150">
 				<ul class="list-inline text-center">
 					<li style="display: inline;">
 						@if (App::isLocale('en'))
