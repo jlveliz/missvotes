@@ -47,6 +47,8 @@
 		'shopping_cart_title'=>'Shopping Cart',
 		'buy_ticket_button'=>'Buy',
 		'cant_insert_same_number'=>'You can not enter the same number twice',
+		'accept_official_rules' => 'I accept the Official Contest Rules',
+		'please_accept_official_rules'=>'To buy, please accept Official Rules',
 		'signals' => [
 			'reserved' => 'Reserved',
 			'selected' => 'Your Tickets',

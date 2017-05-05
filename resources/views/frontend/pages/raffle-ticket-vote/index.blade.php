@@ -1,6 +1,39 @@
 @extends('layouts.frontend')
 @section('css')
 	<link rel="stylesheet" href="{{ asset('/public/css/raffles.css') }}">
+	<link rel="stylesheet" href="{{ asset('/public/css/scrollbar/jquery.scrollbar.css') }}">
+@endsection
+@section('js')
+<script type="text/javascript" src="{{ asset('public/js/scrollbar/jquery.scrollbar.min.js') }}"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+		var nav = $('.cart-place');
+
+		jQuery(".cart-body").scrollbar();
+
+	   $(window).scroll(function () {
+	       if ($(this).scrollTop() > 325) {
+	           nav.addClass("fixed");
+	           nav.css('top','60px');
+	       } else {
+	           nav.removeClass("fixed");
+	       }
+	   });
+
+	   $("#check_accept_rules").on('click',function(event) {
+	   		if( $(this).is(':checked') ){
+	   			$("#accept_rules").val(1);
+	   			$("#btn-buy-ticket").removeAttr('disabled',true)
+	   		} else {
+	   			$("#accept_rules").val(0)
+	   			$("#btn-buy-ticket").attr('disabled',true)
+	   		}
+	   });
+
+
+	});
+</script>
 @endsection
 @section('content')
 	<div class="row">
@@ -100,7 +133,7 @@
 	<div class="row">
 		{{-- cart --}}
 		<div class="col-md-3 col-sm-12 col-xs-12">
-			<div class="cart-place" data-spy="affix" data-offset-top="150">
+			<div class="cart-place">
 				<ul class="list-inline text-center">
 					<li style="display: inline;">
 						@if (App::isLocale('en'))
@@ -130,36 +163,39 @@
 							</div>
 						</div>
 					</div>
-					<div class="panel-body">
+					<div class="panel-body cart-body">
 						@if (session()->has('cart'))
-							<div class="row">
-								<table class="table">
-									@foreach (session()->get('cart') as $key =>  $item) 
-										<tr>
-											<td>
-												<strong>Ticket # {{ $item['raffle_number'] }} </strong>
-											</td>
-											<td><strong>{{ $item['points'] }} Pnts.</strong></td>
-											<td><strong>$ {{ $item['price'] }}<strong></td>
-											<td>
-												<form action="{{ route('list.buy.ticket.remove') }}" method="POST">
-													{{  csrf_field() }}
-													<input type="hidden" name="ticket_index" value="{{ $key }}">
-													<input type="hidden" name="raffle_number" value="{{ $item['raffle_number'] }}">
-													<button type="submit" class="btn btn-link btn-xs btn-remove" alt="{{ trans('raffle_ticket.delete_cart') }}" title="{{ trans('raffle_ticket.delete_cart') }}">
-														<span class="glyphicon glyphicon-trash"> </span>
-													</button>
-												</form>
-											</td>
-										</tr>
-									@endforeach
-								</table>
-							</div>
+							<table class="table scrollbar-dynamic">
+								@foreach (session()->get('cart') as $key =>  $item) 
+									<tr>
+										<td>
+											<strong>Ticket # {{ $item['raffle_number'] }} </strong>
+										</td>
+										<td><strong>{{ $item['points'] }} Pnts.</strong></td>
+										<td><strong>$ {{ $item['price'] }}<strong></td>
+										<td>
+											<form action="{{ route('list.buy.ticket.remove') }}" method="POST">
+												{{  csrf_field() }}
+												<input type="hidden" name="ticket_index" value="{{ $key }}">
+												<input type="hidden" name="raffle_number" value="{{ $item['raffle_number'] }}">
+												<button type="submit" class="btn btn-link btn-xs btn-remove" alt="{{ trans('raffle_ticket.delete_cart') }}" title="{{ trans('raffle_ticket.delete_cart') }}">
+													<span class="glyphicon glyphicon-trash"> </span>
+												</button>
+											</form>
+										</td>
+									</tr>
+								@endforeach
+							</table>
 							<hr>
 						@else
-							<p class="text-muted"><b>{{ trans('raffle_ticket.no_ticket_selected') }}</b></p>
+							<p class="text-muted message-no-cart"><b>{{ trans('raffle_ticket.no_ticket_selected') }}</b></p>
 							<hr>
 						@endif
+						<div class="checkbox text-center">
+						    <label>
+						      <input type="checkbox" id="check_accept_rules" checked> <strong> {{ trans('raffle_ticket.accept_official_rules') }} </strong>
+						    </label>
+  						</div>
 					</div>
 					<div class="panel-footer">
 						<div class="row text-center">
@@ -175,9 +211,10 @@
 												<input type="hidden" name="tickets[{{ $key }}][raffle_vote_id]" value="{{ $item['raffle_number'] }}">
 											@endforeach
 										<input type="hidden" name="amount" value="{{ session()->get('total_sum') }}">
-										<button type="submit" class="btn btn-success btn-block" alt="{{ trans('raffle_ticket.buy_ticket_button') }}" title="{{ trans('raffle_ticket.buy_ticket_button') }}">
+										<button type="submit" id="btn-buy-ticket" class="btn btn-success btn-block" alt="{{ trans('raffle_ticket.buy_ticket_button') }}" title="{{ trans('raffle_ticket.buy_ticket_button') }}">
 											<i class="fa fa-paypal" aria-hidden="true"></i> {{ trans('raffle_ticket.buy_ticket_button') }}
 										</button>
+										<input type="hidden" name="accept_rules" id="accept_rules" value="1">
 									</form>
 									@endif
 							</div>

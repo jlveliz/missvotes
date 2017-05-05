@@ -47,6 +47,8 @@
 		'shopping_cart_title'=>'Carrito de compras',
 		'buy_ticket_button'=>'Comprar',
 		'cant_insert_same_number'=>'No puede ingresar dos veces el mismo número',
+		'accept_official_rules' => 'Acepto las reglas oficiales del concurso',
+		'please_accept_official_rules'=>'Para Comprar acepte las Reglas Oficiales del Certamen',
 		'signals' => [
 			'reserved' => 'Reservado',
 			'selected' => 'Sus Tickets',

@@ -14,6 +14,18 @@ h6 {
     width: 290px;
 }
 
+.cart-body {
+    max-height: 300px
+}
+
+.fixed {
+    position: fixed;
+}
+
+.message-no-cart {
+    padding: 6px
+}
+
 .body-ticket {
     padding: 0px;
 }

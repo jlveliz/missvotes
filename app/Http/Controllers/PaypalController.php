@@ -154,6 +154,8 @@ class PaypalController extends Controller
 
     public function buyTicket(Request $request)
     {
+        
+       
         /**
          * verify if existe ticket available
          */
@@ -165,6 +167,14 @@ class PaypalController extends Controller
                 break;
             }
         }
+
+        if ($request->get('accept_rules') == 0) {
+            $sessionData = [
+                'tipo_mensaje' => 'error',
+                'mensaje' => Lang::get('raffle_ticket.please_accept_official_rules'),
+            ];
+            return redirect()->back()->with($sessionData);
+        }
         
         if ($isTicketReserved) {
              $sessionData = [
@@ -175,6 +185,7 @@ class PaypalController extends Controller
         }
 
 
+        session()->forget('accept_rules_checked');
 
         $payer = Paypalpayment::payer();
     	$payer->setPaymentMethod("paypal");
