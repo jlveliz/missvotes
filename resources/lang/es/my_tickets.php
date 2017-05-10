@@ -11,9 +11,12 @@
 		'counter' => 'Disponibles de ',
 		'points' => 'puntos',
 		'remember' => 'Recuerde',
-		'text_remember'=>'when you give your points to the candidate of your preference, you will be deducted 5 points from your total amount of points for each.',
+		'text_remember'=>'Cuando des tus puntos a la candidata de tu preferencia, se te descontarán 5 puntos de tu cantidad total de puntos por cada voto dado.',
 		'total_raffle'=>'Número total de rifas',
-		'give_my_points' => 'Dar mis puntos ahora'
-
+		'give_my_points' => 'Dar mis puntos ahora',
+		'total_raffle_numbers' => 'Número total de rifas',
+		'total_amount_points' => 'Cantidad total de puntos',
+		'message_favorite' => 'Cantidad total de <b>votos online</b> para tu candidata favorita',
+		'each_vote_raffle' => '<b>Cada voto</b> a través del número de rifa vale <b>5 puntos.</b>'
 
 	];

@@ -13,6 +13,10 @@
 		'remember' => 'Remember',
 		'text_remember'=>'when you give your points to the candidate of your preference, you will be deducted 5 points from your total amount of points for each given vote.',
 		'total_raffle'=>'Total raffle numbers',
-		'give_my_points' => 'Give my points now'
+		'give_my_points' => 'Give my points now',
+		'total_raffle_numbers' => 'Total Raffle numbers',
+		'total_amount_points' => 'Total amount of points',
+		'message_favorite' => 'Total amount of <b>online votes</b> for your favorite candidate',
+		'each_vote_raffle' => '<b>Each vote</b> through the raffle number worth <b>5 points.</b>'
 
 	];

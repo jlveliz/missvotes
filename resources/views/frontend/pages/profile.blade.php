@@ -187,7 +187,7 @@
 
 			    {{-- tickets --}}
 			    <div role="tabpanel" class="tab-pane" id="tickets">
-			    	<h4>Tickets / <small><b>{{$availableTickets}} {{ trans('my_tickets.points')}} {{ trans('my_tickets.counter') }} {{$totalTickets}} {{ trans('my_tickets.points') }}</b> / <b>{{ trans('my_tickets.total_raffle') }} : </b>{{ count(Auth::user()->client->tickets) }} </small></h4>
+			    	<h4>Tickets</h4>
 			    	<p class="col-md-7 text-center col-md-offset-3">{{ trans('my_tickets.thanks') }}</p>
 			    	<p class="col-md-7 text-center col-md-offset-3">{{ trans('my_tickets.junior_foundation') }}</p>
 			    	<div class="col-md-12 col-lg-12 col-xs-12">
@@ -219,6 +219,21 @@
 			    		<br>
 			    		<br>
 			    		<p class="col-md-7 pull-right text-left"><strong>{{ trans('my_tickets.remember') }}: </strong> {{ trans('my_tickets.text_remember') }} </p>
+
+			    		<p>
+			    			<b>{{ trans('my_tickets.total_raffle_numbers')}}: </b> {{count(Auth::user()->client->tickets)}} |
+			    			<b>{{ trans('my_tickets.total_amount_points')}}: </b> {{$availableTickets}}
+			    		</p>
+			    		<br>
+			    		<div class="clearfix"></div>
+			    		<div class="row">
+			    			<p class="text-center">
+			    				{!! trans('my_tickets.message_favorite')!!} : {{count(Auth::user()->client->tickets)}} 
+			    			</p>
+			    			<p class="text-center">
+			    				{!! trans('my_tickets.each_vote_raffle')!!}
+			    			</p>
+			    		</div>
 			    		
 			    	</div>
 			    </div>
