@@ -29,6 +29,8 @@ return [
 
     'failed' => 'Las credenciales no coinciden con nuestros registros.',
     'throttle' => 'Ha sobrepasado el máximo número de intengos de ingreso, intente en :seconds segundos.',
+    'not_confirmed' => 'Lo sentimos, su cuenta está inactiva.',
+
 
 
 
@@ -97,7 +99,7 @@ return [
     'forgot_password_validations' => [
         'email.required' => 'Por favor, ingrese un correo',
         'email.exists' => 'El correo no pertenece a ningún usuario',
-        'email.confirmed_account' => 'Su cuenta no está activa'
+        'email.confirmed_account' => 'Lo sentimos, su cuenta está inactiva.'
     ],
 
     

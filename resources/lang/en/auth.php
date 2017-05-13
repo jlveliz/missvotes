@@ -29,6 +29,7 @@ return [
 
     'failed' => 'These credentials do not match in our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'not_confirmed' => 'Sorry, Your account is inactive.',
 
 
 
@@ -97,7 +98,7 @@ return [
     'forgot_password_validations' => [
         'email.required' => 'Please, insert a email',
         'email.exists' => 'The selected :attribute is invalid.',
-        'email.confirmed_account' => "Your account isn't confirmed"
+        'email.confirmed_account' => "Sorry, Your account is inactive."
     ],
     'forgot_password_email'=>[
         'recivied' => 'You have recieved a password change request.',
