@@ -188,11 +188,19 @@
 			    {{-- tickets --}}
 			    <div role="tabpanel" class="tab-pane" id="tickets">
 			    	<h4>Tickets</h4>
+			    	<p class="col-md-12 col-sm-12 col-xs-12">
+			    		<b>{{ trans('my_tickets.total_raffle_numbers')}}: </b> {{count(Auth::user()->client->tickets)}} |
+			    		<b>{{ trans('my_tickets.total_amount_points')}}: </b> {{$availableTickets}}
+			    	</p>
 			    	<p class="col-md-7 text-center col-md-offset-3">{{ trans('my_tickets.thanks') }}</p>
 			    	<p class="col-md-7 text-center col-md-offset-3">{{ trans('my_tickets.junior_foundation') }}</p>
+
 			    	<div class="col-md-12 col-lg-12 col-xs-12">
 			    		
 			    		<h5><b>{{ trans('raffle_ticket.my_tickets') }}</b></h5>
+			    		<div class="col-md-12 col-sm-12 col-xs-12 text-center">
+			    			<hr>
+			    		</div>
 			    		<div class="row">
 			    		@if (count(Auth::user()->client->tickets) > 0)
 			    			@foreach (Auth::user()->client->tickets as $ticketClient)
@@ -213,24 +221,21 @@
 								</p>
 				    		@endif
 			    		</div>
-			    		<div class="form col-md-12 col-sm-12 text-center">
+			    		<div class="col-md-12 col-sm-12 col-xs-12 text-center">
 			    			<a href="{{ route('website.miss.index') }}" class="btn btn-primary">{{ trans('my_tickets.give_my_points') }}</a>
 			    		</div>
+			    		<div class="col-md-12 col-sm-12 col-xs-12 text-center">
+			    			<hr>
+			    		</div>
 			    		<br>
-			    		<br>
-			    		<p class="col-md-7 pull-right text-left"><strong>{{ trans('my_tickets.remember') }}: </strong> {{ trans('my_tickets.text_remember') }} </p>
-
-			    		<p>
-			    			<b>{{ trans('my_tickets.total_raffle_numbers')}}: </b> {{count(Auth::user()->client->tickets)}} |
-			    			<b>{{ trans('my_tickets.total_amount_points')}}: </b> {{$availableTickets}}
-			    		</p>
+			    		<p class="col-md-12 col-sm-12"><strong>{{ trans('my_tickets.remember') }}: </strong> {{ trans('my_tickets.text_remember') }} </p>
 			    		<br>
 			    		<div class="clearfix"></div>
-			    		<div class="row">
-			    			<p class="text-center">
+			    		<div class="col-md-12 col-sm-12 col-xs-12">
+			    			<p class="">
 			    				{!! trans('my_tickets.message_favorite')!!} : {{count(Auth::user()->client->tickets)}} 
 			    			</p>
-			    			<p class="text-center">
+			    			<p class="">
 			    				{!! trans('my_tickets.each_vote_raffle')!!}
 			    			</p>
 			    		</div>
