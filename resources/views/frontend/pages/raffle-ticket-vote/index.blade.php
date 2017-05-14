@@ -13,13 +13,23 @@
 		jQuery(".cart-body").scrollbar();
 
 	   $(window).scroll(function () {
-	       if ($(this).scrollTop() > 325) {
+	       if (!$("#collapseOne").hasClass('in')) {
 	           nav.addClass("fixed");
-	           nav.css('top','60px');
+	           // nav.css('top','60%');
 	       } else {
 	           nav.removeClass("fixed");
 	       }
 	   });
+
+	   	//TODO 
+	    // $('#collapseOne').bind('scroll',function(e){
+	    // 	var elem = $(e.currentTarget);
+    	// 	if (elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight())
+    	// 	{
+     //    		console.log("bottom");
+    	// 	}
+	    // });
+
 
 	   $("#check_accept_rules").on('click',function(event) {
 	   		if( $(this).is(':checked') ){
@@ -29,6 +39,14 @@
 	   			$("#accept_rules").val(0)
 	   			$("#btn-buy-ticket").attr('disabled',true)
 	   		}
+	   });
+
+	   $("#accordion").on('show.bs.collapse', function(event) {
+	   		nav.removeClass("fixed");
+	   });
+
+	   $("#accordion").on('hide.bs.collapse', function(event) {
+	   		nav.addClass("fixed");
 	   });
 
 
