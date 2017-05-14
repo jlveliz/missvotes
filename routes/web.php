@@ -36,7 +36,6 @@ Route::group(['prefix'=>'raffles'],function(){
 	Route::get('/query','TicketVoteClientController@query')->name('list.buy.ticket.query')->middleware('auth','isClient');
 	Route::post('/add','TicketVoteClientController@add')->name('list.buy.ticket.add')->middleware('auth','isClient');
 	Route::post('/remove','TicketVoteClientController@remove')->name('list.buy.ticket.remove')->middleware('auth','isClient');
-	Route::post('/pay','TicketVoteClientController@remove')->name('list.buy.ticket.remove')->middleware('auth','isClient');
 	Route::post('pticket','PaypalController@buyTicket')->name('website.paypal.buyticket')->middleware('auth');
 	Route::get('pstatus','PaypalController@getPaymentStatus')->name('list.buy.ticket.status')->middleware('auth');
 });

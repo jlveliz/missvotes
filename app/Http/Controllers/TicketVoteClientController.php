@@ -157,16 +157,22 @@ class TicketVoteClientController extends Controller
         if (existOnCart($request->get('raffle_number'))) {
             $sessionData['tipo_mensaje'] = 'error';
             $sessionData['mensaje'] = Lang::get('raffle_ticket.cant_insert_same_number');
-            return redirect()->back()->with($sessionData);
+            return response()->json($sessionData,401);
         }
 
         $item = $this->voteTicketClient->generateRaffle($request->get('raffle_number'));
+        $itemHtml = $this->generateHtmlRowCart($item);
         session()->push('cart',$item);
         
         //sum total
         $total = session()->has('total_sum') ? session()->get('total_sum') : 0 ;
         session()->put('total_sum',($total + $item['price']));
-        return redirect()->back();
+        return response()->json([
+                'total_sum' => ($total + $item['price']),
+                'item' => $item,
+                'itemHtml' =>$itemHtml,
+                'cart' => session()->get('cart')
+            ],200);
     }
 
     public function remove(Request $request)
@@ -191,7 +197,10 @@ class TicketVoteClientController extends Controller
                 session()->forget('cart');
             }
 
-            return redirect()->back();
+            return response()->json([
+                'total_sum' => ($total - $ruffle['price']),
+                'cart' => session()->get('cart')
+            ],200);
         }
     }
 
@@ -210,6 +219,21 @@ class TicketVoteClientController extends Controller
         }
 
         return view('frontend.pages.raffle-ticket-vote.index',compact('raffles','query'));
+    }
+
+
+    private function generateHtmlRowCart($item) {
+        $html = "<tr>";
+        $html.= "<td><strong>Ticket # ".$item['raffle_number']." </strong></td>";
+        $html.= "<td><strong>".$item['points']." Pnts.</strong></td>";
+        $html.= "<td><strong>$ ".$item['price']."<strong></td>";
+        $html.= "<td><form action='".route('list.buy.ticket.remove')."' method='POST' class='form-remove-raffle'>";
+        $html.= "".csrf_field()."";
+        $html.= "<input type='hidden' name='raffle_number' value='".$item['raffle_number']."'>";
+        $html.= "<button type='button' data-raffle='".$item['raffle_number']."' class='btn btn-link btn-xs btn-remove-raffle' alt='".trans('raffle_ticket.delete_cart')."' title='".trans('raffle_ticket.delete_cart')."'><span class='glyphicon glyphicon-trash'> </span></button></form>";
+        $html.= "</td>";
+        $html.= "</tr>";
+        return $html; 
     }
 
 }

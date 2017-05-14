@@ -13,6 +13,7 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         '/change-language',
-        'raffles/query'
+        'raffles/query',
+        'raffles/pticket'
     ];
 }

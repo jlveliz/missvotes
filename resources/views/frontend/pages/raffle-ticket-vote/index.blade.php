@@ -50,6 +50,114 @@
 	   });
 
 
+	   $(".btn-add-cart-ticket").on('click', function(event) {
+		   	event.preventDefault();
+		   	var _this = $(this);
+		   	_this.children().removeClass('fa-cart-plus');
+		   	_this.children().addClass('fa-spinner fa-spin');
+		   	var raffleNumber = _this.data('raffle');
+		   	if(raffleNumber) {
+		   		$.ajax({
+		   			url: '{{ route('list.buy.ticket.add') }}',
+		   			type: 'POST',
+		   			data: {raffle_number: raffleNumber},
+		   		})
+		   		.done(function(data) {
+		   			_this.attr('disabled', 'true');
+		   			var panelFooter = _this.parent();
+		   			panelFooter.prev().removeClass('available').addClass('selected-now');
+		   			if(!$("#table-cart").is(':visible')) {
+		   				$("#no-table-cart").css('display', 'none');
+		   				$("#table-cart").removeAttr('style');
+		   			}
+
+		   			$("#form-pay >input[type=hidden]").remove();
+
+		   			var acceptRulesHtml = "<input type='hidden' name='accept_rules' id='accept_rules' value='1'>";
+	   				$("#form-pay").append(acceptRulesHtml)
+
+
+	   				for (var i = 0; i < data.cart.length; i++) {
+	   					var html = "<input type='hidden' class='params' id='ticket_raffle_description' name='tickets["+i+"][description]' value='Ticket # "+data.cart[i].raffle_number+"'><input class='params' type='hidden' id='ticket_raffle_vote_id' name='tickets["+i+"][raffle_vote_id]' value='"+data.cart[i].raffle_number+"'>";
+	   					$("#form-pay").append(html)
+	   				}
+
+	   				if(data.total_sum) {
+	   					var htmlTotalSum = "<input type='hidden' name='amount' value='"+data.total_sum+"'>";
+	   					$("#form-pay").append(htmlTotalSum)
+	   				}
+
+		   			if(!$("#form-pay").is(':visible')) {
+		   				$("#form-pay").css('display','block');
+		   			}
+		   			
+		   			$("#table-cart").append(data.itemHtml);
+		   			$("#total-sum").text('$ '+data.total_sum);
+		   		})
+		   		.fail(function(error) {
+		   			$("#mensaje-raffle").css('display', 'block');
+		   			$("#text-mensaje-raffle").text(error.responseJSON.mensaje)
+		   		})
+		   		.always(function() {
+		   			_this.children().removeClass('fa-spinner fa-spin');
+		   			_this.children().addClass('fa-cart-plus');
+		   		});
+		   	} else {
+		   		return false;
+		   	}
+	   });
+
+	   $("#table-cart >tbody ").on('click', '.btn-remove-raffle' ,function(event) {
+	   		event.preventDefault();
+	   		event.stopPropagation();
+	   		$(this).children().addClass('fa fa-spinner fa-spin');
+	   		$(this).children().removeClass('glyphicon glyphicon-trash');
+	   		var _this = $(this);
+	   		$.ajax({
+	   			url: '{{ route('list.buy.ticket.remove') }}',
+	   			type: 'POST',
+	   			data: {raffle_number: _this.data('raffle')},
+	   		})
+	   		.done(function(data) {
+	   			$("#total-sum").text('$ '+data.total_sum);
+	   			_this.parent().parent().parent().remove();
+
+	   			$("#raffle_"+_this.data('raffle')).removeClass('selected-now')
+	   			$("#raffle_"+_this.data('raffle')).addClass('available ')
+	   			$("#raffle_"+_this.data('raffle')).next('.panel-footer').children().removeAttr('disabled',true);
+
+	   			if(data.cart) {
+
+	   				$("#form-pay >input[type=hidden]").remove();
+
+	   				var acceptRulesHtml = "<input type='hidden' name='accept_rules' id='accept_rules' value='1'>";
+	   				$("#form-pay").append(acceptRulesHtml)
+
+	   				if(data.total_sum) {
+	   					var htmlTotalSum = "<input type='hidden' name='amount' value='"+data.total_sum+"'>";
+	   					$("#form-pay").append(htmlTotalSum)
+	   				}
+
+	   				var html = "";
+		   			for (var i = 0; i < data.cart.length; i++) {
+		   				html+= "<input type='hidden' id='ticket_raffle_description' name='tickets["+i+"][description]' value='Ticket # "+data.cart[i].raffle_number+"'><input type='hidden' id='ticket_raffle_vote_id' name='tickets["+i+"][raffle_vote_id]'' value='"+data.cart[i].raffle_number+"'>";
+			   		}
+	   				$("#form-pay").append(html)
+	   				
+
+	   			}
+	   			if($("#table-cart >tbody >tr").length == 0) {
+	   				$("#table-cart").css('display', 'none');
+	   				$("#no-table-cart").css('display', 'block');
+	   				$("#form-pay").css('display', 'none');
+	   			}
+	   		});
+	   		
+	   });
+
+	  
+
+
 	});
 </script>
 @endsection
@@ -125,6 +233,17 @@
 		</div>
 	</div>
 
+	{{-- js --}}
+	<div class="row" id="mensaje-raffle" style="display: none">
+		<div class="col-md-12 col-sm-12 col-xs-12">
+			<div class="alert alert-dismissible alert-danger" role="alert">
+	  			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+	  			<p id="text-mensaje-raffle"></p>
+	   		</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	{{-- php --}}
 	@if (Session::has('mensaje'))
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
@@ -183,7 +302,7 @@
 					</div>
 					<div class="panel-body cart-body">
 						@if (session()->has('cart'))
-							<table class="table scrollbar-dynamic">
+							<table id="table-cart" class="table scrollbar-dynamic">
 								@foreach (session()->get('cart') as $key =>  $item) 
 									<tr>
 										<td>
@@ -192,11 +311,10 @@
 										<td><strong>{{ $item['points'] }} Pnts.</strong></td>
 										<td><strong>$ {{ $item['price'] }}<strong></td>
 										<td>
-											<form action="{{ route('list.buy.ticket.remove') }}" method="POST">
+											<form action="{{ route('list.buy.ticket.remove') }}" method="POST" class='form-remove-raffle'>
 												{{  csrf_field() }}
-												<input type="hidden" name="ticket_index" value="{{ $key }}">
 												<input type="hidden" name="raffle_number" value="{{ $item['raffle_number'] }}">
-												<button type="submit" class="btn btn-link btn-xs btn-remove" alt="{{ trans('raffle_ticket.delete_cart') }}" title="{{ trans('raffle_ticket.delete_cart') }}">
+												<button type="button" data-raffle="{{ $item['raffle_number'] }}" class="btn btn-link btn-xs btn-remove-raffle" alt="{{ trans('raffle_ticket.delete_cart') }}" title="{{ trans('raffle_ticket.delete_cart') }}">
 													<span class="glyphicon glyphicon-trash"> </span>
 												</button>
 											</form>
@@ -204,11 +322,18 @@
 									</tr>
 								@endforeach
 							</table>
+							<p id="no-table-cart" class="text-muted message-no-cart" style="display: none;"><b>{{ trans('raffle_ticket.no_ticket_selected') }}</b></p>
 							<hr>
 						@else
-							<p class="text-muted message-no-cart"><b>{{ trans('raffle_ticket.no_ticket_selected') }}</b></p>
+							{{-- js --}}
+							<p id="no-table-cart" class="text-muted message-no-cart" style="display: block;"><b>{{ trans('raffle_ticket.no_ticket_selected') }}</b></p>
+							<table id="table-cart" class="table scrollbar-dynamic" style="display: none">
+								<tbody></tbody>
+							</table>
 							<hr>
 						@endif
+
+
 						<div class="checkbox text-center">
 						    <label>
 						      <input type="checkbox" id="check_accept_rules" checked> <strong> {{ trans('raffle_ticket.accept_official_rules') }} </strong>
@@ -218,11 +343,11 @@
 					<div class="panel-footer">
 						<div class="row text-center">
 							<div class="col-xs-6">
-								<h4 class="text-right">Total <strong>$ {{ session()->has('total_sum') ?  session()->get('total_sum') : "0.00" }}   </strong></h4>
+								<h4 class="text-right">Total <strong id="total-sum">$ {{ session()->has('total_sum') ?  session()->get('total_sum') : "0.00" }}   </strong></h4>
 							</div>
 							<div class="col-xs-6">
 									@if (session()->has('cart'))
-									<form action="{{ route('website.paypal.buyticket') }}" method="post">
+									<form id="form-pay" action="{{ route('website.paypal.buyticket') }}" method="post">
 										{{  csrf_field() }}
 											@foreach (session()->get('cart') as $key =>  $item) 
 												<input type="hidden" name="tickets[{{ $key }}][description]" value="Ticket #{{ $item['raffle_number'] }}">
@@ -233,6 +358,13 @@
 											<i class="fa fa-paypal" aria-hidden="true"></i> {{ trans('raffle_ticket.buy_ticket_button') }}
 										</button>
 										<input type="hidden" name="accept_rules" id="accept_rules" value="1">
+									</form>
+									@else
+										<form id="form-pay" style="display: none" action="{{ route('website.paypal.buyticket') }}" method="post">
+										{{  csrf_field() }}
+										<button type="submit" id="btn-buy-ticket" class="btn btn-success btn-block" alt="{{ trans('raffle_ticket.buy_ticket_button') }}" title="{{ trans('raffle_ticket.buy_ticket_button') }}">
+											<i class="fa fa-paypal" aria-hidden="true"></i> {{ trans('raffle_ticket.buy_ticket_button') }}
+										</button>
 									</form>
 									@endif
 							</div>
@@ -275,13 +407,13 @@
 						<input type="hidden" name="raffle_number" value="{{ $raffle['raffle_number'] }}">
 						<div class="col-md-2 col-xs-6 col-sm-3">
 							<div class="panel panel-success tickets">
-			  					<div class="panel-body body-ticket @if(existOnCart($raffle['raffle_number']) && !isReserved($raffle['raffle_number'])) selected-now @endif @if(!existOnCart($raffle['raffle_number']) && isReserved($raffle['raffle_number'])) reserved @endif @if(!existOnCart($raffle['raffle_number']) && !isReserved($raffle['raffle_number'])) available @endif">
+			  					<div id="raffle_{{ $raffle['raffle_number'] }}" class="panel-body body-ticket @if(existOnCart($raffle['raffle_number']) && !isReserved($raffle['raffle_number'])) selected-now @endif @if(!existOnCart($raffle['raffle_number']) && isReserved($raffle['raffle_number'])) reserved @endif @if(!existOnCart($raffle['raffle_number']) && !isReserved($raffle['raffle_number'])) available @endif">
 									<h1 class="text-center"><b>{{ $raffle['raffle_number'] }}</b></h1>
 			  					</div>
 			  					<div class="panel-footer footer-ticket">
 			  						<button class="btn btn-primary btn-block btn-xs text-center btn-add-cart-ticket" 
 			  						@if(existOnCart($raffle['raffle_number']) || isReserved($raffle['raffle_number'])) disabled @endif 
-			  						@if(!isReserved($raffle['raffle_number']))  title="{{ trans('raffle_ticket.add_cart') }}" alt="{{ trans('raffle_ticket.add_cart') }}" @endif ><i class="fa fa-cart-plus"></i></button>
+			  						@if(!isReserved($raffle['raffle_number']))  title="{{ trans('raffle_ticket.add_cart') }}" alt="{{ trans('raffle_ticket.add_cart') }}" @endif data-raffle="{{ $raffle['raffle_number'] }}"><i class="fa fa-cart-plus"></i></button>
 			  					</div>
 							</div>
 						</div>
