@@ -130,7 +130,7 @@ $style = [
 
                                         <!-- Salutation -->
                                         <p style="{{ $style['paragraph'] }}">
-                                            <b>{{ trans('email.buy_ticket.total_amount_online') }}: </b> {{ count($tickets) }} <b>{{ trans('email.buy_ticket.each_vote') }}</b> {{ trans('email.buy_ticket.through_ruffle') }} {{config('vote.vote-raffle-point')}} {{ trans('email.buy_ticket.points') }} 
+                                            <b>{{ trans('email.buy_ticket.total_amount_online') }}: </b> {{ count($tickets) }}. <br> <b>{{ trans('email.buy_ticket.each_vote') }}</b> {{ trans('email.buy_ticket.through_ruffle') }} {{config('vote.vote-raffle-point')}} {{ trans('email.buy_ticket.points') }} 
                                         </p>                                        
 
                                         <!-- remember -->
