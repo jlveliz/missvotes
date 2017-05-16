@@ -62,33 +62,36 @@ class LoginClientController extends Controller
             }
         } else {
             if ($validate->fails()) {
-            // If the login attempt was unsuccessful we will increment the number of attempts
-            // to login and redirect the user back to the login form. Of course, when this
-            // user surpasses their maximum number of attempts they will get locked out.
-            $this->incrementLoginAttempts($request);
+                // If the login attempt was unsuccessful we will increment the number of attempts
+                // to login and redirect the user back to the login form. Of course, when this
+                // user surpasses their maximum number of attempts they will get locked out.
+                $this->incrementLoginAttempts($request);
 
-            // If the class is using the ThrottlesLogins trait, we can automatically throttle
-            // the login attempts for this application. We'll key this by the username and
-            // the IP address of the client making these requests into this application.
-            if ($this->hasTooManyLoginAttempts($request)) {
-                $this->fireLockoutEvent($request);
+                // If the class is using the ThrottlesLogins trait, we can automatically throttle
+                // the login attempts for this application. We'll key this by the username and
+                // the IP address of the client making these requests into this application.
+                if ($this->hasTooManyLoginAttempts($request)) {
+                    $this->fireLockoutEvent($request);
 
-                return $this->sendLockoutResponse($request);
+                    return $this->sendLockoutResponse($request);
+                }
+
+
+                return redirect()->back()
+                    ->withInput($request->only($this->username(), 'remember'))
+                    ->withErrors([
+                        $this->username() => $validate->errors()->all(),
+                    ]);
             }
 
-
-            return redirect()->back()
-                ->withInput($request->only($this->username(), 'remember'))
-                ->withErrors([
-                    $this->username() => $validate->errors()->all(),
-                ]);
+            if ($this->attemptLogin($request)) {
+                return $this->sendLoginResponse($request);
+            } else {
+                return $this->sendFailedLoginResponse($request);
             }
         }
 
        
-        if ($this->attemptLogin($request)) {
-            return $this->sendLoginResponse($request);
-        }
 
 
     }
@@ -103,11 +106,11 @@ class LoginClientController extends Controller
     protected function validateLogin(Request $request)
     {
         return Validator::make($request->all(), [
-            $this->username() => 'required|confirmed_account|exists:user', 'password' => 'required',
+            $this->username() => 'required|exists:user|confirmed_account', 'password' => 'required',
         ],
         [
-            $this->username().'.confirmed_account' => Lang::get('auth.not_confirmed'),
             $this->username().'.exists' => Lang::get('auth.failed'),
+            $this->username().'.confirmed_account' => Lang::get('auth.not_confirmed'),
         ]);
 
     }
