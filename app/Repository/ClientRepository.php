@@ -12,7 +12,7 @@ class ClientRepository implements ClientRepositoryInterface
 	
 	public function enum($params = null)
 	{
-		$clients = Client::where('is_admin',0)->get();
+		$clients = Client::where('is_admin',0)->where('confirmed',1)->get();
 		
 		if (!$clients) {
 			throw new ClientException("No se han encontrado cientes",404);

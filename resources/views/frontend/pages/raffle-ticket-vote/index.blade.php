@@ -15,7 +15,11 @@
 	   $(window).scroll(function () {
 	       if (!$("#collapseOne").hasClass('in')) {
 	           nav.addClass("fixed");
-	           // nav.css('top','60%');
+	            if ($(this).scrollTop() > 325) { 
+	           		nav.css('top','60px');
+	            } else {
+	            	nav.removeClass("fixed");
+	            }
 	       } else {
 	           nav.removeClass("fixed");
 	       }

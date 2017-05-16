@@ -26,9 +26,9 @@
      		</thead>
      		<tbody>
      			@foreach ($clients as $client)
-       			<tr>
+       			<tr  @if(!$client->confirmed) class="warning" @endif>
               <td>{{ $client->current_membership() ? $client->current_membership()->membership->name : 'Free' }}</td>
-       				<td>{{$client->name}}</td>
+       				<td>{{$client->name}}  @if(!$client->confirmed) <small><i>(Sin confirmar)</i> </small> @endif</td>
        				<td>{{$client->email}}</td>
        				<td>{{$client->address}}</td>
        				<td>@if($client->last_login){{$client->last_login}} @else - @endif</td>
