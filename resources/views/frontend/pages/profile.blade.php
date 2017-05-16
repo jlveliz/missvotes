@@ -192,6 +192,14 @@
 			    		<b>{{ trans('my_tickets.total_raffle_numbers')}}: </b> {{count(Auth::user()->client->tickets)}} |
 			    		<b>{{ trans('my_tickets.total_amount_points')}}: </b> {{$availableTickets}}
 			    	</p>
+			    	<div class="col-md-12 col-sm-12 col-xs-12">
+			    		<p class="">
+			    			{!! trans('my_tickets.message_favorite')!!} : {{count(Auth::user()->client->tickets)}} 
+			    		</p>
+			    		<p class="">
+			    			{!! trans('my_tickets.each_vote_raffle')!!}
+			    		</p>
+			    	</div>
 			    	<p class="col-md-7 text-center col-md-offset-3">{{ trans('my_tickets.thanks') }}</p>
 			    	<p class="col-md-7 text-center col-md-offset-3">{{ trans('my_tickets.junior_foundation') }}</p>
 
@@ -209,7 +217,7 @@
 					  					<div class="panel-body body-ticket my-ticket">
 											<h1 class="text-center"><b>{{ $ticketClient->raffle_vote_id }}</b></h1>
 					  					</div>
-					  					<div class="panel-footer footer-ticket @if($ticketClient->state == 1) footer-my-available-tickets @else footer-my-used-tickets @endif">
+					  					<div class="panel-footer footer-ticket @if($ticketClient->state == 1) footer-my-available-tickets  @else footer-my-used-tickets @endif">
 					  						<p><strong>@if($ticketClient->state == 1) {{ trans('my_tickets.signals.available') }} @else {{ trans('my_tickets.signals.used') }} @endif</strong></p>
 					  					</div>
 									</div>
@@ -231,14 +239,7 @@
 			    		<p class="col-md-12 col-sm-12"><strong>{{ trans('my_tickets.remember') }}: </strong> {{ trans('my_tickets.text_remember') }} </p>
 			    		<br>
 			    		<div class="clearfix"></div>
-			    		<div class="col-md-12 col-sm-12 col-xs-12">
-			    			<p class="">
-			    				{!! trans('my_tickets.message_favorite')!!} : {{count(Auth::user()->client->tickets)}} 
-			    			</p>
-			    			<p class="">
-			    				{!! trans('my_tickets.each_vote_raffle')!!}
-			    			</p>
-			    		</div>
+			    		
 			    		
 			    	</div>
 			    </div>
