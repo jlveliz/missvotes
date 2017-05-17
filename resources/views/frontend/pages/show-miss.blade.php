@@ -21,7 +21,7 @@
 <div class="container-page">
 	<h2>{{ $miss->name }} {{ $miss->last_name }}</h2>
 	<div class="row">
-		<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+		<div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
 
 			<div class="Wallop Wallop--fade">
 			  <div class="Wallop-list">
@@ -42,7 +42,7 @@
 			</div>
 		</div>
 		{{-- description --}}
-		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+		<div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
 			<hr class="visible-xs">
 			<p class="description-miss"><b> {{ trans('miss-vote.nationality') }}</b></p>
 			<p>{{ $miss->country->name }}</p>
