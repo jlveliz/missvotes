@@ -83,14 +83,24 @@
 						@endcannot
 					@endif
 
+					{{-- js --}}
+					<p class="text-center" id="thanks-vote-js" style="display: none">
+						{!! trans('miss-vote.thanks_vote') !!}
+					</p>
+					<hr>
+					<p class="text-center" id="thanks-vote-ticket-js" style="display: none">
+						{!! trans('miss-vote.thanks_vote_ticket') !!}
+					</p>
+					{{-- js --}}
+
 					@can('vote',Auth::user())
 						@can('vote_today', $miss)
 							<form action="{{ route('website.miss.vote.store') }}" method="POST"  style="display: inline"  >
 								{{ csrf_field() }}
 								<input type="hidden" name="miss_id" value="{{$miss->id}}">
 								<input type="hidden" name="client_id" value="{{Auth::user()->id}}">
-								<button type="submit" class="btn btn-vote btn-lg" @cannot('vote', Auth::user()) disabled @endcannot>
-									<i class="fa fa-heart like-vote" aria-hidden="true"></i> {{ trans('miss-vote.vote') }}
+								<button id="btn-vote-default" type="submit" class="btn btn-vote btn-lg" @cannot('vote', Auth::user()) disabled @endcannot>
+									<i class="fa fa-heart like-vote" aria-hidden="true"></i> <span>{{ trans('miss-vote.vote') }}</span>
 								</button>
 							</form>
 						@endcan()
@@ -117,7 +127,7 @@
 												</select>
 											</div>
 											<div class="col-md-2 col-xs-4">
-												<button id="vote-ticket-submit" type="submit" class="btn btn-vote" disabled><i class="fa fa-heart like-vote" aria-hidden="true" ></i> {{ trans('miss-vote.vote') }}</button>	
+												<button id="vote-ticket-submit" type="submit" class="btn btn-vote" disabled><i class="fa fa-heart like-vote" aria-hidden="true" ></i> <span>{{ trans('miss-vote.vote') }}</span></button>	
 											</div>
 										</div>
 									</form>

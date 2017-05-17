@@ -122,7 +122,11 @@ class VoteController extends Controller
             $sessionData['mensaje'] = trans('miss-vote.you_cant');
         }
         
-        return Redirect::back()->with($sessionData);
+        if ($sessionData['tipo_mensaje'] == 'error') {
+            return response()->json($sessionData,500);
+        } else {
+            return response()->json('success',200);
+        }
         
     }
 

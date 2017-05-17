@@ -59,7 +59,7 @@ $(document).ready(function() {
             valElement = $(this).val();
             if (!valElement) {
                 $("#ticket-id").val('');
-                $("#vote-ticket-submit").attr('disabled',true);
+                $("#vote-ticket-submit").attr('disabled', true);
             } else {
                 $("#ticket-id").val(valElement);
                 $("#vote-ticket-submit").removeAttr('disabled');
@@ -77,5 +77,69 @@ $(document).ready(function() {
         slidesToShow: 4,
         slidesToScroll: 4,
     })
+
+
+    $("#btn-vote-default").on('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        _this = $(this);
+        _this.attr('disabled', true);
+        _this.children('i').removeClass('fa-heart').addClass('fa-spinner fa-spin');
+        _this.children('span').css('display', 'none');
+        var form = _this.parents('form');
+        form = $(form);
+
+        $.ajax({
+                url: form.attr('action'),
+                type: 'POST',
+                data: form.serialize(),
+            })
+            .done(function() {
+                _this.parents('form').remove();
+                $("#thanks-vote-js").removeAttr('style');
+            })
+            .fail(function() {
+                _this.removeAttr('disabled', true);
+            })
+            .always(function() {
+                _this.children('i').removeClass('fa-spinner fa-spin').addClass('fa-heart');
+                _this.children('span').css('display', 'inline');
+            });
+
+    });
+
+
+    $("#vote-ticket-submit").on('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        /* Act on the event */
+        _this = $(this);
+        _this.attr('disabled', true);
+        _this.children('i').removeClass('fa-heart').addClass('fa-spinner fa-spin');
+        _this.children('span').css('display', 'none!important');
+        var form = _this.parents('form');
+        form = $(form);
+
+        $.ajax({
+                url: form.attr('action'),
+                type: 'POST',
+                data: form.serialize(),
+            })
+            .done(function() {
+                $("#select-tickets option:selected").remove()
+                $("#thanks-vote-ticket-js").removeAttr('style');
+                $("#vote-id").text('#' + $("#ticket-id").val());
+                if ($("#select-tickets option").length == 1) {
+                    _this.attr('disabled', true);
+                }
+            })
+            .fail(function() {
+                _this.removeAttr('disabled', true);
+            })
+            .always(function() {
+                _this.children('i').removeClass('fa-spinner fa-spin').addClass('fa-heart');
+                _this.children('span').css('display', 'inline');
+            });
+    });
 
 });
