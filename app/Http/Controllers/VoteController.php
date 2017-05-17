@@ -107,7 +107,7 @@ class VoteController extends Controller
 
             if (!$vote) {
                 $sessionData['tipo_mensaje'] = 'error';
-                $sessionData['mensaje'] = 'El voto no pudo ser procesado, intente nuevamente.';  
+                $sessionData['mensaje'] = trans('miss-vote.cant_proccess_vote');  
             } else {
 
                 //insert activity
@@ -119,7 +119,7 @@ class VoteController extends Controller
             }
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = 'No tiene derecho a realizar esta acción.';
+            $sessionData['mensaje'] = trans('miss-vote.you_cant');
         }
         
         return Redirect::back()->with($sessionData);

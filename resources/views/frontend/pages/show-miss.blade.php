@@ -44,16 +44,16 @@
 		{{-- description --}}
 		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
 			<hr class="visible-xs">
-			<p class="description-miss"><b>Nacionalidad</b></p>
+			<p class="description-miss"><b> {{ trans('miss-vote.nationality') }}</b></p>
 			<p>{{ $miss->country->name }}</p>
-			<p class="description-miss"><b>Ciudad</b></p>
+			<p class="description-miss"><b>{{ trans('miss-vote.city') }}</b></p>
 			<p>{{ $miss->city }} / {{ $miss->state_province }}</p>
-			<p class="description-miss"><b>Medidas</b></p>
-			<p><b>Al: </b> {{ $miss->height }} cms  / <b>Pe: </b> {{ $miss->weight }}  lb / <b>Bu:</b> {{ $miss->bust_measure }} /  <b>Ci:</b> {{ $miss->waist_measure }} / <b>Ca:</b> {{ $miss->hip_measure }}</p>
-			<p><b>Filosofía diaria</b></p>
+			<p class="description-miss"><b>{{ trans('miss-vote.measure') }}</b></p>
+			<p><b>{{ trans('miss-vote.height') }}: </b> {{ $miss->height }} cms  / <b>{{ trans('miss-vote.weight') }}: </b> {{ $miss->weight }}  lb / <b>{{ trans('miss-vote.bust_measure') }}:</b> {{ $miss->bust_measure }} /  <b>{{ trans('miss-vote.waist_measure') }}:</b> {{ $miss->waist_measure }} / <b>{{ trans('miss-vote.hip_measure') }}:</b> {{ $miss->hip_measure }}</p>
+			<p><b>{{ trans('miss-vote.dairy_philosophy') }}</b></p>
 			<p>{{ $miss->dairy_philosophy }}</p>
 
-			<p><b>Por qué le gustaría ganar el Miss Panamerican International?</b></p>
+			<p><b>{{ trans('miss-vote.why_would_you_win') }}</b></p>
 			<p>{{ $miss->why_would_you_win }}</p>
 			
 			<hr>
@@ -72,13 +72,13 @@
 					@if (!Auth::user()->is_admin)
 						@cannot('vote_today', $miss)
 							<p class="text-center">
-								<b>Gracias por registrar su voto, Podrá volver a votar en  <span class="text-danger">24 horas</span> o puede <span class="text-danger">comprar</span> o <span class="text-danger">usar</span> un ticket de voto</span></b> 
+								{!! trans('miss-vote.thanks_vote') !!}
 							</p>
 						@endcannot
 					@else
 						@cannot('vote', Auth::user())
 							<p class="text-center text-danger">
-								<b>Usted no puede realizar esta acción.</b> 
+								<b>{{ trans('miss-vote.you_cant') }}.</b> 
 							</p>
 						@endcannot
 					@endif
@@ -90,7 +90,7 @@
 								<input type="hidden" name="miss_id" value="{{$miss->id}}">
 								<input type="hidden" name="client_id" value="{{Auth::user()->id}}">
 								<button type="submit" class="btn btn-vote btn-lg" @cannot('vote', Auth::user()) disabled @endcannot>
-									<i class="fa fa-heart like-vote" aria-hidden="true"></i> Votar
+									<i class="fa fa-heart like-vote" aria-hidden="true"></i> {{ trans('miss-vote.vote') }}
 								</button>
 							</form>
 						@endcan()
@@ -98,7 +98,7 @@
 						{{-- if tickets --}}
 						@if (count(Auth::user()->client->activeTickets()))
 							<button type="submit" class="btn btn-vote btn-lg" @cannot('vote', Auth::user()) disabled @endcannot data-toggle="collapse" data-target="#collapseVoteTicket">
-								<i class="fa fa-ticket like-vote" aria-hidden="true"></i> Ticket
+								<i class="fa fa-ticket like-vote" aria-hidden="true"></i> {{ trans('miss-vote.ticket') }}
 							</button>
 							<div class="row vote-ticket-section">
 								<div class="col-md-12 col-xs-12 text-left collapse" id="collapseVoteTicket">
@@ -110,14 +110,14 @@
 										<div class="navigate-section">
 											<div class="col-md-8 col-xs-8 no-padding">
 												<select class="form-control" id="select-tickets">
-													<option value=''>--Seleccione--</option>
+													<option value=''>--{{ trans('miss-vote.select_miss') }}--</option>
 													@foreach (Auth::user()->client->activeTickets() as $ticketClient)
-														<option value="{{ $ticketClient->id }}">{{ $ticketClient->description }} <i>({{ $ticketClient->val_vote }} Puntos)</i> </option>
+														<option value="{{ $ticketClient->id }}">{{ $ticketClient->description }} <i>({{ $ticketClient->val_vote }} {{ trans('miss-vote.points') }})</i> </option>
 													@endforeach
 												</select>
 											</div>
 											<div class="col-md-2 col-xs-4">
-												<button id="vote-ticket-submit" type="submit" class="btn btn-vote" disabled><i class="fa fa-heart like-vote" aria-hidden="true" ></i> Votar</button>	
+												<button id="vote-ticket-submit" type="submit" class="btn btn-vote" disabled><i class="fa fa-heart like-vote" aria-hidden="true" ></i> {{ trans('miss-vote.vote') }}</button>	
 											</div>
 										</div>
 									</form>
@@ -126,7 +126,7 @@
 						@endif
 					@endcan
 				@else 
-					Para votar, <a href="{{ route('client.show.login') }}"  title="Iniciar Sesión"><span>Inicie Sesión</span></a> o  <a href="{{ route('client.show.register') }}" title="Registrarse"><span>Registrese</span></a>
+					{{ trans('miss-vote.for_vote') }}, <a href="{{ route('client.show.login') }}"  title="{{ trans('miss-vote.login') }}"><span>{{ trans('miss-vote.login') }}</span></a> {{ trans('miss-vote.or') }}  <a href="{{ route('client.show.register') }}" title="{{ trans('miss-vote.register') }}"><span>{{ trans('miss-vote.register') }}</span></a>
 				@endif
 			</div>
 			<hr>
@@ -135,7 +135,7 @@
 	<hr>
 	<div class="row ">
 		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<h5><b>Mire las otras candidatas</b></h5>
+			<h5><b>{{ trans('miss-vote.look_others_candidates') }}</b></h5>
 		</div>
 		<div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
 			<div class="carrousel-misses">
@@ -155,14 +155,14 @@
 			<div class="navigate-section">
 				<div class="col-md-10 col-xs-8 no-padding">
 					<select class="form-control" name="select_misses" id="select-misses">
-						<option value="null">--Seleccione--</option>
+						<option value="null">--{{ trans('miss-vote.select_miss') }}--</option>
 						@foreach ($misses as $miss)
 							<option value="{{ route('website.miss.show',$miss->slug) }}"> {{ $miss->name }} {{ $miss->last_name }} </option>
 						@endforeach
 					</select>
 				</div>
 				<div class="col-md-2 col-xs-4">
-					<a id="go-miss" href="" class="btn btn-default btn-go">Ir</a>	
+					<a id="go-miss" href="" class="btn btn-default btn-go">{{ trans('miss-vote.go') }}</a>	
 				</div>
 			</div>
 		</div>
