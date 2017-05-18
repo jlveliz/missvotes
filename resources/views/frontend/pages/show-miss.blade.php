@@ -122,7 +122,7 @@
 												<select class="form-control" id="select-tickets">
 													<option value=''>--{{ trans('miss-vote.select_miss') }}--</option>
 													@foreach (Auth::user()->client->activeTickets() as $ticketClient)
-														<option value="{{ $ticketClient->id }}">{{ $ticketClient->description }} <i>({{ $ticketClient->val_vote }} {{ trans('miss-vote.points') }})</i> </option>
+														<option data-raffle={{ $ticketClient->raffle_vote_id }} value="{{ $ticketClient->id }}">{{ $ticketClient->description }} <i>({{ $ticketClient->val_vote }} {{ trans('miss-vote.points') }})</i> </option>
 													@endforeach
 												</select>
 											</div>

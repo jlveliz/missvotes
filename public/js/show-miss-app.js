@@ -126,9 +126,10 @@ $(document).ready(function() {
                 data: form.serialize(),
             })
             .done(function() {
-                $("#select-tickets option:selected").remove()
+                var valRaffle = $("#select-tickets option:selected").data('raffle')
+                $("#select-tickets option:selected").remove();
                 $("#thanks-vote-ticket-js").removeAttr('style');
-                $("#vote-id").text('#' + $("#ticket-id").val());
+                $("#vote-id").text('#' + valRaffle);
                 if ($("#select-tickets option").length == 1) {
                     _this.attr('disabled', true);
                 }
