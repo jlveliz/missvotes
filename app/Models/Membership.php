@@ -24,8 +24,8 @@ class Membership extends Model
     ];
 
     public $durationsMode = [
-    	'1' => 'Mes(es)',
-    	'2' => 'Año(s)'
+    	'1' => 'backend.membership.create-edit.label_months',
+    	'2' => 'backend.membership.create-edit.label_years'
     ];
 
 

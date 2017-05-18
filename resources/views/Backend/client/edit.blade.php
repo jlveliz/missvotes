@@ -1,8 +1,8 @@
 @extends('layouts.backend')
 @section('content')
 <div class="panel panel-default">
-	<div class="panel-heading">Clientes</div>
-	<p class="subtitle">Edición de Clientes</p>
+	<div class="panel-heading">{{ trans('backend.client.create-edit.panel_title') }}</div>
+	<p class="subtitle">{{ trans('backend.client.create-edit.panel_subtitle_edit') }}</p>
 	<div class="panel-body">
 		@if (Session::has('mensaje'))
         <div class="alert alert-dismissible @if(Session::get('tipo_mensaje') == 'success') alert-info  @endif @if(Session::get('tipo_mensaje') == 'error') alert-danger  @endif" role="alert">

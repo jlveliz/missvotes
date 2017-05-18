@@ -171,6 +171,7 @@
 			'create-edit' => [
 				'panel_title' => 'Clients',
 				'panel_subtitle' => 'Creation of clients',
+				'panel_subtitle_edit' => 'Edition of clients',
 				'label_email' => 'Email',
 				'label_name' => 'Name',
 				'label_lastname' => 'Lastname',
@@ -204,6 +205,38 @@
 				'th_activity' => 'Activity',
 				'th_date' => 'Date'
 			],
+		],
+
+
+		'membership' => [
+			'index' => [
+				'panel_title' => 'Memberships',
+				'panel_caption' => 'List of Memberships',
+				'th_name' => 'Name',
+				'th_duration' => 'Duration',
+				'th_price' => 'Price',
+				'th_creation_date'=>'Creation Date',
+				'th_upgrade'=>'Upgrade',
+				'th_action' => 'Action',
+				'td_edit' => 'Edit',
+				'td_delete' => 'Delete'
+			],
+
+			'create-edit' => [
+				'panel_title' => 'Memberships',
+				'panel_caption_create' => 'Create of Memberships',
+				'panel_caption_edit' => 'Edit of Memberships',
+				'label_name' => 'Name',
+				'label_description' => 'Description',
+				'label_duration' => 'Duration',
+				'label_select' => 'Select',
+				'label_price' => 'Price',
+				'label_points_per_vote' => 'Points per vote',
+				'btn_cancel' => 'Cancel',
+				'btn_save' => 'Save',
+				'label_months' => 'Month(s)',
+				'label_years' => 'Year(s)'
+			]
 		],
 
 
