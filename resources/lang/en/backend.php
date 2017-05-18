@@ -207,6 +207,37 @@
 			],
 		],
 
+		'user' => [
+			'index' => [
+				'panel_title' => 'Users',
+				'panel_caption' => 'List of Users',
+				'th_name' => 'Name',
+				'th_email' => 'Email',
+				'th_address' => 'Address',
+				'th_last_access' => 'Last Access',
+				'th_creation_date'=>'Creation Date',
+				'th_action'=>'Action',
+				'th_upgrade'=>'Upgrade',
+				'td_edit' => 'Edit',
+				'btn_create' => 'Create User',
+				'td_delete' => 'Delete User',
+			],
+
+			'create-edit' => [
+				'panel_title' => 'Users',
+				'panel_subtitle' => 'Creation of users',
+				'panel_subtitle_edit' => 'Edition of users',
+				'label_email' => 'Email',
+				'label_name' => 'Name',
+				'label_lastname' => 'Lastname',
+				'label_address' => 'Address',
+				'label_password' => 'Password',
+				'label_repeat_password' => 'Repeat Password',
+				'btn_cancel' => 'Cancel',
+				'btn_save' => 'Save',
+			]
+		],
+
 
 		'membership' => [
 			'index' => [

@@ -1,7 +1,7 @@
 @extends('layouts.backend')
 @section('content')
 <div class="panel panel-default">
-  <div class="panel-heading">Usuarios</div>
+  <div class="panel-heading">{{ trans('backend.user.index.panel_title') }}</div>
 
   <div class="panel-body">
   	   @if (Session::has('mensaje'))
@@ -12,15 +12,15 @@
         <div class="clearfix"></div>
        @endif
      	<table id="user-datatable" class="table table-bordered">
-     		<caption>Listado de Usuarios <a class="pull-right btn btn-primary" href="{{ route('users.create') }}" title="Crear">Crear Usuario</a></caption>
+     		<caption>{{ trans('backend.user.index.panel_caption') }} <a class="pull-right btn btn-primary" href="{{ route('users.create') }}" title="{{ trans('backend.user.index.btn_create') }}">{{ trans('backend.user.index.btn_create') }}</a></caption>
      		<thead>
      			<tr>
-     				<th>Nombre</th>
-     				<th>Email</th>
-     				<th>Dirección</th>
-     				<th>Último Acceso</th>
-     				<th>Fecha creación/Actualización</th>
-     				<th>Acción</th>
+     				<th>{{ trans('backend.user.index.th_name') }}</th>
+     				<th>{{ trans('backend.user.index.th_email') }}</th>
+     				<th>{{ trans('backend.user.index.th_address') }}</th>
+     				<th>{{ trans('backend.user.index.th_last_access') }}</th>
+     				<th>{{ trans('backend.user.index.th_creation_date') }} / {{ trans('backend.user.index.th_upgrade') }}</th>
+     				<th>{{ trans('backend.user.index.th_action') }}</th>
      			</tr>
      		</thead>
      		<tbody>
@@ -33,11 +33,11 @@
        				<td>{{$user->created_at }} / {{$user->updated_at}}</td>
        				<td class="text-center">
        					<form action="{{ route('users.destroy',$user->id) }}" method="POST">
-       						<a href="{{ route('users.edit',$user->id) }}" title="Editar" class="btn btn-xs btn-warning"> Editar</a>
+       						<a href="{{ route('users.edit',$user->id) }}" title="{{ trans('backend.user.index.td_edit') }}" class="btn btn-xs btn-warning"> {{ trans('backend.user.index.td_edit') }}</a>
        						@if (Auth::user()->id != $user->id)
          						<input type="hidden" name="_token" value="{{ csrf_token() }}">
          						<input type="hidden" name="_method" value="DELETE">
-         						<button type="submit" title="Eliminar" class="btn btn-xs btn-danger"> Eliminar</button>
+         						<button type="submit" title="{{ trans('backend.user.index.td_delete') }}" class="btn btn-xs btn-danger"> {{ trans('backend.user.index.td_delete') }}</button>
        						@endif
        					</form>
        				</td>
@@ -54,9 +54,11 @@
 <script type="text/javascript">
   $(document).ready(function(){
       $('#user-datatable').DataTable({
+        @if (App::isLocale('es'))
         "language": {
           "url": "../public/js/datatables/json/es.json"
         }
+        @endif
       });
   });
  </script>
