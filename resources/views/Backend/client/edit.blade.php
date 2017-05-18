@@ -18,27 +18,27 @@
 			<input type="hidden" name="is_admin" value="0">
 			<div class="row">
 				<div class="form-group col-md-3 col-sm-3 col-xs-12 @if($errors->has('email')) has-error @endif">
-					<label class="control-label">Email </label>
-					<input type="email" class="form-control" placeholder="Email" name="email" value="{{ $client->email }}">
+					<label class="control-label">{{ trans('backend.client.create-edit.label_email') }} </label>
+					<input type="email" class="form-control" name="email" value="{{ $client->email }}">
 					@if ($errors->has('email')) <p class="help-block">{{ $errors->first('email') }}</p> @endif
 				</div>
 
 				<div class="form-group col-md-3 col-sm-3 col-xs-12 @if($errors->has('name')) has-error @endif">
-					<label class="control-label">Nombre </label>
-					<input type="text" class="form-control" placeholder="Nombre" name="name" value="{{ $client->name }}">
+					<label class="control-label">{{ trans('backend.client.create-edit.label_name') }} </label>
+					<input type="text" class="form-control" name="name" value="{{ $client->name }}">
 					@if ($errors->has('name')) <p class="help-block">{{ $errors->first('name') }}</p> @endif
 				</div>
 
 				<div class="form-group col-md-3 col-sm-3 col-xs-12 @if($errors->has('last_name')) has-error @endif">
-					<label class="control-label">Apellido </label>
-					<input type="text" class="form-control" placeholder="Nombre" name="last_name" value="{{ $client->last_name }}">
+					<label class="control-label">{{ trans('backend.client.create-edit.label_lastname') }} </label>
+					<input type="text" class="form-control" name="last_name" value="{{ $client->last_name }}">
 					@if ($errors->has('last_name')) <p class="help-block">{{ $errors->first('last_name') }}</p> @endif
 				</div>
 
 				<div class="form-group col-md-3 col-sm-3 col-xs-12 @if($errors->has('country_id')) has-error @endif">
-					<label class="control-label">País </label>
+					<label class="control-label">{{ trans('backend.client.create-edit.label_country') }} </label>
 					<select class="form-control" name="country_id" id="country">
-						<option value="null">--Seleccione--</option>
+						<option value="null">--{{ trans('backend.client.create-edit.label_opt_select') }}--</option>
 						@foreach ($countries as $element)
 							<option value="{{$element->id}}" @if($client->country_id == $element->id) selected  @endif>{{$element->name}}</option>
 						@endforeach
@@ -49,27 +49,27 @@
 			
 			<div class="row">
 				<div class="form-group col-md-3 col-sm-3 col-xs-6 @if($errors->has('city')) has-error @endif">
-					<label class="control-label">Ciudad </label>
+					<label class="control-label">{{ trans('backend.client.create-edit.label_city') }} </label>
 					<input type="text" class="form-control" placeholder="Ciudad" name="city" value="{{ $client->city }}">
 					@if ($errors->has('city')) <p class="help-block">{{ $errors->first('city') }}</p> @endif
 				</div>
 
 				<div class="form-group col-md-6 col-sm-6 col-xs-6 @if($errors->has('address')) has-error @endif">
-					<label class="control-label">Dirección </label>
-					<input type="text" class="form-control" placeholder="Dirección" name="address" value="{{ $client->address }}">
+					<label class="control-label">{{ trans('backend.client.create-edit.label_address') }} </label>
+					<input type="text" class="form-control" name="address" value="{{ $client->address }}">
 					@if ($errors->has('address')) <p class="help-block">{{ $errors->first('address') }}</p> @endif
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="form-group col-md-3 col-sm-3 col-xs-12 @if($errors->has('password')) has-error @endif">
-					<label class="control-label">Clave </label>
+					<label class="control-label">{{ trans('backend.client.create-edit.label_password') }}  </label>
 					<input type="password" class="form-control" placeholder="Clave" name="password" value="">
 					@if ($errors->has('password')) <p class="help-block">{{ $errors->first('password') }}</p> @endif
 				</div>
 
 				<div class="form-group col-md-3 col-sm-3 col-xs-12 @if($errors->has('password_repeat')) has-error @endif">
-					<label class="control-label">Repetir Clave </label>
+					<label class="control-label">{{ trans('backend.client.create-edit.label_repeat_password') }}</label>
 					<input type="password" class="form-control" placeholder="Clave" name="password_repeat" value="">
 					@if ($errors->has('password_repeat')) <p class="help-block">{{ $errors->first('password_repeat') }}</p> @endif
 				</div>
@@ -78,30 +78,30 @@
 			
 				<ul class="nav nav-tabs" role="tablist">
 					<li role="presentation" class="active">
-		    			<a href="#membership" aria-controls="membership" role="tab" data-toggle="tab">Membresia</a>
+		    			<a href="#membership" aria-controls="membership" role="tab" data-toggle="tab">{{ trans('backend.client.create-edit.label_membership') }}</a>
 		    		</li>
 		    		<li role="presentation">
-		    			<a href="#tickets" aria-controls="tickets" role="tab" data-toggle="tab">Tickets</a>
+		    			<a href="#tickets" aria-controls="tickets" role="tab" data-toggle="tab">{{ trans('backend.client.create-edit.label_ticket') }}</a>
 		    		</li>
 				</ul>
 
 				<div class="tab-content">
 					<div role="tabpanel" class="tab-pane active" id="membership">
-						<h3 class="subtitle">Membresia</h3> 
+						<h3 class="subtitle">{{ trans('backend.client.create-edit.label_membership') }}</h3> 
 						<table class="table table-bordered">
 							<tbody>
 								<tr>
 									<td>
-										<b>Membresia:</b> @if($client->current_membership()) {{$client->current_membership()->membership->name}} @else Gratis @endif
+										<b>{{ trans('backend.client.create-edit.label_membership') }}:</b> @if($client->current_membership()) {{$client->current_membership()->membership->name}} @else {{ trans('backend.client.create-edit.td_free') }} @endif
 									</td>
 									<td>
-										<b>Precio:</b> @if($client->current_membership()) {{$client->current_membership()->membership->price}} @else $ 0.00 @endif
+										<b>{{ trans('backend.client.create-edit.td_price') }}:</b> @if($client->current_membership()) {{$client->current_membership()->membership->price}} @else $ 0.00 @endif
 									</td>
 									<td>
-										<b>Duración:</b> @if($client->current_membership()) {{$client->current_membership()->membership->duration_time}}  {{ $client->current_membership()->membership->getDurationMode($client->current_membership()->membership->duration_mode) }} @else N/A @endif
+										<b>{{ trans('backend.client.create-edit.td_duration') }}:</b> @if($client->current_membership()) {{$client->current_membership()->membership->duration_time}}  {{ $client->current_membership()->membership->getDurationMode($client->current_membership()->membership->duration_mode) }} @else N/A @endif
 									</td>
 									<td>
-										<b>Puntos por voto:</b> @if($client->current_membership()) {{$client->current_membership()->membership->points_per_vote}} @else 1 @endif
+										<b>{{ trans('backend.client.create-edit.td_points_per_vote') }}:</b> @if($client->current_membership()) {{$client->current_membership()->membership->points_per_vote}} @else 1 @endif
 									</td>
 								</tr>
 							</tbody>
@@ -110,14 +110,13 @@
 
 					<div role="tabpanel" class="tab-pane" id="tickets">
 						<div class="col-md-12 col-sm-12 col-xs-12">
-							<h3 class="subtitle">Tickets</h3>
+							<h3 class="subtitle">{{ trans('backend.client.create-edit.td_ticket') }}</h3>
 							<table id="tickets-detail" class="table table-bordered">
 								<thead>
 									<tr>
-										<th>Ticket</th>
-										<th>Tipo de pago</th>
-										<th>Estado</th>
-										<th>Acción</th>
+										<th>{{ trans('backend.client.create-edit.td_ticket') }}</th>
+										<th>{{ trans('backend.client.create-edit.td_pay_type') }}</th>
+										<th>{{ trans('backend.client.create-edit.td_state') }}</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -125,10 +124,7 @@
 									<tr>
 										<td>{{$ticket->ticket->name}}</td>
 										<td>{{$ticket->payment_type}}</td>
-										<td>@if($ticket->state == $client->getActive()) Activa @else Usada @endif</td>
-										<td>
-											<button title="Ver detalle" class="btn btn-xs btn btn-primary"><i class="fa fa-eye"></i> Ver</button>
-										</td>
+										<td>@if($ticket->state == $client->getActive()) {{ trans('backend.client.create-edit.td_ticket_active') }} @else {{ trans('backend.client.create-edit.td_ticket_used') }} @endif</td>
 									</tr>
 								@endforeach
 								</tbody>
@@ -139,8 +135,8 @@
 			
 
 			<div class="form-group  col-md-12 col-sm-12 col-xs-12">
-				<a href="{{ route('clients.index') }}" class="btn btn-primary">Cancelar</a>
-                <button type="submit" class="btn btn-success">Guardar</button>
+				<a href="{{ route('clients.index') }}" class="btn btn-primary">{{ trans('backend.client.create-edit.btn_cancel') }}</a>
+                <button type="submit" class="btn btn-success">{{ trans('backend.client.create-edit.btn_save') }}</button>
             </div>
 
 		</form>
@@ -153,9 +149,11 @@
 <script type="text/javascript">
   $(document).ready(function(){
       $('#tickets-detail').DataTable({
+      	@if (App::isLocale('es'))
         "language": {
           "url": "../../../public/js/datatables/json/es.json"
         }
+      	@endif
       });
   });
  </script>

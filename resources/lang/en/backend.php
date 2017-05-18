@@ -150,4 +150,61 @@
 		],
 
 
+		'client' => [
+			'index' => [
+				'panel_title' => 'Clients',
+				'panel_caption' => 'List of Clients',
+				'btn_create_client' => 'Create Client',
+				'th_account_type' => 'Account',
+				'th_name' => 'Name',
+				'th_email' => 'Email',
+				'th_address' => 'Address',
+				'th_last_access' => 'Last Access',
+				'th_creation_date'=>'Creation Date',
+				'th_upgrade'=>'Upgrade',
+				'th_action'=>'Action',
+				'td_edit' => 'Edit',
+				'td_delete' =>'Delete',
+				'td_without_confirm' => 'Without confirmation',
+			],
+
+			'create-edit' => [
+				'panel_title' => 'Clients',
+				'panel_subtitle' => 'Creation of clients',
+				'label_email' => 'Email',
+				'label_name' => 'Name',
+				'label_lastname' => 'Lastname',
+				'label_country' => 'Country',
+				'label_city' => 'City',
+				'label_address' => 'Address',
+				'label_opt_select' => 'Select',
+				'label_password' => 'Password',
+				'label_repeat_password' => 'Repeat Password',
+				'btn_cancel' => 'Cancel',
+				'btn_save' => 'Save',
+				'label_membership' => 'Membership',
+				'label_ticket' => 'Tickets',
+				'td_price' => 'Price',
+				'td_free' => 'Free',
+				'td_points_per_vote' => 'Points per vote',
+				'td_duration' => 'Duration',
+				'td_ticket'=>'Ticket',
+				'td_pay_type' => 'Pay type',
+				'td_state' => 'State',
+				'td_action' => 'Action',
+				'td_ticket_active' => 'Active',
+				'td_ticket_used' => 'Used',
+			],
+		],
+
+		'activity' => [
+			'index' => [
+				'panel_title' => 'Activities',
+				'panel_caption' => 'List of Activities',
+				'th_activity' => 'Activity',
+				'th_date' => 'Date'
+			],
+		],
+
+
 	];

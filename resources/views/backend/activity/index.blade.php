@@ -1,20 +1,22 @@
 @extends('layouts.backend')
 @section('content')
 <div class="panel panel-default">
-  <div class="panel-heading">Candidatas</div>
+  <div class="panel-heading">{{ trans('backend.activity.index.panel_title') }}</div>
   <div class="panel-body">
-  	<caption>@lang('activities.tittle_lbl') </caption>
+  	<caption>{{ trans('backend.activity.index.panel_caption') }} </caption>
   	<table id="activity-datatable" class="table table-bordered">
   		<thead>
 	  		<tr>
-	  			<th>@lang('activities.lbl_event')</th>
-	  			<th>@lang('activities.lbl_devent')</th>
+	  			<th>{{ trans('backend.activity.index.th_activity') }}</th>
+	  			<th>{{ trans('backend.activity.index.th_date') }}</th>
 	  		</tr>
   		</thead>
   		<tbody>
   			@foreach ($activities as $activity)
   				<tr>
-  					<td>{{ $activity->client->name }} {{ $activity->name }}</td>
+  					<td>
+              {{ $activity->client->name }} @if($activity->params)  {!! trans($activity->name,$activity->params)!!} @else {!! trans($activity->name)!!}  @endif 
+            </td>
   					<td>{{ $activity->created_at }}</td>
   				</tr>
   			@endforeach
@@ -29,9 +31,11 @@
 <script type="text/javascript">
   $(document).ready(function(){
       $('#activity-datatable').DataTable({
+        @if (App::isLocale('es'))
         "language": {
           "url": "../public/js/datatables/json/es.json"
         },
+        @endif
          "order": [[ 1, "desc" ]],
       });
   });
