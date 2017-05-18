@@ -29,7 +29,7 @@ return [
 
     'failed' => 'These credentials do not match in our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-    'not_confirmed' => 'Sorry, Your account is inactive. Please check a email confirmation',
+    'not_confirmed' => 'Sorry, Your account is inactive. Please check your email confirmation',
 
 
 
