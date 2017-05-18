@@ -116,7 +116,7 @@ $(document).ready(function() {
         _this = $(this);
         _this.attr('disabled', true);
         _this.children('i').removeClass('fa-heart').addClass('fa-spinner fa-spin');
-        _this.children('span').css('display', 'none!important');
+        _this.children('span').css('display', 'none');
         var form = _this.parents('form');
         form = $(form);
 

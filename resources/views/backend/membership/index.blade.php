@@ -12,7 +12,7 @@
         <div class="clearfix"></div>
        @endif
      	<table id="membership-datatable" class="table table-bordered">
-     		<caption>Listado de Membresias <a class="pull-right btn btn-primary" href="{{ route('memberships.create') }}" title="Crear">Crear Membresia</a></caption>
+     		<caption>Listado de Membresias {{-- <a class="pull-right btn btn-primary" href="{{ route('memberships.create') }}" title="Crear"> --}}Crear Membresia</a></caption>
      		<thead>
      			<tr>
      				<th>Nombre</th>

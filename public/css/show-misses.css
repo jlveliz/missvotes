@@ -145,3 +145,7 @@
 .slick-next:before {
     color: #cdcdcd
 }
+
+.description-miss{
+    margin: 0px!important;
+}
