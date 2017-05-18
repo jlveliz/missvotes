@@ -29,7 +29,7 @@ return [
 
     'failed' => 'These credentials do not match in our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-    'not_confirmed' => 'Sorry, Your account is inactive.',
+    'not_confirmed' => 'Sorry, Your account is inactive. Please check a email confirmation',
 
 
 
@@ -65,7 +65,7 @@ return [
         'email.required' => 'Please, insert a email',
         'email.email' => 'Please, insert a valid email',
         'email.max' => 'Please, insert a valid email',
-        'email.unique' => 'The :attribute has already been taken.',
+        'email.unique' => 'The :attribute has already been taken.  Please log in.',
         'address.required' => 'Please, insert a address',
         'password.required' =>'Please, insert a password',
         'password.min' => 'The :attribute must be at least :min.',
