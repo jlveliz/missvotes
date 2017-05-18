@@ -26,7 +26,7 @@
      			@foreach ($memberships as $membership)
        			<tr>
        				<td>{{$membership->name}}</td>
-              <td>{{$membership->duration_time}} {{$membership->durationsMode[$membership->duration_mode]}}</td>
+              <td>{{$membership->duration_time}} {{ trans($membership->durationsMode[$membership->duration_mode]) }}</td>
        				<td>{{$membership->price}}</td>
        				<td>{{$membership->created_at }} / {{$membership->updated_at}}</td>
        				<td class="text-center">
@@ -34,7 +34,7 @@
        						<a href="{{ route('memberships.edit',$membership->id) }}" title="{{ trans('backend.membership.index.panel_caption') }}" class="btn btn-xs btn-warning"> {{ trans('backend.membership.index.td_edit') }}</a>
        							<input type="hidden" name="_token" value="{{ csrf_token() }}">
          						<input type="hidden" name="_method" value="DELETE">
-         						<button type="submit" title="{{ trans('backend.membership.index.td_delete') }}" class="btn btn-xs btn-danger"> {{ trans('backend.membership.index.td_delete') }}</button>
+         						{{-- <button type="submit" title="{{ trans('backend.membership.index.td_delete') }}" class="btn btn-xs btn-danger"> {{ trans('backend.membership.index.td_delete') }}</button> --}}
        					</form>
        				</td>
        			</tr>

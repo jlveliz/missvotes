@@ -12,7 +12,7 @@
         <div class="clearfix"></div>
        @endif
      	<table id="client-datatable" class="table table-bordered">
-     		<caption>{{ trans('backend.client.index.panel_caption') }} <a class="pull-right btn btn-primary" href="{{ route('clients.create') }}" title="Crear">{{ trans('backend.client.index.panel_caption') }}</a></caption>
+     		<caption>{{ trans('backend.client.index.panel_caption') }} <a class="pull-right btn btn-primary" href="{{ route('clients.create') }}" title="{{ trans('backend.client.index.btn_create_client') }}">{{ trans('backend.client.index.btn_create_client') }}</a></caption>
      		<thead>
      			<tr>
             <th>{{ trans('backend.client.index.th_account_type') }}</th>
