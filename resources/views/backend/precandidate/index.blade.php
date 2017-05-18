@@ -1,7 +1,7 @@
 @extends('layouts.backend')
 @section('content')
 <div class="panel panel-default">
-  <div class="panel-heading">Precandidatas</div>
+  <div class="panel-heading">{{ trans('backend.precandidate.index.panel_title') }}</div>
 
   <div class="panel-body">
   	   @if (Session::has('mensaje'))
@@ -12,15 +12,15 @@
         <div class="clearfix"></div>
        @endif
      	<table id="precandidate-datatable" class="table table-bordered">
-     		<caption>Listado de Precandidatas</caption>
+     		<caption>{{ trans('backend.precandidate.index.panel_caption') }}</caption>
      		<thead>
      			<tr>
-            <th>Nombres</th>
-     				<th>Código</th>
-            <th>País</th>
-     				<th>Estado</th>
-     				<th>Fecha creación/Actualización</th>
-     				<th>Acción</th>
+            <th>{{ trans('backend.precandidate.index.th_names') }}</th>
+     				<th>{{ trans('backend.precandidate.index.th_code') }}</th>
+            <th>{{ trans('backend.precandidate.index.th_country') }}</th>
+     				<th>{{ trans('backend.precandidate.index.th_state') }}</th>
+     				<th>{{ trans('backend.precandidate.index.th_creation_date') }} / {{ trans('backend.precandidate.index.th_upgrade') }}</th>
+     				<th>{{ trans('backend.precandidate.index.th_action') }}</th>
      			</tr>
      		</thead>
      		<tbody>
@@ -29,14 +29,14 @@
        				<td>{{$precandidate->name}} {{$precandidate->last_name}}</td>
               <td>{{ $precandidate->code }}</td>
        				<td>@if($precandidate->country) {{$precandidate->country->name}} @else - @endif</td>
-       				<td>@if($precandidate->state == '1') Por Evaluar @else Descalificada @endif</td>
+       				<td>@if($precandidate->state == '1') {{ trans('backend.precandidate.index.td_for_evaluate') }} @else {{ trans('backend.precandidate.index.td_disqualified') }} @endif</td>
        				<td>{{$precandidate->created_at }} / {{$precandidate->updated_at}}</td>
        				<td class="text-center">
                 <form action="{{ route('precandidates.destroy',$precandidate->id) }}" method="POST">
-                    <a href="{{ route('precandidates.show',$precandidate->id) }}" title="Ver" class="btn btn-xs btn-warning"> Ver</a>
+                    <a href="{{ route('precandidates.show',$precandidate->id) }}" title="{{ trans('backend.precandidate.index.td_show') }}" class="btn btn-xs btn-warning"> {{ trans('backend.precandidate.index.td_show') }}</a>
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit" title="Eliminar" class="btn btn-xs btn-danger"> Eliminar</button>
+                    <button type="submit" title="{{ trans('backend.precandidate.index.td_delete') }}" class="btn btn-xs btn-danger"> {{ trans('backend.precandidate.index.td_delete') }}</button>
                 </form>
        				</td>
        			</tr>
@@ -52,9 +52,11 @@
 <script type="text/javascript">
   $(document).ready(function(){
       $('#precandidate-datatable').DataTable({
+        @if (App::isLocale('es'))
         "language": {
           "url": "../public/js/datatables/json/es.json"
         }
+        @endif
       });
   });
  </script>
