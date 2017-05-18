@@ -90,14 +90,14 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
-                        @if (Auth::user() && Auth::user()->is_admin)
+                            @if (Auth::user() && Auth::user()->is_admin)
                             <li>
                                 <a href="{{ route('website.home') }}" title="Ir al sitio">Ir al sitio</a>
                             </li>
-                            @if (App::isLocale('en'))
+                            {{-- @if (App::isLocale('en'))
                                 <li>
                                     <form action="{{ route('website.locale') }}">
-                                        {{-- {{ csrf_field() }} --}}
+                                        {{ csrf_field() }}
                                         <input type="hidden" name="lang" value="es">
                                         <button  type="submit" class="btn btn-link"  style="padding: 14px"> Spanish</button>
                                     </form>
@@ -105,13 +105,13 @@
                             @else
                                 <li>
                                     <form action="{{ route('website.locale') }}">
-                                        {{-- {{ csrf_field() }} --}}
+                                        {{ csrf_field() }}
                                         <input type="hidden" name="lang" value="en">
                                         <button  type="submit" class="btn btn-link" style="padding: 14px"> Inglés</button>
                                         
                                     </form>
-                                </li>
-                            @endif
+                                </li> --}}
+                            {{-- @endif --}}
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} {{ Auth::user()->last_name }} <span class="caret"></span>

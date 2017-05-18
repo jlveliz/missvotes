@@ -14,9 +14,6 @@
 		<form action="{{ route('users.store') }}" method="post">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<input type="hidden" name="is_admin" value="1">
-			@foreach ($errors->all() as $error)
-				{{ $error }}
-			@endforeach
 			<div class="row">
 				<div class="form-group col-md-3 col-sm-3 col-xs-12 @if($errors->has('email')) has-error @endif">
 					<label class="control-label">{{ trans('backend.user.create-edit.label_email') }} </label>
