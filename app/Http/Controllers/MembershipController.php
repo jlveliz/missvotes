@@ -66,10 +66,10 @@ class MembershipController extends Controller
             'mensaje' => '',
         ];
         if ($membership) {
-            $sessionData['mensaje'] = 'Membresia creada Satisfactoriamente';
+            $sessionData['mensaje'] = trans('backend.membership.create-edit.flag_success_saved');
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = 'La Membresia no pudo ser creada, intente nuevamente';
+            $sessionData['mensaje'] = trans('backend.membership.create-edit.flag_error_saved');
         }
         
         return Redirect::action('MembershipController@edit',$membership->id)->with($sessionData);
@@ -115,10 +115,10 @@ class MembershipController extends Controller
             'mensaje' => '',
         ];
         if ($membership) {
-            $sessionData['mensaje'] = 'Membresia editada Satisfactoriamente';
+            $sessionData['mensaje'] = trans('backend.membership.create-edit.flag_success_updated');
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = 'La Membresia no pudo ser editada, intente nuevamente';
+            $sessionData['mensaje'] = trans('backend.membership.create-edit.flag_error_updated');
         }
         
         return Redirect::action('MembershipController@edit',$membership->id)->with($sessionData);
@@ -141,10 +141,10 @@ class MembershipController extends Controller
         ];
         
         if ($membership) {
-            $sessionData['mensaje'] = 'La Membresia ha sido eliminada satisfactoriamente';
+            $sessionData['mensaje'] = trans('backend.membership.create-edit.flag_success_deleted');
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = 'La Membresia no pudo ser eliminada, intente nuevamente';
+            $sessionData['mensaje'] = trans('backend.membership.create-edit.flag_error_deleted');
         }
         
         return Redirect::action('MembershipController@index')->with($sessionData);

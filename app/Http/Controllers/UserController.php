@@ -67,10 +67,10 @@ class UserController extends Controller
             'mensaje' => '',
         ];
         if ($user) {
-            $sessionData['mensaje'] = 'Usuario Creado Satisfactoriamente';
+            $sessionData['mensaje'] =  trans('backend.user.create-edit.flag_success_saved');
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = 'El usuario no pudo ser creado, intente nuevamente';
+            $sessionData['mensaje'] = trans('backend.user.create-edit.flag_error_saved');
         }
         
         return Redirect::action('UserController@edit',$user->id)->with($sessionData);
@@ -128,10 +128,10 @@ class UserController extends Controller
             'mensaje' => '',
         ];
         if ($user) {
-            $sessionData['mensaje'] = 'Usuario Editado Satisfactoriamente';
+            $sessionData['mensaje'] = trans('backend.user.create-edit.flag_success_updated');
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = 'El usuario no pudo ser creado, intente nuevamente';
+            $sessionData['mensaje'] = trans('backend.user.create-edit.flag_error_updated');
         }
         
         return Redirect::action('UserController@edit',$user->id)->with($sessionData);
@@ -154,10 +154,10 @@ class UserController extends Controller
         ];
         
         if ($user) {
-            $sessionData['mensaje'] = 'Usuario Eliminado Satisfactoriamente';
+            $sessionData['mensaje'] = trans('backend.user.create-edit.flag_success_deleted');
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = 'El usuario no pudo ser eliminado, intente nuevamente';
+            $sessionData['mensaje'] =  trans('backend.user.create-edit.flag_error_deleted');
         }
         
         return Redirect::action('UserController@index')->with($sessionData);

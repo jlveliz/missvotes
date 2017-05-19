@@ -97,6 +97,13 @@
 				'btn_cancel' => 'Cancel',
 				'btn_save' => 'Save',
 				'disqualify' => 'Disqualify',
+				'flag_success_saved' => 'Candidate Created Satisfactorily',
+				'flag_error_saved' => 'Candidate could not be created, try again',
+				'flag_success_updated' => 'Candidate Updated Satisfactorily',
+				'flag_error_updated' => 'Candidate could not be updated, try again',
+				'flag_success_deleted' => 'Candidate deleted Satisfactorily',
+				'flag_error_deleted' => 'Candidate could not be deleted, try again',
+				'flag_disqualited' => 'The Miss has been disqualified as a candidate',
 			],
 		],
 
@@ -147,6 +154,15 @@
 				'label_qualify_candidate' => 'Qualify as a Candidate',
 				'btn_cancel' => 'Cancel',
 			],
+			'create-edit' => [
+				'flag_success_saved' => 'Precandidate Created Satisfactorily',
+				'flag_error_saved' => 'Precandidate could not be created, try again',
+				'flag_success_updated' => 'Precandidate Updated Satisfactorily',
+				'flag_error_updated' => 'Precandidate could not be updated, try again',
+				'flag_success_deleted' => 'Precandidate deleted Satisfactorily',
+				'flag_error_deleted' => 'Precandidate could not be deleted, try again',
+				'flag_qualited' => 'The Miss has been qualified as a candidate',
+			]
 		],
 
 
@@ -195,6 +211,12 @@
 				'td_action' => 'Action',
 				'td_ticket_active' => 'Active',
 				'td_ticket_used' => 'Used',
+				'flag_success_saved' => 'Client Created Satisfactorily',
+				'flag_error_saved' => 'Client could not be created, try again',
+				'flag_success_updated' => 'Client Updated Satisfactorily',
+				'flag_error_updated' => 'Client could not be updated, try again',
+				'flag_success_deleted' => 'Client deleted Satisfactorily',
+				'flag_error_deleted' => 'Client could not be deleted, try again',
 			],
 		],
 
@@ -235,6 +257,12 @@
 				'label_repeat_password' => 'Repeat Password',
 				'btn_cancel' => 'Cancel',
 				'btn_save' => 'Save',
+				'flag_success_saved' => 'User Created Satisfactorily',
+				'flag_error_saved' => 'User could not be created, try again',
+				'flag_success_updated' => 'User Updated Satisfactorily',
+				'flag_error_updated' => 'User could not be updated, try again',
+				'flag_success_deleted' => 'User deleted Satisfactorily',
+				'flag_error_deleted' => 'User could not be deleted, try again',
 			]
 		],
 
@@ -266,7 +294,13 @@
 				'btn_cancel' => 'Cancel',
 				'btn_save' => 'Save',
 				'label_months' => 'Month(s)',
-				'label_years' => 'Year(s)'
+				'label_years' => 'Year(s)',
+				'flag_success_saved' => 'Membership Created Satisfactorily',
+				'flag_error_saved' => 'Membership could not be created, try again',
+				'flag_success_updated' => 'Membership Updated Satisfactorily',
+				'flag_error_updated' => 'Membership could not be updated, try again',
+				'flag_success_deleted' => 'Membership deleted Satisfactorily',
+				'flag_error_deleted' => 'Membership could not be deleted, try again',
 			]
 		],
 

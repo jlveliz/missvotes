@@ -67,10 +67,10 @@ class MissController extends Controller
             'mensaje' => '',
         ];
         if ($miss) {
-            $sessionData['mensaje'] = 'Misses Creado Satisfactoriamente';
+            $sessionData['mensaje'] = trans('backend.misses.create-edit.flag_success_saved');
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = 'El misse no pudo ser creado, intente nuevamente';
+            $sessionData['mensaje'] = trans('backend.misses.create-edit.flag_error_saved');
         }
         
         return Redirect::action('MissController@edit',$miss->id)->with($sessionData);
@@ -119,13 +119,13 @@ class MissController extends Controller
             'mensaje' => '',
         ];
         if ($miss) {
-            $sessionData['mensaje'] = 'Miss Editado Satisfactoriamente';
+            $sessionData['mensaje'] = trans('backend.misses.create-edit.flag_success_updated');
            
         }elseif (!$miss && $request->has('is_precandidate')) {
-            $sessionData['mensaje'] = 'La Señorita ha sido descalificada como candidata';
+            $sessionData['mensaje'] =  trans('backend.misses.create-edit.flag_disqualited');
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = 'El misse no pudo ser creado, intente nuevamente';
+            $sessionData['mensaje'] =  trans('backend.misses.create-edit.flag_error_updated');
         }
 
         if ($request->has('is_precandidate')) {
@@ -152,10 +152,10 @@ class MissController extends Controller
         ];
         
         if ($miss) {
-            $sessionData['mensaje'] = 'Misse Eliminado Satisfactoriamente';
+            $sessionData['mensaje'] = trans('backend.misses.create-edit.flag_success_deleted');
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = 'El misse no pudo ser eliminado, intente nuevamente';
+            $sessionData['mensaje'] = trans('backend.misses.create-edit.flag_error_deleted');
         }
         
         return Redirect::action('MissController@index')->with($sessionData);

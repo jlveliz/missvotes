@@ -69,10 +69,10 @@ class ClientController extends Controller
             'mensaje' => '',
         ];
         if ($client) {
-            $sessionData['mensaje'] = 'Cliente Creado Satisfactoriamente';
+            $sessionData['mensaje'] = trans('backend.client.create-edit.flag_success_saved');
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = 'El cliente no pudo ser creado, intente nuevamente';
+            $sessionData['mensaje'] = trans('backend.client.create-edit.flag_error_saved');
         }
         
         return Redirect::action('ClientController@edit',$client->id)->with($sessionData);
@@ -132,10 +132,10 @@ class ClientController extends Controller
             'mensaje' => '',
         ];
         if ($client) {
-            $sessionData['mensaje'] = 'Cliente Editado Satisfactoriamente';
+            $sessionData['mensaje'] = trans('backend.client.create-edit.flag_success_updated');
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = 'El cliente no pudo ser creado, intente nuevamente';
+            $sessionData['mensaje'] = trans('backend.client.create-edit.flag_error_updated');
         }
         
         return Redirect::action('ClientController@edit',$client->id)->with($sessionData);
@@ -158,10 +158,10 @@ class ClientController extends Controller
         ];
         
         if ($client) {
-            $sessionData['mensaje'] = 'Cliente Eliminado Satisfactoriamente';
+            $sessionData['mensaje'] = trans('backend.client.create-edit.flag_success_deleted');
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = 'El cliente no pudo ser eliminado, intente nuevamente';
+            $sessionData['mensaje'] = trans('backend.client.create-edit.flag_error_deleted');
         }
         
         return Redirect::action('ClientController@index')->with($sessionData);

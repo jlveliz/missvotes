@@ -66,10 +66,10 @@ class PrecandidateController extends Controller
             'mensaje' => '',
         ];
         if ($precandidate) {
-            $sessionData['mensaje'] = 'Precandidata Creado Satisfactoriamente';
+            $sessionData['mensaje'] = trans('backend.precandidate.create-edit.flag_success_saved');
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = 'La precandidata no pudo ser creado, intente nuevamente';
+            $sessionData['mensaje'] = trans('backend.precandidate.create-edit.flag_error_saved');
         }
         
         return Redirect::action('PrecandidateController@edit',$precandidate->id)->with($sessionData);
@@ -117,14 +117,14 @@ class PrecandidateController extends Controller
         ];
         if ($precandidate) {
 
-            $sessionData['mensaje'] = 'Precandidata Editado Satisfactoriamente';
+            $sessionData['mensaje'] = trans('backend.precandidate.create-edit.flag_success_updated');
 
         } elseif(!$precandidate && $request->has('is_precandidate')) {
-            $sessionData['mensaje'] = 'La Señorita  ha sido calificada como candidata';
+            $sessionData['mensaje'] = trans('backend.precandidate.create-edit.flag_qualited');
             
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = 'La Precandidata no pudo ser actualizada, intente nuevamente';
+            $sessionData['mensaje'] = trans('backend.precandidate.create-edit.flag_error_updated');
         }
 
         if ($request->has('is_precandidate')) {
@@ -150,10 +150,10 @@ class PrecandidateController extends Controller
         ];
         
         if ($precandidate) {
-            $sessionData['mensaje'] = 'Precandidata Eliminado Satisfactoriamente';
+            $sessionData['mensaje'] = trans('backend.precandidate.create-edit.flag_success_deleted');
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = 'La precandidata no pudo ser eliminado, intente nuevamente';
+            $sessionData['mensaje'] = trans('backend.precandidate.create-edit.flag_error_deleted');
         }
         
         return Redirect::action('PrecandidateController@index')->with($sessionData);

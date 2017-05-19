@@ -32,7 +32,7 @@
 				<div class="form-group col-md-3 col-sm-3 col-xs-12 @if($errors->has('last_name')) has-error @endif">
 					<label class="control-label">{{ trans('backend.user.create-edit.label_lastname') }} </label>
 					<input type="text" class="form-control" name="last_name" value="{{ $user->last_name }}">
-					@if ($errors->has('name')) <p class="help-block">{{ $errors->first('last_name') }}</p> @endif
+					@if ($errors->has('last_name')) <p class="help-block">{{ $errors->first('last_name') }}</p> @endif
 				</div>
 
 				<div class="form-group col-md-3 col-sm-3 col-xs-12 @if($errors->has('address')) has-error @endif">
