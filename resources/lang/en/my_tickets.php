@@ -7,7 +7,7 @@
 			'used' => 'Used',
 			'available' => 'Your Number'
 		],
-		'tickets_not_found' => 'We regret that you do not have tickets, we remind you that with a tickets you can support your favorite candidate and win a fabulous trip with all expenses paid.',
+		'tickets_not_found' => 'We remind you that with each purchased ticket, you can support your favorite candidate and win a fabulous trip.',
 		'counter' => 'Availables of ',
 		'points' => 'points',
 		'remember' => 'Remember',
