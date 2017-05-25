@@ -6,7 +6,7 @@
 		'voted' => ' votado :value puntos por :candidate',
 
 		'ticket' => [
-			'used' => 'usado un ticket :name',
+			'used' => 'usado el :name para :country',
 			'bought'=> 'comprado un ticket :name',
 		],
 
