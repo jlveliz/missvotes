@@ -340,7 +340,7 @@
 	  						<tbody>
 	  						@foreach ($activities as $activity)
 	  						<tr>
-	  							<td>@if($activity->params)  {!! trans($activity->name,$activity->params)!!} @else {!! trans($activity->name)!!}  @endif </td>
+	  							<td> {!! trans('activity.you')!!} {!! trans('activity.have')!!} @if($activity->params)  {!! trans($activity->name,$activity->params)!!} @else {!! trans($activity->name)!!}  @endif </td>
 	  							<td>{{ $activity->created_at }}</td>
 	  						</tr>
 	  						@endforeach

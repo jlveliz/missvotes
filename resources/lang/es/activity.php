@@ -1,19 +1,22 @@
 <?php 
 
 	return [
-		'vote' => 'Has votado :value  por :candidate',
+		'has' => 'Ha',
+		'have' => 'Ha',
+		'voted' => ' votado :value puntos por :candidate',
 
 		'ticket' => [
-			'used' => 'Ha usado un ticket :name',
-			'bought'=> 'Ha comprado un ticket :name',
+			'used' => 'usado un ticket :name',
+			'bought'=> 'comprado un ticket :name',
 		],
 
 		'membership'=>[
-			'bought' => 'Ha actualizado su membresia a :name',
+			'bought' => 'actualizado su membresia a :name',
 		],
 
 		'auth' => [
-			'change_password' => 'Ha cambiado su contraseña',
-			'update_profile' =>'Ha actualizado su perfil',
+			'change_password' => 'cambiado su contraseña',
+			'update_profile' =>'actualizado su perfil',
 		],
+		'you' => 'Usted'
 	];

@@ -112,7 +112,7 @@ class VoteController extends Controller
 
                 //insert activity
                 if ($request->has('ticket_id')) {
-                    event(new ClientActivity(Auth::user()->id,'activity.ticket.used'));  
+                    event(new ClientActivity(Auth::user()->id,'activity.ticket.used',['name'=>$ticketClientVote->description]));  
                 }
 
                 event(new ClientActivity(Auth::user()->id, 'activity.voted',['value'=>$vote->value,'candidate'=>$vote->miss->name .' '.$vote->miss->last_name ]));

@@ -1,19 +1,22 @@
 <?php 
 
 	return [
-		'vote' => 'Has voted :value  for :candidate',
+		'has' => 'Has',
+		'have' => 'Have',
+		'voted' => 'voted :value  points for :candidate',
 
 		'ticket' => [
-			'used' => 'has been used a ticket :name',
-			'bought'=> 'Has bought a :name',
+			'used' => 'been used a ticket :name',
+			'bought'=> 'bought a :name',
 		],
 
 		'membership'=>[
-			'bought' => 'Have updated your membership to :name',
+			'bought' => 'updated your membership to :name',
 		],
 
 		'auth' => [
-			'change_password' =>'Have changed your password',
-			'update_profile' =>'Have updated your profile',
+			'change_password' =>'changed your password',
+			'update_profile' =>'updated your profile',
 		],
+		'you' => 'You'
 	];

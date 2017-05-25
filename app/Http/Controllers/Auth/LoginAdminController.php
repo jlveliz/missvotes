@@ -64,6 +64,8 @@ class LoginAdminController extends Controller
         }
 
         if ($this->attemptLogin($request)) {
+            session()->put('locale','en');
+            app()->setLocale($language);
             return $this->sendLoginResponse($request);
         }
 

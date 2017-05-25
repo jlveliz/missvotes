@@ -92,7 +92,7 @@
                         <!-- Authentication Links -->
                             @if (Auth::user() && Auth::user()->is_admin)
                             <li>
-                                <a href="{{ route('website.home') }}" title="Ir al sitio">Ir al sitio</a>
+                                <a href="{{ route('website.home') }}" title="Go to Site">Go to Site</a>
                             </li>
                             {{-- @if (App::isLocale('en'))
                                 <li>
