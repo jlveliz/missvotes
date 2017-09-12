@@ -48,7 +48,9 @@ class Precandidate extends Model
         'dairy_philosophy',
         'why_would_you_win',
         'height_type_measure',
-        'weight_type_measure'
+        'weight_type_measure',
+        'precandidate_face_photo',
+        'precandidate_body_photo',
     ];
 
 

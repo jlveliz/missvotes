@@ -50,7 +50,8 @@ class PrecandidateRequest extends FormRequest
                     'dairy_philosophy'=>'required',
                     'why_would_you_win'=>'required', 
                     'g-recaptcha-response' => 'required',
-                    // 'photos'=>'required|array',
+                    'precandidate_body_photo'=>'required|image',
+                    'precandidate_face_photo'=>'required|image',
                 ];
                 break;
             case "PUT":

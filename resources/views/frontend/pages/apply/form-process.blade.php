@@ -112,7 +112,7 @@
 			   			<hr>
 			   			<div class="row">
 			   				<div class="col-md-7 col-lg-7 col-sm-12 col-xs-12 col-md-offset-2">
-				   				<form action="{{ route('insert.precandidate') }}" method="POST" class="form-horizontal">
+				   				<form action="{{ route('insert.precandidate') }}" enctype="multipart/form-data" method="POST" class="form-horizontal">
 				   					{{ csrf_field() }}
 				   					@if ($countryselected)
 				   						<input type="hidden" name="country_id" value="{{$countryselected}}">
@@ -293,6 +293,18 @@
 					   					</div>
 					   				</div>
 
+					   				<div class="form-group @if($errors->has('precandidate_face_photo')) has-error @endif">	
+										<label class="control-label">@lang('form_process_apply.lbl_face_photo')</label>
+										<input type="file" name="precandidate_face_photo" class="photo"  accept="image/*">
+										@if ($errors->has('precandidate_face_photo')) <p class="help-block">{{ $errors->first('precandidate_face_photo') }}</p> @endif
+
+									</div>
+									<div class="form-group @if($errors->has('precandidate_body_photo')) has-error @endif">
+										<label class="control-label">@lang('form_process_apply.lbl_body_photo')</label>
+										<input type="file" name="precandidate_body_photo"  accept="image/*" class="photo">
+										@if ($errors->has('precandidate_body_photo')) <p class="help-block">{{ $errors->first('precandidate_body_photo') }}</p> @endif
+									</div>
+
 					   				@if(!isset($precandidate))
 					   				<div class="form-group @if($errors->has('g-recaptcha-response')) has-error @endif" style="margin-left: 25%">
 					   					{!! Recaptcha::render() !!}
@@ -339,9 +351,27 @@
 
 @section('js')
 <script src="https://checkout.stripe.com/checkout.js"></script>
+<script src="{{asset('/public/js/bootstrap-file-input/plugins/canvas-to-blob.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('/public/js/bootstrap-file-input/plugins/purify.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('/public/js/bootstrap-file-input/fileinput.js')}}" type="text/javascript"></script>
+<script src="{{asset('/public/js/bootstrap-file-input/themes/fa/theme.js')}}" type="text/javascript"></script>
+<script src="{{asset('/public/js/bootstrap-file-input/locales/es.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
 
 $(document).ready(function() {
+
+	// $(".photo").fileinput({
+		{{-- @if (App::isLocale('es')) --}}
+	// 	language : 'es',
+	{{-- // 	@endif --}}
+	// 	allowedFileTypes: ['image'],
+	// 	showUpload: false,
+	// 	minFileCount: 1,
+	// 	maxFileCount: 1,
+	// 	autoReplace:true,
+	// 	overwriteInitial:false,
+	// 	showRemove: true,
+	// });
 
 	@if ($existApply->process_status == 1 )
     	window.location.hash = $("#country-tab a").attr('href');
@@ -527,6 +557,7 @@ $(document).ready(function() {
 @endsection()
 
 @section('css')
+<link rel="stylesheet" type="text/css" href="{{ asset('/public/css/bootstrap-file-input/fileinput.min.css') }}">
 <style>
 	textarea {
 		resize: none

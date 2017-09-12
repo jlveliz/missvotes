@@ -35,6 +35,8 @@ return [
 	'lbl_win' => 'WHY WOULD YOU LIKE TO WIN MISS PANAMERICAN INTL?',
 	'lbl_code' => 'SECURE CODE',
 	'lbl_btn_ins' => 'SEND',
+	'lbl_face_photo' => "FACE'S PHOTO ",
+	'lbl_body_photo' => "BODY'S PHOTO",
 	'lbl_done' => 'Congrats your application is complete!',
 	'lbl_last-message' => 'Your casting number identification and all the information you need to know was sent to your email. 
 Check it out and good luck. We will wait for you.',

@@ -33,6 +33,8 @@ return [
 	'lbl_eye' => 'COLOR DE OJOS',
 	'lbl_phil' => 'TU FILOSOFÍA DIARIA',
 	'lbl_win' => '¿POR QUÉ TE GUSTARÍA GANAR EL MISS PANAMERICAN INTL?',
+	'lbl_face_photo' => "FOTO DE CARA ",
+	'lbl_body_photo' => "FOTO DE CUERPO ENTERO",
 	'lbl_code' => '¿CÓDIGO DE SEGURIDAD',
 	'lbl_btn_ins' => 'INSCRIBIRME',
 	'lbl_done' => '¡Felicitaciones! Su inscripción está completa.',

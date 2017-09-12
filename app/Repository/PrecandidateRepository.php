@@ -56,6 +56,8 @@ class PrecandidateRepository implements PrecandidateRepositoryInterface
 		$precandidate = new Precandidate();
 		// $photos = $data['photos'];
 		$precandidate->slug = str_slug($data['name'].' '.$data['last_name'],'-');
+		$data['precandidate_face_photo'] = $this->uploadPhoto($data['precandidate_face_photo']);
+		$data['precandidate_body_photo'] = $this->uploadPhoto($data['precandidate_body_photo']);
 		$precandidate->fill($data);
 		$precandidate->is_precandidate = 1;
 		$precandidate->state = 1;
@@ -110,7 +112,7 @@ class PrecandidateRepository implements PrecandidateRepositoryInterface
 	}
 
 
-	public function uploadPhoto($precandidateId,$photo)
+	public function uploadPhoto($photo)
 	{
 		$arrayModel=[];
 		if ($photo->isValid()) {
@@ -135,19 +137,10 @@ class PrecandidateRepository implements PrecandidateRepositoryInterface
 			}
 
 
-			$imageName = $precandidateId.'_'.str_random().'.'. $photo->getClientOriginalExtension();
+			$imageName = '_'.str_random().'.'. $photo->getClientOriginalExtension();
 			if($image->save($this->pathUplod().'/'.$imageName)){
-				$arrayModel['path'] = 'public/uploads/'.$imageName;
-				// $paths[$key]['precandidate_id'] = $keyPrecandidate;
+				return 'public/uploads/'.$imageName;
 			}
-		}
-
-		if ($arrayModel) {
-			$precandidate = $this->find($precandidateId);
-			$arrayModel['is_landscape'] = $isLandScape;
-			$modelRelation = new \MissVote\Models\MissPhoto($arrayModel);
-			$precandidate->photos()->save($modelRelation);
-			return $precandidate;
 		}
 	}
 
