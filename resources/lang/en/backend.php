@@ -153,6 +153,7 @@
 				'disqualify' => 'Disqualify',
 				'label_qualify_candidate' => 'Qualify as a Candidate',
 				'btn_cancel' => 'Cancel',
+				'label_photos' => 'Photos',
 			],
 			'create-edit' => [
 				'flag_success_saved' => 'Precandidate Created Satisfactorily',

@@ -118,6 +118,18 @@
        		</textarea>	
        	</div>
        </div>
+
+        <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                    <label style="display: block"  class="control-label" for="dairy_philosophy">{{ trans('backend.precandidate.show.label_photos') }} </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <img src="{{ asset($precandidate->precandidate_face_photo) }}" alt="" class="img-responsive">  
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <img src="{{ asset($precandidate->precandidate_body_photo) }}" alt="" class="img-responsive">
+                    </div>
+              </div>
+        </div>
        
 	</div>
 
