@@ -10,6 +10,8 @@ use MissVote\Http\Requests\PrecandidateRequest;
 
 use MissVote\RepositoryInterface\PrecandidateRepositoryInterface;
 
+use MissVote\RepositoryInterface\CountryRepositoryInterface;
+
 use MissVote\Models\Country;
 
 use MissVote\Events\PredidateSubscribed;
@@ -36,7 +38,9 @@ class ApplyCandidateController extends Controller
 
     private $precandidate;
 
-    public function __construct(ClientApplyProcessRepositoryInterface $apply, PrecandidateRepositoryInterface $precandidate)
+    private $country;
+
+    public function __construct(ClientApplyProcessRepositoryInterface $apply, PrecandidateRepositoryInterface $precandidate, CountryRepositoryInterface $country)
     {
         $this->apply = $apply;
         $this->apiContext = Paypalpayment::apiContext(config('paypal_payment.Account.ClientId'),config('paypal_payment.Account.ClientSecret'));
@@ -44,6 +48,7 @@ class ApplyCandidateController extends Controller
         $flatConfig = array_dot($config); // Flatten the array with dots
         $this->apiContext->setConfig($flatConfig);
         $this->precandidate = $precandidate;
+        $this->country = $country;
     }
 
     public function requirements()
@@ -89,6 +94,8 @@ class ApplyCandidateController extends Controller
         
         $existApply = $this->apply->find(['client_id' => Auth::user()->id]);
 
+        $countries = $this->country->enum();
+
     	if ($existApply) {
             $countryselected = null;
             $precandidate = null;
@@ -98,7 +105,7 @@ class ApplyCandidateController extends Controller
             if ($existApply->process_status >= 3) {
                 $precandidate = $this->precandidate->find(['email'=>Auth::user()->email]) ?  $this->precandidate->find(['email'=>Auth::user()->email]) : null;
             }
-    		return view('frontend.pages.apply.form-process',compact('existApply','countryselected','precandidate'));
+    		return view('frontend.pages.apply.form-process',compact('existApply','countryselected','precandidate','countries'));
     	} else {
     		return redirect()->action('ApplyCandidateController@requirements')->with($sessionData);
     	}

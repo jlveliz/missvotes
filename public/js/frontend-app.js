@@ -397,7 +397,6 @@ $(document).ready(function() {
     var readURL = function(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-
             reader.onload = function(e) {
                 // debugger;
                 $('.profile-img').css('background-image', 'url('+e.target.result+')');
@@ -414,7 +413,7 @@ $(document).ready(function() {
     $("#file-profile-upload").on('change', function(event) {
         readURL(this);
         $("#form-update-photo").submit();
-        
+
     });
     /******** PROFILE ********/
 

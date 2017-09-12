@@ -30,40 +30,22 @@
 				   		<div class="row">
 				   			<div class="col-md-12 col-lg-12">
 				   				@if ($existApply->process_status < 3)
-					   				<ul class="list-unstyled list-inline text-center" id="menu-countries">
-					   					<li @if($existApply->country_code_selected == 'US') class="country-selected" @endif>
-					   						<a class="country-audition" href="#" data-code="US" title="Estados Unidos" alt="Estados Unidos"><img class="image-responsive" src="{{ asset('public/images/eeuu_flag.png') }}"> <br> US</a> 
-					   					</li>
-					   					<li @if($existApply->country_code_selected == 'MX') class="country-selected" @endif>
-					   						<a class="country-audition" href="#" data-code="MX" title="México" alt="México"><img class="image-responsive" src="{{ asset('public/images/mx_flag.png') }}"> <br> MÉXICO</a> 
-					   					</li>
-					   					<li @if($existApply->country_code_selected == 'HN') class="country-selected" @endif>
-					   						<a class="country-audition" href="#" data-code="HN" title="Honduras" alt="Honduras"><img class="image-responsive" src="{{ asset('public/images/ho_flag.png') }}"> <br> HONDURAS</a> 
-					   					</li>
-					   					<li @if($existApply->country_code_selected == 'GT') class="country-selected" @endif>
-					   						<a class="country-audition" href="#" data-code="GT" title="Guatemala" alt="Guatemala" title=""><img class="image-responsive" src="{{ asset('public/images/gu_flag.png') }}"> <br> GUATEMALA</a> 
-					   					</li>
-					   					<li @if($existApply->country_code_selected == 'SV') class="country-selected" @endif>
-					   						<a class="country-audition" href="#" data-code="SV" title="El Salvador" alt="El Salvador"><img class="image-responsive" src="{{ asset('public/images/sl_flag.png') }}"> <br> EL SALVADOR</a> 
-					   					</li>
+					   				<ul class="list-unstyled list-inline text-center list-flags" id="menu-countries">
+
+					   					@foreach ($countries as $country)
+					   						<li @if($existApply->country_code_selected == $country->code) class="country-selected" @endif>
+					   							<a class="country-audition" href="#" data-code="{{$country->code}}" title="{{$country->name}}" alt="{{$country->name}}"><img class="image-responsive" src="{{ asset('public/images/').'/'.$country->flag_img}}"> <br> {{$country->name}}</a> 
+					   						</li>
+					   					@endforeach
+					   					
 					   				</ul>
 				   				@else
-				   					<ul class="list-unstyled list-inline text-center" id="">
-					   					<li @if($existApply->country_code_selected == 'US') class="country-selected" @endif>
-					   						<img class="image-responsive clickable" src="{{ asset('public/images/eu_flag.png') }}"> <br> US</a> 
-					   					</li>
-					   					<li @if($existApply->country_code_selected == 'MX') class="country-selected" @endif>
-					   						<img class="image-responsive" src="{{ asset('public/images/mx_flag.png') }}"> <br> MÉXICO
-					   					</li>
-					   					<li @if($existApply->country_code_selected == 'HN') class="country-selected" @endif>
-					   						<img class="image-responsive" src="{{ asset('public/images/ho_flag.png') }}"> <br> HONDURAS
-					   					</li>
-					   					<li @if($existApply->country_code_selected == 'GT') class="country-selected" @endif>
-					   						<img class="image-responsive" src="{{ asset('public/images/gu_flag.png') }}"> <br> GUATEMALA
-					   					</li>
-					   					<li @if($existApply->country_code_selected == 'SV') class="country-selected" @endif>
-					   						<img class="image-responsive" src="{{ asset('public/images/sl_flag.png') }}"> <br> EL SALVADOR
-					   					</li>
+				   					<ul class="list-unstyled list-inline text-center list-flags" id="">
+										@foreach ($countries as $country)
+						   					<li @if($existApply->country_code_selected == $country->code) class="country-selected" @endif title="{{$country->name}}" alt="{{$country->name}}">
+						   						<img class="image-responsive clickable" src="{{ asset('public/images/').'/'.$country->flag_img}}"> <br> {{$country->name}}</a> 
+						   					</li>
+										@endforeach
 					   				</ul>
 				   				@endif
 				   			</div>

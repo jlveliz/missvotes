@@ -1,3 +1,8 @@
+.list-flags {
+    padding-right: 15px!important;
+    padding-left: 15px!important;
+}
+
 .nav-tabs>li.active>a,
 .nav-tabs>li.active>a:focus,
 .nav-tabs>li.active>a:hover {
@@ -12,25 +17,25 @@
     padding: 40px;
 }
 
-#menu-countries > li > a {
+#menu-countries>li>a {
     font-weight: bold;
     color: #636b6f;
 }
 
-#menu-countries > li > a:hover {
+#menu-countries>li>a:hover {
     text-decoration: none;
 }
 
-#menu-countries > li:hover,
+#menu-countries>li:hover,
 .country-selected {
     background-color: rgba(185, 160, 53, 0.34);
 }
 
-#price-insciption > small {
+#price-insciption>small {
     font-size: 13px;
 }
 
-#price-insciption > br > small {
+#price-insciption>br>small {
     padding-top: 1px;
     font-size: 13px;
 }
