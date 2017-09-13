@@ -293,17 +293,23 @@
 					   					</div>
 					   				</div>
 
-					   				<div class="form-group @if($errors->has('precandidate_face_photo')) has-error @endif">	
-										<label class="control-label">@lang('form_process_apply.lbl_face_photo')</label>
-										<input type="file" name="precandidate_face_photo" class="photo"  accept="image/*">
-										@if ($errors->has('precandidate_face_photo')) <p class="help-block">{{ $errors->first('precandidate_face_photo') }}</p> @endif
+					   				@if(!isset($precandidate)) 
+						   				<div class="form-group @if($errors->has('precandidate_face_photo')) has-error @endif">	
+											<label class="control-label">@lang('form_process_apply.lbl_face_photo') <small class="text-warning">(@lang('form_process_apply.lbl_photo_format'))</small></label>
+											<input type="file" name="precandidate_face_photo" class="photo"  accept="image/*">
+											@if ($errors->has('precandidate_face_photo')) <p class="help-block">{{ $errors->first('precandidate_face_photo') }}</p> @endif
 
-									</div>
-									<div class="form-group @if($errors->has('precandidate_body_photo')) has-error @endif">
-										<label class="control-label">@lang('form_process_apply.lbl_body_photo')</label>
-										<input type="file" name="precandidate_body_photo"  accept="image/*" class="photo">
-										@if ($errors->has('precandidate_body_photo')) <p class="help-block">{{ $errors->first('precandidate_body_photo') }}</p> @endif
-									</div>
+										</div>
+										<div class="form-group @if($errors->has('precandidate_body_photo')) has-error @endif">
+											<label class="control-label">@lang('form_process_apply.lbl_body_photo') <small class="text-warning">(@lang('form_process_apply.lbl_photo_format'))</small></label>
+											<input type="file" name="precandidate_body_photo"  accept="image/*" class="photo">
+											@if ($errors->has('precandidate_body_photo')) <p class="help-block">{{ $errors->first('precandidate_body_photo') }}</p> @endif
+										</div>
+					   				@else
+					   					<img class="col-md-6 col-lg-6 col-xs-12 img-responsive" src="{{ asset($precandidate->precandidate_face_photo) }}" alt="{{$precandidate->name}}" title="{{$precandidate->name}}">
+					   					<img class="col-md-6 col-lg-6 col-xs-12 img-responsive" src="{{ asset($precandidate->precandidate_body_photo)}} " alt="{{$precandidate->name}}"  title="{{$precandidate->name}}">
+					   				@endif
+
 
 					   				@if(!isset($precandidate))
 					   				<div class="form-group @if($errors->has('g-recaptcha-response')) has-error @endif" style="margin-left: 25%">

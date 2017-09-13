@@ -43,6 +43,7 @@ Check it out and good luck. We will wait for you.',
 
 	'thanks_subscribe' => 'Thank you for signing up', 
 	'error_subscribe' => 'Your form could not be processed, try again',
+	'lbl_photo_format' => 'Only format Jpg, Png, Gif and Max 2mb'
 
 
 
