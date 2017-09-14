@@ -11,7 +11,7 @@ class Miss extends Model
     
     protected $table = "miss";
 
-    protected $with = ['photos'];
+    // protected $with = ['photos'];
 
     protected $perPage = 12;
 
