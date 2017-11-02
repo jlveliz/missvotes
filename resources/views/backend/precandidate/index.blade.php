@@ -36,7 +36,7 @@
                     <a href="{{ route('precandidates.show',$precandidate->id) }}" title="{{ trans('backend.precandidate.index.td_show') }}" class="btn btn-xs btn-warning"> {{ trans('backend.precandidate.index.td_show') }}</a>
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit" title="{{ trans('backend.precandidate.index.td_delete') }}" class="btn btn-xs btn-danger"> {{ trans('backend.precandidate.index.td_delete') }}</button>
+                    <button type="submit" title="{{ trans('backend.precandidate.index.td_delete') }}" class="btn btn-xs btn-danger delete"> {{ trans('backend.precandidate.index.td_delete') }}</button>
                 </form>
        				</td>
        			</tr>
@@ -57,6 +57,16 @@
           "url": "../public/js/datatables/json/es.json"
         }
         @endif
+      });
+
+       $(".delete").on('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        var deleteRegister = confirm('Esta usted seguro de eliminar el registro? ');
+
+        if (deleteRegister) {
+          $(this).parents('form').submit();
+        }
       });
   });
  </script>

@@ -39,7 +39,7 @@
        						@if (Auth::user()->id != $client->id)
          						<input type="hidden" name="_token" value="{{ csrf_token() }}">
          						<input type="hidden" name="_method" value="DELETE">
-         						<button type="submit" title="{{ trans('backend.client.index.td_delete') }}" class="btn btn-xs btn-danger"> {{ trans('backend.client.index.td_delete') }}</button>
+         						<button type="submit" title="{{ trans('backend.client.index.td_delete') }}" class="btn btn-xs btn-danger delete"> {{ trans('backend.client.index.td_delete') }}</button>
        						@endif
        					</form>
        				</td>
@@ -61,6 +61,16 @@
           "url": "../public/js/datatables/json/es.json"
         }
         @endif
+      });
+
+      $(".delete").on('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        var deleteRegister = confirm('Esta usted seguro de eliminar el registro? ');
+
+        if (deleteRegister) {
+          $(this).parents('form').submit();
+        }
       });
   });
  </script>

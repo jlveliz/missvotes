@@ -42,5 +42,6 @@ return [
 
 	'thanks_subscribe' => 'Gracias por subscibirse', 
 	'error_subscribe' => 'Su formulario no pudo ser procesado, intente nuevamente',
+	'lbl_photo_format' => 'Solo en formato Jpg, Png, Gif Peso máximo 2mb',
 
 ];

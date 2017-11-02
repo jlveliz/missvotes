@@ -13,7 +13,7 @@ class MissRepository implements MissRepositoryInterface
 	
 	public function paginate()
 	{
-		return Miss::where('state','1')->paginate();
+		return Miss::where('state','1')->whereHas('photos')->paginate();
 	}
 
 	public function enum($params = null)

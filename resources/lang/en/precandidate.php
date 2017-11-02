@@ -32,4 +32,10 @@ return  [
     'dairy_philosophy.required'=>'The dairy philosophy is required',
     'why_would_you_win.required'=>'Why would you like to win  '.config('app.name'),
     'g-recaptcha-response.required' => 'Validate if you are a human',
+    'precandidate_body_photo.required'=>'The :attribute is required',
+    'precandidate_body_photo.image'=>'The :attribute is a invalid format',
+    'precandidate_body_photo.max'=>'The :attribute is a invalid size',
+    'precandidate_face_photo.required'=>'The :attribute is required|image',
+    'precandidate_face_photo.image'=>'The :attribute is a invalid format',
+    'precandidate_face_photo.max'=>'The :attribute is a invalid size',
 ];
