@@ -12,14 +12,14 @@
 
     <!-- Styles -->
     <link href=" {{asset('public/css/app.css')}} " rel="stylesheet">
-    <link href=" {{asset('public/css/backend.css')}} " rel="stylesheet">
     <link href=" {{asset('/public/css/font-awesome.min.css')}} " rel="stylesheet">
+    @yield('css')
+    <link href=" {{asset('public/css/backend.css')}} " rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('public/js/datatables/jquery.dataTables.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('public/js/datatables/buttons.bootstrap.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('public/js/datatables/fixedHeader.bootstrap.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('public/js/datatables/responsive.bootstrap.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('public/js/datatables/scroller.bootstrap.min.css') }}" />
-    @yield('css')
 
     <!-- Scripts -->
     <script>
