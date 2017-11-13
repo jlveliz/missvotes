@@ -93,6 +93,7 @@ Route::group(['prefix'=>'backend'],function(){
 	Route::resource('/users', 'UserController');
 	Route::resource('/clients', 'ClientController');
 	Route::resource('/memberships', 'MembershipController');
+	Route::resource('/countries', 'CountryController');
 	Route::resource('/misses', 'MissController');
 	Route::resource('/precandidates', 'PrecandidateController',['only'=>['index','show','update','destroy']]);
 	Route::resource('/activities', 'ClientActivityController',['only'=>['index']]);

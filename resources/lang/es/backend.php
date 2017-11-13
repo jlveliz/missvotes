@@ -19,6 +19,7 @@
 				'menu' => 'Configuration',
 				'users' => 'Users',
 				'membership' => 'Memberships',
+				'countries' => 'Countries',
 			],
 		],
 

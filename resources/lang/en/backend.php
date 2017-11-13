@@ -17,8 +17,9 @@
 			],
 			'config' => [
 				'menu' => 'Configuration',
-				'users' => 'Users',
+				'countries' => 'Countries',
 				'membership' => 'Memberships',
+				'users' => 'Users',
 			],
 		],
 
@@ -302,6 +303,38 @@
 				'flag_error_updated' => 'Membership could not be updated, try again',
 				'flag_success_deleted' => 'Membership deleted Satisfactorily',
 				'flag_error_deleted' => 'Membership could not be deleted, try again',
+			]
+		],
+
+		'country' => [
+			'index' => [
+				'panel_title' => 'Countries',
+				'panel_caption' => 'List of Countries',
+				'th_name' => 'Name',
+				'th_code' => 'Code',
+				'th_lang' => 'Language',
+				'th_upgrade'=>'Upgrade',
+				'th_action' => 'Action',
+				'td_edit' => 'Edit',
+				'td_delete' => 'Delete'
+			],
+
+			'create-edit' => [
+				'panel_title' => 'Countries',
+				'panel_caption_create' => 'Create of Countries',
+				'panel_caption_edit' => 'Edit of Countries',
+				'label_name' => 'Name',
+				'label_code' => 'Code',
+				'label_lang' => 'Language',
+				'btn_cancel' => 'Cancel',
+				'btn_save' => 'Save',
+				'btn_change_flag' => 'Change Flag',
+				'flag_success_saved' => 'Country Created Satisfactorily',
+				'flag_error_saved' => 'Country could not be created, try again',
+				'flag_success_updated' => 'Country Updated Satisfactorily',
+				'flag_error_updated' => 'Country could not be updated, try again',
+				'flag_success_deleted' => 'Country deleted Satisfactorily',
+				'flag_error_deleted' => 'Country could not be deleted, try again',
 			]
 		],
 
