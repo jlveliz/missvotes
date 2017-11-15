@@ -69,7 +69,7 @@ class CountryController extends Controller
             $sessionData['mensaje'] = trans('backend.country.create-edit.flag_error_saved');
         }
         
-        return Redirect::action('countryController@edit',$country->id)->with($sessionData);
+        return Redirect::action('CountryController@edit',$country->id)->with($sessionData);
         
     }
 
@@ -117,7 +117,7 @@ class CountryController extends Controller
             $sessionData['mensaje'] = trans('backend.country.create-edit.flag_error_updated');
         }
         
-        return Redirect::action('countryController@edit',$country->id)->with($sessionData);
+        return Redirect::action('CountryController@edit',$country->id)->with($sessionData);
     }
 
     /**
@@ -143,7 +143,7 @@ class CountryController extends Controller
             $sessionData['mensaje'] = trans('backend.country.create-edit.flag_error_deleted');
         }
         
-        return Redirect::action('countryController@index')->with($sessionData);
+        return Redirect::action('CountryController@index')->with($sessionData);
             
         
     }

@@ -17,7 +17,10 @@ class Country extends Model
      * @var array
      */
     protected $fillable = [
-        '*'
+        'name',
+        'code',
+        'lang',
+        'flag_img'
     ];
 
     protected $guarded = [

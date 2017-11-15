@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }} | </title>
 
     <!-- Styles -->
     <link href=" {{asset('public/css/app.css')}} " rel="stylesheet">
@@ -167,5 +167,6 @@
     <script src="{{ asset('public/js/datatables/responsive.bootstrap.min.js') }}"></script>
     <script src="{{ asset('public/js/datatables/dataTables.scroller.min.js') }}"></script>
     @yield('js')
+    <script src="{{ asset('public/js/backend-app.js') }}"></script>
 </body>
 </html>

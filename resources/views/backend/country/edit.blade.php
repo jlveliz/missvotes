@@ -1,4 +1,5 @@
 @extends('layouts.backend')
+
 @section('content')
 <div class="panel panel-default">
 	<div class="panel-heading">{{ trans('backend.country.create-edit.panel_title') }}</div>
@@ -11,58 +12,46 @@
            </div>
         <div class="clearfix"></div>
        @endif
-		<form action="{{ route('countries.update',$country->id) }}" method="post">
+		<form action="{{ route('countries.update',$country->id) }}" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<input type="hidden" name="_method" value="PUT">
-			<input type="hidden" name="key" value="{{ $country->id }}">
+			<input type="hidden" name="key" value="{{$country->id}}">
 			<div class="row">
-				<div class="form-group col-md-2 col-sm-2 col-xs-8 @if($errors->has('name')) has-error @endif">
-					<label class="control-label">{{ trans('backend.country.create-edit.label_name') }} </label>
-					<input type="text" class="form-control"  name="name" value="{{ $country->name }}">
-					@if ($errors->has('name')) <p class="help-block">{{ $errors->first('name') }}</p> @endif
-				</div>
+				<div class="col-md-8 col-lg-8 col-sm-8 col-xs-12">
+					<div class="form-group col-md-6 col-sm-6 col-xs-12 @if($errors->has('name')) has-error @endif">
+						<label class="control-label">{{ trans('backend.country.create-edit.label_name') }} </label>
+						<input type="text" class="form-control"  name="name" value="{{ $country->name }}" autofocus>
+						@if ($errors->has('name')) <p class="help-block">{{ $errors->first('name') }}</p> @endif
+					</div>
 
-				<div class="form-group col-md-6 col-sm-6 col-xs-12 @if($errors->has('description')) has-error @endif">
-					<label class="control-label">{{ trans('backend.country.create-edit.label_description') }} </label>
-					<input type="text" class="form-control"  name="description" value="{{ $country->description }}">
-					@if ($errors->has('description')) <p class="help-block">{{ $errors->first('description') }}</p> @endif
-				</div>
-				<div class="form-group col-md-4 col-sm-4 col-xs-12">
-					<label class="control-label col-md-12 col-sm-12 col-xs-12 no-padding">{{ trans('backend.country.create-edit.label_duration') }} </label>
-					<div class="form-group col-md-4 col-sm-4 col-xs-6 no-padding-left @if($errors->has('duration_time')) has-error @endif">
-							<input type="number" step="1" min="1"  name="duration_time" id="duration_time" class="form-control" value="{{ $country->duration_time }}">
-							@if ($errors->has('duration_time')) <p class="help-block">{{ $errors->first('duration_time') }}</p> @endif
-						</div>
-						<div class="form-group col-md-8 col-sm-8 col-xs-6 no-padding-left @if($errors->has('duration_mode')) has-error @endif">
-							<select name="duration_mode" id="duration_mode" class="form-control">
-								<option value="null">--{{ trans('backend.country.create-edit.label_select') }}--</option>
-								@foreach($durationsMode as $index => $element)
-								<option value="{{ $index }}" @if($country->duration_mode == $index) selected @endif>{{ trans($element) }}</option>	
-								@endforeach
-							</select>
-							@if ($errors->has('duration_mode')) <p class="help-block">{{ $errors->first('duration_mode') }}</p> @endif
-						</div>
-				</div>
-			</div>
-			
-			<div class="row">
-				<div class="form-group col-md-2 col-sm-2 col-xs-4 @if($errors->has('price')) has-error @endif">
-					<label class="control-label">{{ trans('backend.country.create-edit.label_price') }} </label>
-					<input type="number" step="0.01" min="0.00" class="form-control" name="price" value="{{ $country->price }}">
-					@if ($errors->has('price')) <p class="help-block">{{ $errors->first('price') }}</p> @endif
-				</div>
+					<div class="form-group col-md-3 col-sm-3 col-xs-6 @if($errors->has('code')) has-error @endif">
+						<label class="control-label">{{ trans('backend.country.create-edit.label_code') }} </label>
+						<input type="text" class="form-control"  name="code" value="{{ $country->code }}">
+						@if ($errors->has('code')) <p class="help-block">{{ $errors->first('code') }}</p> @endif
+					</div>
 
-				<div class="form-group col-md-2 col-sm-2 col-xs-4 @if($errors->has('points_per_vote')) has-error @endif">
-					<label class="control-label">{{ trans('backend.country.create-edit.label_points_per_vote') }} </label>
-					<input type="text" class="form-control" name="points_per_vote" value="{{ $country->points_per_vote }}">
-					@if ($errors->has('points_per_vote')) <p class="help-block">{{ $errors->first('points_per_vote') }}</p> @endif
+					<div class="form-group col-md-3 col-sm-3 col-xs-6 @if($errors->has('lang')) has-error @endif">
+						<label class="control-label">{{ trans('backend.country.create-edit.label_lang') }} </label>
+						<input type="text" class="form-control"  name="lang" value="{{ $country->lang }}">
+						@if ($errors->has('lang')) <p class="help-block">{{ $errors->first('lang') }}</p> @endif
+					</div>
 				</div>
-
+				
+				<div class="col-md-4 col-lg-4 col-sm-4 col-xs-12">
+					<a href="#"  id="flag-section">
+						<div class="flag-img center-block" style="background-image: url({{ asset('public/images/'.$country->flag_img) }})" title="">
+			    		</div>
+			    		<div class="middle">
+			    			<div class="text">@lang('backend.country.create-edit.btn_change_flag')</div>
+			    		</div>
+					</a>
+	    			<input type="file" id="file-flag-upload" name="flag_img" type="file" accept="image/*"/ style="display: none"/>
+				</div>
 			</div>
 			
 			<div class="row">
 				<div class="form-group  col-md-12 col-sm-12 col-xs-12">
-					<a href="{{ route('countrys.index') }}" class="btn btn-primary">{{ trans('backend.country.create-edit.btn_cancel') }}</a>
+					<a href="{{ route('countries.index') }}" class="btn btn-primary">{{ trans('backend.country.create-edit.btn_cancel') }}</a>
 	                <button type="submit" class="btn btn-success">{{ trans('backend.country.create-edit.btn_save') }}</button>
 	            </div>
 			</div>

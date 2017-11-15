@@ -24,21 +24,25 @@ class CountryRequest extends FormRequest
      */
     public function rules()
     {  
+        $formR = [];
        switch ($this->method()) {
            case 'POST':
-              $name = ['name' => 'required|unique:membership'];
+                $formR =  [
+                    'name' => 'required|unique:country,name',
+                    'code' => 'required|unique:country,code'
+                ];
                break;
            case 'PUT' :
-              $name =  ['name' => 'required|unique:membership,name,'.$this->get('key')];
+                $formR = [
+                    'name' => 'required|unique:country,name,'.$this->get('key'),
+                    'code' => 'required|unique:country,code,'.$this->get('key')
+                ];
                break;
        }
 
-       return array_merge($name,[
-            'description' => 'required|string',
-            'price' => 'required|numeric',
-            'duration_mode' => 'required|string',
-            'duration_time' => 'required|integer',
-            'points_per_vote' => 'required|integer',
+       return array_merge($formR,[
+            'lang' => 'required',
+            'flag_img' => 'image'
         ]);
     }
 

@@ -12,7 +12,13 @@ class CountryRepository implements CountryRepositoryInterface
 	
 	public function enum($params = null)
 	{
-		$countries = Country::whereNotNull('flag_img')->orderBy('name')->get();
+		if ($params) {
+			if (is_array($params )&&array_key_exists('with_flags', $params)) {
+				$countries = Country::whereNotNull('flag_img')->orderBy('name')->get();
+			}
+		} else {
+			$countries = Country::orderBy('name')->get();
+		}
 		
 		if (!$countries) {
 			throw new CountryException("No se han encontrado cientes",404);
@@ -49,9 +55,12 @@ class CountryRepository implements CountryRepositoryInterface
 	public function save($data)
 	{
 		$country = new Country();
+		$photo = $data['flag_img'];
+		$data['flag_img'] = $this->uploadPhoto($photo);
 		$country->fill($data);
 		if ($country->save()) {
 			$key = $country->getKey();
+
 			return  $this->find($key);
 		} 
 		abort(500);
@@ -63,6 +72,9 @@ class CountryRepository implements CountryRepositoryInterface
 		$country = $this->find($id);
 
 		if ($country) {
+			if (array_key_exists('flag_img', $data)) {
+				$data['flag_img'] = $this->uploadPhoto($data['flag_img']);
+			}
 			$country->fill($data);
 			if($country->update()){
 				$key = $country->getKey();
@@ -83,33 +95,33 @@ class CountryRepository implements CountryRepositoryInterface
 		abort(500);
 	}
 
-	// private function pathUplod() {
-	// 	return public_path().'/uploads/profiles';
-	// }
+	private function pathUplod() {
+		return public_path().'/images';
+	}
 
 
-	// public function uploadPhoto($countryId,$photo)
-	// {
-	// 	if ($photo->isValid()) {
+	public function uploadPhoto($photo)
+	{
+		if ($photo->isValid()) {
 			
-	// 		$realPath = $photo->getRealPath();
-	// 		$image = Image::make($realPath);
+			$realPath = $photo->getRealPath();
+			$image = Image::make($realPath);
 			
-	// 		$image->resize(550,550,function($constraint){
-	// 				$constraint->aspectRatio();
-	// 		});
+			$image->resize(168,167,function($constraint){
+					$constraint->aspectRatio();
+			});
 
 
-	// 		$imageName = $countryId.'_'.str_random().'.'. $photo->getCountryOriginalExtension();
-	// 		if($image->save($this->pathUplod().'/'.$imageName)){
-	// 			return 'public/uploads/profiles/'.$imageName; 
-	// 		} else {
-	// 			return false;
-	// 		}
-	// 	}
+			$imageName = '_'.str_random().'.'. $photo->getClientOriginalExtension();
+			if($image->save($this->pathUplod().'/'.$imageName)){
+				return $imageName; 
+			} else {
+				return false;
+			}
+		}
 
-	// 	return false;
-	// }
+		return false;
+	}
 
 
 }

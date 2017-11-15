@@ -1,43 +1,5 @@
 @extends('layouts.backend')
 
-@section('css')
-<style type="text/css" rel="stylesheet">
-
-#profile-section > .middle {
-    transition: .5s ease;
-    opacity: 0;
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-
-#profile-section > .middle > .text {
-    background: #cdcdcd;
-    color: #ffffff;
-}
-
-#profile-section:hover > .middle {
-    opacity: 1;
-}
-
-.profile-img {
-    padding: 5px;
-    background-position: top center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 250px;
-    height: 250px;
-}
-
-.upgrade-membership {
-    color: #ddcc33;
-}
-
-</style>
-@endsection
-
 @section('content')
 <div class="panel panel-default">
 	<div class="panel-heading">{{ trans('backend.country.create-edit.panel_title') }}</div>
@@ -50,7 +12,7 @@
            </div>
         <div class="clearfix"></div>
        @endif
-		<form action="{{ route('countries.store') }}" method="post">
+		<form action="{{ route('countries.store') }}" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<div class="row">
 				<div class="col-md-8 col-lg-8 col-sm-8 col-xs-12">
@@ -73,19 +35,16 @@
 					</div>
 				</div>
 				
-				<div class="col-md-4 col-lg-4 col-sm-4 col-xs-12" id="profile-section">
-					<div class="profile-img center-block" style="background-image: url({{ asset('public/images/default_flag.svg') }})" title="">
-		    		</div>
-		    		<div class="middle">
-		    			<div class="text">@lang('backend.country.create-edit.btn_change_flag')</div>
-		    		</div>
-		    		<form id="form-update-photo" action="{{ route('website.account.update') }}" enctype="multipart/form-data" method="POST">
-		    			{{ csrf_field() }}
-		    			<input type="file" id="file-profile-upload" name="photo" type="file" accept="image/*"/ style="display: none">
-		    		</form>
+				<div class="col-md-4 col-lg-4 col-sm-4 col-xs-12">
+					<a href="#"  id="flag-section">
+						<div class="flag-img center-block" style="background-image: url({{ asset('public/images/default_flag.svg') }})" title="">
+			    		</div>
+			    		<div class="middle">
+			    			<div class="text">@lang('backend.country.create-edit.btn_change_flag')</div>
+			    		</div>
+					</a>
+	    			<input type="file" id="file-flag-upload" name="flag_img" type="file" accept="image/*"/ style="display: none"/>
 				</div>
-
-
 			</div>
 			
 			<div class="row">
@@ -99,33 +58,4 @@
 	</div>
 
 </div>
-@endsection
-
-@section('js')
-<script type="text/javascript">
-	$(document).ready(function(){
-		 /******** PROFILE ********/
-	    var readURL = function(input) {
-	        if (input.files && input.files[0]) {
-	            var reader = new FileReader();
-	            reader.onload = function(e) {
-	                $('.profile-img').css('background-image', 'url('+e.target.result+')');
-	            }
-
-	            reader.readAsDataURL(input.files[0]);
-	        }
-	    }
-	    $("#profile-section").on('click', function(event) {
-	        event.preventDefault();
-	       $("#file-profile-upload").click();
-	    });
-
-	    $("#file-profile-upload").on('change', function(event) {
-	        readURL(this);
-	        $("#form-update-photo").submit();
-
-	    });
-	    /******** PROFILE ********/
-	})
-</script>
 @endsection
