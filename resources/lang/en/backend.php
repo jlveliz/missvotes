@@ -20,6 +20,7 @@
 				'countries' => 'Countries',
 				'membership' => 'Memberships',
 				'users' => 'Users',
+				'config' => 'General'
 			],
 		],
 

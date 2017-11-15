@@ -82,8 +82,13 @@
                                     <li class="@if(Request::path() == 'backend/users') active @endif"><a href="{{ route('users.index') }}" alt="{{ trans('backend.nav.config.users') }}" title="{{ trans('backend.nav.config.users') }}">{{ trans('backend.nav.config.users') }} <span class="sr-only">(current)</span></a></li>
                                     <li class="@if(Request::path() == 'backend/memberships') active @endif"><a href="{{ route('memberships.index') }}" alt="{{ trans('backend.nav.config.membership') }}" title="{{ trans('backend.nav.config.membership') }}">{{ trans('backend.nav.config.membership') }}  <span class="sr-only">(current)</span></a></li>
                                     <li class="@if(Request::path() == 'backend/countries') active @endif"><a href="{{ route('countries.index') }}" alt="{{ trans('backend.nav.config.countries') }}" title="{{ trans('backend.nav.config.countries') }}">{{ trans('backend.nav.config.countries') }}  <span class="sr-only">(current)</span></a></li>
+
+                                    <li class="@if(Request::path() == 'backend/config') active @endif"><a href="{{ route('config.index') }}" alt="{{ trans('backend.nav.config.config') }}" title="{{ trans('backend.nav.config.config') }}">{{ trans('backend.nav.config.config') }}  <span class="sr-only">(current)</span></a></li>
                                 </ul>
                             </li>
+
+
+
                             
                         </ul>
                     @endif
