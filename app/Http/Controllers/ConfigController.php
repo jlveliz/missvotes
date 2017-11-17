@@ -8,6 +8,8 @@ use MissVote\Http\Requests\ConfigRequest;
 
 use MissVote\RepositoryInterface\ConfigRepositoryInterface;
 
+use MissVote\RepositoryInterface\CountryRepositoryInterface;
+
 use Response;
 
 use Redirect;
@@ -17,12 +19,15 @@ class ConfigController extends Controller
     
     public $config;
 
+    public $country;
 
-    public function __construct(configRepositoryInterface $config)
+
+    public function __construct(configRepositoryInterface $config, CountryRepositoryInterface $country)
     {
         $this->middleware('auth');
         $this->middleware('can:acess-backend');
         $this->config = $config;
+        $this->country = $country;
     }
 
     /**
@@ -36,11 +41,13 @@ class ConfigController extends Controller
 
         //casting
         $configs = $this->config->enum();
+
+        $countries = $this->country->enum(['with_flags'=> true]);
         
         foreach ($configs as $key => $config) {
             $gConfig[$config->key] = $config->payload;
         }        
-        return view('backend.config.index',compact('gConfig'));
+        return view('backend.config.index',compact('gConfig','countries'));
     }
 
     /**

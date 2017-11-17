@@ -49,7 +49,9 @@
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<div class="row">
 					<div class="col-md-12 col-sm-12 col-xs-12">
-						<p><b>{{ trans('backend.config.tab_casting_content.tab_caption_title') }} <a class="pull-right btn btn-primary" href="{{ route('countries.create') }}" title="Create">{{ trans('backend.config.tab_casting_content.btn_create_casting') }}</a></b></p>
+						<p><b>{{ trans('backend.config.tab_casting_content.tab_caption_title') }}
+						<button type="button" class="pull-right btn btn-primary" id="create-casting" title="Create">{{ trans('backend.config.tab_casting_content.btn_create_casting') }}</button>
+						</b></p>
 					</div>
 				</div>
 				<div class="row">
@@ -86,4 +88,72 @@
 
   </div>
 </div>
+
+
+
+
+
+{{-- modals --}}
+<div class="modal fade" id="createEditCasting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <form action="">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+	      </div>
+	      <div class="modal-body">
+	        <div class="row">
+	        	<div class="col-md-12">
+	        		<div class="form-group col-md-4 col-sm-4 col-xs-12">
+	        			<label class="control-label">{{ trans('backend.country.create-edit.label_name') }} </label>
+	        			<input type="text" class="form-control" id="fecha_inicio">
+	        		</div>
+	        		<div class="form-group col-md-4 col-sm-4 col-xs-12">
+	        			<label class="control-label">{{ trans('backend.country.create-edit.label_name') }} </label>
+	        			<input type="text" class="form-control" id="fecha_inicio">
+	        		</div>
+	        		<div class="form-group col-md-4 col-sm-4 col-xs-12">
+	        			<label class="control-label">{{ trans('backend.country.create-edit.label_name') }} </label>
+	        			<input type="text" class="form-control" id="language">
+	        		</div>
+	        	</div>
+	        </div>
+	        <hr>
+	        <div class="row">
+	        	<div class="col-md-5">
+	        		<label class="control-label">{{ trans('backend.country.create-edit.label_name') }} </label>
+	        		<select  name="" id="available_countries" class="form-control" style="width: 90%">
+	        			@foreach ($countries as $country)
+	        			<option value="{{$country->id}}">{{$country->name}}</option>	
+	        			@endforeach	
+	        		</select>
+	        		<button type="button" class="btn btn-default" id="btn_insertar_pais">Insertar</button>
+	        	</div>
+	        	<div class="col-md-12">
+	        		<p>Paises</p>
+	        		<table class="table">
+	        			<thead>
+	        				<tr>
+	        					<td>País</td>
+	        				</tr>
+	        			</thead>
+	        			<tbody id="selected_countries">
+	        				<tr>
+	        					<td></td>
+	        				</tr>
+	        			</tbody>
+	        		</table>
+	        	</div>
+	        </div>	
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+	        <button type="button" class="btn btn-primary">Guardar</button>
+	      </div>
+	    </div>
+    </form>
+  </div>
+</div>
+{{-- modals --}}
 @endsection
