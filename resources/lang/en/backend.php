@@ -341,35 +341,27 @@
 
 		'config' => [
 			'index' => [
-				'panel_title' => 'Configuración General',
-				'panel_caption' => 'List of Countries',
-				'th_name' => 'Name',
-				'th_code' => 'Code',
-				'th_lang' => 'Language',
-				'th_upgrade'=>'Upgrade',
-				'th_action' => 'Action',
-				'td_edit' => 'Edit',
-				'td_delete' => 'Delete'
+				'panel_title' => 'Settings',
+				'tab_general' => 'General',
+				'tab_castings' => 'Casting',
+				'flag_message_success' => 'Config Updated Satisfactorily',
+				'flag_message_error' => 'Config could not be updated, try again ',
 			],
 
-			'create-edit' => [
-				'panel_title' => 'Countries',
-				'panel_caption_create' => 'Create of Countries',
-				'panel_caption_edit' => 'Edit of Countries',
-				'label_name' => 'Name',
-				'label_code' => 'Code',
-				'label_lang' => 'Language',
-				'btn_cancel' => 'Cancel',
-				'btn_save' => 'Save',
-				'btn_change_flag' => 'Change Flag',
-				'flag_success_saved' => 'Country Created Satisfactorily',
-				'flag_error_saved' => 'Country could not be created, try again',
-				'flag_success_updated' => 'Country Updated Satisfactorily',
-				'flag_error_updated' => 'Country could not be updated, try again',
-				'flag_success_deleted' => 'Country deleted Satisfactorily',
-				'flag_error_deleted' => 'Country could not be deleted, try again',
+			'tab_general_content' => [
+				'label_casting' => 'Exist Casting',
+				'select_casting_yes' => 'Yes',
+				'select_casting_no' => 'No',
+				'btn_save' => 'Save'
+			],
+
+			'tab_casting_content' => [
+				'tab_caption_title' => 'List of Castings',
+				'btn_create_casting' => 'Create Casting'
 			]
 		],
+
+
 
 
 	];

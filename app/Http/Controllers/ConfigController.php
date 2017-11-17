@@ -32,11 +32,15 @@ class ConfigController extends Controller
      */
     public function index()
     {
+        $gConfig = [];
+
+        //casting
         $configs = $this->config->enum();
-        $data = [
-            'configs' => $configs
-        ];
-        return view('backend.config.index',$data);
+        
+        foreach ($configs as $key => $config) {
+            $gConfig[$config->key] = $config->payload;
+        }        
+        return view('backend.config.index',compact('gConfig'));
     }
 
     /**
@@ -54,22 +58,31 @@ class ConfigController extends Controller
      *
      * @return Response
      */
-    public function store(configRequest $request)
+    public function store(Request $request)
     {
         $data = $request->all();
-        $config = $this->config->save($data);
+        $configs = $this->config->save($data);
         $sessionData = [
             'tipo_mensaje' => 'success',
             'mensaje' => '',
         ];
-        if ($config) {
-            $sessionData['mensaje'] = trans('backend.config.create-edit.flag_success_saved');
+        if ($configs) {
+            $sessionData['mensaje'] = trans('backend.config.index.flag_message_success');
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = trans('backend.config.create-edit.flag_error_saved');
+            $sessionData['mensaje'] = trans('backend.config.index.flag_message_error');
         }
         
-        return Redirect::action('ConfigController@edit',$config->id)->with($sessionData);
+        $gConfig = [];
+
+        //casting
+        $configs = $this->config->enum();
+        
+        foreach ($configs as $key => $config) {
+            $gConfig[$config->key] = $config->payload;
+        } 
+
+        return redirect()->action('ConfigController@index',compact('gConfig'))->with($sessionData);
         
     }
 

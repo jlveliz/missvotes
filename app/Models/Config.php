@@ -3,6 +3,7 @@
 namespace MissVote\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class Config extends Model
 {
@@ -30,5 +31,13 @@ class Config extends Model
     public function user($value='')
     {
     	return $this->belongsTo('MissVote\Models\User','user_id_created');
+    }
+
+    public static function boot(){
+        parent::boot();
+
+        static::creating(function($config){
+            $config->user_id_created = Auth::user()->id;
+        });
     }
 }

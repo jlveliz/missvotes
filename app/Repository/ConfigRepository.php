@@ -45,13 +45,27 @@ class ConfigRepository implements ConfigRepositoryInterface
 	//TODO
 	public function save($data)
 	{
-		$config = new Config();
-		$config->fill($data);
-		if ($config->save()) {
-			return $this->find($config->getKey());
-		} 
-		abort(500);
-		
+		//save all config
+		foreach ($data as $key => $value) {
+			if ($config = $this->find(['key' => $key],false)) {
+				$dataPost = [
+					'key' => $key,
+					'payload' => $value
+				];
+				$config->fill($dataPost)->update();
+			} else {
+				
+				$dataPost = [
+					'key' => $key,
+					'payload' => $value
+				];
+				$config = new Config();
+				$config->fill($dataPost);
+				$config->save();
+			}
+		}
+
+		return $this->enum();
 	}
 
 	public function edit($id,$data)
