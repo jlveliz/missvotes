@@ -2,7 +2,9 @@
 namespace MissVote\Repository;
 
 use MissVote\RepositoryInterface\CountryRepositoryInterface;
+use MissVote\Repository\ConfigRepository;
 use MissVote\Models\Country;
+
 use Image;
 /**
 * 
@@ -131,8 +133,10 @@ class CountryRepository implements CountryRepositoryInterface
 
 	public function getSelectedCountries($castingId  = null)
 	{
-		return Country::where('casting_id',$castingId)->whereNotNull('flag_img')->get();
+		$casting =  ConfigRepository::getCurrentCasting();
+		if ($casting) {
+			return Country::where('casting_id',$casting->id)->whereNotNull('flag_img')->get();
+		}
 	}
-
 
 }

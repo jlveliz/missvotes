@@ -54,17 +54,17 @@ $(document).ready(function() {
 
     $(".edit-casting").on('click', function(event) {
         var castingId = $(this).data('casting');
-        var startDate = $(this).parents('tr').find('.start_date').text();
-        var endDate = $(this).parents('tr').find('.end_date').text();
+        var startDate = $(this).parents('tr').find('.start_date').text().trim();
+        var endDate = $(this).parents('tr').find('.end_date').text().trim();
         var lang = $(this).parents('tr').find('.lang').text();
         var countries = $.parseJSON($(this).parents('tr').find('.casting_countries').val());
-        
+
         var noCountrySelected = $("#dont-selected").is(':visible');
         if (noCountrySelected) {
             $("#dont-selected").css('display', 'none');
         }
         for (var i = 0; i < countries.length; i++) {
-            var htmlInsert = "<tr class='iserted'>";
+            var htmlInsert = "<tr class='inserted'>";
             htmlInsert += "<td>";
             htmlInsert += "<input type='hidden' name='countries[]' value='" + countries[i].id + "' />";
             htmlInsert += "<span class='country-selected-text'>" + countries[i].name + "</span>";
@@ -79,6 +79,22 @@ $(document).ready(function() {
         $("#number_casting").val('casting_' + castingId)
         $("#createEditCasting").modal('show');
     });
+
+
+    $("#createEditCasting").on('hide.bs.modal', function(event) {
+        $("#start_date").val('')
+        $("#end_date").val('')
+        $("#language").val('')
+        $("#number_casting").val('');
+        $("#selected_countries >tr.inserted").remove();
+        $("#dont-selected").css('display', 'table-row');
+    });
+
+    $("#createEditCasting").on('shown.bs.modal', function(event) {
+        if ($('.inserted').length) {
+            $("#dont-selected").css('display', 'none');
+        }
+    })
 
 
 
@@ -111,16 +127,19 @@ $(document).ready(function() {
         htmlInsert += "</option>";
         $(htmlInsert).appendTo('#available_countries');
 
-        if (!$('.iserted').length) {
+        if (!$('.inserted').length) {
             $("#dont-selected").css('display', 'table-row');
         }
 
     });
 
+
     $(".dates-casting").datetimepicker({
         defaultDate: moment(),
         format: 'DD-M-YYYY'
     });
+
+
 
 
 });

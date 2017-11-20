@@ -47,6 +47,7 @@ class ConfigRepository implements ConfigRepositoryInterface
 	public function save($data)
 	{
 		$countries = [];
+
 		if (array_key_exists('countries', $data)) {
 			$countries = $data['countries'];
 		}
@@ -68,6 +69,8 @@ class ConfigRepository implements ConfigRepositoryInterface
 				$coun->casting_id = $config->getKey();
 				$coun->update();
 			}
+		} else {
+			Country::where('casting_id',$config->getKey())->update(['casting_id'=>null]);
 		}
 
 		return $this->enum();
@@ -95,6 +98,35 @@ class ConfigRepository implements ConfigRepositoryInterface
 			return true;
 		}
 		abort(500);
+	}
+
+	public static function getCurrentCasting()
+	{
+		$currentDate = date('d-m-Y');
+		$currentDate= strtotime($currentDate);
+
+		$castings = Config::where('key','like','%casting_%')->get();
+		$currentCasting = null;
+		foreach ($castings as $key => $casting) {
+			$startDate = strtotime($casting->payload['start_date']);
+			$endDate = strtotime($casting->payload['end_date']);
+			if ( ($currentDate >= $startDate)  && $currentDate <= $endDate ) {
+				$currentCasting = $casting;
+			}
+		}
+
+		if ($currentCasting) return $currentCasting;
+
+		return false;
+	}
+
+	public static function getLangCurrentCasting()
+	{
+		
+		$currentCasting = self::getCurrentCasting();
+		dd($currentCasting);
+		// // dd($currentCasting['payload']['lang']);
+		// return $currentCasting['payload']['lang'];
 	}
 
 }

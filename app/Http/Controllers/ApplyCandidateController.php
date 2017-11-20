@@ -94,7 +94,8 @@ class ApplyCandidateController extends Controller
         
         $existApply = $this->apply->find(['client_id' => Auth::user()->id]);
 
-        $countries = $this->country->enum(['with_flags'=>true]);
+        $countries = $this->country->getSelectedCountries();
+        
 
     	if ($existApply) {
             $countryselected = null;

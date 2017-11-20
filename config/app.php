@@ -77,7 +77,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => \MissVote\Repository\ConfigRepository::getLangCurrentCasting(),
 
     /*
     |--------------------------------------------------------------------------

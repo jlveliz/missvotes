@@ -51,7 +51,7 @@
 				<div class="row">
 					<div class="col-md-12 col-sm-12 col-xs-12">
 						<p><b>{{ trans('backend.config.tab_casting_content.tab_caption_title') }}
-						<button type="button" class="pull-right btn btn-primary" id="create-casting" title="Create">{{ trans('backend.config.tab_casting_content.btn_create_casting') }}</button>
+						{{-- <button type="button" class="pull-right btn btn-primary" id="create-casting" title="Create">{{ trans('backend.config.tab_casting_content.btn_create_casting') }}</button> --}}
 						</b></p>
 					</div>
 				</div>
@@ -187,9 +187,6 @@
 {{-- modals --}}
 @endsection
 
-@section('js')
-<script type="text/javascript" src="{{ asset('public/js/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
-@endsection
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('public/js/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') }}">
