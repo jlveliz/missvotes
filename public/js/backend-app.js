@@ -58,7 +58,7 @@ $(document).ready(function() {
         var endDate = $(this).parents('tr').find('.end_date').text();
         var lang = $(this).parents('tr').find('.lang').text();
         var countries = $.parseJSON($(this).parents('tr').find('.casting_countries').val());
-        debugger
+        
         var noCountrySelected = $("#dont-selected").is(':visible');
         if (noCountrySelected) {
             $("#dont-selected").css('display', 'none');
