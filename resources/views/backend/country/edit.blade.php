@@ -29,12 +29,6 @@
 						<input type="text" class="form-control"  name="code" value="{{ $country->code }}">
 						@if ($errors->has('code')) <p class="help-block">{{ $errors->first('code') }}</p> @endif
 					</div>
-
-					<div class="form-group col-md-3 col-sm-3 col-xs-6 @if($errors->has('lang')) has-error @endif">
-						<label class="control-label">{{ trans('backend.country.create-edit.label_lang') }} </label>
-						<input type="text" class="form-control"  name="lang" value="{{ $country->lang }}">
-						@if ($errors->has('lang')) <p class="help-block">{{ $errors->first('lang') }}</p> @endif
-					</div>
 				</div>
 				
 				<div class="col-md-4 col-lg-4 col-sm-4 col-xs-12">

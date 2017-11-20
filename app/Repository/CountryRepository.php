@@ -124,4 +124,15 @@ class CountryRepository implements CountryRepositoryInterface
 	}
 
 
+	public function getAvailableCountries()
+	{
+		return Country::whereNull('casting_id')->whereNotNull('flag_img')->get();
+	}
+
+	public function getSelectedCountries($castingId  = null)
+	{
+		return Country::where('casting_id',$castingId)->whereNotNull('flag_img')->get();
+	}
+
+
 }

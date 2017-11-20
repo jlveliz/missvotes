@@ -3,6 +3,7 @@ namespace MissVote\Repository;
 
 use MissVote\RepositoryInterface\ConfigRepositoryInterface;
 use MissVote\Models\Config;
+use MissVote\Models\Country;
 use Image;
 /**
 * 
@@ -45,23 +46,27 @@ class ConfigRepository implements ConfigRepositoryInterface
 	//TODO
 	public function save($data)
 	{
-		//save all config
-		foreach ($data as $key => $value) {
-			if ($config = $this->find(['key' => $key],false)) {
-				$dataPost = [
-					'key' => $key,
-					'payload' => $value
-				];
-				$config->fill($dataPost)->update();
-			} else {
-				
-				$dataPost = [
-					'key' => $key,
-					'payload' => $value
-				];
-				$config = new Config();
-				$config->fill($dataPost);
-				$config->save();
+		$countries = [];
+		if (array_key_exists('countries', $data)) {
+			$countries = $data['countries'];
+		}
+
+		if ($config = $this->find(['key'=>$data['key'] ] , false)) {
+		} else {
+			$config = new Config();
+			
+		}
+		$config->fill($data);
+		$config->save();
+
+		//if countries
+		if (count($countries)) {
+			//reset all countries with casting id
+			Country::where('casting_id',$config->getKey())->update(['casting_id'=>null]);
+			$countriesToUpdate = Country::whereIn('id',$countries)->get();
+			foreach ($countriesToUpdate as $key => $coun) {
+				$coun->casting_id = $config->getKey();
+				$coun->update();
 			}
 		}
 

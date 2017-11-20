@@ -17,7 +17,6 @@
      			<tr>
      				<th>{{ trans('backend.country.index.th_name') }}</th>
      				<th>{{ trans('backend.country.index.th_code') }}</th>
-     				<th>{{ trans('backend.country.index.th_lang') }}</th>
      				<th>{{ trans('backend.country.index.th_action') }}</th>
      			</tr>
      		</thead>
@@ -26,7 +25,6 @@
        			<tr>
        				<td>{{$country->name}}</td>
               <td>{{$country->code}}</td>
-       				<td>{{$country->lang}}</td>
        				<td class="text-center">
        					<form action="{{ route('countries.destroy',$country->id) }}" method="POST">
        						<a href="{{ route('countries.edit',$country->id) }}" title="{{ trans('backend.country.index.panel_caption') }}" class="btn btn-xs btn-warning"> {{ trans('backend.country.index.td_edit') }}</a>

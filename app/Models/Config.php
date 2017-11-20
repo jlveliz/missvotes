@@ -18,19 +18,24 @@ class Config extends Model
     ];
 
 
-    public function setPayload($value)
+    public function setPayloadAttribute($value)
     {
-    	return $this->attributes['payload'] = serialize($value);
+    	$this->attributes['payload'] = serialize($value);
     }
 
-    public function getPayload($value)
+    public function getPayloadAttribute($value)
     {
-    	return unserialize($vaue);
+    	return unserialize($value);
     }
 
     public function user($value='')
     {
     	return $this->belongsTo('MissVote\Models\User','user_id_created');
+    }
+
+    public function countries()
+    {
+        return $this->hasMany('MissVote\Models\Country','casting_id');
     }
 
     public static function boot(){

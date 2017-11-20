@@ -171,6 +171,7 @@
     <script src="{{ asset('public/js/datatables/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('public/js/datatables/responsive.bootstrap.min.js') }}"></script>
     <script src="{{ asset('public/js/datatables/dataTables.scroller.min.js') }}"></script>
+    <script src="{{ asset('public/js/moment/moment.js') }}"></script>
     @yield('js')
     <script src="{{ asset('public/js/backend-app.js') }}"></script>
 </body>

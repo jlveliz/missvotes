@@ -42,12 +42,18 @@ class ConfigController extends Controller
         //casting
         $configs = $this->config->enum();
 
-        $countries = $this->country->enum(['with_flags'=> true]);
+        $availableCountries = $this->country->getAvailableCountries();
+        // $availableCounries = $this->country->getAvailableCountries();
         
         foreach ($configs as $key => $config) {
-            $gConfig[$config->key] = $config->payload;
+            //castings 
+            if (preg_match('/casting_/', $config->key)) {
+                $gConfig['castings'][$key] = ['id'=>$config->id,'key'=>$config->key,'payload'=>$config->payload,'countries'=>$config->countries];
+            } else {
+                $gConfig[$config->key] = $config->payload;
+            }
         }        
-        return view('backend.config.index',compact('gConfig','countries'));
+        return view('backend.config.index',compact('gConfig','availableCountries'));
     }
 
     /**
@@ -122,7 +128,7 @@ class ConfigController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(configRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $data = $request->all();
         $config = $this->config->edit($id,$data);
@@ -148,7 +154,7 @@ class ConfigController extends Controller
      */
     public function destroy($id)
     {
-        
+    
         $config = $this->config->remove($id);
         
         $sessionData = [
@@ -157,10 +163,10 @@ class ConfigController extends Controller
         ];
         
         if ($config) {
-            $sessionData['mensaje'] = trans('backend.config.create-edit.flag_success_deleted');
+            $sessionData['mensaje'] = trans('backend.config.index.flag_message_success');
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = trans('backend.config.create-edit.flag_error_deleted');
+            $sessionData['mensaje'] = trans('backend.config.index.flag_message_error');
         }
         
         return Redirect::action('ConfigController@index')->with($sessionData);
