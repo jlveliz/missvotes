@@ -41,7 +41,6 @@ class CountryRequest extends FormRequest
        }
 
        return array_merge($formR,[
-            'lang' => 'required',
             'flag_img' => 'image'
         ]);
     }

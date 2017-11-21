@@ -117,6 +117,7 @@ class ApplyCandidateController extends Controller
     {
         $existApply = $this->apply->find(['client_id' => Auth::user()->id]);
         
+        
         if ($request->has('country_code')) {
             $existApply->country_code_selected = $request->get('country_code');
         }
@@ -350,7 +351,7 @@ class ApplyCandidateController extends Controller
         $secuencial = $country->secuencial_casting_code+1;
         $country->secuencial_casting_code++;
         $country->save();
-        $countryCode = substr($country->code,0,1);
+        $countryCode = $country->code;
         
         for ($i=0; $i <= count($secuencial) ; $i++) { 
             $secuencial = '0'.$secuencial;

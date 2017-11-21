@@ -135,7 +135,7 @@ class CountryRepository implements CountryRepositoryInterface
 	{
 		$casting =  ConfigRepository::getCurrentCasting();
 		if ($casting) {
-			return Country::where('casting_id',$casting->id)->whereNotNull('flag_img')->get();
+			return Country::where('casting_id',$casting->id)->whereNotNull('flag_img')->orderBy('name')->get();
 		}
 	}
 
