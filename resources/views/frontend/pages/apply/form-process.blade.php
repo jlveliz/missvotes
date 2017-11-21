@@ -76,7 +76,7 @@
 			   			</p>
 			   			<div class="row">
 					   			<div class="col-md-4 col-lg-4 col-sm-8 col-xs-12 col-md-offset-4 text-center">
-					   				<h2 id="price-insciption"><small>$</small> 60.00 <br> <small> USD </small></h2>
+					   				<h2 id="price-insciption"><small>$</small> 20.00 <br> <small> USD </small></h2>
 					   				<form action="{{ route('pay.paypal.aplication') }}" method="POST" accept-charset="utf-8">
 					   					{{ csrf_field() }}
 					   					<button type="submit" class="btn btn-primary btn-lg btn-block pay-button" data-payment="paypal"><i class="fa fa-paypal"> </i> <b>@lang('form_process_apply.lbl_paypal_')</b></button>
@@ -171,10 +171,10 @@
 					   					<div class="col-sm-6 col-md-6">
 					   						<select class="form-control" name="how_did_you_hear_about_us" id="how_did_you_hear_about_us" @if(isset($precandidate)) disabled @endif>
 					   							<option value="null">--Seleccione--</option>
-					   							<option value="brochure" @if( (isset($precandidate) && $precandidate->how_did_you_hear_about_us == 'brochure') || old('how_did_you_hear_about_us') == 'brochure') selected @endif>Brochure</option>
 					   							<option value="facebook"  @if( (isset($precandidate) && $precandidate->how_did_you_hear_about_us == 'facebook') || old('how_did_you_hear_about_us') == 'facebook') selected @endif>Facebook</option>
 					   							<option value="friend" @if( (isset($precandidate) && $precandidate->how_did_you_hear_about_us == 'friend') || old('how_did_you_hear_about_us') == 'friend') selected @endif>Friend</option>
 					   							<option value="former_contestant" @if( (isset($precandidate) && $precandidate->how_did_you_hear_about_us == 'former_contestant') || old('how_did_you_hear_about_us') == 'former_contecostumetant') selected @endif>Former Contestant</option>
+					   							<option value="instagram" @if( (isset($precandidate) && $precandidate->how_did_you_hear_about_us == 'instagram') || old('how_did_you_hear_about_us') == 'instagram') selected @endif>Instagram</option>
 					   							<option value="online_ad"  @if( (isset($precandidate) && $precandidate->how_did_you_hear_about_us == 'online_ad') || old('how_did_you_hear_about_us') == 'online_ad') selected @endif>Online AD</option>
 					   							<option value="school_teacher" @if( (isset($precandidate) && $precandidate->how_did_you_hear_about_us == 'school_teacher') || old('how_did_you_hear_about_us') == 'school_teacher') selected @endif>School Teacher/Coach</option>
 					   							<option value="website_google" @if( (isset($precandidate) && $precandidate->how_did_you_hear_about_us == 'website_google') || old('how_did_you_hear_about_us') == 'website_google') selected @endif>Website / Google Search</option>

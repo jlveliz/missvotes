@@ -26,13 +26,12 @@
 				<li>@lang('requirement.txt_13')</li>
 				<li>@lang('requirement.txt_14')</li>
 				<li>@lang('requirement.txt_15')</li>
-				<li>@lang('requirement.txt_16')</li>
 			</ol>
 			<form action="{{ route('apply.aceptrequirements') }}" method="POST">
 				{{ csrf_field() }}
 				<div class="checkbox">
 				    <label>
-				      <input type="checkbox" name="acept-terms" value="1"> @lang('requirement.txt_terms')
+				      <input type="checkbox" name="acept-terms" value="1"><b> @lang('requirement.txt_terms')</b>
 				    </label>
 				</div>
 				<div class="text-center">

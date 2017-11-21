@@ -140,7 +140,7 @@ class ApplyCandidateController extends Controller
                 ->setDescription('Pay Apply Process Miss Panamerican In')
                 ->setCurrency('USD')
                 ->setQuantity(1)
-                ->setPrice('60.00');
+                ->setPrice('20.00');
 
 
         $itemList = Paypalpayment::itemList();
@@ -148,7 +148,7 @@ class ApplyCandidateController extends Controller
         
 
         $amount = Paypalpayment::amount();
-        $amount->setCurrency("USD")->setTotal('60.00');
+        $amount->setCurrency("USD")->setTotal('20.00');
 
 
         $transaction = Paypalpayment::transaction();
