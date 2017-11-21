@@ -26,6 +26,9 @@ return [
 	'img_btn_data' => 'Change image',
 	'event_lbl_data' => 'Event',
 	'd_event_lbl_data' => 'Event Date',
-	'you' => 'You'
+	'you' => 'You',
+	'gender_data' => 'Gender',
+	'male_gender' => 'Male',
+	'female_gender' => 'Female',
 
 ];

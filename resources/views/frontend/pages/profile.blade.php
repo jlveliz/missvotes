@@ -99,6 +99,8 @@
 			    				</tr>
 			    				<tr>
 			    					<td><b>@lang('account_profile.last_name_data'): </b> {{Auth::user()->last_name}}</td>
+			    				</tr><tr>
+			    					<td><b>@lang('account_profile.gender_data'): </b> {{ Auth::user()->gender == 'male' ? trans('account_profile.male_gender') :  trans('account_profile.female_gender')}}</td>
 			    				</tr>
 			    				<tr>
 			    					<td><b>@lang('account_profile.email_data'): </b> {{Auth::user()->email}}</td>
@@ -133,6 +135,17 @@
 			    			<div class="col-sm-6">
 			    				<input type="text" name="last_name" id="last_name" class="form-control" value="{{Auth::user()->last_name}}">
 			    				@if ($errors->has('last_name')) <p class="help-block">{{ $errors->first('last_name') }}</p> @endif
+			    			</div>
+			    		</div>
+
+			    		<div class="form-group @if($errors->has('gender')) has-error @endif">
+			    			<label for="last_name" class="col-sm-2 control-label text-left"><b>@lang('account_profile.gender_data'): </b></label>
+			    			<div class="col-sm-6">
+			    				<select class="form-control" name="gender" id="gender">
+			    					<option value="male" @if(Auth::user()->gender == 'male') selected @endif>{{ trans('auth.register_fields.male') }}</option>
+            						<option value="female" @if(Auth::user()->gender == 'female') selected @endif>{{ trans('auth.register_fields.female') }}</option>
+          						</select>
+			    				@if ($errors->has('gender')) <p class="help-block">{{ $errors->first('gender') }}</p> @endif
 			    			</div>
 			    		</div>
 
