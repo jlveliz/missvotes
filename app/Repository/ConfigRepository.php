@@ -124,9 +124,9 @@ class ConfigRepository implements ConfigRepositoryInterface
 	{
 		
 		$currentCasting = self::getCurrentCasting();
-		dd($currentCasting);
-		// // dd($currentCasting['payload']['lang']);
-		// return $currentCasting['payload']['lang'];
+		$lang = config('app.locale');
+		if($currentCasting) $lang = $currentCasting['payload']['lang'];
+		return $lang;
 	}
 
 }

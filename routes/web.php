@@ -40,7 +40,7 @@ Route::group(['prefix'=>'raffles'],function(){
 	Route::get('pstatus','PaypalController@getPaymentStatus')->name('list.buy.ticket.status')->middleware('auth');
 });
 
-Route::group(['prefix'=>'apply'],function(){
+Route::group(['middleware'=>'can:postulate','prefix'=>'apply'],function(){
 	Route::get("requirements","ApplyCandidateController@requirements")->name('apply.requirements')->middleware('auth','isClient');
 	Route::post("requirements","ApplyCandidateController@aceptrequirements")->name('apply.aceptrequirements')->middleware('auth','isClient');
 	Route::get("aplication-process","ApplyCandidateController@aplicationProcess")->name('apply.aplicationProcess')->middleware('auth','isClient');

@@ -70,7 +70,8 @@ class RegisterClientController extends Controller
             'email' => 'required|email|max:255|unique:user',
             'address' => 'required',
             'password' => 'required|min:6|confirmed',
-            'password_confirmation' => 'required|min:6'
+            'password_confirmation' => 'required|min:6',
+            'gender'=> 'required',
         ],Lang::get('auth.validations_register'));
     }
 
@@ -120,6 +121,7 @@ class RegisterClientController extends Controller
             'is_admin' => (new Client())->getInactive(),
             'confirmation_code' => $confirmation_code,
             'password' => bcrypt($data['password']),
+            'gender' => $data['gender']
         ]);
         
     }

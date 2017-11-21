@@ -49,7 +49,10 @@ return [
         'city' => 'Ciudad',
         'address' => 'Dirección',
         'password' => 'Contraseña',
-        'confirm_password' => 'Confirmar Contraseña'
+        'confirm_password' => 'Confirmar Contraseña',
+        'gender' => 'Género',
+        'male' => 'Masculino',
+        'female' => 'Femenino'
     ],
     'register_options' => [
         'register' => 'Subscribirse',

@@ -11,7 +11,8 @@
       <form role="form" action="{{ route('client.register') }}" method="POST">
         {{ csrf_field() }}
         <div class="form-group  {{ $errors->has('email') ? ' has-error' : '' }}">
-            <input type="email" class="form-control" name="email" id="register-email" placeholder="{{ trans('auth.register_fields.email') }}" value="{{ old('email') }}" autofocus required>
+            <label class="control-label">{{ trans('auth.register_fields.email') }}</label>
+            <input type="email" class="form-control" name="email" id="register-email" placeholder="" value="{{ old('email') }}" autofocus required>
             @if ($errors->has('email'))
                 <span class="help-block"><strong>{{ $errors->first('email') }}</strong></span>
             @endif
@@ -20,13 +21,15 @@
         <div class="form-group {{ $errors->has('name') || $errors->has('last_name') ? ' has-error' : '' }}">
           <div class="row">
             <div class="col-md-6">
-                <input type="text" class="form-control" name="name" id="register-name" placeholder="{{ trans('auth.register_fields.name') }}" value="{{ old('name') }}">
+                <label class="control-label">{{ trans('auth.register_fields.name') }}</label>
+                <input type="text" class="form-control" name="name" id="register-name" placeholder="" value="{{ old('name') }}">
                  @if ($errors->has('name'))
                   <span class="help-block"><strong>{{ $errors->first('name') }}</strong></span>
                   @endif
             </div>
             <div class="col-md-6">
-                <input type="text" class="form-control" name="last_name" id="register-lastname" placeholder="{{ trans('auth.register_fields.last_name') }}" value="{{ old('last_name')}}">
+                <label class="form-label">{{ trans('auth.register_fields.last_name') }}</label>
+                <input type="text" class="form-control" name="last_name" id="register-lastname" placeholder="" value="{{ old('last_name')}}">
                 @if ($errors->has('last_name'))
                  <span class="help-block"><strong>{{ $errors->first('last_name') }}</strong></span>
                  @endif
@@ -35,8 +38,8 @@
         </div>
 
         <div class="form-group {{ $errors->has('country_id') ? ' has-error' : '' }}">
+          <label class="form-label">{{ trans('auth.register_fields.country-select') }}</label>
           <select class="form-control" name="country_id" id="country">
-              <option value="null"> {{ trans('auth.register_fields.country-select') }} </option>
             @foreach (\MissVote\Models\Country::orderby('name')->get() as $country)
               <option value="{{ $country->id }}" @if($country->id == old('country_id')) selected @endif>{{ $country->name }}</option>
             @endforeach
@@ -44,32 +47,46 @@
            @if ($errors->has('country_id'))
               <span class="help-block"><strong>{{ $errors->first('country_id') }}</strong></span>
           @endif
+        </div>
 
+        <div class="form-group {{ $errors->has('gender') ? ' has-error' : '' }}">
+          <label class="form-label">{{ trans('auth.register_fields.gender') }}</label>
+          <select class="form-control" name="gender" id="gender">
+            <option value="male" @if('male' == old('gender')) selected @endif>{{ trans('auth.register_fields.male') }}</option>
+            <option value="female" @if('female' == old('gender')) selected @endif>{{ trans('auth.register_fields.female') }}</option>
+          </select>
+          @if ($errors->has('gender'))
+              <span class="help-block"><strong>{{ $errors->first('gender') }}</strong></span>
+          @endif
         </div>
 
         <div class="form-group {{ $errors->has('city') ? ' has-error' : '' }}">
-            <input type="text" class="form-control" name="city" id="city" placeholder="{{ trans('auth.register_fields.city') }}" value="{{ old('city') }}">
+            <label class="form-label">{{ trans('auth.register_fields.city') }}</label>
+            <input type="text" class="form-control" name="city" id="city" placeholder="" value="{{ old('city') }}">
              @if ($errors->has('city'))
               <span class="help-block"><strong>{{ $errors->first('city') }}</strong></span>
           @endif
         </div>
 
         <div class="form-group {{ $errors->has('address') ? ' has-error' : '' }}">
-            <input type="text" class="form-control" name="address" id="register-address" placeholder="{{ trans('auth.register_fields.address') }}" value="{{ old('address') }}">
+            <label class="form-label">{{ trans('auth.register_fields.address') }}</label>
+            <input type="text" class="form-control" name="address" id="register-address" placeholder="" value="{{ old('address') }}">
              @if ($errors->has('address'))
               <span class="help-block"><strong>{{ $errors->first('address') }}</strong></span>
           @endif
         </div>
         
         <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
-            <input type="password" class="form-control" name="password" id="register-password" placeholder="{{ trans('auth.register_fields.password') }}">
+            <label class="form-label">{{ trans('auth.register_fields.password') }}</label>
+            <input type="password" class="form-control" name="password" id="register-password" placeholder="">
              @if ($errors->has('password'))
               <span class="help-block"><strong>{{ $errors->first('password') }}</strong></span>
           @endif
         </div> 
 
         <div class="form-group {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-            <input type="password" class="form-control" name="password_confirmation" id="register-password-confirmation" placeholder="{{ trans('auth.register_fields.confirm_password') }}">
+            <label class="form-label">{{ trans('auth.register_fields.confirm_password') }}</label>
+            <input type="password" class="form-control" name="password_confirmation" id="register-password-confirmation" placeholder="">
             @if ($errors->has('password_confirmation'))
               <span class="help-block"><strong>{{ $errors->first('password_confirmation') }}</strong></span>
           @endif

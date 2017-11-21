@@ -39,6 +39,7 @@ class UserRequest extends FormRequest
                     'address' => 'required',
                     'password' => 'required',
                     'password_repeat' => 'required|same:password',
+                    // 'gender' => 'required'
                 ];
             }
             case 'PUT':

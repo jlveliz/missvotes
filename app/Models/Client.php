@@ -35,7 +35,8 @@ class Client extends Authenticatable
         'is_admin',
         'confirmation_code',
         'confirmed',
-        'photo'
+        'photo',
+        'gender'
     ];
 
     /**

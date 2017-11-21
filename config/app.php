@@ -77,7 +77,7 @@ return [
     |
     */
 
-    'locale' => \MissVote\Repository\ConfigRepository::getLangCurrentCasting(),
+    'locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -192,6 +192,7 @@ return [
         MissVote\Providers\EventServiceProvider::class,
         MissVote\Providers\RouteServiceProvider::class,
         MissVote\Providers\ExtendValidatorServiceProvider::class,
+        MissVote\Providers\ConfigServiceProvider::class,
     ],
 
     /*

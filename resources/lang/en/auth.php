@@ -48,7 +48,10 @@ return [
         'city' => 'City / Ciudad',
         'address' => 'Address / Domicilio',
         'password' => 'Password / Contrase&ntilde;a',
-        'confirm_password' => 'Confirm Password / Confirmar Contrase&ntilde;a'
+        'confirm_password' => 'Confirm Password / Confirmar Contrase&ntilde;a',
+        'gender' => 'Gender',
+        'male' => 'Male',
+        'female' => 'Female'
     ],
     'register_options' => [
         'register' => 'Subscribe',

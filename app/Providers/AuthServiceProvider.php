@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Auth;
 use MissVote\Models\Vote;
+use MissVote\Repository\ConfigRepository;
 use DB;
 
 class AuthServiceProvider extends ServiceProvider
@@ -52,6 +53,13 @@ class AuthServiceProvider extends ServiceProvider
                             ->whereRaw("DATE_FORMAT(created_at,".DB::raw("'%Y-%m-%d'").") = DATE_FORMAT(".DB::raw("now()").",".DB::raw("'%Y-%m-%d'").")")
                             ->first();
             if (!$existVote) return true;
+            return false;
+        });
+
+        Gate::define('postulate',function($user){
+            $repoConf = new ConfigRepository();
+            $isCastingOpen = $repoConf->find(['key'=>'exist_casting'],false);
+            if ($isCastingOpen && $user->gender == 'female') return true;
             return false;
         });
     }
