@@ -29,9 +29,12 @@ class SendDataToPrecandidate
      */
     public function handle(PredidateSubscribed $registred)
     {
-       $mail = Mail::send('frontend.emails.casting',['precandidate'=>$registred->precandidate], function($message) use ($registred) {
-            $message->to($registred->precandidate->email , $registred->precandidate->name .' '. $registred->precandidate->last_name)
-                ->subject(Lang::get('email.casting',['name'=>config('app.name')]));
+       
+       $precandidate = $registred->precandidate;
+      
+       Mail::send('frontend.emails.casting',['precandidate'=>$precandidate], function($message) use ($precandidate) {
+            $message->to($precandidate->email , $precandidate->name .' '. $precandidate->last_name)
+                ->subject(Lang::get('email.casting.subject',['name'=>config('app.name')]));
         });
     }
 }
