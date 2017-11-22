@@ -168,7 +168,7 @@ class WebsiteController extends Controller
     public function updateAccount(Request $request)
 
     {
-
+      
         $valition = Validator::make($request->all(),
 
             [
@@ -219,7 +219,7 @@ class WebsiteController extends Controller
 
         $client = $this->clientRepo->find(Auth::user()->id);
 
-        
+        $data = $request->all();
 
         if (!$client) {
 
@@ -231,10 +231,6 @@ class WebsiteController extends Controller
 
 
 
-            $client->fill($request->all());
-
-
-
             $sessionData['mensaje'] = Lang::get('auth.profile.update_profile');
 
             $sessionData['action'] = 'update';
@@ -243,7 +239,8 @@ class WebsiteController extends Controller
 
             if ($request->has('password')) {
 
-                $client->password = Hash::make($request->get('password'));
+
+                $data['password'] = Hash::make($request->get('password'));
 
                 // $sessionData['mensaje'] = Lang::get('auth.profile.change_password.change_success');
 
@@ -252,10 +249,13 @@ class WebsiteController extends Controller
 
 
             } else {
-
+                unset($data['password']);
                 event(new ClientActivity(Auth::user()->id,'activity.auth.update_profile'));
 
             }
+
+
+            $client->fill($data);
 
 
 
