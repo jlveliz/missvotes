@@ -95,7 +95,9 @@ Route::group(['prefix'=>'backend'],function(){
 	Route::resource('/memberships', 'MembershipController');
 	Route::resource('/countries', 'CountryController');
 	Route::resource('/misses', 'MissController');
-	Route::resource('/config', 'ConfigController');
+	Route::get('/config', 'ConfigController@index')->name('config.index');
+	Route::post('/config', 'ConfigController@store')->name('config.store');
+	Route::delete('/config', 'ConfigController@destroy')->name('config.destroy');
 	Route::resource('/precandidates', 'PrecandidateController',['only'=>['index','show','update','destroy']]);
 	Route::resource('/activities', 'ClientActivityController',['only'=>['index']]);
 	Route::post('/upload-photo', 'MissController@uploadPhoto');

@@ -173,6 +173,7 @@
     <script src="{{ asset('public/js/datatables/dataTables.scroller.min.js') }}"></script>
     <script src="{{ asset('public/js/moment/moment.js') }}"></script>
     <script type="text/javascript" src="{{ asset('public/js/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('public/js/ckeditor/ckeditor.js') }}"></script>
 
     @yield('js')
     <script src="{{ asset('public/js/backend-app.js') }}"></script>

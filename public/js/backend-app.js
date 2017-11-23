@@ -144,3 +144,10 @@ $(document).ready(function() {
 
 });
 /**********************/
+
+/**********CONFIG-MAIL***********/
+$(document).ready(function() {
+    CKEDITOR.replace( 'email-body' );
+});
+/**********************/
+

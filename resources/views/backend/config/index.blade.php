@@ -17,6 +17,7 @@
 	    @if (array_key_exists('exist_casting', $gConfig) && $gConfig['exist_casting'] == '1' )
 	    <li role="presentation"><a href="#inscriptions" aria-controls="inscriptions" role="tab" data-toggle="tab">{{trans('backend.config.index.tab_castings')}}</a></li>
 	    @endif
+	    <li role="presentation"><a href="#mail" aria-controls="mail" role="tab" data-toggle="tab">{{trans('backend.config.index.tab_email')}}</a></li>
   	</ul>
 
   	<div class="tab-content tab-config">
@@ -44,6 +45,8 @@
     		</form>
     	</div>
 		
+
+		{{-- CASTING --}}
 		@if (array_key_exists('exist_casting', $gConfig) && $gConfig['exist_casting'] == '1')
 		<div role="tabpanel" class="tab-pane" id="inscriptions"> 
 			<form action="{{ route('config.store') }}" method="POST">
@@ -101,6 +104,40 @@
 			</form>
 		</div>
 		@endif
+
+
+		{{-- MAIL --}}
+		<div role="tabpanel" class="tab-pane" id="mail">
+			<form action="{{ route('config.store') }}" method="POST">
+				{{ csrf_field() }}
+				<input type="hidden" name="key" value="email_template_yes_preselected">
+				<div class="form-group col-md-8 col-sm-8 col-xs-12 ">
+					<label class="control-label">{{trans('backend.config.tab_mail.subject')}} </label>
+					<input type="text" class="form-control" name="payload[subject]" value="@if(array_key_exists('email_template_yes_preselected', $gConfig)){{$gConfig['email_template_yes_preselected']['subject']}} @endif" autofocus>
+				</div>
+				<div class="form-group col-md-12 col-sm-12 col-xs-12">
+					<p><b>{{ trans('backend.config.tab_mail.list_variables') }}</b></p>
+					<ul>
+						<li>Name : $name</li>
+						<li>Last Name : $lastname</li>
+						<li>Last Name : $lastname</li>
+					</ul>
+				</div>
+				<div class="form-group col-md-12 col-sm-12 col-xs-12 ">
+					<label class="control-label">{{trans('backend.config.tab_mail.body')}} </label>
+					<textarea type="text" id="email-body" class="form-control" name="payload[body]">
+						@if(array_key_exists('email_template_yes_preselected', $gConfig))
+							{{$gConfig['email_template_yes_preselected']['body']}}
+						@endif
+					</textarea>
+				</div>
+
+				<div class="form-group  col-md-12 col-sm-12 col-xs-12">
+	                <button type="submit" class="btn btn-success">{{ trans('backend.country.create-edit.btn_save') }}</button>
+	            </div>
+				
+			</form>
+		</div>
 
   	</div>
 

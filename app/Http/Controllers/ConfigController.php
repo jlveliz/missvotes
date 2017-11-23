@@ -35,8 +35,9 @@ class ConfigController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
+      
         $gConfig = [];
 
         //casting
@@ -95,7 +96,7 @@ class ConfigController extends Controller
             $gConfig[$config->key] = $config->payload;
         } 
 
-        return redirect()->action('ConfigController@index',compact('gConfig'))->with($sessionData);
+        return redirect()->action('ConfigController@index')->with($sessionData);
         
     }
 

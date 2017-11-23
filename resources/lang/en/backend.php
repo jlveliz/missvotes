@@ -344,6 +344,7 @@
 				'panel_title' => 'Settings',
 				'tab_general' => 'General',
 				'tab_castings' => 'Casting',
+				'tab_email' => 'Email',
 				'flag_message_success' => 'Config Updated Satisfactorily',
 				'flag_message_error' => 'Config could not be updated, try again ',
 				
@@ -377,6 +378,11 @@
 				'btn_cancel' => 'Cancel',
 
 			],
+			'tab_mail' => [
+				'subject' => 'Subject',
+				'body' => 'Body'
+			]
+
 		],
 
 

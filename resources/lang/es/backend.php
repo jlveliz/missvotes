@@ -99,6 +99,52 @@
 				'btn_save' => 'Save',
 			],
 		],
+		'config' => [
+			'index' => [
+				'panel_title' => 'Settings',
+				'tab_general' => 'General',
+				'tab_castings' => 'Casting',
+				'tab_email' => 'Email',
+				'flag_message_success' => 'Config Updated Satisfactorily',
+				'flag_message_error' => 'Config could not be updated, try again ',
+				
+			],
+
+			'tab_general_content' => [
+				'label_casting' => 'Exist Casting',
+				'select_casting_yes' => 'Yes',
+				'select_casting_no' => 'No',
+				'btn_save' => 'Save'
+			],
+
+			'tab_casting_content' => [
+				'tab_caption_title' => 'List of Castings',
+				'btn_create_casting' => 'Create Casting'
+			],
+			'modal_create_edit_casting' => [
+				'title' => 'Castings',
+				'start_date' => 'Start Date',
+				'end_date' => 'End Date',
+				'action' => 'Action',
+				'lang' => 'Language',
+				'available_countries' => 'Available Contries',
+				'dont_exist' => 'No Data',
+				'btn_action_insert' => 'Insert',
+				'option_language_key_es' => 'es',
+				'option_language_label_es' => 'Español',
+				'option_language_key_en' => 'en',
+				'option_language_label_en' => 'English',
+				'btn_save' => 'Save',
+				'btn_cancel' => 'Cancel',
+
+			],
+			'tab_mail' => [
+				'subject' => 'Subject',
+				'body' => 'Body',
+				'list_variables' => 'List of Variables'
+			]
+
+		],
 
 
 	];
