@@ -352,8 +352,8 @@ class ApplyCandidateController extends Controller
         $country->secuencial_casting_code++;
         $country->save();
         $countryCode = $country->code;
-        
-        for ($i=0; $i <= count($secuencial) ; $i++) { 
+
+        for ($i=0; $i <= count($secuencial); $i++) { 
             $secuencial = '0'.$secuencial;
         }
 
