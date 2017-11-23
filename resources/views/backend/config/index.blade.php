@@ -120,7 +120,7 @@
 					<ul>
 						<li>Name : $name</li>
 						<li>Last Name : $lastname</li>
-						<li>Last Name : $lastname</li>
+						<li>Email: $email</li>
 					</ul>
 				</div>
 				<div class="form-group col-md-12 col-sm-12 col-xs-12 ">
