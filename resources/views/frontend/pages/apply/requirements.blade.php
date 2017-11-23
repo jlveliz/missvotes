@@ -14,7 +14,7 @@
 				<li>@lang('requirement.txt_01')</li>
 				<li>@lang('requirement.txt_02')</li>
 				<li>@lang('requirement.txt_03')</li>
-				<li>@lang('requirement.txt_04')</li>
+				<li>@lang('requirement.txt_04_A') <b>@lang('requirement.txt_04_B')</b></li>
 				<li>@lang('requirement.txt_05')</li>
 				<li>@lang('requirement.txt_06')</li>
 				<li>@lang('requirement.txt_07')</li>

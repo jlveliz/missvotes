@@ -41,4 +41,12 @@ class User extends Authenticatable
     {
         return $this->hasOne('MissVote\Models\Client','id');
     }
+
+    public static function boot(){
+        parent::boot();
+
+        static::creating(function($user){
+            $user->gender = "male";
+        });
+    }
 }

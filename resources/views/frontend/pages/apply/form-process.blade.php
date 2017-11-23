@@ -292,28 +292,7 @@
 					   						@if ($errors->has('why_would_you_win')) <p class="help-block">{{ $errors->first('why_would_you_win') }}</p> @endif
 					   					</div>
 					   				</div>
-									@if(!isset($precandidate))
-						   				<div class="form-group @if($errors->has('precandidate_face_photo')) has-error @endif">	
-											<label class="control-label">@lang('form_process_apply.lbl_face_photo')</label>
-											<input type="file" name="precandidate_face_photo" class="photo"  accept="image/*">
-											@if ($errors->has('precandidate_face_photo')) <p class="help-block">{{ $errors->first('precandidate_face_photo') }}</p> @endif
-
-										</div>
-										<div class="form-group @if($errors->has('precandidate_body_photo')) has-error @endif">
-											<label class="control-label">@lang('form_process_apply.lbl_body_photo')</label>
-											<input type="file" name="precandidate_body_photo"  accept="image/*" class="photo">
-											@if ($errors->has('precandidate_body_photo')) <p class="help-block">{{ $errors->first('precandidate_body_photo') }}</p> @endif
-										</div>
-									@else
-										<div class="col-md-6 col-sm-6 col-xs-12">
-                        					<img src="{{ asset($precandidate->precandidate_face_photo) }}" alt="" class="img-responsive">  
-                    					</div>
-                    					<div class="col-md-6 col-sm-6 col-xs-12">
-                        					<img src="{{ asset($precandidate->precandidate_body_photo) }}" alt="" class="img-responsive">
-                    					</div>
-									@endif
-
-
+									
 					   				@if(!isset($precandidate)) 
 						   				<div class="form-group @if($errors->has('precandidate_face_photo')) has-error @endif">	
 											<label class="control-label">@lang('form_process_apply.lbl_face_photo') <small class="text-warning">(@lang('form_process_apply.lbl_photo_format'))</small></label>
