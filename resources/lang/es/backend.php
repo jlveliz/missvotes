@@ -46,6 +46,15 @@
 				'th_client' => 'Client',
 				'th_ticket' => 'Ticket'
 			],
+			'casting_resume' => [
+				'title_one' => 'Casting #1',
+				'title_two' => 'Casting #2',
+				'th_country' => 'Country',
+				'th_num_applies' => 'Num Applies',
+				'th_num_preselected' => 'Preselected',
+				'th_num_no_preselected' => 'Not Preselected',
+				'th_num_missing' => 'Missing'
+			]
 		],
 
 
