@@ -3,29 +3,17 @@
 namespace MissVote\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use MissVote\RepositoryInterface\ClientApplyProcessRepositoryInterface;
-
-use MissVote\Http\Requests\PrecandidateRequest;
-
-use MissVote\RepositoryInterface\PrecandidateRepositoryInterface;
-
+use MissVote\Http\Requests\MissRequest;
+use MissVote\RepositoryInterface\MissRepositoryInterface;
 use MissVote\RepositoryInterface\CountryRepositoryInterface;
-
 use MissVote\Models\Country;
-
-use MissVote\Events\PredidateSubscribed;
-
+use MissVote\Events\ApplicantSubscribed;
 use Paypalpayment;
-
 use Stripe\Stripe;
-
 use Stripe\Customer;
-
 use Auth;
-
 use Carbon\Carbon;
-
 use Lang;
 
 
@@ -36,18 +24,18 @@ class ApplyCandidateController extends Controller
 
     private $apiContext;
 
-    private $precandidate;
+    private $applicant;
 
     private $country;
 
-    public function __construct(ClientApplyProcessRepositoryInterface $apply, PrecandidateRepositoryInterface $precandidate, CountryRepositoryInterface $country)
+    public function __construct(ClientApplyProcessRepositoryInterface $apply, MissRepositoryInterface $applicant, CountryRepositoryInterface $country)
     {
         $this->apply = $apply;
         $this->apiContext = Paypalpayment::apiContext(config('paypal_payment.Account.ClientId'),config('paypal_payment.Account.ClientSecret'));
         $config = config('paypal_payment'); // Get all config items as multi dimensional array
         $flatConfig = array_dot($config); // Flatten the array with dots
         $this->apiContext->setConfig($flatConfig);
-        $this->precandidate = $precandidate;
+        $this->applicant = $applicant;
         $this->country = $country;
     }
 
@@ -99,14 +87,14 @@ class ApplyCandidateController extends Controller
 
     	if ($existApply) {
             $countryselected = null;
-            $precandidate = null;
+            $applicant = null;
             if ($existApply->country_code_selected) {
                 $countryselected = Country::select('id')->where('code',$existApply->country_code_selected)->first()->id;
             }
             if ($existApply->process_status >= 3) {
-                $precandidate = $this->precandidate->find(['email'=>Auth::user()->email]) ?  $this->precandidate->find(['email'=>Auth::user()->email]) : null;
+                $applicant = $this->applicant->find(['email'=>Auth::user()->email]) ?  $this->applicant->find(['email'=>Auth::user()->email]) : null;
             }
-    		return view('frontend.pages.apply.form-process',compact('existApply','countryselected','precandidate','countries'));
+    		return view('frontend.pages.apply.form-process',compact('existApply','countryselected','applicant','countries'));
     	} else {
     		return redirect()->action('ApplyCandidateController@requirements')->with($sessionData);
     	}
@@ -318,22 +306,22 @@ class ApplyCandidateController extends Controller
     }
 
 
-    public function insertPrecandidate(PrecandidateRequest $request)
+    public function insertPrecandidate(MissRequest $request)
     {
         $data = $request->all();
 
         $data['code'] = $this->generateCode($request->get('country_id'));
         
-        $precandidate = $this->precandidate->save($data);
+        $applicant = $this->applicant->save($data);
         $sessionData = [
             'tipo_mensaje' => 'success',
             'mensaje' => Lang::get('form_process_apply.thanks_subscribe'),
         ];
-        if ($precandidate) {
+        if ($applicant) {
             $existApply = $this->apply->find(['client_id' => Auth::user()->id]);
             $existApply->process_status = 4;
             $existApply->save();
-            event(new PredidateSubscribed($precandidate));
+            event(new ApplicantSubscribed($applicant));
             return redirect()->to('apply/aplication-process#status')->with($sessionData);
             // return redirect()->away('http://www.misspanamericaninternational.com/online-application')->with($sessionData);
         } else {

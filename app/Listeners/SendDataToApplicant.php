@@ -2,7 +2,7 @@
 
 namespace MissVote\Listeners;
 
-use MissVote\Events\PredidateSubscribed;
+use MissVote\Events\ApplicantSubscribed;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Carbon\Carbon;
@@ -10,7 +10,7 @@ use Mail;
 use Lang;
 
 
-class SendDataToPrecandidate
+class SendDataToApplicant
 {
     /**
      * Create the event listener.
@@ -28,7 +28,7 @@ class SendDataToPrecandidate
      * @param  CandidateSubscribed  $event
      * @return void
      */
-    public function handle(PredidateSubscribed $registred)
+    public function handle(ApplicantSubscribed $registred)
     {
        
     
@@ -37,17 +37,17 @@ class SendDataToPrecandidate
         $nextMonth = Lang::get('email.casting.month_'.$now->addMonth()->format('m'));
         $minDayCurrentMonth = $now->startOfMonth()->format('d');
         $maxDayCurrentMonth = $now->endOfMonth()->format('d');
-        $precandidate = $registred->precandidate;
+        $applicant = $registred->applicant;
 
       
         Mail::send('frontend.emails.casting',[
-            'precandidate'=>$precandidate,
+            'applicant'=>$applicant,
             'currentMonth'=>$currentMonth,
             'minDayCurrentMonth'=>$minDayCurrentMonth,
             'maxDayCurrentMonth'=>$maxDayCurrentMonth,
             'nextMonth' => $nextMonth,
-        ], function($message) use ($precandidate) {
-            $message->to($precandidate->email , $precandidate->name .' '. $precandidate->last_name)
+        ], function($message) use ($applicant) {
+            $message->to($applicant->email , $applicant->name .' '. $applicant->last_name)
                 ->subject(Lang::get('email.casting.subject',['name'=>config('app.name')]));
         });
     }

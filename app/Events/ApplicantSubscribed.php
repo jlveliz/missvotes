@@ -9,20 +9,20 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class PredidateSubscribed
+class ApplicantSubscribed
 {
     use InteractsWithSockets, SerializesModels;
 
-    public $precandidate;
+    public $applicant;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($precandidate)
+    public function __construct($applicant)
     {
-        $this->precandidate = $precandidate;
+        $this->applicant = $applicant;
     }
 
     /**

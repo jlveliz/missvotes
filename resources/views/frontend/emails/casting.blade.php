@@ -79,8 +79,8 @@ $style = [
                                 <table style="{{ $style['email-body_inner'] }}"  width="100%">
                                     <tr>
                                         <td style="width: 50%">
-                                            <p>{{trans('email.casting.hi')}} <b>{{$precandidate->name}} {{$precandidate->last_name}}</b> {{trans('email.casting.thanks')}} {{trans('email.casting.welcome')}}</p>
-                                            <h2><b>{{ trans('email.casting.casting_code') }}</b> <b style="color: red">{{ $precandidate->code }}</b></h2>
+                                            <p>{{trans('email.casting.hi')}} <b>{{$applicant->name}} {{$applicant->last_name}}</b> {{trans('email.casting.thanks')}} {{trans('email.casting.welcome')}}</p>
+                                            <h2><b>{{ trans('email.casting.casting_code') }}</b> <b style="color: red">{{ $applicant->code }}</b></h2>
                                             <p>{{trans('email.casting.paragraph_1')}}</p>
                                             <p>{{trans('email.casting.paragraph_2_part_1')}} <a href="http://google.com" target="_blank"> {{trans('email.casting.paragraph_2_part_1_rules')}} </a> 
                                             {{trans('email.casting.paragraph_2_part_2')}} </p>

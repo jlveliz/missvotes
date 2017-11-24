@@ -30,7 +30,6 @@ class Miss extends Model
         'code',
         'slug', 
         'country_id',
-        'is_precandidate',
         'state',
         'birthdate',
         'placebirth',
@@ -50,7 +49,9 @@ class Miss extends Model
         'dairy_philosophy',
         'why_would_you_win',
         'height_type_measure',
-        'weight_type_measure'
+        'weight_type_measure',
+        'applicant_face_photo',
+        'applicant_body_photo'
     ];
 
 
@@ -63,7 +64,7 @@ class Miss extends Model
     {
         parent::boot();
 
-        static::addGlobalScope(new MissScope);
+        // static::addGlobalScope(new MissScope);
     }
 
 

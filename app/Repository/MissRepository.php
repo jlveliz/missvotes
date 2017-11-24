@@ -39,8 +39,10 @@ class MissRepository implements MissRepositoryInterface
 				$miss = Miss::where('name',$field['name'])->first();
 			} elseif (array_key_exists('slug', $field)) {
 				$miss = Miss::where('slug',$field['slug'])->first();
+			}elseif (array_key_exists('email', $field)) {
+				$miss = Miss::where('email',$field['email'])->first();
 			}else {
-				throw new MissException("No se puede buscar a la Candidata",500);		
+				return false;
 			}
 		} elseif (is_string($field) || is_int($field)) {
 		
@@ -61,17 +63,32 @@ class MissRepository implements MissRepositoryInterface
 	public function save($data)
 	{
 		$miss = new Miss();
-		$photos = $data['photos'];
+		$photos = null;
+		if (array_key_exists('photos', $data)) {
+			$photos = $data['photos'];
+		}
+
+		if (array_key_exists('applicant_face_photo', $data)) {
+			$data['applicant_face_photo'] = $this->uploadApplicantPhoto($data['applicant_face_photo']);
+		}
+
+		if (array_key_exists('applicant_body_photo', $data)) {
+			$data['applicant_body_photo'] = $this->uploadApplicantPhoto($data['applicant_body_photo']);
+
+		}
+
 		$miss->slug = str_slug($data['name'].' '.$data['last_name'],'-');
 		$miss->fill($data);
 		if ($miss->save()) {
 			$keyMiss = $miss->getKey();
-			foreach ($photos as $key => $photo) {
-				$this->uploadPhoto($keyMiss,$photo);
+			if ($photos) {
+				foreach ($photos as $key => $photo) {
+					$this->uploadPhoto($keyMiss,$photo);
+				}
 			}
 			return  $this->find($keyMiss);
 		} 
-		throw new MissException("Ha ocurrido un error al guardar la candidata",500);
+		return abort(500);
 		
 	}
 
@@ -98,7 +115,7 @@ class MissRepository implements MissRepositoryInterface
 			}
 		}
 
-		throw new MissException("Ha ocurrido un error al actualizar la candidata",500);
+		return abort(500);
 
 	}
 
@@ -108,13 +125,48 @@ class MissRepository implements MissRepositoryInterface
 			$miss->delete();
 			return true;
 		}
-		throw new MissException("Ha ocurrido un error al eliminar la candidata",500);
+		return abort(500);
 	}
 
 
 	private function pathUplod() {
 		return public_path().'/uploads';
 	}
+
+
+	
+	public function uploadApplicantPhoto($photo)
+	{
+		$arrayModel=[];
+		if ($photo->isValid()) {
+			
+			$realPath = $photo->getRealPath();
+			$image = Image::make($realPath);
+			$isLandScape = true;
+
+			if ($image->width() >= $image->height()) {
+				$isLandScape = false;
+			}
+			//is landscape
+			if ($isLandScape) {
+				$image->resize(309,482,function($constraint){
+					$constraint->aspectRatio();
+				});
+			} else {
+				//is portrait
+				$image->resize(722,482,function($constraint){
+					$constraint->aspectRatio();
+				});				
+			}
+
+
+			$imageName = '_'.str_random().'.'. $photo->getClientOriginalExtension();
+			if($image->save($this->pathUplod().'/'.$imageName)){
+				return 'public/uploads/'.$imageName;
+			}
+		}
+	}
+
 
 
 	public function uploadPhoto($missId,$photo)

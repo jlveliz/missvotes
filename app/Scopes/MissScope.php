@@ -20,6 +20,6 @@ class MissScope Implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where('is_precandidate','0');
+        $builder->where('state','4');
     }
 }

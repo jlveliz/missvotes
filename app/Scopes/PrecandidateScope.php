@@ -20,6 +20,6 @@ class PrecandidateScope Implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where('is_precandidate','1');
+        // $builder->where('is_precandidate','1');
     }
 }

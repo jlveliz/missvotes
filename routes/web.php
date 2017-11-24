@@ -51,7 +51,7 @@ Route::group(['middleware'=>'can:postulate','prefix'=>'apply'],function(){
 
 	Route::post("pay-stripe-aplication-process",'ApplyCandidateController@payStripeApplyProcess')->name('pay.stripe.aplication')->middleware('auth','isClient');
 
-	Route::post('insert-precandidate','ApplyCandidateController@insertPrecandidate')->name('insert.precandidate')->middleware('auth','isClient');;
+	Route::post('insert-applicant','ApplyCandidateController@insertPrecandidate')->name('insert.applicant')->middleware('auth','isClient');;
 });
 
 Route::group(['prefix'=>'auth'],function(){
@@ -98,7 +98,7 @@ Route::group(['prefix'=>'backend'],function(){
 	Route::get('/config', 'ConfigController@index')->name('config.index');
 	Route::post('/config', 'ConfigController@store')->name('config.store');
 	Route::delete('/config', 'ConfigController@destroy')->name('config.destroy');
-	Route::resource('/precandidates', 'PrecandidateController',['only'=>['index','show','update','destroy']]);
+	// Route::resource('/precandidates', 'PrecandidateController',['only'=>['index','show','update','destroy']]);
 	Route::resource('/activities', 'ClientActivityController',['only'=>['index']]);
 	Route::post('/upload-photo', 'MissController@uploadPhoto');
 	Route::post('/delete-photo', 'MissController@deletePhoto');
