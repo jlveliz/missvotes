@@ -9,4 +9,5 @@ interface  MissRepositoryInterface extends CoreRepositoryInterface {
 
 	public function uploadPhoto($key,$photo);
 
+
 }

@@ -3,6 +3,7 @@ namespace MissVote\Repository;
 
 use MissVote\RepositoryInterface\MissRepositoryInterface;
 use MissVote\Models\Miss;
+use MissVote\Repository\ConfigRepository;
 use Carbon\Carbon;
 use Image;
 /**

@@ -109,7 +109,7 @@
 			],
 		],
 
-		'precandidate' => [
+		'applicant' => [
 			'index' => [
 				'panel_title' => 'Precandidates',
 				'panel_caption' => 'List of Precandidates',

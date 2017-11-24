@@ -4,9 +4,9 @@ namespace MissVote\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use MissVote\Http\Requests\PrecandidateRequest;
+// use MissVote\Http\Requests\PrecandidateRequest;
 
-use MissVote\RepositoryInterface\PrecandidateRepositoryInterface;
+use MissVote\RepositoryInterface\MissRepositoryInterface;
 
 use MissVote\Models\Country;
 
@@ -14,17 +14,17 @@ use Response;
 
 use Redirect;
 
-class PrecandidateController extends Controller
+class ApplicantController extends Controller
 {
     
-    public $precandidate;
+    public $applicant;
 
 
-    public function __construct(PrecandidateRepositoryInterface $precandidate)
+    public function __construct(MissRepositoryInterface $applicant)
     {
         $this->middleware('auth');
         $this->middleware('can:acess-backend');
-        $this->precandidate = $precandidate;
+        $this->applicant = $applicant;
     }
 
     /**
@@ -34,11 +34,11 @@ class PrecandidateController extends Controller
      */
     public function index()
     {
-        $precandidates = $this->precandidate->enum();
+        $applicants = $this->applicant->enum();
         $data = [
-            'precandidates' => $precandidates
+            'applicants' => $applicants
         ];
-        return view('backend.precandidate.index',$data);
+        return view('backend.applicant.index',$data);
     }
 
     /**
@@ -49,7 +49,7 @@ class PrecandidateController extends Controller
     public function create()
     {
         $countries = Country::orderby('name')->get();
-        return view('backend.precandidate.create',compact('countries'));
+        return view('backend.applicant.create',compact('countries'));
     }
 
     /**
@@ -60,19 +60,19 @@ class PrecandidateController extends Controller
     public function store(PrecandidateRequest $request)
     {
         $data = $request->all();
-        $precandidate = $this->precandidate->save($data);
+        $applicant = $this->applicant->save($data);
         $sessionData = [
             'tipo_mensaje' => 'success',
             'mensaje' => '',
         ];
-        if ($precandidate) {
-            $sessionData['mensaje'] = trans('backend.precandidate.create-edit.flag_success_saved');
+        if ($applicant) {
+            $sessionData['mensaje'] = trans('backend.applicant.create-edit.flag_success_saved');
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = trans('backend.precandidate.create-edit.flag_error_saved');
+            $sessionData['mensaje'] = trans('backend.applicant.create-edit.flag_error_saved');
         }
         
-        return Redirect::action('PrecandidateController@edit',$precandidate->id)->with($sessionData);
+        return Redirect::action('PrecandidateController@edit',$applicant->id)->with($sessionData);
         
     }
 
@@ -84,9 +84,9 @@ class PrecandidateController extends Controller
      */
     public function show($id)
     {
-        $precandidate = $this->precandidate->find($id);
-        return view('backend.precandidate.show',[
-            'precandidate'=>$precandidate
+        $applicant = $this->applicant->find($id);
+        return view('backend.applicant.show',[
+            'applicant'=>$applicant
             ]);   
     }
 
@@ -110,27 +110,27 @@ class PrecandidateController extends Controller
     public function update(PrecandidateRequest $request, $id)
     {
         $data = $request->all();
-        $precandidate = $this->precandidate->edit($id,$data);
+        $applicant = $this->applicant->edit($id,$data);
         $sessionData = [
             'tipo_mensaje' => 'success',
             'mensaje' => '',
         ];
-        if ($precandidate) {
+        if ($applicant) {
 
-            $sessionData['mensaje'] = trans('backend.precandidate.create-edit.flag_success_updated');
+            $sessionData['mensaje'] = trans('backend.applicant.create-edit.flag_success_updated');
 
-        } elseif(!$precandidate && $request->has('is_precandidate')) {
-            $sessionData['mensaje'] = trans('backend.precandidate.create-edit.flag_qualited');
+        } elseif(!$applicant && $request->has('is_applicant')) {
+            $sessionData['mensaje'] = trans('backend.applicant.create-edit.flag_qualited');
             
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = trans('backend.precandidate.create-edit.flag_error_updated');
+            $sessionData['mensaje'] = trans('backend.applicant.create-edit.flag_error_updated');
         }
 
-        if ($request->has('is_precandidate')) {
+        if ($request->has('is_applicant')) {
             return Redirect::action('PrecandidateController@index')->with($sessionData);
         } else {
-            return Redirect::action('PrecandidateController@show',$precandidate->id)->with($sessionData);
+            return Redirect::action('PrecandidateController@show',$applicant->id)->with($sessionData);
         }
     }
 
@@ -142,18 +142,18 @@ class PrecandidateController extends Controller
      */
     public function destroy($id)
     {
-        $precandidate = $this->precandidate->remove($id);
+        $applicant = $this->applicant->remove($id);
         
         $sessionData = [
             'tipo_mensaje' => 'success',
             'mensaje' => '',
         ];
         
-        if ($precandidate) {
-            $sessionData['mensaje'] = trans('backend.precandidate.create-edit.flag_success_deleted');
+        if ($applicant) {
+            $sessionData['mensaje'] = trans('backend.applicant.create-edit.flag_success_deleted');
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = trans('backend.precandidate.create-edit.flag_error_deleted');
+            $sessionData['mensaje'] = trans('backend.applicant.create-edit.flag_error_deleted');
         }
         
         return Redirect::action('PrecandidateController@index')->with($sessionData);
@@ -162,18 +162,18 @@ class PrecandidateController extends Controller
 
     public function uploadPhoto(Request $request)
     {
-        $precandidateId = $request->get('precandidate_id');
+        $applicantId = $request->get('applicant_id');
         $photo = $request->file('photos');
         // dd($photo[0]);
-        if($precandidate = $this->precandidate->uploadPhoto($precandidateId,$photo[0])){
-            return ['precandidate'=>$precandidate];
+        if($applicant = $this->applicant->uploadPhoto($applicantId,$photo[0])){
+            return ['applicant'=>$applicant];
         }
     }
 
     public function deletePhoto(Request $request)
     {
         $key = $request->get('key');
-        if ($this->precandidate->deletePhoto($key)) {
+        if ($this->applicant->deletePhoto($key)) {
             return ['success'=>"It's cool"];
         }
     }

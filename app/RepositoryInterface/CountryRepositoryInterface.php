@@ -7,4 +7,6 @@ interface  CountryRepositoryInterface extends CoreRepositoryInterface {
 
 	public function getSelectedCountries($castingId  = null);
 
+	public function getResumeCurrentCastings($casting);
+
 }

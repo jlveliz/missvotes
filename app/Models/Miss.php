@@ -17,6 +17,15 @@ class Miss extends Model
 
     private $isPrecandidate = 0;
 
+    //states of miss
+    const FORRATING = 0;
+    const PRESELECTED = 1;
+    const NOPRESELECTED = 2;
+    const PRECANDIDATE = 3;
+    const DISQUALIFIEDPRECANDIDATE = 4;
+    const MISS = 5;
+    const DISQUALIFIEDMISS = 6;
+
 
 
       /**

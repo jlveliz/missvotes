@@ -4,7 +4,8 @@ namespace MissVote\Repository;
 use MissVote\RepositoryInterface\CountryRepositoryInterface;
 use MissVote\Repository\ConfigRepository;
 use MissVote\Models\Country;
-
+use MissVote\Models\Miss;
+use DB;
 use Image;
 /**
 * 
@@ -137,6 +138,21 @@ class CountryRepository implements CountryRepositoryInterface
 		if ($casting) {
 			return Country::where('casting_id',$casting->id)->whereNotNull('flag_img')->orderBy('name')->get();
 		}
+	}
+
+
+	public function getResumeCurrentCastings($casting)
+	{
+		
+		return Country::selectRaw("country.name country , count(miss.code) counter,
+				(select count(miss.id) from miss where miss.state = '".MISS::PRESELECTED."' and country.id = miss.country_id) preselected,
+				(select count(miss.id) from miss where miss.state = '".MISS::NOPRESELECTED."' and country.id = miss.country_id) nopreselected,
+				(select count(miss.id) from miss where miss.state = '".MISS::FORRATING."' and country.id = miss.country_id) missing")
+				->leftJoin('miss','miss.country_id','=','country.id')
+				->whereRaw("country.casting_id = ( SELECT config.id FROM config WHERE config.key = '".$casting."')")
+				->groupBy('country.name')
+				->get();
+
 	}
 
 }
