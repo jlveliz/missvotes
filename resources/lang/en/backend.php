@@ -380,7 +380,8 @@
 			],
 			'tab_mail' => [
 				'subject' => 'Subject',
-				'body' => 'Body'
+				'body' => 'Body',
+				'list_variables'=> 'Available Variables'
 			]
 
 		],
