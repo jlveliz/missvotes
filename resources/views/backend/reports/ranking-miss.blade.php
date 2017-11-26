@@ -1,5 +1,8 @@
 <div class="panel panel-default">
-  <div class="panel-heading">{{ trans('backend.dashboard.ranking_block.title') }}</div>
+  <div class="panel-heading">
+  {{ trans('backend.dashboard.ranking_block.title') }}
+  <a target="_blank" href="{{ route('dashboard.export.tickets') }}"  type="button" class="btn btn-default"><i class="fa fa-file-pdf-o"> </i> PDF</a>
+</div>
   <div class="panel-body">
   	<table id="ranking-datatable" class="table table-bordered">
   		<thead>

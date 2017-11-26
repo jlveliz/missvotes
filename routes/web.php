@@ -90,14 +90,19 @@ Route::group(['prefix'=>'backend'],function(){
     Route::post('logout', 'Auth\LoginAdminController@logout')->name('logout');
     //resources
     Route::get('dashboard', 'ReportController@dashboard')->name('dashboard');
+    Route::get('casting/export', 'PdfExportController@resumeCasting')->name('dashboard.export.casting');
+    Route::get('tickets/export', 'PdfExportController@resumeTickets')->name('dashboard.export.tickets');
 	Route::resource('/users', 'UserController');
+	Route::get('/clients/export', 'PdfExportController@resumeClientTickets')->name('dashboard.export.clientTickets');
 	Route::resource('/clients', 'ClientController');
+	Route::get('/memberships/export', 'PdfExportController@resumeMemberships')->name('dashboard.export.memberships');
 	Route::resource('/memberships', 'MembershipController');
 	Route::resource('/countries', 'CountryController');
 	Route::resource('/misses', 'MissController');
 	Route::get('/config', 'ConfigController@index')->name('config.index');
 	Route::post('/config', 'ConfigController@store')->name('config.store');
 	Route::delete('/config', 'ConfigController@destroy')->name('config.destroy');
+	Route::get('/applicants/export', 'PdfExportController@applicants')->name('applicants.export');
 	Route::resource('/applicants', 'ApplicantController',['only'=>['index','show','update','destroy']]);
 	Route::resource('/activities', 'ClientActivityController',['only'=>['index']]);
 	Route::post('/upload-photo', 'MissController@uploadPhoto');

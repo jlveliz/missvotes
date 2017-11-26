@@ -49,6 +49,7 @@
                     <div class="form-group col-md-2 col-sm-3 col-xs-12">
                         <br> 
                       <button type="submit" class="btn btn-primary">Search</button>
+                      <a target="_blank" href="{{ route('applicants.export',Request::all()) }}"  type="button" class="btn btn-default"><i class="fa fa-file-pdf-o"> </i> PDF</a>
                     </div>
           </div>
         </form>

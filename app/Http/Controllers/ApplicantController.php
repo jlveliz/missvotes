@@ -9,6 +9,7 @@ use MissVote\Models\Country;
 use MissVote\RepositoryInterface\ConfigRepositoryInterface;
 use Response;
 use Redirect;
+use PDF;
 
 class ApplicantController extends Controller
 {
@@ -182,4 +183,7 @@ class ApplicantController extends Controller
             return ['success'=>"It's cool"];
         }
     }
+
+
+    
 }

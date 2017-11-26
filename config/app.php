@@ -193,6 +193,7 @@ return [
         MissVote\Providers\RouteServiceProvider::class,
         MissVote\Providers\ExtendValidatorServiceProvider::class,
         MissVote\Providers\ConfigServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
@@ -243,6 +244,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Paypalpayment'   => Anouar\Paypalpayment\Facades\PaypalPayment::class,
         'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 
