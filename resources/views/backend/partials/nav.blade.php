@@ -7,8 +7,15 @@
              <li class="@if(Request::path() == 'backend/misses') active @endif">
                  <a href="{{ route('misses.index') }}" alt="{{ trans('backend.nav.participants.candidates') }}" title="{{ trans('backend.nav.participants.candidates') }}">{{ trans('backend.nav.participants.candidates') }} <span class="sr-only">(current)</span></a>
              </li>
-             <li class="@if(Request::path() == 'backend/applicants') active @endif">
-                 <a href="{{ route('applicants.index') }}" alt="{{ trans('backend.nav.participants.register_log') }}" title="{{ trans('backend.nav.participants.register_log') }}">{{ trans('backend.nav.participants.register_log') }} <span class="sr-only">(current)</span></a>
+             <li class="dropdown-submenu">
+                 <a tabindex="-1" href="#" alt="{{ trans('backend.nav.participants.register_log') }}" title="{{ trans('backend.nav.participants.register_log') }}">{{ trans('backend.nav.participants.register_log') }} <span class="sr-only">(current)</span></a>
+                 <ul class="dropdown-menu">
+                    @foreach ($castings as $casting)
+                     <li class="@if(Request::get('casting_id') == $casting->id) active @endif">
+                        <a href="{{ route('applicants.index',['casting_id'=>$casting->id]) }}" alt="{{trans('backend.applicant.index.tab_title_'.$casting->key.'')}}" title="{{trans('backend.applicant.index.tab_title_'.$casting->key.'')}}">{{trans('backend.applicant.index.tab_title_'.$casting->key.'')}} <span class="sr-only">(current)</span></a>      
+                     </li>
+                    @endforeach
+                 </ul>
              </li>
          </ul>
      </li>

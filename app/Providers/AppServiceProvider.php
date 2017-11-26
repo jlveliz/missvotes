@@ -3,6 +3,7 @@
 namespace MissVote\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use MissVote\Repository\ConfigRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $configRepo = new ConfigRepository();
+        view()->share('castings', $configRepo->getAllCastings());
     }
 
     /**

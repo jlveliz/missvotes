@@ -129,4 +129,9 @@ class ConfigRepository implements ConfigRepositoryInterface
 		return $lang;
 	}
 
+	public function getAllCastings()
+	{
+		return Config::where('key','like','%casting_%')->get();
+	}
+
 }

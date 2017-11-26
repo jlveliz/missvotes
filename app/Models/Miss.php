@@ -86,4 +86,35 @@ class Miss extends Model
     {
       return $this->hasMany('MissVote\Models\MissPhoto','miss_id');
     }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return date('d-m-Y', strtotime($value));
+    }
+
+    public function getHowDidYouHearAboutUsAttribute($value)
+    {
+        $string = preg_replace("/_/i", ' ', $value);
+        return ucwords($string);
+    }
+
+    public function getFormattedState()
+    {
+        $state = "";
+        switch ($this->state) {
+              case 0:
+                $state = "For Evaluate";
+                break;
+            case 1:
+                $state = "Pre-Selected";
+                break;
+            case 2:
+                $state = "No Pre-Selected";
+                break;
+            default:
+                # code...
+                break;
+        }
+        return $state;
+    }
 }

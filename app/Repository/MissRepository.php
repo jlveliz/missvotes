@@ -4,6 +4,7 @@ namespace MissVote\Repository;
 use MissVote\RepositoryInterface\MissRepositoryInterface;
 use MissVote\Models\Miss;
 use MissVote\Repository\ConfigRepository;
+use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Image;
 /**
@@ -17,14 +18,33 @@ class MissRepository implements MissRepositoryInterface
 		return Miss::where('state','1')->whereHas('photos')->paginate();
 	}
 
-	public function enum($params = null)
+	public function enum($request = null)
 	{
-		if (!$params) {
-			$misses = Miss::all();
-		} elseif (is_array($params)) {
-			if (array_key_exists('state', $params)) {
-				$misses = Miss::where('state',$params['state'])->get();
+		
+		if ($request) {
+			
+
+			if ($request->has('casting_id')) {
+				$query = Miss::whereRaw("country_id in (SELECT id from country where casting_id = ".$request->get('casting_id')." )");
 			}
+			
+			if($request->has('country_id') && $request->get('country_id') != 'null'){
+				$query->where('country_id',$request->get('country_id'));
+			}
+
+			if ($request->has('state') && $request->get('state') != 'null') {
+				$query->where('state',$request->get('state'));
+			}
+
+			if ($request->has('date_from') && $request->has('date_to')) {
+				$query->whereRaw("DATE_FORMAT(created_at,'%Y-%m-%d') between '".$request->get('date_from')."' and '".$request->get('date_to')."'");
+			}
+			return $misses = $query->get();
+			
+			
+		} else {
+			$misses = Miss::all();
+			
 		}
 
 		if (!$misses) {

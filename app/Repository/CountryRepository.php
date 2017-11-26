@@ -144,7 +144,7 @@ class CountryRepository implements CountryRepositoryInterface
 	public function getResumeCurrentCastings($casting)
 	{
 		
-		return Country::selectRaw("country.name country , count(miss.code) counter,
+		return Country::selectRaw("country.id as country_id,country.casting_id as casting_id,country.name country , count(miss.code) counter,
 				(select count(miss.id) from miss where miss.state = '".MISS::PRESELECTED."' and country.id = miss.country_id) preselected,
 				(select count(miss.id) from miss where miss.state = '".MISS::NOPRESELECTED."' and country.id = miss.country_id) nopreselected,
 				(select count(miss.id) from miss where miss.state = '".MISS::FORRATING."' and country.id = miss.country_id) missing")

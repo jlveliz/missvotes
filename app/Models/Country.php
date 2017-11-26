@@ -25,4 +25,9 @@ class Country extends Model
     protected $guarded = [
         '*'
     ];
+
+    public function Casting()
+    {
+        return $this->belongsTo('MissVote\Models\Config','casting_id');
+    }
 }

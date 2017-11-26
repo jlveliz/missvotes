@@ -6,4 +6,6 @@ interface  ConfigRepositoryInterface extends CoreRepositoryInterface {
 	public static function getCurrentCasting();
 
 	public static function getLangCurrentCasting();
+
+	public function getAllCastings();
 }

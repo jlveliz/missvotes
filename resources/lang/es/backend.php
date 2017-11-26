@@ -8,7 +8,7 @@
 			'participants' => [
 				'menu'=>'Participants',
 				'candidates'=>'Candidates of the contest',
-				'register_log' => 'Aplication log'
+				'register_log' => 'Online Applicants'
 			],
 			'members'=> [
 				'menu' => 'Members',
@@ -120,24 +120,29 @@
 
 		'applicant' => [
 			'index' => [
-				'panel_title' => 'Precandidates',
-				'panel_caption' => 'List of Precandidates',
+				'tab_title_casting_1' => 'Casting 1',
+				'tab_title_casting_2' => 'Casting 2',
+				'panel_title' => 'Applicants',
+				'panel_caption' => 'List of Applicants',
 				'th_names' => 'Names',
 				'th_code' => 'Code',
-				'th_country' => 'Country',
 				'th_state' => 'State',
-				'th_creation_date'=>'Creation Date',
+				'th_date'=>'Date',
 				'th_upgrade'=>'Upgrade',
 				'th_action' => 'Action',
+				'th_how_you_hear'=>'How Did You Hear About Us?',
+				'th_creation_date'=>'Creation Date',
+
 				'td_show' => 'Show',
 				'td_delete' =>'Delete',
-				'td_state_active' => 'Active',
-				'td_state_inactive' => 'Inactive',
-				'td_for_evaluate' => 'For evaluate',
-				'td_disqualified' => 'Disqualified',
+				'filter' => [
+					'country_label' => 'Country',
+					'state_label'=>'State',
+					'state_date'=>'Date'
+				]
 			],
 			'show' => [
-				'panel_title' => 'Precandidates',
+				'panel_title' => 'Applicants',
 				'miss_disqualified' => 'The lady is disqualified',
 				'label_name'=>'Name',
 				'label_lastname'=>'Lastname',

@@ -3,28 +3,26 @@
 namespace MissVote\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-// use MissVote\Http\Requests\PrecandidateRequest;
-
 use MissVote\RepositoryInterface\MissRepositoryInterface;
-
+use MissVote\Repository\ConfigRepository;
 use MissVote\Models\Country;
-
+use MissVote\RepositoryInterface\ConfigRepositoryInterface;
 use Response;
-
 use Redirect;
 
 class ApplicantController extends Controller
 {
     
     public $applicant;
+    public $config;
 
 
-    public function __construct(MissRepositoryInterface $applicant)
+    public function __construct(MissRepositoryInterface $applicant, ConfigRepositoryInterface $config)
     {
         $this->middleware('auth');
         $this->middleware('can:acess-backend');
         $this->applicant = $applicant;
+        $this->config = $config;
     }
 
     /**
@@ -32,13 +30,20 @@ class ApplicantController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $applicants = $this->applicant->enum();
-        $data = [
-            'applicants' => $applicants
-        ];
-        return view('backend.applicant.index',$data);
+        $currentCasting = null;
+        if (!$request->has('casting_id')) {
+            $currentCasting = ConfigRepository::getCurrentCasting();
+            return redirect()->action('ApplicantController@index',['casting_id'=>$currentCasting->id]);
+        } else {
+            $currentCasting = $this->config->find($request->get('casting_id'));
+        }
+
+        $countries = $currentCasting->countries;
+
+        $applicants = $this->applicant->enum($request);
+        return view('backend.applicant.index',compact('castings','countries','applicants'));
     }
 
     /**

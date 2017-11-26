@@ -17,7 +17,11 @@
 		  	 		<tr>
 		  	 			<td>{{$index+1}}</td>
 		  	 			<td class="country">
-		  	 				{{$casting->country}}
+		  	 				@if ($casting->counter > 0)
+		  	 				<a href="{{ route('applicants.index',['country_id'=>$casting->country_id,'casting_id'=>$casting->casting_id]) }}">{{$casting->country}}</a>
+		  	 				@else
+		  	 					{{$casting->country}}}
+		  	 				@endif
 		  	 			</td>
 		  	 			<td class="counter">
 		  	 				{{$casting->counter}}
