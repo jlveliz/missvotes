@@ -92,4 +92,9 @@ class PdfExportController extends Controller
         $pdf->loadHtml($view);
         return $pdf->stream('resume-client-tickets.pdf');
     }
+
+    public function precandidates()
+    {
+        # code...
+    }
 }

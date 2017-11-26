@@ -20,6 +20,11 @@ class MissRepository implements MissRepositoryInterface
 
 	public function enum($request = null)
 	{
+		return Miss::all();
+	}
+
+	public function enumApplicants($request)
+	{
 		
 		if ($request) {
 			
@@ -33,7 +38,14 @@ class MissRepository implements MissRepositoryInterface
 			}
 
 			if ($request->has('state') && $request->get('state') != 'null') {
-				$query->where('state',$request->get('state'));
+				//si envian un parametro indebido
+				if ($request->get('state') >= Miss::PRECANDIDATE) {
+					$query->where('state','<=',Miss::NOPRESELECTED);
+				} else{
+					$query->where('state',$request->get('state'));
+				}
+			} else{
+				$query->where('state','<',Miss::PRECANDIDATE);
 			}
 
 			if ($request->has('date_from') && $request->has('date_to')) {
@@ -51,6 +63,11 @@ class MissRepository implements MissRepositoryInterface
 			abort(404);
 		}
 		return $misses;
+	}
+
+	public function enumPrecandidates()
+	{
+		# code...
 	}
 
 	public function find($field, $returnException = false)

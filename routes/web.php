@@ -104,6 +104,8 @@ Route::group(['prefix'=>'backend'],function(){
 	Route::delete('/config', 'ConfigController@destroy')->name('config.destroy');
 	Route::get('/applicants/export', 'PdfExportController@applicants')->name('applicants.export');
 	Route::resource('/applicants', 'ApplicantController',['only'=>['index','show','update','destroy']]);
+	Route::get('/precandidates/export', 'PdfExportController@precandidates')->name('precandidates.export');
+	Route::resource('/precandidates', 'PrecandidateController',['only'=>['index','show','update','destroy']]);
 	Route::resource('/activities', 'ClientActivityController',['only'=>['index']]);
 	Route::post('/upload-photo', 'MissController@uploadPhoto');
 	Route::post('/delete-photo', 'MissController@deletePhoto');

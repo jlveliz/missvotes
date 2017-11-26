@@ -92,9 +92,10 @@ class Miss extends Model
         return date('d-m-Y', strtotime($value));
     }
 
-    public function getHowDidYouHearAboutUsAttribute($value)
+    
+    public function getFormattedHowDidYouHearAboutUs()
     {
-        $string = preg_replace("/_/i", ' ', $value);
+        $string = preg_replace("/_/i", ' ', $this->how_did_you_hear_about_us);
         return ucwords($string);
     }
 

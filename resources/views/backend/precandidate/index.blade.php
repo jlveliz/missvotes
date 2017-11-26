@@ -1,12 +1,12 @@
 @extends('layouts.backend')
 @section('content')
 <div class="panel panel-default">
-  <div class="panel-heading">{{ trans('backend.applicant.index.panel_title') }}</div>
+  <div class="panel-heading">{{ trans('backend.precandidate.index.panel_title') }}</div>
 
   <div class="panel-body">
   	   @if (Session::has('mensaje'))
-        <div class="alert alert-disapplicantible @if(Session::get('tipo_mensaje') == 'success') alert-info  @endif @if(Session::get('tipo_mensaje') == 'error') alert-danger  @endif" role="alert">
-          <button type="button" class="close" data-disapplicant="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <div class="alert alert-disprecandidateible @if(Session::get('tipo_mensaje') == 'success') alert-info  @endif @if(Session::get('tipo_mensaje') == 'error') alert-danger  @endif" role="alert">
+          <button type="button" class="close" data-disprecandidate="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
           {{session('mensaje')}}
            </div>
         <div class="clearfix"></div>
@@ -15,11 +15,10 @@
       
       <h5><b>Filters</b></h5>
       <div class="well" id="filters">
-        <form action="{{ route('applicants.index') }}" method="GET">
+        <form action="{{ route('precandidates.index') }}" method="GET">
           <div class="row">
-                <input type="hidden" name="casting_id" value="{{Request::get('casting_id')}}">
                   <div class="form-group col-md-3 col-sm-3 col-xs-12">
-                    <label class="control-label">{{ trans('backend.applicant.index.filter.country_label') }} </label>
+                    <label class="control-label">{{ trans('backend.precandidate.index.filter.country_label') }} </label>
                     <select name="country_id" id="country" class="form-control">
                       <option value="null">All</option>
                       @foreach ($countries  as $country)
@@ -28,12 +27,11 @@
                     </select>
                   </div>
                   <div class="form-group col-md-2 col-sm-3 col-xs-12">
-                    <label class="control-label">{{ trans('backend.applicant.index.filter.state_label') }} </label>
+                    <label class="control-label">{{ trans('backend.precandidate.index.filter.state_label') }} </label>
                     <select name="state" id="state" class="form-control">
                       <option value=null>All</option>
-                      <option value="0" @if('0' == Request::get('state'))) selected @endif>For Evaluate</option>
-                      <option value="1" @if(1 == Request::get('state'))) selected @endif>Pre-Selected</option>
-                      <option value="2" @if(2 == Request::get('state'))) selected @endif>No Pre-Selected</option>
+                      <option value="3" @if(3 == Request::get('state'))) selected @endif>PreCandidate</option>
+                      <option value="4" @if(4 == Request::get('state'))) selected @endif>Discard Precandidate</option>
                     </select>
                   </div>
                   <div class="form-group col-md-5 col-sm-3 col-xs-12">
@@ -49,38 +47,38 @@
                     <div class="form-group col-md-2 col-sm-3 col-xs-12">
                         <br> 
                       <button type="submit" class="btn btn-primary">Search</button>
-                      <a target="_blank" href="{{ route('applicants.export',Request::all()) }}"  type="button" class="btn btn-default"><i class="fa fa-file-pdf-o"> </i> PDF</a>
+                      <a target="_blank" href="{{ route('precandidates.export',Request::all()) }}"  type="button" class="btn btn-default"><i class="fa fa-file-pdf-o"> </i> PDF</a>
                     </div>
           </div>
         </form>
       </div>
       
-      <table id="applicant-datatable" class="table table-bordered">
-         		<caption>{{ trans('backend.applicant.index.panel_caption') }}</caption>
+      <table id="precandidate-datatable" class="table table-bordered">
+         		<caption>{{ trans('backend.precandidate.index.panel_caption') }}</caption>
          		<thead>
          			<tr>
-         				<th>{{ trans('backend.applicant.index.th_creation_date') }}</th>
-                <th>{{ trans('backend.applicant.index.th_code') }}</th>
-                <th>{{ trans('backend.applicant.index.th_names') }}</th>
-                <th>{{ trans('backend.applicant.index.th_state') }}</th>
-                <th>{{ trans('backend.applicant.index.th_how_you_hear') }}</th>
-         				<th>{{ trans('backend.applicant.index.th_action') }}</th>
+         				<th>{{ trans('backend.precandidate.index.th_creation_date') }}</th>
+                <th>{{ trans('backend.precandidate.index.th_code') }}</th>
+                <th>{{ trans('backend.precandidate.index.th_names') }}</th>
+                <th>{{ trans('backend.precandidate.index.th_state') }}</th>
+                <th>{{ trans('backend.precandidate.index.th_how_you_hear') }}</th>
+         				<th>{{ trans('backend.precandidate.index.th_action') }}</th>
          			</tr>
          		</thead>
          		<tbody>
-         			@foreach ($applicants as $applicant)
+         			@foreach ($precandidates as $precandidate)
                 <tr>
-           				<td>{{$applicant->created_at }}</td>
-                  <td>{{ $applicant->code }}</td>
-                  <td>{{$applicant->name}} {{$applicant->last_name}}</td>
-                  <td>@if($applicant->state == 0) <span class="text-danger">  @endif{{$applicant->getFormattedState()}} @if($applicant->state == 0) </span> @endif</td>
-                  <td>{{$applicant->getFormattedHowDidYouHearAboutUs()}}</td>
+           				<td>{{$precandidate->created_at }}</td>
+                  <td>{{ $precandidate->code }}</td>
+                  <td>{{$precandidate->name}} {{$precandidate->last_name}}</td>
+                  <td>@if($precandidate->state == 0) <span class="text-danger">  @endif{{$precandidate->getFormattedState()}} @if($precandidate->state == 0) </span> @endif</td>
+                  <td>{{$precandidate->getFormattedHowDidYouHearAboutUs()}}</td>
            				<td class="text-center">
-                    <form action="{{ route('applicants.destroy',$applicant->id) }}" method="POST">
-                        <a href="{{ route('applicants.show',$applicant->id) }}" title="{{ trans('backend.applicant.index.td_show') }}" class="btn btn-xs btn-warning"> {{ trans('backend.applicant.index.td_show') }}</a>
+                    <form action="{{ route('precandidates.destroy',$precandidate->id) }}" method="POST">
+                        <a href="{{ route('precandidates.show',$precandidate->id) }}" title="{{ trans('backend.precandidate.index.td_show') }}" class="btn btn-xs btn-warning"> {{ trans('backend.precandidate.index.td_show') }}</a>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="_method" value="DELETE">
-                        <button type="submit" title="{{ trans('backend.applicant.index.td_delete') }}" class="btn btn-xs btn-danger delete"> {{ trans('backend.applicant.index.td_delete') }}</button>
+                        <button type="submit" title="{{ trans('backend.precandidate.index.td_delete') }}" class="btn btn-xs btn-danger delete"> {{ trans('backend.precandidate.index.td_delete') }}</button>
                     </form>
            				</td>
            			</tr>
@@ -96,7 +94,7 @@
 @section('js')
 <script type="text/javascript">
   $(document).ready(function(){
-      $('#applicant-datatable').DataTable({
+      $('#precandidate-datatable').DataTable({
         @if (App::isLocale('es'))
         "language": {
           "url": "../public/js/datatables/json/es.json"

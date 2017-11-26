@@ -4,9 +4,6 @@
      <li class="dropdown">
          <a href="#" alt="{{ trans('backend.nav.participants.menu') }}" title="{{ trans('backend.nav.participants.menu') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ trans('backend.nav.participants.menu') }} <span class="caret"></span></a>
          <ul class="dropdown-menu" role="menu">
-             <li class="@if(Request::path() == 'backend/misses') active @endif">
-                 <a href="{{ route('misses.index') }}" alt="{{ trans('backend.nav.participants.candidates') }}" title="{{ trans('backend.nav.participants.candidates') }}">{{ trans('backend.nav.participants.candidates') }} <span class="sr-only">(current)</span></a>
-             </li>
              <li class="dropdown-submenu">
                  <a tabindex="-1" href="#" alt="{{ trans('backend.nav.participants.register_log') }}" title="{{ trans('backend.nav.participants.register_log') }}">{{ trans('backend.nav.participants.register_log') }} <span class="sr-only">(current)</span></a>
                  <ul class="dropdown-menu">
@@ -16,6 +13,12 @@
                      </li>
                     @endforeach
                  </ul>
+             </li>
+             <li class="@if(Request::path() == 'backend/precandidates') active @endif">
+                 <a href="{{ route('precandidates.index') }}" alt="{{ trans('backend.nav.participants.precandidate') }}" title="{{ trans('backend.nav.participants.precandidate') }}">{{ trans('backend.nav.participants.precandidate') }} <span class="sr-only">(current)</span></a>
+             </li>
+             <li class="@if(Request::path() == 'backend/misses') active @endif">
+                 <a href="{{ route('misses.index') }}" alt="{{ trans('backend.nav.participants.candidates') }}" title="{{ trans('backend.nav.participants.candidates') }}">{{ trans('backend.nav.participants.candidates') }} <span class="sr-only">(current)</span></a>
              </li>
          </ul>
      </li>

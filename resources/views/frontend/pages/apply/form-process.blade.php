@@ -166,7 +166,7 @@
 					   				<div class="form-group @if($errors->has('phone_number')) has-error @endif">
 					   					<label class="control-label col-sm-6 col-md-6" for="phone_number">@lang('form_process_apply.lbl_phone') </label>
 					   					<div class="col-sm-6 col-md-6">
-						   					<input type="text" class="form-control" name="phone_number" id="phone_number" value="{{ isset($applicant) ?  $applicant->phone_number : old('phone_number') }}" @if(isset($applicant)) disabled @endif>
+						   					<input type="text" class="form-control" name="phone_number" id="phone_number" value="{{ isset($applicant) ?  $applicant->phone_number : old('phone_number') }}" @if(isset($applicant)) disabled @endif placeholder="593996793020">
 						   					@if ($errors->has('phone_number')) <p class="help-block">{{ $errors->first('phone_number') }}</p> @endif
 					   					</div>
 					   				</div>

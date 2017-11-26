@@ -9,5 +9,9 @@ interface  MissRepositoryInterface extends CoreRepositoryInterface {
 
 	public function uploadPhoto($key,$photo);
 
+	public function enumPrecandidates();
+
+	public function enumApplicants($request);
+
 
 }

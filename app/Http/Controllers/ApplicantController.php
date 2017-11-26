@@ -43,7 +43,7 @@ class ApplicantController extends Controller
 
         $countries = $currentCasting->countries;
 
-        $applicants = $this->applicant->enum($request);
+        $applicants = $this->applicant->enumApplicants($request);
         return view('backend.applicant.index',compact('castings','countries','applicants'));
     }
 
@@ -115,6 +115,7 @@ class ApplicantController extends Controller
      */
     public function update(PrecandidateRequest $request, $id)
     {
+        dd("entra");
         $data = $request->all();
         $applicant = $this->applicant->edit($id,$data);
         $sessionData = [

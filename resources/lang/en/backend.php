@@ -8,7 +8,8 @@
 			'participants' => [
 				'menu'=>'Participants',
 				'candidates'=>'Candidates of the contest',
-				'register_log' => 'Online Applicants'
+				'register_log' => 'Online Applicants',
+				'precandidate' => 'Precandidate',
 			],
 			'members'=> [
 				'menu' => 'Members',
@@ -144,6 +145,9 @@
 			'show' => [
 				'panel_title' => 'Applicants',
 				'miss_disqualified' => 'The lady is disqualified',
+				'miss_missing' => 'The Miss miss for rating',
+				'miss_preselected' => 'The Miss is Preselected',
+				'miss_no_preselected' => 'The Miss is not Preselected',
 				'label_name'=>'Name',
 				'label_lastname'=>'Lastname',
 				'label_country'=>'Country',
@@ -165,11 +169,13 @@
 				'label_eye_color'=>'Eye Color',
 				'label_dairy_philosophy'=>'Dairy Philosophy',
 				'label_why_would_you_win' => 'Why would you win',
-				'label_enable_erequalification' => 'Enable Prequalification',
+				'label_no_preselected' => 'No Preselect',
+				'label_preselected' => 'Preselect',
 				'disqualify' => 'Disqualify',
 				'label_qualify_candidate' => 'Qualify as a Candidate',
 				'btn_cancel' => 'Cancel',
 				'label_photos' => 'Photos',
+				'how_hear_about_us'=>'How Did You Hear About Us?'
 			],
 			'create-edit' => [
 				'flag_success_saved' => 'Precandidate Created Satisfactorily',
