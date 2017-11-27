@@ -101,4 +101,13 @@ class PdfExportController extends Controller
         $pdf->loadHtml($view);
         return $pdf->stream('precandidates.pdf');
     }
+
+    public function candidates(Request $request)
+    {
+        $candidates = $this->miss->enumCandidates($request);
+        $view = view()->make('backend.pdf.candidates',compact('candidates'))->render();
+        $pdf = app()->make('dompdf.wrapper');
+        $pdf->loadHtml($view);
+        return $pdf->stream('candidates.pdf');
+    }
 }

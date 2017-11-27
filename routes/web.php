@@ -98,7 +98,7 @@ Route::group(['prefix'=>'backend'],function(){
 	Route::get('/memberships/export', 'PdfExportController@resumeMemberships')->name('dashboard.export.memberships');
 	Route::resource('/memberships', 'MembershipController');
 	Route::resource('/countries', 'CountryController');
-	Route::get('/candidates/export', 'PdfExportController@precandidates')->name('candidates.export');
+	Route::get('/candidates/export', 'PdfExportController@candidates')->name('candidates.export');
 	Route::resource('/candidates', 'CandidateController');
 	Route::get('/config', 'ConfigController@index')->name('config.index');
 	Route::post('/config', 'ConfigController@store')->name('config.store');
