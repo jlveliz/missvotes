@@ -98,6 +98,39 @@ class MissRepository implements MissRepositoryInterface
 		return $misses;
 	}
 
+	public function enumCandidates($request)
+	{
+		if ($request->all()) {
+
+			if ($request->has('state') && $request->get('state') != 'null') {
+				//si envian un parametro indebido
+				if ($request->get('state') <=  Miss::DISQUALIFIEDPRECANDIDATE) {
+					$query = Miss::whereBetween('state',[Miss::CANDIDATE,Miss::DISQUALIFIEDCANDIDATE]);
+				} else{
+					$query = Miss::where('state',$request->get('state'));
+				}
+			} else{
+				$query = Miss::whereBetween('state',[Miss::CANDIDATE,Miss::DISQUALIFIEDCANDIDATE]);
+			}
+
+			if($request->has('country_id') && $request->get('country_id') != 'null'){
+				$query->where('country_id',$request->get('country_id'));
+			}
+
+			if ($request->has('date_from') && $request->has('date_to')) {
+				$query->whereRaw("DATE_FORMAT(created_at,'%Y-%m-%d') between '".$request->get('date_from')."' and '".$request->get('date_to')."'");
+			}
+
+
+		} else {
+			$query = Miss::whereBetween('state',[Miss::CANDIDATE,Miss::DISQUALIFIEDCANDIDATE]);
+		}
+
+		$misses = $query->get();
+
+		return $misses;
+	}
+
 	public function find($field, $returnException = false)
 	{
 		if (is_array($field)) {

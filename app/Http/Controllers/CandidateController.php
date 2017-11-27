@@ -3,29 +3,24 @@
 namespace MissVote\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use MissVote\Http\Requests\MissRequest;
-
 use MissVote\RepositoryInterface\MissRepositoryInterface;
-
-use MissVote\Models\Country;
-
+use MissVote\RepositoryInterface\CountryRepositoryInterface;
 use Response;
-
 use Redirect;
 
-class MissController extends Controller
+class CandidateController extends Controller
 {
     
-    public $miss;
+    public $candidate;
+    public $country;
 
-    // public $role;
-
-    public function __construct(MissRepositoryInterface $miss)
+    public function __construct(MissRepositoryInterface $candidate,CountryRepositoryInterface $country)
     {
         $this->middleware('auth');
         $this->middleware('can:acess-backend');
-        $this->miss = $miss;
+        $this->candidate = $candidate;
+        $this->country = $country;
     }
 
     /**
@@ -33,13 +28,11 @@ class MissController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $misses = $this->miss->enum();
-        $data = [
-            'misses' => $misses
-        ];
-        return view('backend.miss.index',$data);
+        $countries = $this->country->enum(['with_flags'=>true]);
+        $candidates = $this->candidate->enumCandidates($request);
+        return view('backend.candidate.index',compact("candidates","countries"));
     }
 
     /**
@@ -49,8 +42,7 @@ class MissController extends Controller
      */
     public function create()
     {
-        $countries = Country::orderby('name')->get();
-        return view('backend.miss.create',compact('countries'));
+        
     }
 
     /**
@@ -61,19 +53,19 @@ class MissController extends Controller
     public function store(MissRequest $request)
     {
         $data = $request->all();
-        $miss = $this->miss->save($data);
+        $candidate = $this->candidate->save($data);
         $sessionData = [
             'tipo_mensaje' => 'success',
             'mensaje' => '',
         ];
-        if ($miss) {
-            $sessionData['mensaje'] = trans('backend.misses.create-edit.flag_success_saved');
+        if ($candidate) {
+            $sessionData['mensaje'] = trans('backend.candidates.create-edit.flag_success_saved');
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = trans('backend.misses.create-edit.flag_error_saved');
+            $sessionData['mensaje'] = trans('backend.candidates.create-edit.flag_error_saved');
         }
         
-        return Redirect::action('MissController@edit',$miss->id)->with($sessionData);
+        return Redirect::action('CandidateController@edit',$candidate->id)->with($sessionData);
         
     }
 
@@ -96,12 +88,9 @@ class MissController extends Controller
      */
     public function edit($id)
     {
-        $countries = Country::orderby('name')->get();
-        $miss = $this->miss->find($id);
-        return view('backend.miss.edit',[
-            'miss'=>$miss,
-            'countries' => $countries,
-            ]);
+        $countries = $this->country->enum(['with_flags'=>true]);
+        $candidate = $this->candidate->find($id);
+        return view('backend.candidate.edit',compact('candidate','countries'));
     }
 
     /**
@@ -113,25 +102,25 @@ class MissController extends Controller
     public function update(MissRequest $request, $id)
     {
         $data = $request->all();
-        $miss = $this->miss->edit($id,$data);
+        $candidate = $this->candidate->edit($id,$data);
         $sessionData = [
             'tipo_mensaje' => 'success',
             'mensaje' => '',
         ];
-        if ($miss) {
-            $sessionData['mensaje'] = trans('backend.misses.create-edit.flag_success_updated');
+        if ($candidate) {
+            $sessionData['mensaje'] = trans('backend.candidates.create-edit.flag_success_updated');
            
-        }elseif (!$miss && $request->has('is_precandidate')) {
-            $sessionData['mensaje'] =  trans('backend.misses.create-edit.flag_disqualited');
+        }elseif (!$candidate && $request->has('is_precandidate')) {
+            $sessionData['mensaje'] =  trans('backend.candidates.create-edit.flag_disqualited');
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] =  trans('backend.misses.create-edit.flag_error_updated');
+            $sessionData['mensaje'] =  trans('backend.candidates.create-edit.flag_error_updated');
         }
 
         if ($request->has('is_precandidate')) {
-            return Redirect::action('MissController@index')->with($sessionData);
+            return Redirect::action('CandidateController@index')->with($sessionData);
         } else {
-            return Redirect::action('MissController@edit',$miss->id)->with($sessionData);
+            return Redirect::action('CandidateController@edit',$candidate->id)->with($sessionData);
         }
     }
 
@@ -144,21 +133,21 @@ class MissController extends Controller
     public function destroy($id)
     {
         
-        $miss = $this->miss->remove($id);
+        $candidate = $this->candidate->remove($id);
         
         $sessionData = [
             'tipo_mensaje' => 'success',
             'mensaje' => '',
         ];
         
-        if ($miss) {
-            $sessionData['mensaje'] = trans('backend.misses.create-edit.flag_success_deleted');
+        if ($candidate) {
+            $sessionData['mensaje'] = trans('backend.candidates.create-edit.flag_success_deleted');
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = trans('backend.misses.create-edit.flag_error_deleted');
+            $sessionData['mensaje'] = trans('backend.candidates.create-edit.flag_error_deleted');
         }
         
-        return Redirect::action('MissController@index')->with($sessionData);
+        return Redirect::action('CandidateController@index')->with($sessionData);
             
         
     }
@@ -169,15 +158,15 @@ class MissController extends Controller
         $missId = $request->get('miss_id');
         $photo = $request->file('photos');
         // dd($photo[0]);
-        if($miss = $this->miss->uploadPhoto($missId,$photo[0])){
-            return ['miss'=>$miss];
+        if($candidate = $this->candidate->uploadPhoto($missId,$photo[0])){
+            return ['candidate'=>$candidate];
         }
     }
 
     public function deletePhoto(Request $request)
     {
         $key = $request->get('key');
-        if ($this->miss->deletePhoto($key)) {
+        if ($this->candidate->deletePhoto($key)) {
             return ['success'=>"It's cool"];
         }
     }

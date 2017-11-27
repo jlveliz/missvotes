@@ -11,21 +11,21 @@
         <div class="clearfix"></div>
        @endif
             
-      @if ($applicant->state == 0) 
+      @if ($applicant->state == \MissVote\Models\Miss::FORRATING) 
             <div class="alert alert-dismissible alert-warning" role="alert">
                   <p class="text-danger text-center"><b>{{ trans('backend.applicant.show.miss_missing') }}</b></p> 
             </div>
             <div class="clearfix"></div>
       @endif
 
-      @if ($applicant->state == 1) 
+      @if ($applicant->state == \MissVote\Models\Miss::PRESELECTED) 
             <div class="alert alert-dismissible alert-success" role="alert">
                   <p class="text-danger text-center"><b>{{ trans('backend.applicant.show.miss_preselected') }}</b></p> 
             </div>
             <div class="clearfix"></div>
       @endif
 
-      @if ($applicant->state == 2) 
+      @if ($applicant->state == \MissVote\Models\Miss::NOPRESELECTED) 
             <div class="alert alert-dismissible alert-danger" role="alert">
                   <p class="text-danger text-center"><b>{{ trans('backend.applicant.show.miss_no_preselected') }}</b></p> 
             </div>

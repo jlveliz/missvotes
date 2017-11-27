@@ -13,7 +13,7 @@
 
 Route::get('/', 'WebsiteController@index')->name('website.home');
 Route::get('/change-language', 'WebsiteController@setLocale')->name('website.locale');
-Route::get('/miss', 'WebsiteController@showMisses')->name('website.miss.index');
+Route::get('/miss', 'WebsiteController@showMisses')->name('website.miss.index')->middleware('showMiss');
 Route::get('/miss/{slug}', 'WebsiteController@show')->name('website.miss.show');
 
 
@@ -98,7 +98,8 @@ Route::group(['prefix'=>'backend'],function(){
 	Route::get('/memberships/export', 'PdfExportController@resumeMemberships')->name('dashboard.export.memberships');
 	Route::resource('/memberships', 'MembershipController');
 	Route::resource('/countries', 'CountryController');
-	Route::resource('/misses', 'MissController');
+	Route::get('/candidates/export', 'PdfExportController@precandidates')->name('candidates.export');
+	Route::resource('/candidates', 'CandidateController');
 	Route::get('/config', 'ConfigController@index')->name('config.index');
 	Route::post('/config', 'ConfigController@store')->name('config.store');
 	Route::delete('/config', 'ConfigController@destroy')->name('config.destroy');
@@ -107,8 +108,8 @@ Route::group(['prefix'=>'backend'],function(){
 	Route::get('/precandidates/export', 'PdfExportController@precandidates')->name('precandidates.export');
 	Route::resource('/precandidates', 'PrecandidateController',['only'=>['index','show','update','destroy']]);
 	Route::resource('/activities', 'ClientActivityController',['only'=>['index']]);
-	Route::post('/upload-photo', 'MissController@uploadPhoto');
-	Route::post('/delete-photo', 'MissController@deletePhoto');
+	Route::post('/upload-photo', 'CandidateController@uploadPhoto');
+	Route::post('/delete-photo', 'CandidateController@deletePhoto');
 });
 
 

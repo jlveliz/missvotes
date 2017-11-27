@@ -23,8 +23,8 @@ class Miss extends Model
     const NOPRESELECTED = 2;
     const PRECANDIDATE = 3;
     const DISQUALIFIEDPRECANDIDATE = 4;
-    const MISS = 5;
-    const DISQUALIFIEDMISS = 6;
+    const CANDIDATE = 5;
+    const DISQUALIFIEDCANDIDATE = 6;
 
 
 
@@ -117,6 +117,12 @@ class Miss extends Model
                 break;
             case 4:
                 $state = "No Precandidate";
+                break;
+            case 5:
+                $state = "Candidate";
+                break;
+            case 6:
+                $state = "No Candidate";
                 break;
             default:
                 # code...

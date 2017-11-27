@@ -13,5 +13,7 @@ interface  MissRepositoryInterface extends CoreRepositoryInterface {
 
 	public function enumApplicants($request);
 
+	public function enumCandidates($request);
+
 
 }

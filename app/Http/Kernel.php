@@ -54,5 +54,6 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \MissVote\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'showMiss' => \MissVote\Http\Middleware\CanShowMiss::class,
     ];
 }

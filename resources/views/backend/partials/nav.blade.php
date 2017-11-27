@@ -17,8 +17,8 @@
              <li class="@if(Request::path() == 'backend/precandidates') active @endif">
                  <a href="{{ route('precandidates.index') }}" alt="{{ trans('backend.nav.participants.precandidate') }}" title="{{ trans('backend.nav.participants.precandidate') }}">{{ trans('backend.nav.participants.precandidate') }} <span class="sr-only">(current)</span></a>
              </li>
-             <li class="@if(Request::path() == 'backend/misses') active @endif">
-                 <a href="{{ route('misses.index') }}" alt="{{ trans('backend.nav.participants.candidates') }}" title="{{ trans('backend.nav.participants.candidates') }}">{{ trans('backend.nav.participants.candidates') }} <span class="sr-only">(current)</span></a>
+             <li class="@if(Request::path() == 'backend/candidates') active @endif">
+                 <a href="{{ route('candidates.index') }}" alt="{{ trans('backend.nav.participants.candidates') }}" title="{{ trans('backend.nav.participants.candidates') }}">{{ trans('backend.nav.participants.candidates') }} <span class="sr-only">(current)</span></a>
              </li>
          </ul>
      </li>
