@@ -440,6 +440,7 @@
 				'label_name' => 'Name',
 				'label_code' => 'Code',
 				'label_lang' => 'Language',
+				'label_email' => 'Email Contact',
 				'btn_cancel' => 'Cancel',
 				'btn_save' => 'Save',
 				'btn_change_flag' => 'Change Flag',

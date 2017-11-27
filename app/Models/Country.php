@@ -19,7 +19,8 @@ class Country extends Model
     protected $fillable = [
         'name',
         'code',
-        'flag_img'
+        'flag_img',
+        'email_contact',
     ];
 
     protected $guarded = [

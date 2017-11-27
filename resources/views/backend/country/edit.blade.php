@@ -18,7 +18,7 @@
 			<input type="hidden" name="key" value="{{$country->id}}">
 			<div class="row">
 				<div class="col-md-8 col-lg-8 col-sm-8 col-xs-12">
-					<div class="form-group col-md-6 col-sm-6 col-xs-12 @if($errors->has('name')) has-error @endif">
+					<div class="form-group col-md-4 col-sm-4 col-xs-12 @if($errors->has('name')) has-error @endif">
 						<label class="control-label">{{ trans('backend.country.create-edit.label_name') }} </label>
 						<input type="text" class="form-control"  name="name" value="{{ $country->name }}" autofocus>
 						@if ($errors->has('name')) <p class="help-block">{{ $errors->first('name') }}</p> @endif
@@ -28,6 +28,11 @@
 						<label class="control-label">{{ trans('backend.country.create-edit.label_code') }} </label>
 						<input type="text" class="form-control"  name="code" value="{{ $country->code }}">
 						@if ($errors->has('code')) <p class="help-block">{{ $errors->first('code') }}</p> @endif
+					</div>
+					<div class="form-group col-md-5 col-sm-5 col-xs-6 @if($errors->has('email_contact')) has-error @endif">
+						<label class="control-label">{{ trans('backend.country.create-edit.label_email') }} </label>
+						<input type="text" class="form-control"  name="email_contact" value="{{ $country->email_contact }}">
+						@if ($errors->has('email_contact')) <p class="help-block">{{ $errors->first('email_contact') }}</p> @endif
 					</div>
 				</div>
 				
