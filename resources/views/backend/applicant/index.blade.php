@@ -59,7 +59,8 @@
          		<caption>{{ trans('backend.applicant.index.panel_caption') }}</caption>
          		<thead>
          			<tr>
-         				<th>{{ trans('backend.applicant.index.th_creation_date') }}</th>
+                <th>{{ trans('backend.applicant.index.th_creation_date') }}</th>
+         				<th>{{ trans('backend.applicant.index.th_number') }}</th>
                 <th>{{ trans('backend.applicant.index.th_code') }}</th>
                 <th>{{ trans('backend.applicant.index.th_names') }}</th>
                 <th>{{ trans('backend.applicant.index.th_state') }}</th>
@@ -68,23 +69,24 @@
          			</tr>
          		</thead>
          		<tbody>
-         			@foreach ($applicants as $applicant)
+              @for ($i = count($applicants) - 1; $i >= 0; $i--)
                 <tr>
-           				<td>{{$applicant->created_at }}</td>
-                  <td>{{ $applicant->code }}</td>
-                  <td>{{$applicant->name}} {{$applicant->last_name}}</td>
-                  <td>@if($applicant->state == 0) <span class="text-danger">  @endif{{$applicant->getFormattedState()}} @if($applicant->state == 0) </span> @endif</td>
-                  <td>{{$applicant->getFormattedHowDidYouHearAboutUs()}}</td>
+           				<td>{{$applicants[$i]->created_at }}</td>
+                  <td>{{$i + 1}}</td>
+                  <td>{{$applicants[$i]->code }}</td>
+                  <td>{{$applicants[$i]->name}} {{$applicants[$i]->last_name}}</td>
+                  <td>@if($applicants[$i]->state == 0) <span class="text-danger">  @endif{{$applicants[$i]->getFormattedState()}} @if($applicants[$i]->state == 0) </span> @endif</td>
+                  <td>{{$applicants[$i]->getFormattedHowDidYouHearAboutUs()}}</td>
            				<td class="text-center">
-                    <form action="{{ route('applicants.destroy',$applicant->id) }}" method="POST">
-                        <a href="{{ route('applicants.show',$applicant->id) }}" title="{{ trans('backend.applicant.index.td_show') }}" class="btn btn-xs btn-warning"> {{ trans('backend.applicant.index.td_show') }}</a>
+                    <form action="{{ route('applicants.destroy',$applicants[$i]->id) }}" method="POST">
+                        <a href="{{ route('applicants.show',$applicants[$i]->id) }}" title="{{ trans('backend.applicant.index.td_show') }}" class="btn btn-xs btn-warning"> {{ trans('backend.applicant.index.td_show') }}</a>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="_method" value="DELETE">
                         <button type="submit" title="{{ trans('backend.applicant.index.td_delete') }}" class="btn btn-xs btn-danger delete"> {{ trans('backend.applicant.index.td_delete') }}</button>
                     </form>
            				</td>
            			</tr>
-         			@endforeach
+              @endfor
          		</tbody>
       </table>
        

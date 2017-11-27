@@ -112,6 +112,12 @@ class Miss extends Model
             case 2:
                 $state = "No Pre-Selected";
                 break;
+            case 3:
+                $state = "Precandidate";
+                break;
+            case 4:
+                $state = "No Precandidate";
+                break;
             default:
                 # code...
                 break;

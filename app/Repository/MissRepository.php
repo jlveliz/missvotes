@@ -55,7 +55,7 @@ class MissRepository implements MissRepositoryInterface
 			
 			
 		} else {
-			$misses = Miss::all();
+			$misses = Miss::where('state','<=',Miss::NOPRESELECTED)->get();
 			
 		}
 
@@ -65,9 +65,37 @@ class MissRepository implements MissRepositoryInterface
 		return $misses;
 	}
 
-	public function enumPrecandidates()
+	public function enumPrecandidates($request)
 	{
-		# code...
+		if ($request->all()) {
+
+			if ($request->has('state') && $request->get('state') != 'null') {
+				//si envian un parametro indebido
+				if ($request->get('state') >= Miss::MISS || $request->get('state') <= Miss::NOPRESELECTED) {
+					$query = Miss::whereBetween('state',[Miss::PRECANDIDATE,Miss::DISQUALIFIEDPRECANDIDATE]);
+				} else{
+					$query = Miss::where('state',$request->get('state'));
+				}
+			} else{
+				$query = Miss::whereBetween('state',[Miss::PRECANDIDATE,Miss::DISQUALIFIEDPRECANDIDATE]);
+			}
+
+			if($request->has('country_id') && $request->get('country_id') != 'null'){
+				$query->where('country_id',$request->get('country_id'));
+			}
+
+			if ($request->has('date_from') && $request->has('date_to')) {
+				$query->whereRaw("DATE_FORMAT(created_at,'%Y-%m-%d') between '".$request->get('date_from')."' and '".$request->get('date_to')."'");
+			}
+
+
+		} else {
+			$query = Miss::whereBetween('state',[Miss::PRECANDIDATE,Miss::DISQUALIFIEDPRECANDIDATE]);
+		}
+
+		$misses = $query->get();
+
+		return $misses;
 	}
 
 	public function find($field, $returnException = false)

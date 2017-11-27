@@ -16,7 +16,7 @@ class CountryRepository implements CountryRepositoryInterface
 	public function enum($params = null)
 	{
 		if ($params) {
-			if (is_array($params )&&array_key_exists('with_flags', $params)) {
+			if (is_array($params) && array_key_exists('with_flags', $params)) {
 				$countries = Country::whereNotNull('flag_img')->orderBy('name')->get();
 			}
 		} else {

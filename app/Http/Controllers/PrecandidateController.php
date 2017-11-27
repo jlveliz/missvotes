@@ -33,8 +33,8 @@ class PrecandidateController extends Controller
      */
     public function index(Request $request)
     {
-        $countries =$this->country->enum();
-        $precandidates = $this->precandidate->enum($request);
+        $countries = $this->country->enum(['with_flags'=>true]);
+        $precandidates = $this->precandidate->enumPrecandidates($request);
         return view('backend.precandidate.index',compact('countries','precandidates'));
     }
 

@@ -12,16 +12,16 @@ use MissVote\RepositoryInterface\TicketVoteClientRepositoryInterface;
 
 class PdfExportController extends Controller
 {
-    private $applicant;
+    private $miss;
     private $country;
     private $config;
     private $voteRepo;
     private $clientRepo;
     private $voteTicket;
 
-    public function __construct(MissRepositoryInterface $applicant, CountryRepositoryInterface $country, ConfigRepositoryInterface $config, VoteRepositoryInterface $voteRepo, ClientRepositoryInterface $clientRepo, TicketVoteClientRepositoryInterface $voteTicket)
+    public function __construct(MissRepositoryInterface $miss, CountryRepositoryInterface $country, ConfigRepositoryInterface $config, VoteRepositoryInterface $voteRepo, ClientRepositoryInterface $clientRepo, TicketVoteClientRepositoryInterface $voteTicket)
     {
-    	$this->applicant = $applicant;
+    	$this->miss = $miss;
     	$this->country = $country;
         $this->config = $config;
     	$this->voteRepo = $voteRepo;
@@ -32,7 +32,7 @@ class PdfExportController extends Controller
 
     public function applicants(Request $request)
     {
-    	$applicants = $this->applicant->enum($request);
+    	$applicants = $this->miss->enumApplicants($request);
         $view = view()->make('backend.pdf.applicants',compact('applicants'))->render();
         $pdf = app()->make('dompdf.wrapper');
         $pdf->loadHtml($view);
@@ -93,8 +93,12 @@ class PdfExportController extends Controller
         return $pdf->stream('resume-client-tickets.pdf');
     }
 
-    public function precandidates()
+    public function precandidates(Request $request)
     {
-        # code...
+        $precandidates = $this->miss->enumPrecandidates($request);
+        $view = view()->make('backend.pdf.precandidates',compact('precandidates'))->render();
+        $pdf = app()->make('dompdf.wrapper');
+        $pdf->loadHtml($view);
+        return $pdf->stream('precandidates.pdf');
     }
 }

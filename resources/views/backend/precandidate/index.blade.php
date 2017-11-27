@@ -66,23 +66,18 @@
          			</tr>
          		</thead>
          		<tbody>
-         			@foreach ($precandidates as $precandidate)
+         			 @for ($i = count($precandidates) - 1; $i >= 0; $i--)
                 <tr>
-           				<td>{{$precandidate->created_at }}</td>
-                  <td>{{ $precandidate->code }}</td>
-                  <td>{{$precandidate->name}} {{$precandidate->last_name}}</td>
-                  <td>@if($precandidate->state == 0) <span class="text-danger">  @endif{{$precandidate->getFormattedState()}} @if($precandidate->state == 0) </span> @endif</td>
-                  <td>{{$precandidate->getFormattedHowDidYouHearAboutUs()}}</td>
+           				<td>{{$precandidates[$i]->created_at }}</td>
+                  <td>{{$precandidates[$i]->code }}</td>
+                  <td>{{$precandidates[$i]->name}} {{$precandidates[$i]->last_name}}</td>
+                  <td>{{$precandidates[$i]->getFormattedState()}}</td>
+                  <td>{{$precandidates[$i]->getFormattedHowDidYouHearAboutUs()}}</td>
            				<td class="text-center">
-                    <form action="{{ route('precandidates.destroy',$precandidate->id) }}" method="POST">
-                        <a href="{{ route('precandidates.show',$precandidate->id) }}" title="{{ trans('backend.precandidate.index.td_show') }}" class="btn btn-xs btn-warning"> {{ trans('backend.precandidate.index.td_show') }}</a>
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button type="submit" title="{{ trans('backend.precandidate.index.td_delete') }}" class="btn btn-xs btn-danger delete"> {{ trans('backend.precandidate.index.td_delete') }}</button>
-                    </form>
+                    <a href="{{ route('precandidates.show',$precandidates[$i]->id) }}" title="{{ trans('backend.precandidate.index.td_show') }}" class="btn btn-xs btn-warning"> {{ trans('backend.precandidate.index.td_show') }}</a>
            				</td>
            			</tr>
-         			@endforeach
+         			@endfor
          		</tbody>
       </table>
        

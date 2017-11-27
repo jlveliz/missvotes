@@ -133,7 +133,7 @@
 				'th_action' => 'Action',
 				'th_how_you_hear'=>'How Did You Hear About Us?',
 				'th_creation_date'=>'Creation Date',
-
+				'th_number' => 'Number',
 				'td_show' => 'Show',
 				'td_delete' =>'Delete',
 				'filter' => [
@@ -187,7 +187,27 @@
 				'flag_qualited' => 'The Miss has been qualified as a candidate',
 			]
 		],
-
+		'precandidate' => [
+			'index' => [
+				'panel_title' => 'Precandidate',
+				'panel_caption' => 'List of Precandidates',
+				'th_names' => 'Names',
+				'th_code' => 'Code',
+				'th_state' => 'State',
+				'th_date'=>'Date',
+				'th_upgrade'=>'Upgrade',
+				'th_action' => 'Action',
+				'th_how_you_hear'=>'How Did You Hear About Us?',
+				'th_creation_date'=>'Creation Date',
+				'th_number' => 'Number',
+				'td_show' => 'Show',
+				'filter' => [
+					'country_label' => 'Country',
+					'state_label'=>'State',
+					'state_date'=>'Date'
+				]
+			],
+		],
 
 		'client' => [
 			'index' => [

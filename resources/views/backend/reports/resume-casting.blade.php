@@ -25,17 +25,33 @@
 			  	 					{{$casting->country}}
 			  	 				@endif
 			  	 			</td>
-			  	 			<td class="counter">
-			  	 				{{$casting->counter}}
+			  	 			<td class="counter" align="center">
+			  	 				@if ($casting->counter > 0)
+			  	 				<a href="{{ route('applicants.index',['country_id'=>$casting->country_id,'casting_id'=>$casting->casting_id]) }}">{{$casting->counter}}</a>
+			  	 				@else
+			  	 					{{$casting->counter}}
+			  	 				@endif
 			  	 			</td>
-			  	 			<td class="preselected">
-			  	 				{{$casting->preselected}}
+			  	 			<td class="preselected" align="center">
+			  	 				@if ($casting->preselected > 0)
+			  	 					<a href="{{ route('applicants.index',['country_id'=>$casting->country_id,'casting_id'=>$casting->casting_id,'state'=>MissVote\Models\Miss::PRESELECTED]) }}">{{$casting->preselected}}</a>
+			  	 				@else
+			  	 					{{$casting->preselected}}
+			  	 				@endif
 			  	 			</td>
-			  	 			<td class="nopreselected">
-			  	 				{{$casting->nopreselected}}
-			  	 			</td class="missing">
-			  	 			<td>
-			  	 				{{$casting->missing}}
+			  	 			<td class="nopreselected" align="center">
+			  	 				@if ($casting->nopreselected > 0)
+			  	 					<a href="{{ route('applicants.index',['country_id'=>$casting->country_id,'casting_id'=>$casting->casting_id,'state'=>MissVote\Models\Miss::NOPRESELECTED]) }}">{{$casting->nopreselected}}</a>
+			  	 				@else
+			  	 					{{$casting->nopreselected}}
+			  	 				@endif
+			  	 			</td>
+			  	 			<td class="missing" align="center">
+			  	 				@if ($casting->missing > 0)
+			  	 					<a href="{{ route('applicants.index',['country_id'=>$casting->country_id,'casting_id'=>$casting->casting_id,'state'=>MissVote\Models\Miss::FORRATING]) }}">{{$casting->missing}}</a>
+			  	 				@else
+			  	 					{{$casting->missing}}
+			  	 				@endif
 			  	 			</td>
 			  	 		</tr>
 			  		@endforeach
@@ -61,7 +77,6 @@
 <div class="panel panel-default">
   <div class="panel-heading">{{ trans('backend.dashboard.casting_resume.title_two') }}
   <a target="_blank" href="{{ route('dashboard.export.casting',['casting_id'=>'casting_2']) }}"  type="button" class="btn btn-default"><i class="fa fa-file-pdf-o"> </i> PDF</a> </div>
-</div>
   <div class="panel-body">
   	<table id="casting-2-datatable" class="table table-bordered">
   		<thead>
@@ -79,24 +94,40 @@
 		  	 		<tr>
 		  	 			<td>{{$index+1}}</td>
 		  	 			<td class="country">
-		  	 				@if ($casting->counter > 0)
-		  	 				<a href="{{ route('applicants.index',['country_id'=>$casting->country_id,'casting_id'=>$casting->casting_id]) }}">{{$casting->country}}</a>
-		  	 				@else
-		  	 					{{$casting->country}}
-		  	 				@endif
-		  	 			</td>
-		  	 			<td class="counter">
-		  	 				{{$casting->counter}}
-		  	 			</td>
-		  	 			<td class="preselected">
-		  	 				{{$casting->preselected}}
-		  	 			</td>
-		  	 			<td class="nopreselected">
-		  	 				{{$casting->nopreselected}}
-		  	 			</td class="missing">
-		  	 			<td>
-		  	 				{{$casting->missing}}
-		  	 			</td>
+			  	 				@if ($casting->counter > 0)
+			  	 				<a href="{{ route('applicants.index',['country_id'=>$casting->country_id,'casting_id'=>$casting->casting_id]) }}">{{$casting->country}}</a>
+			  	 				@else
+			  	 					{{$casting->country}}
+			  	 				@endif
+			  	 			</td>
+			  	 			<td class="counter" align="center">
+			  	 				@if ($casting->counter > 0)
+			  	 				<a href="{{ route('applicants.index',['country_id'=>$casting->country_id,'casting_id'=>$casting->casting_id]) }}">{{$casting->counter}}</a>
+			  	 				@else
+			  	 					{{$casting->counter}}
+			  	 				@endif
+			  	 			</td>
+			  	 			<td class="preselected" align="center">
+			  	 				@if ($casting->preselected > 0)
+			  	 					<a href="{{ route('applicants.index',['country_id'=>$casting->country_id,'casting_id'=>$casting->casting_id,'state'=>MissVote\Models\Miss::PRESELECTED]) }}">{{$casting->preselected}}</a>
+			  	 				@else
+			  	 					{{$casting->preselected}}
+			  	 				@endif
+			  	 			</td>
+			  	 			<td class="nopreselected" align="center">
+			  	 				@if ($casting->nopreselected > 0)
+			  	 					<a href="{{ route('applicants.index',['country_id'=>$casting->country_id,'casting_id'=>$casting->casting_id,'state'=>MissVote\Models\Miss::NOPRESELECTED]) }}">{{$casting->nopreselected}}</a>
+			  	 				@else
+			  	 					{{$casting->nopreselected}}
+			  	 				@endif
+			  	 			</td >
+			  	 			<td class="missing" align="center">
+			  	 				@if ($casting->missing > 0)
+			  	 					<a href="{{ route('applicants.index',['country_id'=>$casting->country_id,'casting_id'=>$casting->casting_id,'state'=>MissVote\Models\Miss::FORRATING]) }}">{{$casting->missing}}</a>
+			  	 				@else
+			  	 					{{$casting->missing}}
+			  	 				@endif
+			  	 			</td>
 		  	 		</tr>
 		  		@endforeach
   				<tr>
@@ -110,4 +141,5 @@
   		</tbody>
   	</table>
   </div>
+</div>
 </div>

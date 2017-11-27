@@ -1,5 +1,12 @@
 @extends('layouts.backend')
 @section('content')
+  @if ($existCasting)
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-xs-12">
+        @include('backend.reports.resume-casting',['resumeCastingOne'=>$resumeCastingOne,'resumeCastingTwo'=>$resumeCastingTwo])
+      </div>   
+    </div>
+  @endif
 	<div class="row">
 		<div class="col-md-6 col-lg-6 col-xs-12">
 			@include('backend.reports.ranking-miss',$votes)
@@ -7,11 +14,6 @@
 		<div class="col-md-6 col-lg-6 col-xs-12">
       @include('backend.reports.memberships-user',$countUserMemberships)
     </div>  
-  </div>
-  <div class="row">
-    <div class="col-md-12 col-lg-12 col-xs-12">
-      @include('backend.reports.resume-casting',['resumeCastingOne'=>$resumeCastingOne,'resumeCastingTwo'=>$resumeCastingTwo])
-    </div>   
   </div>
   <div class="row">
     <div class="col-md-6 col-lg-6 col-xs-12">

@@ -16,6 +16,12 @@ class AppServiceProvider extends ServiceProvider
     {
         $configRepo = new ConfigRepository();
         view()->share('castings', $configRepo->getAllCastings());
+
+        $existCasting = false;
+        $casting = $configRepo->find(['key'=>'exist_casting'],false);
+        if (!$casting) $existCasting = config('app.castings');
+        $existCasting =  $casting->payload;
+        view()->share('existCasting',$existCasting);
     }
 
     /**
