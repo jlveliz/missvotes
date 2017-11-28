@@ -7,6 +7,7 @@ use MissVote\RepositoryInterface\MissRepositoryInterface;
 use MissVote\Repository\ConfigRepository;
 use MissVote\Models\Country;
 use MissVote\RepositoryInterface\ConfigRepositoryInterface;
+use MissVote\Events\SendMailToPreselecteds;
 use Response;
 
 
@@ -41,9 +42,9 @@ class ApplicantController extends Controller
         }
 
         $countries = $currentCasting->countries;
-
+        $emailSuccessTemplate = $this->config->find(['key'=>'email_template_yes_preselected'])->payload;
         $applicants = $this->applicant->enumApplicants($request);
-        return view('backend.applicant.index',compact('castings','countries','applicants'));
+        return view('backend.applicant.index',compact('castings','countries','applicants','emailSuccessTemplate'));
     }
 
     /**
@@ -175,6 +176,19 @@ class ApplicantController extends Controller
         if ($this->applicant->deletePhoto($key)) {
             return ['success'=>"It's cool"];
         }
+    }
+
+
+    public function sendMail(Request $request)
+    {
+        $applicants = [];
+
+        foreach ($request->get('applicants') as $key => $idApplicant) {
+            $applicants[] = $this->applicant->find($idApplicant); 
+        }
+        
+        event(new SendMailToPreselecteds($applicants,$request));
+        
     }
 
 

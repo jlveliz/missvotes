@@ -104,6 +104,7 @@ Route::group(['prefix'=>'backend'],function(){
 	Route::post('/config', 'ConfigController@store')->name('config.store');
 	Route::delete('/config', 'ConfigController@destroy')->name('config.destroy');
 	Route::get('/applicants/export', 'PdfExportController@applicants')->name('applicants.export');
+	Route::post('/applicants/sendmail', 'ApplicantController@sendMail')->name('applicants.sendmail');
 	Route::resource('/applicants', 'ApplicantController',['only'=>['index','show','update','destroy']]);
 	Route::get('/precandidates/export', 'PdfExportController@precandidates')->name('precandidates.export');
 	Route::resource('/precandidates', 'PrecandidateController',['only'=>['index','show','update','destroy']]);

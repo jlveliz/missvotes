@@ -60,7 +60,8 @@ class Miss extends Model
         'height_type_measure',
         'weight_type_measure',
         'applicant_face_photo',
-        'applicant_body_photo'
+        'applicant_body_photo',
+        'mail_sended'
     ];
 
 

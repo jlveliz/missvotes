@@ -53,12 +53,19 @@
                     </div>
           </div>
         </form>
+        <div class="row">
+           <div class="form-group col-md-12 col-sm-12 col-xs-12">
+              <button type="button" id="send-mail-nopreselected" class="btn btn-default" disabled>Send Gratitude Mail</button>
+              <button type="button" id="send-mail-preselected" class="btn btn-success" disabled>Send Selected Mail</button>
+           </div>
+        </div>
       </div>
       
       <table id="applicant-datatable" class="table table-bordered">
          		<caption>{{ trans('backend.applicant.index.panel_caption') }}</caption>
          		<thead>
          			<tr>
+                <th></th>
                 <th>{{ trans('backend.applicant.index.th_creation_date') }}</th>
          				<th>{{ trans('backend.applicant.index.th_number') }}</th>
                 <th>{{ trans('backend.applicant.index.th_code') }}</th>
@@ -71,6 +78,16 @@
          		<tbody>
               @for ($i = count($applicants) - 1; $i >= 0; $i--)
                 <tr>
+                  <td>
+                    @if($applicants[$i]->state == MissVote\Models\Miss::PRESELECTED && !$applicants[$i]->mail_sended)
+                      <input class="preselected" type="checkbox" name="applicants[]" value="{{$applicants[$i]->id}}">
+                    @endif 
+                    @if($applicants[$i]->state == MissVote\Models\Miss::NOPRESELECTED && !$applicants[$i]->mail_sended)
+                      <input class="nopreselected" type="checkbox" name="applicants[]" value="{{$applicants[$i]->id}}">
+                    @endif
+                    <input type="hidden" value="" id="id-preselecteds">
+                    <input type="hidden" value="" id="id-nopreselecteds">
+                  </td>
            				<td>{{$applicants[$i]->created_at }}</td>
                   <td>{{$i + 1}}</td>
                   <td>{{$applicants[$i]->code }}</td>
@@ -102,8 +119,19 @@
         @if (App::isLocale('es'))
         "language": {
           "url": "../public/js/datatables/json/es.json"
-        }
+        },
         @endif
+        "orderable": true,
+        "columnDefs": [{
+            "orderable": false,
+            "targets": [0,7]
+        }],
+        "order": [
+            [1, 'asc'],
+            [2, 'asc'],
+            [3, 'asc'],
+        ],
+        "responsive": true
       });
 
        $(".delete").on('click', function(event) {
@@ -116,5 +144,102 @@
         }
       });
   });
+
+  //CHECKBOX
+  $(document).ready(function() {
+
+    var actionSendMailPreselecteds = false;
+
+    //si hay preselecteds
+    $(".preselected").on('click',function(event) {
+      var _this = $(this);
+      if(_this.is(':checked')){
+        $("#send-mail-preselected").removeAttr('disabled',true);       
+
+      } else if(!$(".preselected").is(':checked')) {
+
+        $("#send-mail-preselected").attr('disabled',true);
+      } else {
+        $("#applicant_"+parseInt(_this.val())+"").remove();
+      }
+    });
+
+    //si hay preselecteds
+    $(".nopreselected").on('click',function(event) {
+      var _this = $(this);
+      if(_this.is(':checked')){
+        $("#send-mail-nopreselected").removeAttr('disabled',true);
+      } else if(!$(".nopreselected").is(':checked')) {
+        $("#send-mail-nopreselected").attr('disabled',true);
+      }
+    });
+
+    $("#send-mail-preselected").on('click',function(event) {
+        $("#modal-send-mail").modal('show');
+        actionSendMailPreselecteds = true;
+    });
+
+    $("#modal-send-mail").on('hidden.bs.modal', function(event) {
+      $(".preselecteds-modal").remove();
+    });
+
+    $("#modal-send-mail").on('shown.bs.modal', function(event) {
+      if(actionSendMailPreselecteds) {
+        var htmlAction = "<input type='hidden' name='action' value='send_preselected' />";
+        $('#applicants_to_send_mail').append(htmlAction);
+        $(".preselected").each(function(index, el) {
+          var el = $(el);
+          if(el.is(':checked')){
+            var htmlHidden = '<input type="hidden" class="preselecteds-modal" name="applicants[]" value="'+parseInt(el.val())+'" id="applicant_'+parseInt(el.val())+'" >';
+              $('#applicants_to_send_mail').append(htmlHidden);
+          }
+        });
+
+      }
+    });
+
+  });
  </script>
+
+
+
+
+<div class="modal fade" id="modal-send-mail" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Preview</h4>
+      </div>
+      <form action="{{ route('applicants.sendmail') }}" method="POST" id="applicants_to_send_mail">
+      <div class="modal-body">
+        <div class="row">
+            {{ csrf_field() }}
+            <div class="form-group col-md-8 col-sm-8 col-xs-12 ">
+              <label class="control-label">{{trans('backend.config.tab_mail.subject')}} </label>
+              <input type="text" class="form-control" name="subject" value="{{trim($emailSuccessTemplate['subject'])}}" autofocus>
+            </div>
+            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+              <p><b>{{ trans('backend.config.tab_mail.list_variables') }}</b></p>
+              <ul>
+                <li>Name : $name</li>
+                <li>Last Name : $lastname</li>
+                <li>Email: $email</li>
+              </ul>
+            </div>
+            <div class="form-group col-md-12 col-sm-12 col-xs-12 ">
+              <label class="control-label">{{trans('backend.config.tab_mail.body')}} </label>
+              <textarea type="text" name="body" id="email-body" class="form-control">{{$emailSuccessTemplate['body']}}</textarea>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Send Emails</button>
+      </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 @endsection
