@@ -25,7 +25,7 @@
             <div class="clearfix"></div>
       @endif
 
-      @if ($precandidate->state == \MissVote\Models\Miss::MISS) 
+      @if ($precandidate->state == \MissVote\Models\Miss::CANDIDATE) 
             <div class="alert alert-dismissible alert-success" role="alert">
                   <p class="text-danger text-center"><b>{{ trans('backend.precandidate.show.miss_preselected') }}</b></p> 
             </div>
@@ -155,8 +155,8 @@
 	<div class="panel-footer">
 		<dir class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
-          <a href="{{ route('precandidates.index') }}" class="btn btn-primary">{{ trans('backend.precandidate.show.btn_cancel') }}</a>
-          @if ($precandidate->state == '3')
+          <a href="{{ route('precandidates.index') }}" class="btn btn-primary">{{ trans('backend.precandidate.show.btn_back') }}</a>
+          @if ($precandidate->state == \MissVote\Models\Miss::PRECANDIDATE)
               <form action="{{ route('precandidates.update',$precandidate->id) }}"  method="POST" style="display: inline">
                 {{ csrf_field() }}
                 <input type="hidden" name="_method" value="PUT">
@@ -168,6 +168,22 @@
                 <input type="hidden" name="_method" value="PUT">
                 <input type="hidden" name="state" value="5">
                 <button type="submit" class="btn btn-success" id="save">{{ trans('backend.precandidate.show.label_qualify_candidate') }}</button>
+              </form>
+          @endif
+
+          @if ($precandidate->state == \MissVote\Models\Miss::DISQUALIFIEDPRECANDIDATE)
+           <form action="{{ route('precandidates.update',$precandidate->id) }}"  method="POST" style="display: inline">
+                {{ csrf_field() }}
+                <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="state" value="3">
+                <button type="submit" class="btn btn-warning" id="save">{{ trans('backend.precandidate.show.missing') }}</button>
+            </form>
+            <form action="{{ route('precandidates.update',$precandidate->id) }}"  method="POST" style="display: inline">
+                {{ csrf_field() }}
+                <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="state" value="5">
+                <button type="submit" class="btn btn-success" id="save">{{ trans('backend.precandidate.show.label_qualify_candidate') }}</button>
+            </form>
           @endif
 		    </div>
 		</dir>

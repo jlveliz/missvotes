@@ -17,7 +17,14 @@
                   <p class="text-danger text-center"><b>{{ trans('backend.candidates.create-edit.flag_disqualited') }}</b></p> 
             </div>
             <div class="clearfix"></div>
-      @endif
+      	@endif
+
+      	@if ($candidate->state == \MissVote\Models\Miss::CANDIDATE) 
+            <div class="alert alert-dismissible alert-success" role="alert">
+                  <p class="text-danger text-center"><b>{{ trans('backend.candidates.create-edit.flag_qualited') }}</b></p> 
+            </div>
+            <div class="clearfix"></div>
+      	@endif
 		<form action="{{ route('candidates.update',$candidate->id) }}" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<input type="hidden" name="_method" value="PUT">
@@ -174,15 +181,25 @@
 	<div class="panel-footer">
 			<div class="row">
 				<div class="form-group col-md-12 col-sm-12 col-xs-12">
-					<a href="{{ route('candidates.index') }}" class="btn btn-primary">{{ trans('backend.candidates.create-edit.btn_cancel') }}</a>
+					<a href="{{ route('candidates.index') }}" class="btn btn-primary">{{ trans('backend.candidates.create-edit.btn_back') }}</a>
 	                <button type="submit" class="btn btn-success" id="save">{{ trans('backend.candidates.create-edit.btn_save') }}</button>
 	</form>
-			<form action="{{ route('candidates.update',$candidate->id) }}" method="POST" style="display: inline">
-				{{ csrf_field() }}
-      			<input type="hidden" name="_method" value="PUT">
-      			<input type="hidden" name="state" value="{{\Missvote\Models\Miss::DISQUALIFIEDCANDIDATE}}">
-      		    <button type="submit" class="btn btn-warning" id="save">{{ trans('backend.candidates.create-edit.disqualify') }}</button>
-			</form>
+	@if ($candidate->state == '5')
+	<form action="{{ route('candidates.update',$candidate->id) }}" method="POST" style="display: inline">
+		{{ csrf_field() }}
+			<input type="hidden" name="_method" value="PUT">
+			<input type="hidden" name="state" value="{{\Missvote\Models\Miss::DISQUALIFIEDCANDIDATE}}">
+		    <button type="submit" class="btn btn-warning" id="save">{{ trans('backend.candidates.create-edit.disqualify') }}</button>
+	</form>
+	@endif
+	@if ($candidate->state == '6')
+	<form action="{{ route('candidates.update',$candidate->id) }}" method="POST" style="display: inline">
+		{{ csrf_field() }}
+			<input type="hidden" name="_method" value="PUT">
+			<input type="hidden" name="state" value="{{\Missvote\Models\Miss::CANDIDATE}}">
+		    <button type="submit" class="btn btn-success" id="save">{{ trans('backend.candidates.create-edit.qualify') }}</button>
+	</form>
+	@endif
 	            </div>
 			</div>
 

@@ -53,7 +53,7 @@ class PrecandidateController extends Controller
      *
      * @return Response
      */
-    public function store(PrecandidateRequest $request)
+    public function store(Request $request)
     {
         
         
@@ -90,7 +90,7 @@ class PrecandidateController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(PrecandidateRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $data = $request->all();
         $precandidate = $this->precandidate->edit($id,$data);
@@ -100,21 +100,18 @@ class PrecandidateController extends Controller
         ];
         if ($precandidate) {
 
-            $sessionData['mensaje'] = trans('backend.precandidate.create-edit.flag_success_updated');
+            $sessionData['mensaje'] = trans('backend.precandidate.show.flag_success_updated');
 
         } elseif(!$precandidate && $request->has('is_precandidate')) {
-            $sessionData['mensaje'] = trans('backend.precandidate.create-edit.flag_qualited');
+            $sessionData['mensaje'] = trans('backend.precandidate.show.flag_qualited');
             
         } else {
             $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = trans('backend.precandidate.create-edit.flag_error_updated');
+            $sessionData['mensaje'] = trans('backend.precandidate.show.flag_error_updated');
         }
 
-        if ($request->has('is_precandidate')) {
-            return Redirect::action('PrecandidateController@index')->with($sessionData);
-        } else {
-            return Redirect::action('PrecandidateController@show',$precandidate->id)->with($sessionData);
-        }
+        return redirect()->action('PrecandidateController@show',$precandidate->id)->with($sessionData);
+        
     }
 
     /**
@@ -125,21 +122,21 @@ class PrecandidateController extends Controller
      */
     public function destroy($id)
     {
-        $precandidate = $this->precandidate->remove($id);
+        // $precandidate = $this->precandidate->remove($id);
         
-        $sessionData = [
-            'tipo_mensaje' => 'success',
-            'mensaje' => '',
-        ];
+        // $sessionData = [
+        //     'tipo_mensaje' => 'success',
+        //     'mensaje' => '',
+        // ];
         
-        if ($precandidate) {
-            $sessionData['mensaje'] = trans('backend.precandidate.create-edit.flag_success_deleted');
-        } else {
-            $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = trans('backend.precandidate.create-edit.flag_error_deleted');
-        }
+        // if ($precandidate) {
+        //     $sessionData['mensaje'] = trans('backend.precandidate.create-edit.flag_success_deleted');
+        // } else {
+        //     $sessionData['tipo_mensaje'] = 'error';
+        //     $sessionData['mensaje'] = trans('backend.precandidate.create-edit.flag_error_deleted');
+        // }
         
-        return Redirect::action('PrecandidateController@index')->with($sessionData);
+        // return Redirect::action('PrecandidateController@index')->with($sessionData);
     }
 
 

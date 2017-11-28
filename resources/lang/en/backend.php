@@ -143,9 +143,10 @@
 				'label_why_would_you_win' => 'Why would you win',
 				'label_photos' => 'Photos',
 				'select_default' => '--Select--',
-				'btn_cancel' => 'Cancel',
+				'btn_back' => 'Back',
 				'btn_save' => 'Save',
 				'disqualify' => 'Disqualify',
+				'qualify' => 'Qualify',
 				'flag_success_saved' => 'Candidate Created Satisfactorily',
 				'flag_error_saved' => 'Candidate could not be created, try again',
 				'flag_success_updated' => 'Candidate Updated Satisfactorily',
@@ -153,6 +154,7 @@
 				'flag_success_deleted' => 'Candidate deleted Satisfactorily',
 				'flag_error_deleted' => 'Candidate could not be deleted, try again',
 				'flag_disqualited' => 'The Miss has been disqualified as a candidate',
+				'flag_qualited' => 'The Miss is as a candidate',
 				'how_hear_about_us'=>'How Did You Hear About Us?'
 			],
 		],
@@ -248,7 +250,7 @@
 			'show' => [
 				'panel_title' => 'Precandidates',
 				'miss_disqualified' => 'The lady is disqualified',
-				'miss_missing' => 'The Miss miss for rating',
+				'miss_missing' => 'The Precandidate miss for rating',
 				'miss_preselected' => 'The Miss is Preselected',
 				'miss_no_preselected' => 'The Miss is not Preselected',
 				'label_name'=>'Name',
@@ -276,9 +278,11 @@
 				'label_preselected' => 'Preselect',
 				'disqualify' => 'Disqualify',
 				'label_qualify_candidate' => 'Qualify as a Candidate',
-				'btn_cancel' => 'Cancel',
+				'btn_back' => 'Back',
 				'label_photos' => 'Photos',
-				'how_hear_about_us'=>'How Did You Hear About Us?'
+				'missing' => 'Missing',
+				'how_hear_about_us'=>'How Did You Hear About Us?',
+				'flag_success_updated' => 'Precandidate Updated Satisfactorily',
 			]
 		],
 
