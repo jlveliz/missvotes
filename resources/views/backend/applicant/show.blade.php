@@ -155,8 +155,8 @@
 	<div class="panel-footer">
 		<dir class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
-          <a href="{{ route('applicants.index') }}" class="btn btn-primary">{{ trans('backend.applicant.show.btn_cancel') }}</a>
-          @if ($applicant->state == '0')
+          <a href="{{ route('applicants.index') }}" class="btn btn-primary">{{ trans('backend.applicant.show.btn_back') }}</a>
+          @if ($applicant->state == \MissVote\Models\Miss::FORRATING)
               <form action="{{ route('applicants.update',$applicant->id) }}"  method="POST" style="display: inline">
                 {{ csrf_field() }}
                 <input type="hidden" name="_method" value="PUT">
@@ -168,15 +168,38 @@
                 <input type="hidden" name="_method" value="PUT">
                 <input type="hidden" name="state" value="1">
                 <button type="submit" class="btn btn-success" id="save">{{ trans('backend.applicant.show.label_preselected') }}</button>
+              </form>
           @endif
-            @if ($applicant->state == '1')
+          @if ($applicant->state ==  \MissVote\Models\Miss::PRESELECTED)
       				<form action="{{ route('applicants.update',$applicant->id) }}" method="POST"  style="display: inline">
       					{{ csrf_field() }}
       					<input type="hidden" name="_method" value="PUT">
-                <input type="hidden" name="is_applicant" value="0">
-      		      <button type="submit" class="btn btn-success" id="save">{{ trans('backend.applicant.show.label_qualify_candidate') }}</button>
+                <input type="hidden" name="state" value="0">
+      		      <button type="submit" class="btn btn-success" id="save">{{ trans('backend.applicant.show.label_qualify_missing') }}</button>
       				</form>
-                        @endif
+              <form action="{{ route('applicants.update',$applicant->id) }}"  method="POST" style="display: inline">
+                {{ csrf_field() }}
+                <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="state" value="2">
+                <button type="submit" class="btn btn-warning" id="save">{{ trans('backend.applicant.show.label_no_preselected') }}</button>
+              </form>
+          @endif
+          
+          @if ($applicant->state ==  \MissVote\Models\Miss::NOPRESELECTED)
+            <form action="{{ route('applicants.update',$applicant->id) }}" method="POST"  style="display: inline">
+                {{ csrf_field() }}
+                <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="state" value="0">
+                <button type="submit" class="btn btn-warning" id="save">{{ trans('backend.applicant.show.label_qualify_missing') }}</button>
+              </form>
+              <form action="{{ route('applicants.update',$applicant->id) }}" method="POST"  style="display: inline">
+                {{ csrf_field() }}
+                <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="state" value="1">
+                <button type="submit" class="btn btn-success" id="save">{{ trans('backend.applicant.show.label_preselected') }}</button>
+              </form>
+          @endif
+
 		    </div>
 		</dir>
 	</div>

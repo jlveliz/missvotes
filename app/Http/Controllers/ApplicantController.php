@@ -8,8 +8,7 @@ use MissVote\Repository\ConfigRepository;
 use MissVote\Models\Country;
 use MissVote\RepositoryInterface\ConfigRepositoryInterface;
 use Response;
-use Redirect;
-use PDF;
+
 
 class ApplicantController extends Controller
 {
@@ -63,22 +62,22 @@ class ApplicantController extends Controller
      *
      * @return Response
      */
-    public function store(PrecandidateRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->all();
-        $applicant = $this->applicant->save($data);
-        $sessionData = [
-            'tipo_mensaje' => 'success',
-            'mensaje' => '',
-        ];
-        if ($applicant) {
-            $sessionData['mensaje'] = trans('backend.applicant.create-edit.flag_success_saved');
-        } else {
-            $sessionData['tipo_mensaje'] = 'error';
-            $sessionData['mensaje'] = trans('backend.applicant.create-edit.flag_error_saved');
-        }
+        // $data = $request->all();
+        // $applicant = $this->applicant->save($data);
+        // $sessionData = [
+        //     'tipo_mensaje' => 'success',
+        //     'mensaje' => '',
+        // ];
+        // if ($applicant) {
+        //     $sessionData['mensaje'] = trans('backend.applicant.create-edit.flag_success_saved');
+        // } else {
+        //     $sessionData['tipo_mensaje'] = 'error';
+        //     $sessionData['mensaje'] = trans('backend.applicant.create-edit.flag_error_saved');
+        // }
         
-        return Redirect::action('PrecandidateController@edit',$applicant->id)->with($sessionData);
+        // return Redirect::action('PrecandidateController@edit',$applicant->id)->with($sessionData);
         
     }
 
@@ -113,9 +112,8 @@ class ApplicantController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(PrecandidateRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        dd("entra");
         $data = $request->all();
         $applicant = $this->applicant->edit($id,$data);
         $sessionData = [
@@ -126,19 +124,13 @@ class ApplicantController extends Controller
 
             $sessionData['mensaje'] = trans('backend.applicant.create-edit.flag_success_updated');
 
-        } elseif(!$applicant && $request->has('is_applicant')) {
-            $sessionData['mensaje'] = trans('backend.applicant.create-edit.flag_qualited');
-            
         } else {
             $sessionData['tipo_mensaje'] = 'error';
             $sessionData['mensaje'] = trans('backend.applicant.create-edit.flag_error_updated');
         }
 
-        if ($request->has('is_applicant')) {
-            return Redirect::action('PrecandidateController@index')->with($sessionData);
-        } else {
-            return Redirect::action('PrecandidateController@show',$applicant->id)->with($sessionData);
-        }
+        return redirect()->action('ApplicantController@show',$applicant->id)->with($sessionData);
+        
     }
 
     /**
@@ -163,7 +155,7 @@ class ApplicantController extends Controller
             $sessionData['mensaje'] = trans('backend.applicant.create-edit.flag_error_deleted');
         }
         
-        return Redirect::action('PrecandidateController@index')->with($sessionData);
+        return redirect()->action('PrecandidateController@index')->with($sessionData);
     }
 
 

@@ -8,7 +8,8 @@
 			'participants' => [
 				'menu'=>'Participants',
 				'candidates'=>'Candidates of the contest',
-				'register_log' => 'Online Applicants'
+				'register_log' => 'Online Applicants',
+				'precandidate' => 'Precandidate',
 			],
 			'members'=> [
 				'menu' => 'Members',
@@ -58,24 +59,63 @@
 		],
 
 
-		// misses
-		'misses' => [
+		// candidates
+		'candidates' => [
 			'index' => [
 				'panel_title' => 'Candidates',
 				'panel_caption' => 'List of Candidates',
 				'th_names' => 'Names',
-				'th_country' => 'Country',
+				'th_code' => 'Code',
 				'th_state' => 'State',
-				'th_creation_date'=>'Creation Date',
+				'th_date'=>'Date',
 				'th_upgrade'=>'Upgrade',
 				'th_action' => 'Action',
+				'th_how_you_hear'=>'How Did You Hear About Us?',
+				'th_creation_date'=>'Creation Date',
+				'th_number' => 'Number',
 				'td_edit' => 'Edit',
 				'td_delete' =>'Delete',
-				'btn_create' => 'Create Candidate',
-				'td_state_active' => 'Active',
-				'td_state_inactive' => 'Inactive',
+				'filter' => [
+					'country_label' => 'Country',
+					'state_label'=>'State',
+					'state_date'=>'Date'
+				]
 			],
-
+			'show' => [
+				'panel_title' => 'Applicants',
+				'miss_disqualified' => 'The lady is disqualified',
+				'miss_missing' => 'The Miss miss for rating',
+				'miss_preselected' => 'The Miss is Preselected',
+				'miss_no_preselected' => 'The Miss is not Preselected',
+				'label_name'=>'Name',
+				'label_lastname'=>'Lastname',
+				'label_country'=>'Country',
+				'label_state'=>'State',
+				'label_birthdate'=>'Birthdate',
+				'label_place_of_birth'=>'Place of birth',
+				'label_email'=>'Email',
+				'label_phone_number'=>'Phone number',
+				'label_address' => 'Address',
+				'label_city' => 'City',
+				'label_state_province' => 'State / Province',
+				'label_measurements' => 'Measurements',
+				'label_height' => 'Height',
+				'label_weight' => 'Weight',
+				'label_bust_measure'=>'Bust',
+				'label_waist_measure'=>'Waist',
+				'label_hip_measure' => 'Hip',
+				'label_hair_color' => 'Hair Color',
+				'label_eye_color'=>'Eye Color',
+				'label_dairy_philosophy'=>'Dairy Philosophy',
+				'label_why_would_you_win' => 'Why would you win',
+				'label_no_preselected' => 'No Preselect',
+				'label_preselected' => 'Preselect',
+				'disqualify' => 'Disqualify',
+				'label_qualify_candidate' => 'Qualify as a Candidate',
+				'btn_cancel' => 'Cancel',
+				'label_photos' => 'Photos',
+				'how_hear_about_us'=>'How Did You Hear About Us?'
+			],
 			'create-edit' => [
 				'panel_title' => 'Candidates',
 				'panel_subtitle' => 'Creation of candidates',
@@ -103,8 +143,6 @@
 				'label_why_would_you_win' => 'Why would you win',
 				'label_photos' => 'Photos',
 				'select_default' => '--Select--',
-				'select_state_active' => 'Active',
-				'select_state_inactive' => 'Inactive',
 				'btn_cancel' => 'Cancel',
 				'btn_save' => 'Save',
 				'disqualify' => 'Disqualify',
@@ -115,6 +153,7 @@
 				'flag_success_deleted' => 'Candidate deleted Satisfactorily',
 				'flag_error_deleted' => 'Candidate could not be deleted, try again',
 				'flag_disqualited' => 'The Miss has been disqualified as a candidate',
+				'how_hear_about_us'=>'How Did You Hear About Us?'
 			],
 		],
 
@@ -132,7 +171,7 @@
 				'th_action' => 'Action',
 				'th_how_you_hear'=>'How Did You Hear About Us?',
 				'th_creation_date'=>'Creation Date',
-
+				'th_number' => 'Number',
 				'td_show' => 'Show',
 				'td_delete' =>'Delete',
 				'filter' => [
@@ -144,6 +183,9 @@
 			'show' => [
 				'panel_title' => 'Applicants',
 				'miss_disqualified' => 'The lady is disqualified',
+				'miss_missing' => 'The Miss miss for rating',
+				'miss_preselected' => 'The Miss is Preselected',
+				'miss_no_preselected' => 'The Miss is not Preselected',
 				'label_name'=>'Name',
 				'label_lastname'=>'Lastname',
 				'label_country'=>'Country',
@@ -165,23 +207,80 @@
 				'label_eye_color'=>'Eye Color',
 				'label_dairy_philosophy'=>'Dairy Philosophy',
 				'label_why_would_you_win' => 'Why would you win',
-				'label_enable_erequalification' => 'Enable Prequalification',
+				'label_no_preselected' => 'No Preselect',
+				'label_preselected' => 'Preselect',
+				'disqualify' => 'Disqualify',
+				'label_qualify_missing' => 'Qualify as Missing',
+				'btn_back' => 'Back',
+				'label_photos' => 'Photos',
+				'how_hear_about_us'=>'How Did You Hear About Us?'
+			],
+			'create-edit' => [
+				'flag_success_saved' => 'Applicant Created Satisfactorily',
+				'flag_error_saved' => 'Applicant could not be created, try again',
+				'flag_success_updated' => 'Applicant Updated Satisfactorily',
+				'flag_error_updated' => 'Applicant could not be updated, try again',
+				'flag_success_deleted' => 'Applicant deleted Satisfactorily',
+				'flag_error_deleted' => 'Applicant could not be deleted, try again',
+				'flag_qualited' => 'The Miss has been qualified as a candidate',
+			]
+		],
+		'precandidate' => [
+			'index' => [
+				'panel_title' => 'Precandidate',
+				'panel_caption' => 'List of Precandidates',
+				'th_names' => 'Names',
+				'th_code' => 'Code',
+				'th_state' => 'State',
+				'th_date'=>'Date',
+				'th_upgrade'=>'Upgrade',
+				'th_action' => 'Action',
+				'th_how_you_hear'=>'How Did You Hear About Us?',
+				'th_creation_date'=>'Creation Date',
+				'th_number' => 'Number',
+				'td_show' => 'Show',
+				'filter' => [
+					'country_label' => 'Country',
+					'state_label'=>'State',
+					'state_date'=>'Date'
+				]
+			],
+			'show' => [
+				'panel_title' => 'Precandidates',
+				'miss_disqualified' => 'The lady is disqualified',
+				'miss_missing' => 'The Miss miss for rating',
+				'miss_preselected' => 'The Miss is Preselected',
+				'miss_no_preselected' => 'The Miss is not Preselected',
+				'label_name'=>'Name',
+				'label_lastname'=>'Lastname',
+				'label_country'=>'Country',
+				'label_state'=>'State',
+				'label_birthdate'=>'Birthdate',
+				'label_place_of_birth'=>'Place of birth',
+				'label_email'=>'Email',
+				'label_phone_number'=>'Phone number',
+				'label_address' => 'Address',
+				'label_city' => 'City',
+				'label_state_province' => 'State / Province',
+				'label_measurements' => 'Measurements',
+				'label_height' => 'Height',
+				'label_weight' => 'Weight',
+				'label_bust_measure'=>'Bust',
+				'label_waist_measure'=>'Waist',
+				'label_hip_measure' => 'Hip',
+				'label_hair_color' => 'Hair Color',
+				'label_eye_color'=>'Eye Color',
+				'label_dairy_philosophy'=>'Dairy Philosophy',
+				'label_why_would_you_win' => 'Why would you win',
+				'label_no_preselected' => 'No Preselect',
+				'label_preselected' => 'Preselect',
 				'disqualify' => 'Disqualify',
 				'label_qualify_candidate' => 'Qualify as a Candidate',
 				'btn_cancel' => 'Cancel',
 				'label_photos' => 'Photos',
-			],
-			'create-edit' => [
-				'flag_success_saved' => 'Precandidate Created Satisfactorily',
-				'flag_error_saved' => 'Precandidate could not be created, try again',
-				'flag_success_updated' => 'Precandidate Updated Satisfactorily',
-				'flag_error_updated' => 'Precandidate could not be updated, try again',
-				'flag_success_deleted' => 'Precandidate deleted Satisfactorily',
-				'flag_error_deleted' => 'Precandidate could not be deleted, try again',
-				'flag_qualited' => 'The Miss has been qualified as a candidate',
+				'how_hear_about_us'=>'How Did You Hear About Us?'
 			]
 		],
-
 
 		'client' => [
 			'index' => [
@@ -341,6 +440,7 @@
 				'label_name' => 'Name',
 				'label_code' => 'Code',
 				'label_lang' => 'Language',
+				'label_email' => 'Email Contact',
 				'btn_cancel' => 'Cancel',
 				'btn_save' => 'Save',
 				'btn_change_flag' => 'Change Flag',
