@@ -79,7 +79,7 @@ $style = [
                     <!-- Email Body -->
                     <tr>
                         <td style="{{ $style['email-body'] }}" width="100%">
-                            {{$body}}
+                            {!!$body!!}
                         </td>
                     </tr>
 
