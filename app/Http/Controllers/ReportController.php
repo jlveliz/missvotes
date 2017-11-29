@@ -33,8 +33,13 @@ class ReportController extends Controller
     	$votes = $this->voteRepo->ranking();
     	$countUserMemberships = $this->clientRepo->countUserMemberships();
     	$tickets = $this->voteTicket->enum();
-    	$resumeCastingOne = $this->countryRepo->getResumeCurrentCastings('casting_1');
-    	$resumeCastingTwo = $this->countryRepo->getResumeCurrentCastings('casting_2');
-    	return view('backend.dashboard.index',compact('votes','countUserMemberships','tickets','resumeCastingOne','resumeCastingTwo'));
+    	return view('backend.dashboard.index',compact('votes','countUserMemberships','tickets'));
+    }
+
+
+    public function reportCasting($castingKey)
+    {
+    	$resumeCasting = $this->countryRepo->getResumeCurrentCastings($castingKey);
+    	return view('backend.reports.resume-casting',compact('resumeCasting'));
     }
 }

@@ -1,3 +1,5 @@
+@extends('layouts.backend')
+@section('content')
 <div class="panel panel-default">
   <div class="panel-heading">{{ trans('backend.dashboard.casting_resume.title_one') }} 
   	<a target="_blank" href="{{ route('dashboard.export.casting',['casting_id'=>'casting_1']) }}"  type="button" class="btn btn-default"><i class="fa fa-file-pdf-o"> </i> PDF</a> </div>
@@ -14,8 +16,8 @@
 	  		</tr>
   		</thead>
   		<tbody>
-  				@if (count($resumeCastingOne) > 0)
-	  				@foreach ($resumeCastingOne as $index =>  $casting)
+  				@if (count($resumeCasting) > 0)
+	  				@foreach ($resumeCasting as $index =>  $casting)
 			  	 		<tr>
 			  	 			<td>{{$index+1}}</td>
 			  	 			<td class="country">
@@ -58,10 +60,10 @@
 	  				<tr>
 	  					<td></td>
 	  					<td>Total:</td>
-	  					<td id="total_casting_one_counter"></td>
-	  					<td id="total_casting_one_preselected"></td>
-	  					<td id="total_casting_one_no_preselected"></td>
-	  					<td id="total_casting_one_missing"></td>
+	  					<td align="center" id="total_casting_one_counter"></td>
+	  					<td align="center" id="total_casting_one_preselected"></td>
+	  					<td align="center" id="total_casting_one_no_preselected"></td>
+	  					<td align="center" id="total_casting_one_missing"></td>
 	  				</tr>
   				@else
   				<tr>
@@ -72,9 +74,52 @@
   	</table>
   </div>
 </div>
+@endsection
+@section('js')
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#casting-1-datatable').DataTable({
+        	@if (App::isLocale('es'))
+        		"language": {
+          		"url": "../public/js/datatables/json/es.json",
+        		},
+        	@endif
+        	"ordering": false,
+      	});
+
+      	// CASTING 1
+      var totalCastingOneCounter = 0; 
+      var totalCastingOnePreselected = 0;
+      var totalCastingOneNoPreselected = 0; 
+      var totalCastingOneMissing = 0;
 
 
-<div class="panel panel-default">
+      $("#casting-1-datatable > tbody > tr > td.counter").each(function(index, el) {
+         totalCastingOneCounter+=  parseInt($(el).text());
+      });
+
+      $("#casting-1-datatable > tbody > tr > td.preselected").each(function(index, el) {
+         totalCastingOnePreselected+=  parseInt($(el).text());
+      });
+
+      $("#casting-1-datatable > tbody > tr > td.nopreselected").each(function(index, el) {
+         totalCastingOneNoPreselected+=  parseInt($(el).text());
+      });
+
+      $("#casting-1-datatable > tbody > tr > td.missing").each(function(index, el) {
+         totalCastingOneMissing+=  parseInt($(el).text());
+      });
+
+      $("#total_casting_one_counter").text(totalCastingOneCounter);
+      $("#total_casting_one_preselected").text(totalCastingOnePreselected);
+      $("#total_casting_one_no_preselected").text(totalCastingOneNoPreselected);
+      $("#total_casting_one_missing").text(totalCastingOneMissing);
+      
+	});
+</script>
+@endsection
+
+{{-- <div class="panel panel-default">
   <div class="panel-heading">{{ trans('backend.dashboard.casting_resume.title_two') }}
   <a target="_blank" href="{{ route('dashboard.export.casting',['casting_id'=>'casting_2']) }}"  type="button" class="btn btn-default"><i class="fa fa-file-pdf-o"> </i> PDF</a> </div>
   <div class="panel-body">
@@ -141,5 +186,5 @@
   		</tbody>
   	</table>
   </div>
-</div>
-</div>
+</div> --}}
+

@@ -188,6 +188,9 @@ class ApplicantController extends Controller
         }
         
         event(new SendMailToPreselecteds($applicants,$request));
+        $sessionData['tipo_mensaje'] = 'success';
+        $sessionData['mensaje'] = 'The notifications have been sendend';
+        return back()->with($sessionData);
         
     }
 

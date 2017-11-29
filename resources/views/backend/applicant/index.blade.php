@@ -179,13 +179,19 @@
         actionSendMailPreselecteds = true;
     });
 
+    $("#send-mail-nopreselected").on('click',function(event) {
+        $("#modal-send-mail").modal('show');
+        actionSendMailPreselecteds = false;
+    });
+
     $("#modal-send-mail").on('hidden.bs.modal', function(event) {
       $(".preselecteds-modal").remove();
+      $(".nopreselecteds-modal").remove();
     });
 
     $("#modal-send-mail").on('shown.bs.modal', function(event) {
       if(actionSendMailPreselecteds) {
-        var htmlAction = "<input type='hidden' name='action' value='send_preselected' />";
+        var htmlAction = "<input type='hidden' name='action' id='action' value='send_preselected' />";
         $('#applicants_to_send_mail').append(htmlAction);
         $(".preselected").each(function(index, el) {
           var el = $(el);
@@ -195,6 +201,16 @@
           }
         });
 
+      } else {
+        var htmlAction = "<input type='hidden' name='action' id='action' value='send_nopreselected' />";
+        $('#applicants_to_send_mail').append(htmlAction);
+        $(".nopreselected").each(function(index, el) {
+          var el = $(el);
+          if(el.is(':checked')){
+            var htmlHidden = '<input type="hidden" class="nopreselecteds-modal" name="applicants[]" value="'+parseInt(el.val())+'" id="applicant_'+parseInt(el.val())+'" >';
+              $('#applicants_to_send_mail').append(htmlHidden);
+          }
+        });
       }
     });
 
@@ -217,14 +233,14 @@
             {{ csrf_field() }}
             <div class="form-group col-md-8 col-sm-8 col-xs-12 ">
               <label class="control-label">{{trans('backend.config.tab_mail.subject')}} </label>
-              <input type="text" class="form-control" name="subject" value="{{trim($emailSuccessTemplate['subject'])}}" autofocus>
+              <input type="text" class="form-control" id="email-subject" name="subject" value="{{trim($emailSuccessTemplate['subject'])}}" autofocus>
             </div>
             <div class="form-group col-md-12 col-sm-12 col-xs-12">
               <p><b>{{ trans('backend.config.tab_mail.list_variables') }}</b></p>
               <ul>
-                <li>Name : $name</li>
-                <li>Last Name : $lastname</li>
-                <li>Email: $email</li>
+                <li>Name : !!name!!</li>
+                <li>Last Name : !!lastname!!</li>
+                <li>Email: !!email!!</li>
               </ul>
             </div>
             <div class="form-group col-md-12 col-sm-12 col-xs-12 ">
