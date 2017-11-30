@@ -46,7 +46,10 @@ class ReportController extends Controller
     public function reportCasting($castingKey)
     {
         $resumeCasting = $this->countryRepo->getResumeCurrentCastings($castingKey);
-    	$socialMoreUsed = $this->missRepo->getSocialNetworkMoreUsed()->occurrence;
+    	$socialMoreUsed = $this->missRepo->getSocialNetworkMoreUsed($castingKey);
+        if ($socialMoreUsed) {
+            $socialMoreUsed = $socialMoreUsed->occurrence;
+        }
         $casting = $this->config->find(['key'=>$castingKey]);
     	return view('backend.reports.resume-casting',compact('resumeCasting','casting','socialMoreUsed'));
     }
