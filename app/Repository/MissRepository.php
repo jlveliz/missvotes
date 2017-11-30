@@ -321,4 +321,13 @@ class MissRepository implements MissRepositoryInterface
 		}
 	}
 
+
+	public function getSocialNetworkMoreUsed()
+	{
+		return Miss::select("how_did_you_hear_about_us as occurrence")->whereRaw("miss.state < 3
+					GROUP BY miss.how_did_you_hear_about_us
+					ORDER BY COUNT(*) desc")
+		->first();
+	}
+
 }
