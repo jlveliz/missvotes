@@ -147,7 +147,15 @@ class CountryRepository implements CountryRepositoryInterface
 		return Country::selectRaw("country.id as country_id,country.casting_id as casting_id,country.name country , (select count(miss.code) from miss where miss.state <= '".MISS::NOPRESELECTED."' and country.id = miss.country_id) counter,
 				(select count(miss.id) from miss where miss.state = '".MISS::PRESELECTED."' and country.id = miss.country_id) preselected,
 				(select count(miss.id) from miss where miss.state = '".MISS::NOPRESELECTED."' and country.id = miss.country_id) nopreselected,
-				(select count(miss.id) from miss where miss.state = '".MISS::FORRATING."' and country.id = miss.country_id) missing")
+				(select count(miss.id) from miss where miss.state = '".MISS::FORRATING."' and country.id = miss.country_id) missing,
+				concat((SELECT miss.how_did_you_hear_about_us as occurrence FROM miss WHERE miss.state < 3 AND country.id = miss.country_id
+					GROUP BY miss.how_did_you_hear_about_us
+					ORDER BY COUNT(*) desc
+					limit 1), ' (', (SELECT count(miss.how_did_you_hear_about_us) as occurrence FROM miss WHERE miss.state < 3 AND country.id = miss.country_id
+					GROUP BY miss.how_did_you_hear_about_us
+					ORDER BY COUNT(*) desc
+					limit 1), ')') network
+				")
 				->leftJoin('miss','miss.country_id','=','country.id')
 				->whereRaw("country.casting_id = ( SELECT config.id FROM config WHERE config.key = '".$casting."')")
 				->groupBy('country.name')

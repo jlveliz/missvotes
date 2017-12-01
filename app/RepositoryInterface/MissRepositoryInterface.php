@@ -15,5 +15,7 @@ interface  MissRepositoryInterface extends CoreRepositoryInterface {
 
 	public function enumCandidates($request);
 
+	public function getSocialNetworkMoreUsed($casting);
+
 
 }

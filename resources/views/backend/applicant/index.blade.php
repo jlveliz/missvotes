@@ -31,9 +31,9 @@
                     <label class="control-label">{{ trans('backend.applicant.index.filter.state_label') }} </label>
                     <select name="state" id="state" class="form-control">
                       <option value=null>All</option>
-                      <option value="0" @if('0' == Request::get('state'))) selected @endif>For Evaluate</option>
-                      <option value="1" @if(1 == Request::get('state'))) selected @endif>Pre-Selected</option>
-                      <option value="2" @if(2 == Request::get('state'))) selected @endif>No Pre-Selected</option>
+                      <option value="0" @if('0' == Request::get('state')) selected @endif>For Evaluate</option>
+                      <option value="1" @if(1 == Request::get('state')) selected @endif>Pre-Selected</option>
+                      <option value="2" @if(2 == Request::get('state')) selected @endif>No Pre-Selected</option>
                     </select>
                   </div>
                   <div class="form-group col-md-5 col-sm-3 col-xs-12">
@@ -65,7 +65,14 @@
          		<caption>{{ trans('backend.applicant.index.panel_caption') }}</caption>
          		<thead>
          			<tr>
-                <th></th>
+                <th>
+                  @if ( Request::get('state') == 1 && count($applicants) > 0)
+                    <input type="checkbox" id="select_all_preselected">
+                  @endif
+                  @if (Request::get('state') == 2 && count($applicants) > 0)
+                    <input type="checkbox" id="select_no_all_preselected">
+                  @endif
+                </th>
                 <th>{{ trans('backend.applicant.index.th_creation_date') }}</th>
          				<th>{{ trans('backend.applicant.index.th_number') }}</th>
                 <th>{{ trans('backend.applicant.index.th_code') }}</th>
@@ -212,6 +219,20 @@
           }
         });
       }
+    });
+
+
+    //check all
+    $("#select_all_preselected").on('click', function(event) {
+       var el = $(this);
+       if(el.is(':checked')){
+          $(".preselected").attr('checked', true);
+          $("#send-mail-preselected").removeAttr('disabled',true);
+       } else {
+          $("#send-mail-preselected").attr('disabled',true);
+          $(".preselected").removeAttr('checked', true);
+
+       }
     });
 
   });

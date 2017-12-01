@@ -9,6 +9,7 @@ use MissVote\RepositoryInterface\ClientRepositoryInterface;
 use MissVote\RepositoryInterface\TicketVoteClientRepositoryInterface;
 use MissVote\RepositoryInterface\CountryRepositoryInterface;
 use MissVote\RepositoryInterface\ConfigRepositoryInterface;
+use MissVote\RepositoryInterface\MissRepositoryInterface;
 
 class ReportController extends Controller
 {
@@ -17,10 +18,11 @@ class ReportController extends Controller
 	private $clientRepo;
 	private $voteTicket;
     private $countryRepo;
-	private $config;
+    private $config;
+	private $missRepo;
 
 
-	public function __construct(VoteRepositoryInterface $voteRepo, ClientRepositoryInterface $clientRepo,TicketVoteClientRepositoryInterface $voteTicket, CountryRepositoryInterface $countryRepo,ConfigRepositoryInterface $config)
+	public function __construct(VoteRepositoryInterface $voteRepo, ClientRepositoryInterface $clientRepo,TicketVoteClientRepositoryInterface $voteTicket, CountryRepositoryInterface $countryRepo,ConfigRepositoryInterface $config, MissRepositoryInterface $missRepo)
 	{
 		$this->middleware('auth');
         $this->middleware('can:acess-backend');
@@ -28,7 +30,8 @@ class ReportController extends Controller
 		$this->clientRepo = $clientRepo;
 		$this->voteTicket = $voteTicket;
         $this->countryRepo = $countryRepo;
-		$this->config = $config;
+        $this->config = $config;
+		$this->missRepo = $missRepo;
 	}
 
     public function dashboard()
@@ -42,8 +45,12 @@ class ReportController extends Controller
 
     public function reportCasting($castingKey)
     {
-    	$resumeCasting = $this->countryRepo->getResumeCurrentCastings($castingKey);
+        $resumeCasting = $this->countryRepo->getResumeCurrentCastings($castingKey);
+    	$socialMoreUsed = $this->missRepo->getSocialNetworkMoreUsed($castingKey);
+        if ($socialMoreUsed) {
+            $socialMoreUsed = $socialMoreUsed->occurrence;
+        }
         $casting = $this->config->find(['key'=>$castingKey]);
-    	return view('backend.reports.resume-casting',compact('resumeCasting','casting'));
+    	return view('backend.reports.resume-casting',compact('resumeCasting','casting','socialMoreUsed'));
     }
 }

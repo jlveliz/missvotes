@@ -13,6 +13,7 @@
 	  			<th>{{ trans('backend.dashboard.casting_resume.th_num_preselected') }}</th>
 	  			<th>{{ trans('backend.dashboard.casting_resume.th_num_no_preselected') }}</th>
 	  			<th>{{ trans('backend.dashboard.casting_resume.th_num_missing') }}</th>
+	  			<th>Social Network</th>
 	  		</tr>
   		</thead>
   		<tbody>
@@ -21,11 +22,7 @@
 			  	 		<tr>
 			  	 			<td>{{$index+1}}</td>
 			  	 			<td class="country">
-			  	 				@if ($casting->counter > 0)
-			  	 				<a href="{{ route('applicants.index',['country_id'=>$casting->country_id,'casting_id'=>$casting->casting_id]) }}">{{$casting->country}}</a>
-			  	 				@else
-			  	 					{{$casting->country}}
-			  	 				@endif
+			  	 				{{$casting->country}}
 			  	 			</td>
 			  	 			<td class="counter" align="center">
 			  	 				@if ($casting->counter > 0)
@@ -55,6 +52,9 @@
 			  	 					{{$casting->missing}}
 			  	 				@endif
 			  	 			</td>
+			  	 			<td class="network" align="center">
+			  	 				{{$casting->network}}
+			  	 			</td>
 			  	 		</tr>
 			  		@endforeach
 	  				<tr>
@@ -64,6 +64,7 @@
 	  					<td align="center" id="total_casting_one_preselected"></td>
 	  					<td align="center" id="total_casting_one_no_preselected"></td>
 	  					<td align="center" id="total_casting_one_missing"></td>
+	  					<td align="center" id="total_casting_one_network">{{$socialMoreUsed}}</td>
 	  				</tr>
   				@else
   				<tr>
@@ -92,6 +93,7 @@
       var totalCastingOnePreselected = 0;
       var totalCastingOneNoPreselected = 0; 
       var totalCastingOneMissing = 0;
+      var totalCastingOneNetwork = 0;
 
 
       $("#casting-1-datatable > tbody > tr > td.counter").each(function(index, el) {
