@@ -92,6 +92,7 @@ Route::group(['prefix'=>'backend'],function(){
     Route::get('dashboard', 'ReportController@dashboard')->name('dashboard');
     Route::get('casting/export', 'PdfExportController@resumeCasting')->name('dashboard.export.casting');
     Route::get('tickets/export', 'PdfExportController@resumeTickets')->name('dashboard.export.tickets');
+    Route::get('countries-network/export', 'PdfExportController@resumeSocialNetwork')->name('dashboard.export.countries-network');
 	Route::resource('/users', 'UserController');
 	Route::get('/clients/export', 'PdfExportController@resumeClientTickets')->name('dashboard.export.clientTickets');
 	Route::resource('/clients', 'ClientController');

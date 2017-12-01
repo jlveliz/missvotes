@@ -110,4 +110,13 @@ class PdfExportController extends Controller
         $pdf->loadHtml($view);
         return $pdf->stream('candidates.pdf');
     }
+
+    public function resumeSocialNetwork()
+    {
+        $networks = $this->miss->getAllSocialNetworkMoreUsed();
+        $view = view()->make('backend.pdf.network-casting',compact('networks'))->render();
+        $pdf = app()->make('dompdf.wrapper');
+        $pdf->loadHtml($view);
+        return $pdf->stream('networks-used.pdf');
+    }
 }

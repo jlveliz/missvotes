@@ -337,4 +337,15 @@ class MissRepository implements MissRepositoryInterface
 		}
 	}
 
+	public function getAllSocialNetworkMoreUsed()
+	{
+		$query = Miss::selectRaw("country.name as country ,miss.how_did_you_hear_about_us as occurrence")
+				->leftJoin('country','miss.country_id','=','country.id')
+				->whereRaw("miss.state < 3
+					GROUP BY miss.how_did_you_hear_about_us
+					ORDER BY COUNT(*) desc")->limit(3)->get();
+
+		return $query;
+	}
+
 }
