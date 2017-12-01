@@ -13,6 +13,14 @@
         @include('backend.reports.purchased-tickets',$tickets)
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-6 col-lg-6 col-xs-12">
+        @include('backend.reports.resume-country-casting',['casting'=>$socialMoreUsedCastingOne])
+    </div>
+    <div class="col-md-6 col-lg-6 col-xs-12">
+        @include('backend.reports.resume-country-casting',['casting'=>$socialMoreUsedCastingTwo])
+    </div>
+  </div>
 @endsection
 
 @section('js')

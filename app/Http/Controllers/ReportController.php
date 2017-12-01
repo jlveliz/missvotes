@@ -39,7 +39,10 @@ class ReportController extends Controller
     	$votes = $this->voteRepo->ranking();
     	$countUserMemberships = $this->clientRepo->countUserMemberships();
     	$tickets = $this->voteTicket->enum();
-    	return view('backend.dashboard.index',compact('votes','countUserMemberships','tickets'));
+        $socialMoreUsedCastingOne = $this->missRepo->getSocialNetworkMoreUsed('casting_1',3);
+    	$socialMoreUsedCastingTwo = $this->missRepo->getSocialNetworkMoreUsed('casting_2',3);
+        return view('backend.dashboard.index',compact('votes','countUserMemberships','tickets','socialMoreUsedCastingOne','socialMoreUsedCastingTwo'));
+
     }
 
 
@@ -47,6 +50,7 @@ class ReportController extends Controller
     {
         $resumeCasting = $this->countryRepo->getResumeCurrentCastings($castingKey);
     	$socialMoreUsed = $this->missRepo->getSocialNetworkMoreUsed($castingKey);
+
         if ($socialMoreUsed) {
             $socialMoreUsed = $socialMoreUsed->occurrence;
         }

@@ -322,15 +322,19 @@ class MissRepository implements MissRepositoryInterface
 	}
 
 
-	public function getSocialNetworkMoreUsed($casting)
+	public function getSocialNetworkMoreUsed($casting,$limit = 1)
 	{
-		return Miss::select("how_did_you_hear_about_us as occurrence")
+		$query = Miss::select("how_did_you_hear_about_us as occurrence")
 				->leftJoin('country','miss.country_id','=','country.id')
 				->whereRaw("miss.state < 3
 					and country.casting_id = ( SELECT config.id FROM config WHERE config.key = '".$casting."')
 					GROUP BY miss.how_did_you_hear_about_us
-					ORDER BY COUNT(*) desc")
-		->first();
+					ORDER BY COUNT(*) desc")->limit($limit);
+		if ($limit > 1) {
+			return $query->get();
+		} else {
+			return $query->first();
+		}
 	}
 
 }
