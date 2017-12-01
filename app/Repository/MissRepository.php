@@ -342,9 +342,9 @@ class MissRepository implements MissRepositoryInterface
 		$query = Miss::selectRaw("country.name as country ,miss.how_did_you_hear_about_us as occurrence")
 				->leftJoin('country','miss.country_id','=','country.id')
 				->whereRaw("miss.state < 3
-					GROUP BY miss.how_did_you_hear_about_us
-					ORDER BY COUNT(*) desc")->limit(3)->get();
-
+					GROUP BY country.name
+					ORDER BY COUNT(*) ASC")->limit(3)->get();
+			// dd($query->getSql());
 		return $query;
 	}
 
