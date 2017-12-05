@@ -180,9 +180,15 @@
               <form action="{{ route('applicants.update',$applicant->id) }}"  method="POST" style="display: inline">
                 {{ csrf_field() }}
                 <input type="hidden" name="_method" value="PUT">
+                <input type="hidden" name="state" value="3">
+                <button type="submit" class="btn btn-success" id="save">{{ trans('backend.applicant.show.label_precandidate') }}</button>
+              </form>
+              <form action="{{ route('applicants.update',$applicant->id) }}"  method="POST" style="display: inline">
+                {{ csrf_field() }}
+                <input type="hidden" name="_method" value="PUT">
                 <input type="hidden" name="state" value="2">
                 <button type="submit" class="btn btn-warning" id="save">{{ trans('backend.applicant.show.label_no_preselected') }}</button>
-              </form>
+              </form> 
           @endif
           
           @if ($applicant->state ==  \MissVote\Models\Miss::NOPRESELECTED)

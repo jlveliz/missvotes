@@ -211,6 +211,7 @@
 				'label_why_would_you_win' => 'Why would you win',
 				'label_no_preselected' => 'No Preselect',
 				'label_preselected' => 'Preselect',
+				'label_precandidate' => 'Qualify as Precandidate',
 				'disqualify' => 'Disqualify',
 				'label_qualify_missing' => 'Qualify as Missing',
 				'btn_back' => 'Back',
