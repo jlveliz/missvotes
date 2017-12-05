@@ -9,5 +9,7 @@ interface  TicketVoteClientRepositoryInterface extends CoreRepositoryInterface {
 	
 	public function paginate();
 
+	public function getAvailableAndPurchased();
+
 
 }

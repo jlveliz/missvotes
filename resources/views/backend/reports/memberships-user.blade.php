@@ -24,7 +24,7 @@
 	  		@endforeach
   			@else
   			<tr>
-  				<td colspan="2">--No Data--</td>
+  				<td colspan="2">Ningún dato disponible en esta tabla</td>
   			</tr>
   			@endif
   		</tbody>

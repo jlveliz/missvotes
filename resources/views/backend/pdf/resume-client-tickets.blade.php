@@ -1,6 +1,6 @@
 @extends('layouts.pdf')
 @section('body')
-<table id="ticket-datatable" class="table table-bordered">
+<table id="ticket-datatable" class="table table-bordered" width="50%">
 	<caption class="title-report">{{ trans('backend.dashboard.tickets_block.title') }}</caption>
   		<thead>
 	  		<tr>
@@ -9,18 +9,18 @@
 	  		</tr>
   		</thead>
   		<tbody>
-  			@if (count($tickets) > 0)
-		  		@foreach ($tickets as $index =>  $ticket)
-		  	 		<tr>
-		  	 			<td>{{$ticket->client->name}} {{$ticket->client->last_name}}</td>
-		  	 			<td>{{$ticket->description}}</td>
-		  	 		</tr>
-		  		@endforeach
-  			@else
-			<tr>
-				<td colspan="2"></td>
-			</tr>
-  			@endif
+        @if (count($tickets))
+  	  		@foreach ($tickets as $index =>  $ticket)
+  	  	 		<tr>
+  	  	 			<td>{{$ticket->purchased}}</td>
+  	  	 			<td>{{$ticket->availables}}</td>
+  	  	 		</tr>
+  	  		@endforeach
+        @else
+          <tr>
+            <td colspan="2">Ningún dato disponible en esta tabla</td>
+          </tr>
+        @endif
   		</tbody>
   	</table>
 @endsection

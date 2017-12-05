@@ -38,7 +38,7 @@ class ReportController extends Controller
     {
     	$votes = $this->voteRepo->ranking();
     	$countUserMemberships = $this->clientRepo->countUserMemberships();
-    	$tickets = $this->voteTicket->enum();
+    	$tickets = $this->voteTicket->getAvailableAndPurchased();
         $socialMediaMoreUsed = $this->missRepo->getAllSocialNetworkMoreUsed();
         return view('backend.dashboard.index',compact('votes','countUserMemberships','tickets','socialMediaMoreUsed'));
 

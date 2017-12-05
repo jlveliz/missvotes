@@ -21,33 +21,33 @@
 @section('js')
 <script type="text/javascript">
   $(document).ready(function(){
-      $('#ranking-datatable').DataTable({
-        @if (App::isLocale('es'))
-          "language": {
-            "url": "../public/js/datatables/json/es.json",
-          },
-        @endif
-        "order": [[ 2, "desc" ]],
-        "ordering": false,
-      });
+      // $('#ranking-datatable').DataTable({
+        {{-- @if (App::isLocale('es')) --}}
+          // "language": {
+          //   "url": "../public/js/datatables/json/es.json",
+          // },
+        {{-- @endif --}}
+        // "order": [[ 2, "desc" ]],
+        // "ordering": false,
+      // });
 
-      $('#memberships-datatable').DataTable({
-        @if (App::isLocale('es'))
-        "language": {
-          "url": "../public/js/datatables/json/es.json",
-        },
-        @endif
-        "ordering": false,
-      });
+      // $('#memberships-datatable').DataTable({
+        {{-- @if (App::isLocale('es')) --}}
+        // "language": {
+          // "url": "../public/js/datatables/json/es.json",
+        // },
+        {{-- @endif --}}
+        // "ordering": false,
+      // });
 
-      $('#ticket-datatable').DataTable({
-        @if (App::isLocale('es'))
-        "language": {
-          "url": "../public/js/datatables/json/es.json",
-        },
-        @endif
-        "ordering": false,
-      });
+      // $('#ticket-datatable').DataTable({
+        {{-- @if (App::isLocale('es')) --}}
+        // "language": {
+          // "url": "../public/js/datatables/json/es.json",
+        // },
+        {{-- @endif --}}
+        // "ordering": false,
+      // });
 
       // $('#casting-1-datatable').DataTable({
       {{-- //   @if (App::isLocale('es')) --}}

@@ -13,13 +13,21 @@
 	  		</tr>
   		</thead>
   		<tbody>
-	  		@foreach ($votes as $index =>  $vote)
-	  	 		<tr @if ($index == 0) class="success" @endif>
-	  				<td>@if ($index == 0) <b>{{$vote->miss->name}} {{$vote->miss->last_name}}</b> @else {{$vote->miss->name}} {{$vote->miss->last_name}} @endif </td>
-	  				<td>@if ($index == 0) <b>{{$vote->miss->country->name}}</b> @else {{$vote->miss->country->name}} @endif</td>
-	  				<td>@if ($index == 0) <b>{{$vote->sumatory}} {{ trans('backend.dashboard.ranking_block.td_points') }}</b> @else {{$vote->sumatory}} {{ trans('backend.dashboard.ranking_block.td_points') }} @endif </td>
-	  			</tr>
-	  		@endforeach
+  			@if (count($votes))
+		  		@foreach ($votes as $index =>  $vote)
+		  	 		<tr @if ($index == 0) class="success" @endif>
+		  				<td>@if ($index == 0) <b>{{$vote->miss->name}} {{$vote->miss->last_name}}</b> @else {{$vote->miss->name}} {{$vote->miss->last_name}} @endif </td>
+		  				<td>@if ($index == 0) <b>{{$vote->miss->country->name}}</b> @else {{$vote->miss->country->name}} @endif</td>
+		  				<td>@if ($index == 0) <b>{{$vote->sumatory}} {{ trans('backend.dashboard.ranking_block.td_points') }}</b> @else {{$vote->sumatory}} {{ trans('backend.dashboard.ranking_block.td_points') }} @endif </td>
+		  			</tr>
+		  		@endforeach
+  			@else
+  				<tr>
+  					<td colspan="3">
+  						Ningún dato disponible en esta tabla
+  					</td>
+  				</tr>
+  			@endif
   		</tbody>
   	</table>
   </div>

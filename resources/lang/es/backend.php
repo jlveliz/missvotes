@@ -12,7 +12,7 @@
 				'precandidate' => 'Precandidate',
 			],
 			'members'=> [
-				'menu' => 'Members',
+				'menu' => 'Subscribers',
 				'list' => 'List',
 				'activities'=>'Activities',
 			],
@@ -20,8 +20,8 @@
 				'menu' => 'Configuration',
 				'countries' => 'Countries',
 				'membership' => 'Memberships',
-				'users' => 'Users',
-				'config' => 'General'
+				'users' => 'Administrators',
+				'config' => 'Casting'
 			],
 		],
 
@@ -38,14 +38,14 @@
 			'membership_block' => [
 				'title' => 'Memberships',
 				'th_membership' => 'Membership',
-				'th_number_user' => 'Number of Users',
+				'th_number_user' => 'Number of Administrators',
 
 			],
 
 			'tickets_block' => [
 				'title' => 'Tickets',
-				'th_client' => 'Client',
-				'th_ticket' => 'Ticket'
+				'th_client' => 'Purchased',
+				'th_ticket' => 'Availables'
 			],
 			'casting_resume' => [
 				'title_one' => 'Casting #1',
@@ -351,8 +351,8 @@
 
 		'user' => [
 			'index' => [
-				'panel_title' => 'Users',
-				'panel_caption' => 'List of Users',
+				'panel_title' => 'Administrators',
+				'panel_caption' => 'List of Administrators',
 				'th_name' => 'Name',
 				'th_email' => 'Email',
 				'th_address' => 'Address',
@@ -361,14 +361,14 @@
 				'th_action'=>'Action',
 				'th_upgrade'=>'Upgrade',
 				'td_edit' => 'Edit',
-				'btn_create' => 'Create User',
-				'td_delete' => 'Delete User',
+				'btn_create' => 'Create Administrator',
+				'td_delete' => 'Delete Administrator',
 			],
 
 			'create-edit' => [
-				'panel_title' => 'Users',
-				'panel_subtitle' => 'Creation of users',
-				'panel_subtitle_edit' => 'Edition of users',
+				'panel_title' => 'Administrators',
+				'panel_subtitle' => 'Creation of Administrators',
+				'panel_subtitle_edit' => 'Edition of Administrators',
 				'label_email' => 'Email',
 				'label_name' => 'Name',
 				'label_lastname' => 'Lastname',
@@ -377,12 +377,12 @@
 				'label_repeat_password' => 'Repeat Password',
 				'btn_cancel' => 'Cancel',
 				'btn_save' => 'Save',
-				'flag_success_saved' => 'User Created Satisfactorily',
-				'flag_error_saved' => 'User could not be created, try again',
-				'flag_success_updated' => 'User Updated Satisfactorily',
-				'flag_error_updated' => 'User could not be updated, try again',
-				'flag_success_deleted' => 'User deleted Satisfactorily',
-				'flag_error_deleted' => 'User could not be deleted, try again',
+				'flag_success_saved' => 'Administrator Created Satisfactorily',
+				'flag_error_saved' => 'Administrator could not be created, try again',
+				'flag_success_updated' => 'Administrator Updated Satisfactorily',
+				'flag_error_updated' => 'Administrator could not be updated, try again',
+				'flag_success_deleted' => 'Administrator deleted Satisfactorily',
+				'flag_error_deleted' => 'Administrator could not be deleted, try again',
 			]
 		],
 
@@ -459,7 +459,7 @@
 
 		'config' => [
 			'index' => [
-				'panel_title' => 'Settings',
+				'panel_title' => 'Casting Setting',
 				'tab_general' => 'General',
 				'tab_castings' => 'Casting',
 				'tab_email' => 'Email',

@@ -141,4 +141,10 @@ class TicketVoteClientRepository implements TicketVoteClientRepositoryInterface
 	}
 
 
+	public function getAvailableAndPurchased()
+	{
+		return TicketVoteClient::selectRaw('count(raffle_vote_id) as purchased, '.config('vote.raffle-numbers').' - count(raffle_vote_id) as availables')->get();
+	}
+
+
 }

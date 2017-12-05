@@ -95,7 +95,7 @@ class VoteRepository implements VoteRepositoryInterface
 	public function ranking()
 	{
 		
-		return Vote::SelectRaw('sum(value) as sumatory, miss_id')->groupBy('miss_id')->orderBy('sumatory','desc')->get();
+		return Vote::SelectRaw('sum(value) as sumatory, miss_id')->groupBy('miss_id')->orderBy('sumatory','desc')->limit(10)->get();
 
 	}
 

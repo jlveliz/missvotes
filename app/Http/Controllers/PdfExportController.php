@@ -86,7 +86,7 @@ class PdfExportController extends Controller
 
     public function resumeClientTickets()
     {
-        $tickets = $this->voteTicket->enum();
+        $tickets = $this->voteTicket->getAvailableAndPurchased();
         $view = view()->make('backend.pdf.resume-client-tickets',compact('tickets'))->render();
         $pdf = app()->make('dompdf.wrapper');
         $pdf->loadHtml($view);
