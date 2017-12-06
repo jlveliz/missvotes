@@ -34,7 +34,7 @@
                       <option value="4" @if(4 == Request::get('state'))) selected @endif>{{ trans("backend.miss.states.noprecandidate")}}</option>
                     </select>
                   </div>
-                  <div class="form-group col-md-5 col-sm-3 col-xs-12">
+                  <div class="form-group col-md-4 col-sm-3 col-xs-12">
                     <div class="form-group col-md-6 col-sm-2 col-xs-4 no-padding-left">
                       <label class="control-label col-md-12 col-sm-12 col-xs-12 no-padding">{{ trans('backend.precandidate.index.filter.label_from') }}</label>
                       <input type="date"  name="date_from" id="height" class="form-control" value="{{Request::get('date_from')}}">
@@ -44,10 +44,17 @@
                       <input type="date"  name="date_to" id="height" class="form-control" value="{{Request::get('date_to')}}">
                     </div>
                   </div>
-                    <div class="form-group col-md-2 col-sm-3 col-xs-12">
+                    <div class="form-group col-md-3 col-sm-3 col-xs-12">
                         <br> 
                       <button type="submit" class="btn btn-primary">{{trans('backend.precandidate.index.filter.btn_search')}}</button>
-                      <a target="_blank" href="{{ route('precandidates.export',Request::all()) }}"  type="button" class="btn btn-default"><i class="fa fa-file-pdf-o"> </i> PDF</a>
+                       <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ trans('backend.dashboard.export') }}  <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                          <li><a target="_blank" href="{{ route('precandidates.export',Request::all()) }}"><i class="fa fa-file-pdf-o"> </i> PDF</a></li>
+                          <li><a target="_blank" href="{{ route('precandidates.export',array_merge(Request::all(),['format'=>'xls']) ) }}"><i class="fa fa-file-excel-o"> </i> EXCEL</a></li>
+                        </ul>
+                      </div>
+                      
                     </div>
           </div>
         </form>

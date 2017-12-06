@@ -1,4 +1,4 @@
-@extends('layouts.pdf')
+@extends($format ? 'layouts.excel' :'layouts.pdf')
 @section('body')
 <table id="ranking-datatable" class="table table-bordered">
     <caption class="title-report">{{ trans('backend.dashboard.membership_block.title') }}</caption>

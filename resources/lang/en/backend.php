@@ -29,6 +29,7 @@
 
 		// dashboard
 		'dashboard' => [
+			'export' => 'Export',
 			'ranking_block' => [
 				'title' => 'Ranking',
 				'th_candidate' => 'Candidate',

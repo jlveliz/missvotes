@@ -1,4 +1,4 @@
-@extends('layouts.pdf')
+@extends($format ? 'layouts.excel' : 'layouts.pdf')
 @section('body')
 <table id="ticket-datatable" class="table table-bordered" width="50%">
 	<caption class="title-report">{{ trans('backend.dashboard.tickets_block.title') }}</caption>

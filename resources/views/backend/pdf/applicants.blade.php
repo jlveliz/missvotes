@@ -1,4 +1,4 @@
-@extends('layouts.pdf')
+@extends($format ? 'layouts.excel' : 'layouts.pdf')
 @section('body')
 <table>
 <caption class="title-report">{{ trans('backend.applicant.index.panel_caption') }}</caption>

@@ -2,7 +2,14 @@
 @section('content')
 <div class="panel panel-default">
   <div class="panel-heading">{{trans('backend.applicant.index.tab_title_'.$casting->key.'')}} 
-  	<a target="_blank" href="{{ route('dashboard.export.casting',['casting_id'=>$casting->key]) }}"  type="button" class="btn btn-default"><i class="fa fa-file-pdf-o"> </i> PDF</a> </div>
+  	<div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ trans('backend.dashboard.export') }}  <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a target="_blank" href="{{ route('dashboard.export.casting',['casting_id'=>$casting->key]) }}"><i class="fa fa-file-pdf-o"> </i> PDF</a> </li>
+      <li><a target="_blank" href="{{ route('dashboard.export.casting',['casting_id'=>$casting->key,'format'=>'xls']) }}"><i class="fa fa-file-excel-o"> </i> EXCEL</a></li>
+    </ul>
+  </div>
+  </div>
   <div class="panel-body">
   	<table id="casting-1-datatable" class="table table-bordered">
   		<thead>
