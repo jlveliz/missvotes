@@ -177,6 +177,7 @@ return [
         Laravel\Cashier\CashierServiceProvider::class,
         Anouar\Paypalpayment\PaypalpaymentServiceProvider::class,
         Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -245,6 +246,7 @@ return [
         'Paypalpayment'   => Anouar\Paypalpayment\Facades\PaypalPayment::class,
         'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 
