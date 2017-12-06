@@ -71,7 +71,7 @@ class MissRepository implements MissRepositoryInterface
 
 			if ($request->has('state') && $request->get('state') != 'null') {
 				//si envian un parametro indebido
-				if ($request->get('state') >= Miss::MISS || $request->get('state') <= Miss::NOPRESELECTED) {
+				if ($request->get('state') >= Miss::CANDIDATE || $request->get('state') <= Miss::NOPRESELECTED) {
 					$query = Miss::whereBetween('state',[Miss::PRECANDIDATE,Miss::DISQUALIFIEDPRECANDIDATE]);
 				} else{
 					$query = Miss::where('state',$request->get('state'));

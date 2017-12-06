@@ -13,7 +13,7 @@
 	  			<th>{{ trans('backend.dashboard.casting_resume.th_num_preselected') }}</th>
 	  			<th>{{ trans('backend.dashboard.casting_resume.th_num_no_preselected') }}</th>
 	  			<th>{{ trans('backend.dashboard.casting_resume.th_num_missing') }}</th>
-	  			<th>Social Network</th>
+	  			<th>{{ trans('backend.dashboard.casting_resume.th_social_network') }}</th>
 	  		</tr>
   		</thead>
   		<tbody>
@@ -82,7 +82,7 @@
 		$('#casting-1-datatable').DataTable({
         	@if (App::isLocale('es'))
         		"language": {
-          		"url": "../public/js/datatables/json/es.json",
+          		"url": "../../public/js/datatables/json/es.json",
         		},
         	@endif
         	"ordering": false,

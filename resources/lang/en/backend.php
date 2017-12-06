@@ -2,6 +2,8 @@
 
 	return [
 
+		'go_site' => 'Go to Site',
+		'exit' => 'Exit',
 		// nav
 		'nav' => [
 			'dashboard' => 'Dashboard',
@@ -54,7 +56,25 @@
 				'th_num_applies' => 'Num Applies',
 				'th_num_preselected' => 'Preselected',
 				'th_num_no_preselected' => 'Not Preselected',
-				'th_num_missing' => 'Missing'
+				'th_num_missing' => 'Missing',
+				'th_social_network' => 'Social Network'
+			],
+			'resume_country_casting' => [
+				'th_country' => 'Country',
+				'th_social_network'=>'Social Network',
+				'panel_heading' => 'The Most social network used by Country'
+			]
+		],
+
+		'miss' => [
+			'states' => [
+				'for_evaluate' => 'For Evaluate',
+				'preselected'=>"Pre-Selected",
+				'no_preselected'=>"No Pre-Selected",
+				'precandiate'=>'Precandidate',
+				'noprecandidate'=>"No Precandidate",
+				'candidate'=>"Candidate",
+				'no_candidate'=>"No Candidate"
 			]
 		],
 
@@ -76,9 +96,14 @@
 				'td_edit' => 'Edit',
 				'td_delete' =>'Delete',
 				'filter' => [
+					'label_title'=> 'Filters',
 					'country_label' => 'Country',
 					'state_label'=>'State',
-					'state_date'=>'Date'
+					'state_date'=>'Date',
+					'all' => 'All',
+					'label_from' => 'From',
+					'label_to' => 'To',
+					'btn_search' => 'Search',
 				]
 			],
 			'show' => [
@@ -177,9 +202,16 @@
 				'td_show' => 'Show',
 				'td_delete' =>'Delete',
 				'filter' => [
+					'label_title'=> 'Filters',
 					'country_label' => 'Country',
 					'state_label'=>'State',
-					'state_date'=>'Date'
+					'state_date'=>'Date',
+					'all' => 'All',
+					'label_from' => 'From',
+					'label_to' => 'To',
+					'btn_search' => 'Search',
+					'btn_gratitude'=>'Send Gratitude Mail',
+					'btn_selected'=>'Send Selected Mail',
 				]
 			],
 			'show' => [
@@ -243,9 +275,14 @@
 				'th_number' => 'Number',
 				'td_show' => 'Show',
 				'filter' => [
+					'label_title'=> 'Filters',
 					'country_label' => 'Country',
 					'state_label'=>'State',
-					'state_date'=>'Date'
+					'state_date'=>'Date',
+					'all' => 'All',
+					'label_from' => 'From',
+					'label_to' => 'To',
+					'btn_search' => 'Search',
 				]
 			],
 			'show' => [
@@ -435,13 +472,14 @@
 				'th_upgrade'=>'Upgrade',
 				'th_action' => 'Action',
 				'td_edit' => 'Edit',
-				'td_delete' => 'Delete'
+				'td_delete' => 'Delete',
+				'btn_create' => 'Create Country'
 			],
 
 			'create-edit' => [
 				'panel_title' => 'Countries',
-				'panel_caption_create' => 'Create of Countries',
-				'panel_caption_edit' => 'Edit of Countries',
+				'panel_caption_create' => 'Create Countries',
+				'panel_caption_edit' => 'Edit Countries',
 				'label_name' => 'Name',
 				'label_code' => 'Code',
 				'label_lang' => 'Language',

@@ -12,7 +12,7 @@
         <div class="clearfix"></div>
        @endif
      	<table id="country-datatable" class="table table-bordered">
-     		<caption>{{ trans('backend.country.index.panel_caption') }} <a class="pull-right btn btn-primary" href="{{ route('countries.create') }}" title="Crear">Create Country</a></caption>
+     		<caption>{{ trans('backend.country.index.panel_caption') }} <a class="pull-right btn btn-primary" href="{{ route('countries.create') }}" title="Crear">{{ trans('backend.country.index.btn_create') }}</a></caption>
      		<thead>
      			<tr>
      				<th>{{ trans('backend.country.index.th_name') }}</th>

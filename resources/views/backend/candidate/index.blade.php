@@ -13,14 +13,14 @@
        @endif
 
       
-      <h5><b>Filters</b></h5>
+      <h5><b>{{ trans('backend.precandidate.index.filter.label_title') }}</b></h5>
       <div class="well" id="filters">
         <form action="{{ route('candidates.index') }}" method="GET">
           <div class="row">
                   <div class="form-group col-md-3 col-sm-3 col-xs-12">
                     <label class="control-label">{{ trans('backend.candidates.index.filter.country_label') }} </label>
                     <select name="country_id" id="country" class="form-control">
-                      <option value="null">All</option>
+                      <option value="null">{{ trans('backend.precandidate.index.filter.all') }}</option>
                       @foreach ($countries  as $country)
                       <option value="{{$country->id}}" @if($country->id == Request::get('country_id'))) selected @endif>{{$country->name}}</option>
                       @endforeach
@@ -29,24 +29,24 @@
                   <div class="form-group col-md-2 col-sm-3 col-xs-12">
                     <label class="control-label">{{ trans('backend.candidates.index.filter.state_label') }} </label>
                     <select name="state" id="state" class="form-control">
-                      <option value=null>All</option>
-                      <option value="5" @if(5 == Request::get('state'))) selected @endif>Candidate</option>
-                      <option value="6" @if(6 == Request::get('state'))) selected @endif>Disqualified Miss</option>
+                      <option value=null>{{ trans('backend.precandidate.index.filter.all') }}</option>
+                      <option value="5" @if(5 == Request::get('state'))) selected @endif>{{ trans("backend.miss.states.candidate")}}</option>
+                      <option value="6" @if(6 == Request::get('state'))) selected @endif>{{ trans("backend.miss.states.no_candidate")}}</option>
                     </select>
                   </div>
                   <div class="form-group col-md-5 col-sm-3 col-xs-12">
                     <div class="form-group col-md-6 col-sm-2 col-xs-4 no-padding-left">
-                      <label class="control-label col-md-12 col-sm-12 col-xs-12 no-padding">From</label>
+                      <label class="control-label col-md-12 col-sm-12 col-xs-12 no-padding">{{ trans('backend.precandidate.index.filter.label_from') }}</label>
                       <input type="date"  name="date_from" id="height" class="form-control" value="{{Request::get('date_from')}}">
                     </div>
                     <div class="form-group col-md-6 col-sm-2 col-xs-4 no-padding-left">
-                      <label class="control-label col-md-12 col-sm-12 col-xs-12 no-padding">To</label>
+                      <label class="control-label col-md-12 col-sm-12 col-xs-12 no-padding">{{ trans('backend.precandidate.index.filter.label_to') }}</label>
                       <input type="date"  name="date_to" id="height" class="form-control" value="{{Request::get('date_to')}}">
                     </div>
                   </div>
                     <div class="form-group col-md-2 col-sm-3 col-xs-12">
                         <br> 
-                      <button type="submit" class="btn btn-primary">Search</button>
+                      <button type="submit" class="btn btn-primary">{{ trans('backend.precandidate.index.filter.btn_search') }}</button>
                       <a target="_blank" href="{{ route('candidates.export',Request::all()) }}"  type="button" class="btn btn-default"><i class="fa fa-file-pdf-o"> </i> PDF</a>
                     </div>
           </div>

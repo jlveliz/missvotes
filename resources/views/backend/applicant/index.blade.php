@@ -13,7 +13,7 @@
        @endif
 
       
-      <h5><b>Filters</b></h5>
+      <h5><b>{{ trans('backend.applicant.index.filter.label_title') }}</b></h5>
       <div class="well" id="filters">
         <form action="{{ route('applicants.index') }}" method="GET">
           <div class="row">
@@ -21,7 +21,7 @@
                   <div class="form-group col-md-3 col-sm-3 col-xs-12">
                     <label class="control-label">{{ trans('backend.applicant.index.filter.country_label') }} </label>
                     <select name="country_id" id="country" class="form-control">
-                      <option value="null">All</option>
+                      <option value="null">{{trans('backend.applicant.index.filter.all')}}</option>
                       @foreach ($countries  as $country)
                       <option value="{{$country->id}}" @if($country->id == Request::get('country_id'))) selected @endif>{{$country->name}}</option>
                       @endforeach
@@ -30,33 +30,33 @@
                   <div class="form-group col-md-2 col-sm-3 col-xs-12">
                     <label class="control-label">{{ trans('backend.applicant.index.filter.state_label') }} </label>
                     <select name="state" id="state" class="form-control">
-                      <option value=null>All</option>
-                      <option value="0" @if('0' == Request::get('state')) selected @endif>For Evaluate</option>
-                      <option value="1" @if(1 == Request::get('state')) selected @endif>Pre-Selected</option>
-                      <option value="2" @if(2 == Request::get('state')) selected @endif>No Pre-Selected</option>
+                     <option value="null">{{trans('backend.applicant.index.filter.all')}}</option>
+                      <option value="0" @if('0' == Request::get('state')) selected @endif>{{trans('backend.miss.states.for_evaluate')}}</option>
+                      <option value="1" @if(1 == Request::get('state')) selected @endif>{{trans('backend.miss.states.preselected')}}</option>
+                      <option value="2" @if(2 == Request::get('state')) selected @endif>{{trans('backend.miss.states.no_preselected')}}</option>
                     </select>
                   </div>
                   <div class="form-group col-md-5 col-sm-3 col-xs-12">
                     <div class="form-group col-md-6 col-sm-2 col-xs-4 no-padding-left">
-                      <label class="control-label col-md-12 col-sm-12 col-xs-12 no-padding">From</label>
+                      <label class="control-label col-md-12 col-sm-12 col-xs-12 no-padding">{{ trans('backend.applicant.index.filter.label_from') }}</label>
                       <input type="date"  name="date_from" id="height" class="form-control" value="{{Request::get('date_from')}}">
                     </div>
                     <div class="form-group col-md-6 col-sm-2 col-xs-4 no-padding-left">
-                      <label class="control-label col-md-12 col-sm-12 col-xs-12 no-padding">To</label>
+                      <label class="control-label col-md-12 col-sm-12 col-xs-12 no-padding">{{ trans('backend.applicant.index.filter.label_to') }}</label>
                       <input type="date"  name="date_to" id="height" class="form-control" value="{{Request::get('date_to')}}">
                     </div>
                   </div>
                     <div class="form-group col-md-2 col-sm-3 col-xs-12">
                         <br> 
-                      <button type="submit" class="btn btn-primary">Search</button>
+                      <button type="submit" class="btn btn-primary">{{ trans('backend.applicant.index.filter.btn_search') }}</button>
                       <a target="_blank" href="{{ route('applicants.export',Request::all()) }}"  type="button" class="btn btn-default"><i class="fa fa-file-pdf-o"> </i> PDF</a>
                     </div>
           </div>
         </form>
         <div class="row">
            <div class="form-group col-md-12 col-sm-12 col-xs-12">
-              <button type="button" id="send-mail-nopreselected" class="btn btn-default" disabled>Send Gratitude Mail</button>
-              <button type="button" id="send-mail-preselected" class="btn btn-success" disabled>Send Selected Mail</button>
+              <button type="button" id="send-mail-nopreselected" class="btn btn-default" disabled>{{ trans('backend.applicant.index.filter.btn_gratitude') }}</button>
+              <button type="button" id="send-mail-preselected" class="btn btn-success" disabled>{{ trans('backend.applicant.index.filter.btn_selected') }}</button>
            </div>
         </div>
       </div>

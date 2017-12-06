@@ -59,7 +59,7 @@
                         <!-- Authentication Links -->
                             @if (Auth::user() && Auth::user()->is_admin)
                             <li>
-                                <a href="{{ route('website.home') }}" title="Go to Site">Go to Site</a>
+                                <a href="{{ route('website.home') }}" title="{{ trans('backend.go_site') }}">{{ trans('backend.go_site') }}</a>
                             </li>
                             {{-- @if (App::isLocale('en'))
                                 <li>
@@ -89,7 +89,7 @@
                                         <a href="{{ url('backend/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Salir
+                                            {{ trans('backend.exit') }}
                                         </a>
 
                                         <form id="logout-form" action="{{ url('backend/logout') }}" method="POST" style="display: none;">

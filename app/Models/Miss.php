@@ -105,25 +105,25 @@ class Miss extends Model
         $state = "";
         switch ($this->state) {
               case 0:
-                $state = "For Evaluate";
+                $state = trans("backend.miss.states.for_evaluate");
                 break;
             case 1:
-                $state = "Pre-Selected";
+                $state = trans("backend.miss.states.preselected");
                 break;
             case 2:
-                $state = "No Pre-Selected";
+                $state = trans("backend.miss.states.no_preselected");
                 break;
             case 3:
-                $state = "Precandidate";
+                $state = trans("backend.miss.states.precandiate");
                 break;
             case 4:
-                $state = "No Precandidate";
+                $state = trans("backend.miss.states.noprecandidate");
                 break;
             case 5:
-                $state = "Candidate";
+                $state = trans("backend.miss.states.candidate");
                 break;
             case 6:
-                $state = "No Candidate";
+                $state = trans("backend.miss.states.no_candidate");
                 break;
             default:
                 # code...

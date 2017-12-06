@@ -1,14 +1,14 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-  	The Most social network used by Country
+  	{{trans('backend.dashboard.resume_country_casting.panel_heading')}}
   	<a target="_blank" href="{{ route('dashboard.export.countries-network') }}"  type="button" class="btn btn-default"><i class="fa fa-file-pdf-o"> </i> PDF</a>
   </div>
   <div class="panel-body">
   	<table id="ticket-datatable" class="table table-bordered">
   		<thead>
 	  		<tr>
-	  			<th>Country</th>
-	  			<th>Social Network</th>
+	  			<th>{{trans('backend.dashboard.resume_country_casting.th_country')}}</th>
+	  			<th>{{trans('backend.dashboard.resume_country_casting.th_social_network')}}</th>
 	  		</tr>
   		</thead>
   		<tbody>
