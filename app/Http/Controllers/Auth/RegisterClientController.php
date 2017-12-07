@@ -72,6 +72,7 @@ class RegisterClientController extends Controller
             'password' => 'required|min:6|confirmed',
             'password_confirmation' => 'required|min:6',
             'gender'=> 'required',
+            'accept_terms_conditions' => 'required'
         ],Lang::get('auth.validations_register'));
     }
 

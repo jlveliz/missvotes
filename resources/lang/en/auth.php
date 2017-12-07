@@ -51,7 +51,9 @@ return [
         'confirm_password' => 'Confirm Password / Confirmar Contrase&ntilde;a',
         'gender' => 'Gender',
         'male' => 'Male',
-        'female' => 'Female'
+        'female' => 'Female',
+        'accept_terms' => 'I accept the',
+        'terms_conditions' => 'terms and conditions'
     ],
     'register_options' => [
         'register' => 'Subscribe',
@@ -74,6 +76,7 @@ return [
         'password.min' => 'The :attribute must be at least :min.',
         'password.confirmed' => 'The :attribute confirmation does not match.',
         'password_confirmation.required' => 'The :attribute confirmation does not match.',
+        'accept_terms_conditions.required' => 'Please, accept the terms and conditions'
     ],
 
      'register_success' => 'Subscribe Successful!',

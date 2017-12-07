@@ -92,6 +92,14 @@
           @endif
         </div>
 
+        <div class="form-group {{ $errors->has('accept_terms_conditions') ? ' has-error' : '' }}">
+            <label class="form-label"><input type="checkbox" name="accept_terms_conditions" >{{ trans('auth.register_fields.accept_terms') }}<a href="https://www.misspanamericaninternational.com/terms-use/" target="_blank"> {{ trans('auth.register_fields.terms_conditions') }} </a></label>
+            
+            @if ($errors->has('accept_terms_conditions'))
+              <span class="help-block"><strong>{{ $errors->first('accept_terms_conditions') }}</strong></span>
+          @endif
+        </div>
+
         <input type="submit" name="register" id="register" class="register btn btn-primary btn-block registermodal-submit" value="{{ trans('auth.register_options.register') }}">
       </form>
       

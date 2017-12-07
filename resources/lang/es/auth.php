@@ -52,7 +52,9 @@ return [
         'confirm_password' => 'Confirmar Contraseña',
         'gender' => 'Género',
         'male' => 'Masculino',
-        'female' => 'Femenino'
+        'female' => 'Femenino',
+        'accept_terms' => 'Acepto los',
+        'terms_conditions' => 'terminos y condiciones'
     ],
     'register_options' => [
         'register' => 'Subscribirse',
@@ -75,6 +77,7 @@ return [
         'password.min' => 'Por favor ingrese una contraseña más larga',
         'password.confirmed' => 'Las contraseñas no coinciden',
         'password_confirmation.required' => 'Por favor repita la contraseña',
+        'accept_terms_conditions.required' => 'Por favor, acepte los terminos y condiciones'
     ],
 
     'register_success' => 'Registro completo!',
