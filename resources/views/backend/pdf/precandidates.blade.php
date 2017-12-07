@@ -13,6 +13,7 @@
     </tr>
 </thead>
 <tbody>
+    @if (count($precandidates))
 	@for ($i = count($precandidates) - 1; $i >= 0; $i--)
     <tr>
         <td align="center">{{$precandidates[$i]->created_at }}</td>
@@ -23,6 +24,11 @@
         <td align="center">{{$precandidates[$i]->getFormattedHowDidYouHearAboutUs()}}</td>
     </tr>
     @endfor
+    @else
+     <tr>
+        <td  colspan="6">{{ trans('backend.no-data') }}</td>
+    </tr>
+    @endif
 </tbody>
 	
 </table>

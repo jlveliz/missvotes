@@ -93,6 +93,7 @@ Route::group(['prefix'=>'backend'],function(){
     Route::get('casting/export', 'ExportController@resumeCasting')->name('dashboard.export.casting');
     Route::get('tickets/export/{format?}', 'ExportController@resumeTickets')->name('dashboard.export.tickets');
     Route::get('countries-network/export/{format?}', 'ExportController@resumeSocialNetwork')->name('dashboard.export.countries-network');
+    Route::get('countries-network-casting/export/', 'ExportController@resumeSocialNetworkCasting')->name('dashboard.export.countries-network-casting');
 	Route::resource('/users', 'UserController');
 	Route::get('/clients/export/{format?}', 'ExportController@resumeClientTickets')->name('dashboard.export.clientTickets');
 	Route::resource('/clients', 'ClientController');

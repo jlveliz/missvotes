@@ -43,8 +43,14 @@ class ApplicantController extends Controller
 
         $countries = $currentCasting->countries;
         $emailSuccessTemplate = $this->config->find(['key'=>'email_template_yes_preselected'])->payload;
+        $countryId = $request->get('country_id');
+        if ($countryId != 'null') {
+            $socialMediaMoreUsed = $this->applicant->getSocialNetworkMoreUsed($currentCasting->key, 3, $countryId);
+        } else {
+            $socialMediaMoreUsed = $this->applicant->getSocialNetworkMoreUsed($currentCasting->key, 3);
+        }
         $applicants = $this->applicant->enumApplicants($request);
-        return view('backend.applicant.index',compact('castings','countries','applicants','emailSuccessTemplate'));
+        return view('backend.applicant.index',compact('castings','countries','applicants','emailSuccessTemplate','socialMediaMoreUsed','currentCasting'));
     }
 
     /**

@@ -3,6 +3,7 @@
 	return [
 		'go_site' => 'Ir al sitio web',
 		'exit' => 'Salir',
+		'no-data' => 'Ningún dato disponible en esta tabla',
 		// nav
 		'nav' => [
 			'dashboard' => 'Escritorio',

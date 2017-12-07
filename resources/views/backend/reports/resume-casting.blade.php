@@ -24,63 +24,91 @@
 	  		</tr>
   		</thead>
   		<tbody>
-  				@if (count($resumeCasting) > 0)
-	  				@foreach ($resumeCasting as $index =>  $casting)
-			  	 		<tr>
-			  	 			<td>{{$index+1}}</td>
-			  	 			<td class="country">
-			  	 				{{$casting->country}}
-			  	 			</td>
-			  	 			<td class="counter" align="center">
-			  	 				@if ($casting->counter > 0)
-			  	 				<a href="{{ route('applicants.index',['country_id'=>$casting->country_id,'casting_id'=>$casting->casting_id]) }}">{{$casting->counter}}</a>
-			  	 				@else
-			  	 					{{$casting->counter}}
-			  	 				@endif
-			  	 			</td>
-			  	 			<td class="preselected" align="center">
-			  	 				@if ($casting->preselected > 0)
-			  	 					<a href="{{ route('applicants.index',['country_id'=>$casting->country_id,'casting_id'=>$casting->casting_id,'state'=>MissVote\Models\Miss::PRESELECTED]) }}">{{$casting->preselected}}</a>
-			  	 				@else
-			  	 					{{$casting->preselected}}
-			  	 				@endif
-			  	 			</td>
-			  	 			<td class="nopreselected" align="center">
-			  	 				@if ($casting->nopreselected > 0)
-			  	 					<a href="{{ route('applicants.index',['country_id'=>$casting->country_id,'casting_id'=>$casting->casting_id,'state'=>MissVote\Models\Miss::NOPRESELECTED]) }}">{{$casting->nopreselected}}</a>
-			  	 				@else
-			  	 					{{$casting->nopreselected}}
-			  	 				@endif
-			  	 			</td>
-			  	 			<td class="missing" align="center">
-			  	 				@if ($casting->missing > 0)
-			  	 					<a href="{{ route('applicants.index',['country_id'=>$casting->country_id,'casting_id'=>$casting->casting_id,'state'=>MissVote\Models\Miss::FORRATING]) }}">{{$casting->missing}}</a>
-			  	 				@else
-			  	 					{{$casting->missing}}
-			  	 				@endif
-			  	 			</td>
-			  	 			<td class="network" align="center">
-			  	 				{{$casting->network}}
-			  	 			</td>
-			  	 		</tr>
-			  		@endforeach
-	  				<tr>
-	  					<td></td>
-	  					<td>Total:</td>
-	  					<td align="center" id="total_casting_one_counter"></td>
-	  					<td align="center" id="total_casting_one_preselected"></td>
-	  					<td align="center" id="total_casting_one_no_preselected"></td>
-	  					<td align="center" id="total_casting_one_missing"></td>
-	  					<td align="center" id="total_casting_one_network">{{$socialMoreUsed}}</td>
-	  				</tr>
-  				@else
+  				@foreach ($resumeCasting as $index =>  $cast)
+		  	 		<tr>
+		  	 			<td>{{$index+1}}</td>
+		  	 			<td class="country">
+		  	 				{{$cast->country}}
+		  	 			</td>
+		  	 			<td class="counter" align="center">
+		  	 				@if ($cast->counter > 0)
+		  	 				<a href="{{ route('applicants.index',['country_id'=>$cast->country_id,'casting_id'=>$cast->casting_id]) }}">{{$cast->counter}}</a>
+		  	 				@else
+		  	 					{{$cast->counter}}
+		  	 				@endif
+		  	 			</td>
+		  	 			<td class="preselected" align="center">
+		  	 				@if ($cast->preselected > 0)
+		  	 					<a href="{{ route('applicants.index',['country_id'=>$cast->country_id,'casting_id'=>$cast->casting_id,'state'=>MissVote\Models\Miss::PRESELECTED]) }}">{{$cast->preselected}}</a>
+		  	 				@else
+		  	 					{{$cast->preselected}}
+		  	 				@endif
+		  	 			</td>
+		  	 			<td class="nopreselected" align="center">
+		  	 				@if ($cast->nopreselected > 0)
+		  	 					<a href="{{ route('applicants.index',['country_id'=>$cast->country_id,'casting_id'=>$cast->casting_id,'state'=>MissVote\Models\Miss::NOPRESELECTED]) }}">{{$cast->nopreselected}}</a>
+		  	 				@else
+		  	 					{{$cast->nopreselected}}
+		  	 				@endif
+		  	 			</td>
+		  	 			<td class="missing" align="center">
+		  	 				@if ($cast->missing > 0)
+		  	 					<a href="{{ route('applicants.index',['country_id'=>$cast->country_id,'casting_id'=>$cast->casting_id,'state'=>MissVote\Models\Miss::FORRATING]) }}">{{$cast->missing}}</a>
+		  	 				@else
+		  	 					{{$cast->missing}}
+		  	 				@endif
+		  	 			</td>
+		  	 			<td class="network" align="center">
+		  	 				{{$cast->network}}
+		  	 			</td>
+		  	 		</tr>
+		  		@endforeach
   				<tr>
-  					<td colspan="5">--No Data--</td>
+  					<td></td>
+  					<td>Total:</td>
+  					<td align="center" id="total_casting_one_counter"></td>
+  					<td align="center" id="total_casting_one_preselected"></td>
+  					<td align="center" id="total_casting_one_no_preselected"></td>
+  					<td align="center" id="total_casting_one_missing"></td>
+  					<td align="center" id="total_casting_one_network">{{$socialMoreUsed}}</td>
   				</tr>
-  				@endif
   		</tbody>
   	</table>
   </div>
+</div>
+
+<div class="panel panel-default col-md-6">
+	<div class="panel-heading">{{substr(trans('backend.dashboard.resume_country_casting.panel_heading'),0,-9)}} 
+	  	<div class="btn-group">
+	    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ trans('backend.dashboard.export') }}  <span class="caret"></span></button>
+	    <ul class="dropdown-menu">
+	    	<li><a target="_blank" href="{{ route('dashboard.export.countries-network-casting',['casting_id'=>$casting->key]) }}"><i class="fa fa-file-pdf-o"> </i> PDF</a></li>
+	    	<li><a target="_blank" href="{{ route('dashboard.export.countries-network-casting',['casting_id'=>$casting->key,'format'=>'xls']) }}"><i class="fa fa-file-excel-o"> </i> EXCEL</a></li>
+	    </ul>
+	  </div>
+  	</div>
+  	<div class="panel-body">
+	  	<table id="casting-1-datatable" class="table table-bordered">
+	  		<thead>
+		  		<tr>
+		  			<th>{{trans('backend.dashboard.resume_country_casting.th_social_network')}}</th>
+		  		</tr>
+	  		</thead>
+	  		<tbody>
+	  			@if (count($socialMediaMoreUsed))
+	  				@foreach ($socialMediaMoreUsed as $social)
+			  			<tr>
+			  				<td> {{$social->occurrence}} </td>
+			  			</tr>
+	  				@endforeach
+	  			@else
+	  				<tr>
+	  					<td>{{ trans('backend.no-data') }}</td>
+	  				</tr>
+	  			@endif
+	  		</tbody>
+	  	</table>
+	</div>
 </div>
 @endsection
 @section('js')

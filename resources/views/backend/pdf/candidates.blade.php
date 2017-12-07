@@ -13,16 +13,22 @@
     </tr>
 </thead>
 <tbody>
-	@for ($i = count($candidates) - 1; $i >= 0; $i--)
-    <tr>
-        <td align="center">{{$candidates[$i]->created_at }}</td>
-        <td align="center">{{$i + 1}}</td>
-        <td align="center">{{$candidates[$i]->code }}</td>
-        <td align="center">{{$candidates[$i]->name}} {{$candidates[$i]->last_name}}</td>
-        <td align="center">@if($candidates[$i]->state == 0) <span class="text-danger">  @endif{{$candidates[$i]->getFormattedState()}} @if($candidates[$i]->state == 0) </span> @endif</td>
-        <td align="center">{{$candidates[$i]->getFormattedHowDidYouHearAboutUs()}}</td>
+    @if (count($candidates))
+    	@for ($i = count($candidates) - 1; $i >= 0; $i--)
+        <tr>
+            <td align="center">{{$candidates[$i]->created_at }}</td>
+            <td align="center">{{$i + 1}}</td>
+            <td align="center">{{$candidates[$i]->code }}</td>
+            <td align="center">{{$candidates[$i]->name}} {{$candidates[$i]->last_name}}</td>
+            <td align="center">@if($candidates[$i]->state == 0) <span class="text-danger">  @endif{{$candidates[$i]->getFormattedState()}} @if($candidates[$i]->state == 0) </span> @endif</td>
+            <td align="center">{{$candidates[$i]->getFormattedHowDidYouHearAboutUs()}}</td>
+        </tr>
+        @endfor
+    @else
+     <tr>
+        <td  colspan="6">{{ trans('backend.no-data') }}</td>
     </tr>
-    @endfor
+    @endif
 </tbody>
 	
 </table>

@@ -21,7 +21,7 @@
             @endforeach
             @else
                <tr>
-                   <td colspan="3" align="center">--No Data--</td>
+                   <td colspan="3">{{ trans('backend.no-data') }}</td>
                </tr>
             @endif
         </tbody>

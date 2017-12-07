@@ -18,7 +18,7 @@
   	  		@endforeach
         @else
           <tr>
-            <td colspan="2">Ningún dato disponible en esta tabla</td>
+            <td colspan="2">{{ trans('backend.no-date') }}</td>
           </tr>
         @endif
   		</tbody>

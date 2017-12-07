@@ -12,12 +12,18 @@
 	  		</tr>
   		</thead>
   		<tbody>
-	  		@foreach ($tickets as $index =>  $ticket)
-	  	 		<tr>
-	  	 			<td>{{$ticket->client->name}} {{$ticket->client->last_name}}</td>
-	  	 			<td>{{$ticket->description}}</td>
-	  	 		</tr>
-	  		@endforeach
+        @if (count($tickets))
+  	  		@foreach ($tickets as $index =>  $ticket)
+  	  	 		<tr>
+  	  	 			<td>{{$ticket->client->name}} {{$ticket->client->last_name}}</td>
+  	  	 			<td>{{$ticket->description}}</td>
+  	  	 		</tr>
+  	  		@endforeach
+        @else
+         <tr>
+          <td  colspan="2">{{ trans('backend.no-data') }}</td>
+        </tr>
+        @endif
   		</tbody>
   	</table>
   </div>

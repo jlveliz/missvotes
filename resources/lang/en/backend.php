@@ -4,6 +4,7 @@
 
 		'go_site' => 'Go to Site',
 		'exit' => 'Exit',
+		'no-data' => 'No data available in this table',
 		// nav
 		'nav' => [
 			'dashboard' => 'Dashboard',

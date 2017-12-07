@@ -186,7 +186,7 @@ class ExportController extends Controller
     public function resumeSocialNetwork($format = null)
     {
         $networks = $this->miss->getAllSocialNetworkMoreUsed();
-         if ($format) {
+        if ($format) {
             Excel::create('networks-used',function($excel) use ($networks,$format){
                 $excel->sheet('New',function($sheet) use($networks,$format){
                    $sheet->loadView('backend.pdf.network-casting',compact('networks','format'));
@@ -194,6 +194,31 @@ class ExportController extends Controller
             })->export('xls');
         } else {
             $view = view()->make('backend.pdf.network-casting',compact('networks','format'))->render();
+            $pdf = app()->make('dompdf.wrapper');
+            $pdf->loadHtml($view);
+            return $pdf->stream('networks-used.pdf');
+        }
+    }
+
+    public function resumeSocialNetworkCasting(Request $request)
+    {
+        $countryId = $request->get('country_id');
+        if ($countryId != 'null') {
+            $socialMediaMoreUsed = $this->miss->getSocialNetworkMoreUsed($request->get('casting_id'), 3, $countryId);
+        } else {
+            $socialMediaMoreUsed = $this->miss->getSocialNetworkMoreUsed($request->get('casting_id'), 3);
+            
+        }
+        $format = false;
+        if ($request->has('format')) {
+            $format = true;
+            Excel::create('networks-used',function($excel) use ($socialMediaMoreUsed,$format){
+                $excel->sheet('New',function($sheet) use($socialMediaMoreUsed,$format){
+                   $sheet->loadView('backend.pdf.network-casting-2',compact('socialMediaMoreUsed','format'));
+                });
+            })->export('xls');
+        } else {
+            $view = view()->make('backend.pdf.network-casting-2',compact('socialMediaMoreUsed','format'))->render();
             $pdf = app()->make('dompdf.wrapper');
             $pdf->loadHtml($view);
             return $pdf->stream('networks-used.pdf');

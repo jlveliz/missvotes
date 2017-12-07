@@ -49,10 +49,11 @@ class ReportController extends Controller
     {
         $resumeCasting = $this->countryRepo->getResumeCurrentCastings($castingKey);
     	$socialMoreUsed = $this->missRepo->getSocialNetworkMoreUsed($castingKey);
+        $socialMediaMoreUsed = $this->missRepo->getSocialNetworkMoreUsed($castingKey, 3);
         if ($socialMoreUsed) {
             $socialMoreUsed = $socialMoreUsed->occurrence;
         }
         $casting = $this->config->find(['key'=>$castingKey]);
-    	return view('backend.reports.resume-casting',compact('resumeCasting','casting','socialMoreUsed'));
+    	return view('backend.reports.resume-casting',compact('resumeCasting','casting','socialMoreUsed','socialMediaMoreUsed'));
     }
 }

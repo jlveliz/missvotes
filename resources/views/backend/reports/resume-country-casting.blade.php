@@ -18,12 +18,18 @@
 	  		</tr>
   		</thead>
   		<tbody>
-	  		@foreach ($casting as $index =>  $cast)
-	  	 		<tr>
-	  	 			<td>{{$cast->country}}</td>
-	  	 			<td>{{$cast->occurrence}}</td>
-	  	 		</tr>
-	  		@endforeach
+        @if (count($casting))
+  	  		@foreach ($casting as $index =>  $cast)
+  	  	 		<tr>
+  	  	 			<td>{{$cast->country}}</td>
+  	  	 			<td>{{$cast->occurrence}}</td>
+  	  	 		</tr>
+  	  		@endforeach
+        @else
+        <tr>
+          <td colspan="2">{{ trans('backend.no-data') }}</td>
+        </tr>
+        @endif
   		</tbody>
   	</table>
   </div>

@@ -13,7 +13,8 @@
     </tr>
 </thead>
 <tbody>
-	@for ($i = count($applicants) - 1; $i >= 0; $i--)
+    @if (count($applicants))
+    @for ($i = count($applicants) - 1; $i >= 0; $i--)
     <tr>
         <td align="center">{{$applicants[$i]->created_at }}</td>
         <td align="center">{{$i + 1}}</td>
@@ -23,6 +24,11 @@
         <td align="center">{{$applicants[$i]->getFormattedHowDidYouHearAboutUs()}}</td>
     </tr>
     @endfor
+    @else
+    <tr>
+        <td  colspan="6">{{ trans('backend.no-data') }}</td>
+    </tr>
+    @endif
 </tbody>
 	
 </table>

@@ -3,21 +3,19 @@
 	<table id="ticket-datatable" class="table table-bordered">
   		<thead>
 	  		<tr>
-	  			<th>Country</th>
-	  			<th>Social Network</th>
+	  			<th>{{trans('backend.dashboard.resume_country_casting.th_social_network')}}</th>
 	  		</tr>
   		</thead>
   		<tbody>
-  			@if (count($networks))
-	  		@foreach ($networks as $index =>  $net)
+  			@if (count($socialMediaMoreUsed))
+	  		@foreach ($socialMediaMoreUsed as $index =>  $net)
 	  	 		<tr>
-	  	 			<td>{{$net->country}}</td>
 	  	 			<td>{{$net->occurrence}}</td>
 	  	 		</tr>
 	  		@endforeach
   			@else
   			<tr>
-        		<td  colspan="2">{{ trans('backend.no-data') }}</td>
+        		<td>{{ trans('backend.no-data') }}</td>
     		</tr>
   			@endif
   		</tbody>

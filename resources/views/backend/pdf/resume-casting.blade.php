@@ -14,6 +14,7 @@
 	  		</tr>
   		</thead>
   		<tbody>
+  				@if ($resumeCasting)
   				@foreach ($resumeCasting as $index =>  $casting)
 		  	 		<tr>
 		  	 			<td>{{$index+1}}</td>
@@ -42,6 +43,11 @@
   					<td style="text-align:center">{{$totalNumNoPreselected}}</td>
   					<td style="text-align:center">{{$totalNumMissing}}</td>
   				</tr>
+  				@else
+  				<tr>
+        			<td  colspan="6">{{ trans('backend.no-data') }}</td>
+    			</tr>
+  				@endif
   		</tbody>
   	</table>
 @endsection

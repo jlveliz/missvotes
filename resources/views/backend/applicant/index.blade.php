@@ -122,6 +122,41 @@
        
   </div>
 </div>
+
+
+<div class="panel panel-default col-md-6">
+  <div class="panel-heading">{{substr(trans('backend.dashboard.resume_country_casting.panel_heading'),0,-9)}} 
+      <div class="btn-group">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ trans('backend.dashboard.export') }}  <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a target="_blank" href="{{ route('dashboard.export.countries-network-casting',['casting_id'=>$currentCasting->key,'country_id'=>Request::get('country_id')]) }}"><i class="fa fa-file-pdf-o"> </i> PDF</a></li>
+        <li><a target="_blank" href="{{ route('dashboard.export.countries-network-casting',['casting_id'=>$currentCasting->key,'country_id'=>Request::get('country_id'),'format'=>'xls']) }}"><i class="fa fa-file-excel-o"> </i> EXCEL</a></li>
+      </ul>
+    </div>
+    </div>
+    <div class="panel-body">
+      <table id="casting-1-datatable" class="table table-bordered">
+        <thead>
+          <tr>
+            <th>{{trans('backend.dashboard.resume_country_casting.th_social_network')}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (count($socialMediaMoreUsed))
+            @foreach ($socialMediaMoreUsed as $social)
+              <tr>
+                <td> {{$social->occurrence}} </td>
+              </tr>
+            @endforeach
+          @else
+            <tr>
+              <td>{{ trans('backend.no-data') }}</td>
+            </tr>
+          @endif
+        </tbody>
+      </table>
+  </div>
+</div>
 @endsection
 
 

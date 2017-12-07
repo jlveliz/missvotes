@@ -10,6 +10,7 @@
             </tr>
         </thead>
         <tbody>
+            @if (count($countUserMemberships))
             @foreach ($countUserMemberships as $index =>  $userMembership)
                 <tr>
                     <td>
@@ -20,6 +21,11 @@
                     </td>
                 </tr>
             @endforeach
+            @else
+             <tr>
+                <td  colspan="2">{{ trans('backend.no-data') }}</td>
+            </tr>
+            @endif
         </tbody>
     </table>
     </table>
