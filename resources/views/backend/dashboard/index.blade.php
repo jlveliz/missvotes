@@ -13,9 +13,20 @@
         @include('backend.reports.purchased-tickets',$tickets)
     </div>
     <div class="col-md-6 col-lg-6 col-xs-12">
-        @include('backend.reports.resume-country-casting',['casting'=>$socialMediaMoreUsed])
+        @include('backend.reports.resume-country-all-casting',['casting'=>$getAllSocialMediaUsed])
     </div>
   </div>
+   
+    <div class="row">
+      <div class="col-md-6 col-lg-6 col-xs-12">
+            @include('backend.reports.resume-country-casting',['key'=> 'casting_1','casting'=>$getAllSocialMediaUsedCastingOne])
+      </div>
+
+      <div class="col-md-6 col-lg-6 col-xs-12">
+            @include('backend.reports.resume-country-casting',['key'=> 'casting_2','casting'=>$getAllSocialMediaUsedCastingTwo])
+      </div>
+    </div>
+   
 @endsection
 
 @section('js')

@@ -102,7 +102,7 @@
 	  			@if (count($socialMediaMoreUsed))
 	  				@foreach ($socialMediaMoreUsed as $social)
 			  			<tr>
-			  				<td> {{$social->occurrence}} </td>
+			  				<td> {{$social->occurrence}} ({{$social->counter}}) </td>
 			  			</tr>
 	  				@endforeach
 	  			@else
@@ -118,14 +118,14 @@
 @section('js')
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#casting-1-datatable').DataTable({
-        	@if (App::isLocale('es'))
-        		"language": {
-          		"url": "../../public/js/datatables/json/es.json",
-        		},
-        	@endif
-        	"ordering": false,
-      	});
+		//$('#casting-1-datatable').DataTable({
+        	{{-- @if (App::isLocale('es')) --}}
+        //		"language": {
+          //		"url": "../../public/js/datatables/json/es.json",
+        	//	},
+        	{{-- @endif --}}
+        	// "ordering": false,
+      	// });
 
       	// CASTING 1
       var totalCastingOneCounter = 0; 

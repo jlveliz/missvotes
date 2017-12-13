@@ -187,17 +187,17 @@ class ExportController extends Controller
         }
     }
 
-    public function resumeSocialNetwork($format = null)
+    public function resumeSocialNetwork($casting = null ,$format = null)
     {
-        $networks = $this->miss->getAllSocialNetworkMoreUsed();
+        $networks = $this->miss->getAllSocialNetworkMoreUsed($casting);
         if ($format) {
-            Excel::create('networks-used',function($excel) use ($networks,$format){
-                $excel->sheet('New',function($sheet) use($networks,$format){
-                   $sheet->loadView('backend.pdf.network-casting',compact('networks','format'));
+            Excel::create('networks-used',function($excel) use ($networks,$format, $casting){
+                $excel->sheet('New',function($sheet) use($networks,$format, $casting){
+                   $sheet->loadView('backend.pdf.network-casting',compact('networks','format','casting'));
                 });
             })->export('xls');
         } else {
-            $view = view()->make('backend.pdf.network-casting',compact('networks','format'))->render();
+            $view = view()->make('backend.pdf.network-casting',compact('networks','format','casting'))->render();
             $pdf = app()->make('dompdf.wrapper');
             $pdf->loadHtml($view);
             return $pdf->stream('networks-used.pdf');

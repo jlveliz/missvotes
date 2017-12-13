@@ -39,8 +39,10 @@ class ReportController extends Controller
     	$votes = $this->voteRepo->ranking();
     	$countUserMemberships = $this->clientRepo->countUserMemberships();
     	$tickets = $this->voteTicket->getAvailableAndPurchased();
-        $socialMediaMoreUsed = $this->missRepo->getAllSocialNetworkMoreUsed();
-        return view('backend.dashboard.index',compact('votes','countUserMemberships','tickets','socialMediaMoreUsed'));
+        $getAllSocialMediaUsed = $this->missRepo->getAllSocialNetworkMoreUsed();
+        $getAllSocialMediaUsedCastingOne = $this->missRepo->getAllSocialNetworkMoreUsed('casting_1');
+        $getAllSocialMediaUsedCastingTwo = $this->missRepo->getAllSocialNetworkMoreUsed('casting_2');
+        return view('backend.dashboard.index',compact('votes','countUserMemberships','tickets','getAllSocialMediaUsed','getAllSocialMediaUsedCastingOne','getAllSocialMediaUsedCastingTwo'));
 
     }
 
@@ -49,11 +51,11 @@ class ReportController extends Controller
     {
         $resumeCasting = $this->countryRepo->getResumeCurrentCastings($castingKey);
     	$socialMoreUsed = $this->missRepo->getSocialNetworkMoreUsed($castingKey);
-        $socialMediaMoreUsed = $this->missRepo->getSocialNetworkMoreUsed($castingKey, 3);
+        $getAllSocialMediaUsed = $this->missRepo->getSocialNetworkMoreUsed($castingKey, 3);
         if ($socialMoreUsed) {
             $socialMoreUsed = $socialMoreUsed->occurrence;
         }
         $casting = $this->config->find(['key'=>$castingKey]);
-    	return view('backend.reports.resume-casting',compact('resumeCasting','casting','socialMoreUsed','socialMediaMoreUsed'));
+    	return view('backend.reports.resume-casting',compact('resumeCasting','casting','socialMoreUsed','getAllSocialMediaUsed'));
     }
 }

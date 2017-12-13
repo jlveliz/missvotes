@@ -332,7 +332,7 @@ class MissRepository implements MissRepositoryInterface
 				when miss.how_did_you_hear_about_us  like '%online_ad%' then 'Online AD'
 				when miss.how_did_you_hear_about_us  like '%school_teacher%' then 'School Teacher/Coach'
 				when miss.how_did_you_hear_about_us  like '%website_google%' then 'Website / Google Search'
-			end as occurrence")
+			end as occurrence, count(country.id) as counter")
 				->leftJoin('country','miss.country_id','=','country.id');
 		if ($countryId) {
 			$query->whereRaw("country.id = '".$countryId."'");
@@ -348,7 +348,7 @@ class MissRepository implements MissRepositoryInterface
 		}
 	}
 
-	public function getAllSocialNetworkMoreUsed()
+	public function getAllSocialNetworkMoreUsed($castingId = null)
 	{
 		$query = Miss::selectRaw("country.name as country ,
 			case
@@ -360,12 +360,15 @@ class MissRepository implements MissRepositoryInterface
 				when miss.how_did_you_hear_about_us  like '%school_teacher%' then 'School Teacher/Coach'
 				when miss.how_did_you_hear_about_us  like '%website_google%' then 'Website / Google Search'
 			end as occurrence, 
-			count(miss.how_did_you_hear_about_us) as counter")
-				->leftJoin('country','miss.country_id','=','country.id')
-				->whereRaw("miss.state < 3
+			count(country.id) as counter")->leftJoin('country','miss.country_id','=','country.id');
+		if ($castingId) {
+			$query->whereRaw("country.casting_id = ( SELECT config.id FROM config WHERE config.key = '".$castingId."')");
+		}
+		$query->whereRaw("miss.state < 3
 					GROUP BY country.name
-					ORDER BY COUNT(*) ASC")->limit(3)->get();
-		return $query;
+					ORDER BY COUNT(*) ASC");
+		$data = $query->limit(3)->get();
+		return $data;
 	}
 
 }
