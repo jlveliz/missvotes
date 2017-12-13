@@ -2,7 +2,7 @@
 @section('body')
 <table id="casting-1-datatable" class="table table-bordered">
 	
-	<caption class="title-report">{{ trans('backend.dashboard.tickets_block.title') }}</caption>
+	<caption class="title-report">Casting {{trans('backend.applicant.index.tab_title_'.$currentCasting->key.'')}} </caption>
   		<thead>
 	  		<tr>
 	  			<th>N°</th>
@@ -11,6 +11,7 @@
 	  			<th>{{ trans('backend.dashboard.casting_resume.th_num_preselected') }}</th>
 	  			<th>{{ trans('backend.dashboard.casting_resume.th_num_no_preselected') }}</th>
 	  			<th>{{ trans('backend.dashboard.casting_resume.th_num_missing') }}</th>
+	  			<th>{{ trans('backend.dashboard.casting_resume.th_social_network') }}</th>
 	  		</tr>
   		</thead>
   		<tbody>
@@ -33,6 +34,9 @@
 		  	 			<td style="text-align: center">
 		  	 				{{$casting->missing}}
 		  	 			</td>
+		  	 			<td style="text-align: center">
+		  	 				{{$casting->network}}
+		  	 			</td>
 		  	 		</tr>
 		  		@endforeach
   				<tr>
@@ -42,6 +46,7 @@
   					<td style="text-align:center">{{$totalNumPreselected}}</td>
   					<td style="text-align:center">{{$totalNumNoPreselected}}</td>
   					<td style="text-align:center">{{$totalNumMissing}}</td>
+  					<td style="text-align:center">{{$socialMoreUsed}}</td>
   				</tr>
   				@else
   				<tr>

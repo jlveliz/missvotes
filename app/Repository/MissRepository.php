@@ -324,7 +324,15 @@ class MissRepository implements MissRepositoryInterface
 
 	public function getSocialNetworkMoreUsed($casting,$limit = 1, $countryId = null)
 	{
-		$query = Miss::select("how_did_you_hear_about_us as occurrence")
+		$query = Miss::selectRaw("case
+				when miss.how_did_you_hear_about_us  like '%facebook%' then 'Facebook'
+				when miss.how_did_you_hear_about_us  like '%friend%' then 'Friend'
+				when miss.how_did_you_hear_about_us  like '%former_contestant%' then 'Former Contestant'
+				when miss.how_did_you_hear_about_us  like '%instagram%' then 'Instragram'
+				when miss.how_did_you_hear_about_us  like '%online_ad%' then 'Online AD'
+				when miss.how_did_you_hear_about_us  like '%school_teacher%' then 'School Teacher/Coach'
+				when miss.how_did_you_hear_about_us  like '%website_google%' then 'Website / Google Search'
+			end as occurrence")
 				->leftJoin('country','miss.country_id','=','country.id');
 		if ($countryId) {
 			$query->whereRaw("country.id = '".$countryId."'");
@@ -342,7 +350,17 @@ class MissRepository implements MissRepositoryInterface
 
 	public function getAllSocialNetworkMoreUsed()
 	{
-		$query = Miss::selectRaw("country.name as country ,miss.how_did_you_hear_about_us as occurrence")
+		$query = Miss::selectRaw("country.name as country ,
+			case
+				when miss.how_did_you_hear_about_us  like '%facebook%' then 'Facebook'
+				when miss.how_did_you_hear_about_us  like '%friend%' then 'Friend'
+				when miss.how_did_you_hear_about_us  like '%former_contestant%' then 'Former Contestant'
+				when miss.how_did_you_hear_about_us  like '%instagram%' then 'Instragram'
+				when miss.how_did_you_hear_about_us  like '%online_ad%' then 'Online AD'
+				when miss.how_did_you_hear_about_us  like '%school_teacher%' then 'School Teacher/Coach'
+				when miss.how_did_you_hear_about_us  like '%website_google%' then 'Website / Google Search'
+			end as occurrence, 
+			count(miss.how_did_you_hear_about_us) as counter")
 				->leftJoin('country','miss.country_id','=','country.id')
 				->whereRaw("miss.state < 3
 					GROUP BY country.name

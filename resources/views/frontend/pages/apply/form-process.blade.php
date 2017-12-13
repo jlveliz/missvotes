@@ -178,7 +178,7 @@
 					   							<option value="null">--Seleccione--</option>
 					   							<option value="facebook"  @if( (isset($applicant) && $applicant->how_did_you_hear_about_us == 'facebook') || old('how_did_you_hear_about_us') == 'facebook') selected @endif>Facebook</option>
 					   							<option value="friend" @if( (isset($applicant) && $applicant->how_did_you_hear_about_us == 'friend') || old('how_did_you_hear_about_us') == 'friend') selected @endif>Friend</option>
-					   							<option value="former_contestant" @if( (isset($applicant) && $applicant->how_did_you_hear_about_us == 'former_contestant') || old('how_did_you_hear_about_us') == 'former_contecostumetant') selected @endif>Former Contestant</option>
+					   							<option value="former_contestant" @if( (isset($applicant) && $applicant->how_did_you_hear_about_us == 'former_contestant') || old('how_did_you_hear_about_us') == 'former_contestant') selected @endif>Former Contestant</option>
 					   							<option value="instagram" @if( (isset($applicant) && $applicant->how_did_you_hear_about_us == 'instagram') || old('how_did_you_hear_about_us') == 'instagram') selected @endif>Instagram</option>
 					   							<option value="online_ad"  @if( (isset($applicant) && $applicant->how_did_you_hear_about_us == 'online_ad') || old('how_did_you_hear_about_us') == 'online_ad') selected @endif>Online AD</option>
 					   							<option value="school_teacher" @if( (isset($applicant) && $applicant->how_did_you_hear_about_us == 'school_teacher') || old('how_did_you_hear_about_us') == 'school_teacher') selected @endif>School Teacher/Coach</option>

@@ -6,6 +6,7 @@
 	<tr>
 		<th>{{ trans('backend.applicant.index.th_creation_date') }}</th>
         <th>{{ trans('backend.applicant.index.th_number') }}</th>
+        <th>Email</th>
         <th>{{ trans('backend.applicant.index.th_code') }}</th>
         <th>{{ trans('backend.applicant.index.th_names') }}</th>
         <th>{{ trans('backend.applicant.index.th_state') }}</th>
@@ -18,6 +19,7 @@
     <tr>
         <td align="center">{{$precandidates[$i]->created_at }}</td>
         <td align="center">{{$i + 1}}</td>
+        <td align="center">{{$precandidates[$i]->email }}</td>
         <td align="center">{{$precandidates[$i]->code }}</td>
         <td align="center">{{$precandidates[$i]->name}} {{$precandidates[$i]->last_name}}</td>
         <td align="center">@if($precandidates[$i]->state == 0) <span class="text-danger">  @endif{{$precandidates[$i]->getFormattedState()}} @if($precandidates[$i]->state == 0) </span> @endif</td>
@@ -26,7 +28,7 @@
     @endfor
     @else
      <tr>
-        <td  colspan="6">{{ trans('backend.no-data') }}</td>
+        <td  colspan="7">{{ trans('backend.no-data') }}</td>
     </tr>
     @endif
 </tbody>

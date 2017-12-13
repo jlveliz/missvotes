@@ -57,6 +57,10 @@ class ExportController extends Controller
         $format = false;
         if ($request->has('casting_id')) {
     		$resumeCasting = $this->country->getResumeCurrentCastings($request->get('casting_id'));
+            $socialMoreUsed = $this->miss->getSocialNetworkMoreUsed($request->get('casting_id'));
+            if ($socialMoreUsed) {
+                $socialMoreUsed = $socialMoreUsed->occurrence;
+            }
     		$currentCasting = $this->config->find(['key'=>$request->get('casting_id')]);
     		$totalNumApplies = 0;
     		$totalNumPreselected = 0;
@@ -72,13 +76,13 @@ class ExportController extends Controller
 
             if ($request->has('format')) {
                 $format = true;
-                Excel::create('resume-casting',function($excel) use ($resumeCasting,$currentCasting,$totalNumApplies,$format,$totalNumPreselected,$totalNumNoPreselected,$totalNumMissing){
-                    $excel->sheet('New',function($sheet) use($resumeCasting,$currentCasting,$totalNumApplies,$format,$totalNumPreselected,$totalNumNoPreselected,$totalNumMissing){
-                       $sheet->loadView('backend.pdf.resume-casting',compact('resumeCasting','currentCasting','totalNumApplies','totalNumPreselected','totalNumNoPreselected','totalNumMissing','format'));
+                Excel::create('resume-casting',function($excel) use ($resumeCasting,$currentCasting,$totalNumApplies,$format,$totalNumPreselected,$totalNumNoPreselected,$totalNumMissing, $socialMoreUsed){
+                    $excel->sheet('New',function($sheet) use($resumeCasting,$currentCasting,$totalNumApplies,$format,$totalNumPreselected,$totalNumNoPreselected,$totalNumMissing, $socialMoreUsed){
+                       $sheet->loadView('backend.pdf.resume-casting',compact('resumeCasting','currentCasting','totalNumApplies','totalNumPreselected','totalNumNoPreselected','totalNumMissing','format','socialMoreUsed'));
                     });
                 })->export('xls');
             } else {
-        		$view = view()->make('backend.pdf.resume-casting',compact('resumeCasting','currentCasting','totalNumApplies','totalNumPreselected','totalNumNoPreselected','totalNumMissing','format'))->render();
+        		$view = view()->make('backend.pdf.resume-casting',compact('resumeCasting','currentCasting','totalNumApplies','totalNumPreselected','totalNumNoPreselected','totalNumMissing','format','socialMoreUsed'))->render();
             	$pdf = app()->make('dompdf.wrapper');
             	$pdf->loadHtml($view);
             	return $pdf->stream('resume-casting.pdf');

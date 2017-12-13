@@ -11,7 +11,7 @@
 			'participants' => [
 				'menu'=>'Participants',
 				'candidates'=>'Candidates of the contest',
-				'register_log' => 'Online Applicants',
+				'register_log' => 'Casting Online',
 				'precandidate' => 'Precandidate',
 			],
 			'members'=> [
@@ -32,7 +32,7 @@
 		'dashboard' => [
 			'export' => 'Export',
 			'ranking_block' => [
-				'title' => 'Ranking',
+				'title' => 'Ranking misses',
 				'th_candidate' => 'Candidate',
 				'th_country' => 'Country',
 				'th_score' => 'Score',
@@ -47,13 +47,13 @@
 			],
 
 			'tickets_block' => [
-				'title' => 'Tickets',
+				'title' => 'Draw Tickets',
 				'th_client' => 'Purchased',
 				'th_ticket' => 'Availables'
 			],
 			'casting_resume' => [
-				'title_one' => 'Casting #1',
-				'title_two' => 'Casting #2',
+				'title_one' => 'Group #1',
+				'title_two' => 'Group #2',
 				'th_country' => 'Country',
 				'th_num_applies' => 'Num Applies',
 				'th_num_preselected' => 'Preselected',
@@ -188,8 +188,8 @@
 
 		'applicant' => [
 			'index' => [
-				'tab_title_casting_1' => 'Casting 1',
-				'tab_title_casting_2' => 'Casting 2',
+				'tab_title_casting_1' => 'Group 1',
+				'tab_title_casting_2' => 'Group 2',
 				'panel_title' => 'Applicants',
 				'panel_caption' => 'List of Applicants',
 				'th_names' => 'Names',

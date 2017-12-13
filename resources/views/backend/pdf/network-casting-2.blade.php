@@ -1,5 +1,6 @@
 @extends($format ? 'layouts.excel' : 'layouts.pdf')
 @section('body')
+<caption class="title-report">{{trans('backend.dashboard.resume_country_casting.panel_heading')}} </caption>
 	<table id="ticket-datatable" class="table table-bordered">
   		<thead>
 	  		<tr>

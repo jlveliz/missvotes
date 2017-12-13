@@ -10,7 +10,7 @@
 			'participants' => [
 				'menu'=>'Participantes',
 				'candidates'=>'Candidatas del concurso',
-				'register_log' => 'Aplicantes Online',
+				'register_log' => 'Casting en línea',
 				'precandidate' => 'Precandidatas',
 			],
 			'members'=> [
@@ -31,7 +31,7 @@
 		'dashboard' => [
 			'export' => 'Exportar',
 			'ranking_block' => [
-				'title' => 'Ranking',
+				'title' => 'Ranking de las candidatas',
 				'th_candidate' => 'Candidata',
 				'th_country' => 'País',
 				'th_score' => 'Puntuación',
@@ -46,13 +46,13 @@
 			],
 
 			'tickets_block' => [
-				'title' => 'Tickets',
+				'title' => 'Tickets del sorteo',
 				'th_client' => 'Comprados',
 				'th_ticket' => 'Disponibles'
 			],
 			'casting_resume' => [
-				'title_one' => 'Casting #1',
-				'title_two' => 'Casting #2',
+				'title_one' => 'Grupo #1',
+				'title_two' => 'Grupo #2',
 				'th_country' => 'País',
 				'th_num_applies' => 'Num Aplicaciones',
 				'th_num_preselected' => 'Preseleccionadas',
@@ -63,7 +63,7 @@
 			'resume_country_casting' => [
 				'th_country' => 'País',
 				'th_social_network'=>'Red Social',
-				'panel_heading' => 'Red Social más usada por país'
+				'panel_heading' => 'Red Social más usada por País'
 			]
 		],
 
@@ -187,8 +187,8 @@
 
 		'applicant' => [
 			'index' => [
-				'tab_title_casting_1' => 'Casting 1',
-				'tab_title_casting_2' => 'Casting 2',
+				'tab_title_casting_1' => 'Grupo 1',
+				'tab_title_casting_2' => 'Grupo 2',
 				'panel_title' => 'Aplicantes',
 				'panel_caption' => 'Listado de aplicantes',
 				'th_names' => 'Nombres',

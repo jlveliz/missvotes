@@ -65,6 +65,7 @@
               <tr>
                 <th>{{ trans('backend.candidates.index.th_creation_date') }}</th>
                 <th>{{ trans('backend.candidates.index.th_number') }}</th>
+                <th>Email</th>
                 <th>{{ trans('backend.candidates.index.th_code') }}</th>
                 <th>{{ trans('backend.candidates.index.th_names') }}</th>
                 <th>{{ trans('backend.candidates.index.th_state') }}</th>
@@ -77,6 +78,7 @@
                 <tr>
                   <td>{{$candidates[$i]->created_at }}</td>
                   <td>{{$i + 1}}</td>
+                  <td>{{$candidates[$i]->email}}</td>
                   <td>{{$candidates[$i]->code }}</td>
                   <td>{{$candidates[$i]->name}} {{$candidates[$i]->last_name}}</td>
                   <td>@if($candidates[$i]->state == 0) <span class="text-danger">  @endif{{$candidates[$i]->getFormattedState()}} @if($candidates[$i]->state == 0) </span> @endif</td>

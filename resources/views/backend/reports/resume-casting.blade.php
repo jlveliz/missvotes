@@ -28,7 +28,11 @@
 		  	 		<tr>
 		  	 			<td>{{$index+1}}</td>
 		  	 			<td class="country">
-		  	 				{{$cast->country}}
+		  	 				@if ($cast->counter > 0)
+		  	 				<a href="{{ route('applicants.index',['country_id'=>$cast->country_id,'casting_id'=>$cast->casting_id]) }}">{{$cast->country}}</a>
+		  	 				@else
+		  	 					{{$cast->country}}
+		  	 				@endif
 		  	 			</td>
 		  	 			<td class="counter" align="center">
 		  	 				@if ($cast->counter > 0)
@@ -78,7 +82,7 @@
 </div>
 
 <div class="panel panel-default col-md-6">
-	<div class="panel-heading">{{substr(trans('backend.dashboard.resume_country_casting.panel_heading'),0,-9)}} 
+	<div class="panel-heading">{{trans('backend.dashboard.resume_country_casting.panel_heading')}} 
 	  	<div class="btn-group">
 	    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ trans('backend.dashboard.export') }}  <span class="caret"></span></button>
 	    <ul class="dropdown-menu">

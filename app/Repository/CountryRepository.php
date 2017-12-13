@@ -148,7 +148,15 @@ class CountryRepository implements CountryRepositoryInterface
 				(select count(miss.id) from miss where miss.state = '".MISS::PRESELECTED."' and country.id = miss.country_id) preselected,
 				(select count(miss.id) from miss where miss.state = '".MISS::NOPRESELECTED."' and country.id = miss.country_id) nopreselected,
 				(select count(miss.id) from miss where miss.state = '".MISS::FORRATING."' and country.id = miss.country_id) missing,
-				concat((SELECT miss.how_did_you_hear_about_us as occurrence FROM miss WHERE miss.state < 3 AND country.id = miss.country_id
+				concat((SELECT case
+				when miss.how_did_you_hear_about_us  like '%facebook%' then 'Facebook'
+				when miss.how_did_you_hear_about_us  like '%friend%' then 'Friend'
+				when miss.how_did_you_hear_about_us  like '%former_contestant%' then 'Former Contestant'
+				when miss.how_did_you_hear_about_us  like '%instagram%' then 'Instragram'
+				when miss.how_did_you_hear_about_us  like '%online_ad%' then 'Online AD'
+				when miss.how_did_you_hear_about_us  like '%school_teacher%' then 'School Teacher/Coach'
+				when miss.how_did_you_hear_about_us  like '%website_google%' then 'Website / Google Search'
+			end as occurrence FROM miss WHERE miss.state < 3 AND country.id = miss.country_id
 					GROUP BY miss.how_did_you_hear_about_us
 					ORDER BY COUNT(*) desc
 					limit 1), ' (', (SELECT count(miss.how_did_you_hear_about_us) as occurrence FROM miss WHERE miss.state < 3 AND country.id = miss.country_id

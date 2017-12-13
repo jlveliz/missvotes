@@ -66,6 +66,7 @@
          			<tr>
          				<th>{{ trans('backend.precandidate.index.th_creation_date') }}</th>
                 <th>{{ trans('backend.precandidate.index.th_code') }}</th>
+                <th>Email</th>
                 <th>{{ trans('backend.precandidate.index.th_names') }}</th>
                 <th>{{ trans('backend.precandidate.index.th_state') }}</th>
                 <th>{{ trans('backend.precandidate.index.th_how_you_hear') }}</th>
@@ -77,6 +78,7 @@
                 <tr>
            				<td>{{$precandidates[$i]->created_at }}</td>
                   <td>{{$precandidates[$i]->code }}</td>
+                  <td>{{$precandidates[$i]->email }}</td>
                   <td>{{$precandidates[$i]->name}} {{$precandidates[$i]->last_name}}</td>
                   <td>{{$precandidates[$i]->getFormattedState()}}</td>
                   <td>{{$precandidates[$i]->getFormattedHowDidYouHearAboutUs()}}</td>

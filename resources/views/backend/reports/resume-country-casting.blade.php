@@ -22,7 +22,7 @@
   	  		@foreach ($casting as $index =>  $cast)
   	  	 		<tr>
   	  	 			<td>{{$cast->country}}</td>
-  	  	 			<td>{{$cast->occurrence}}</td>
+  	  	 			<td>{{$cast->occurrence}}  ({{$cast->counter}})</td>
   	  	 		</tr>
   	  		@endforeach
         @else
