@@ -228,4 +228,21 @@ class ExportController extends Controller
             return $pdf->stream('networks-used.pdf');
         }
     }
+
+    public function resumeAgroupedSocialNetworkCasting($castingKey = null, $format = null)
+    {
+        $socialMediaMoreUsed = $this->miss->getSocialNetworkGroupCountry($castingKey);
+        if ($format) {
+            Excel::create('networks-used',function($excel) use ($socialMediaMoreUsed,$format){
+                $excel->sheet('New',function($sheet) use($socialMediaMoreUsed,$format){
+                   $sheet->loadView('backend.pdf.network-casting-3',compact('socialMediaMoreUsed','format'));
+                });
+            })->export('xls');
+        } else {
+            $view = view()->make('backend.pdf.network-casting-3',compact('socialMediaMoreUsed','format'))->render();
+            $pdf = app()->make('dompdf.wrapper');
+            $pdf->loadHtml($view);
+            return $pdf->stream('networks-used.pdf');
+        }
+    }
 }

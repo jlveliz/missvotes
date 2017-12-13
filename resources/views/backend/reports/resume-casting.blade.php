@@ -82,12 +82,12 @@
 </div>
 
 <div class="panel panel-default col-md-6">
-	<div class="panel-heading">{{trans('backend.dashboard.resume_country_casting.panel_heading')}} 
+	<div class="panel-heading">{{trans('backend.dashboard.resume_country_casting.panel_heading_count_country_social')}} 
 	  	<div class="btn-group">
 	    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ trans('backend.dashboard.export') }}  <span class="caret"></span></button>
 	    <ul class="dropdown-menu">
-	    	<li><a target="_blank" href="{{ route('dashboard.export.countries-network-casting',['casting_id'=>$casting->key]) }}"><i class="fa fa-file-pdf-o"> </i> PDF</a></li>
-	    	<li><a target="_blank" href="{{ route('dashboard.export.countries-network-casting',['casting_id'=>$casting->key,'format'=>'xls']) }}"><i class="fa fa-file-excel-o"> </i> EXCEL</a></li>
+	    	<li><a target="_blank" href="{{ route('dashboard.export.agroupedcountries-network-casting',['casting_id'=>$casting->key]) }}"><i class="fa fa-file-pdf-o"> </i> PDF</a></li>
+	    	<li><a target="_blank" href="{{ route('dashboard.export.agroupedcountries-network-casting',['casting_id'=>$casting->key,'format'=>'xls']) }}"><i class="fa fa-file-excel-o"> </i> EXCEL</a></li>
 	    </ul>
 	  </div>
   	</div>
@@ -96,18 +96,20 @@
 	  		<thead>
 		  		<tr>
 		  			<th>{{trans('backend.dashboard.resume_country_casting.th_social_network')}}</th>
+		  			<th>{{trans('backend.dashboard.resume_country_casting.th_count_country')}}</th>
 		  		</tr>
 	  		</thead>
 	  		<tbody>
 	  			@if (count($socialMediaMoreUsed))
 	  				@foreach ($socialMediaMoreUsed as $social)
 			  			<tr>
-			  				<td> {{$social->occurrence}} ({{$social->counter}}) </td>
+			  				<td> {{$social->occurrence}} </td>
+			  				<td> {{$social->counter}} {{ trans('backend.country.index.panel_title') }} </td>
 			  			</tr>
 	  				@endforeach
 	  			@else
 	  				<tr>
-	  					<td>{{ trans('backend.no-data') }}</td>
+	  					<td colspan="2">{{ trans('backend.no-data') }}</td>
 	  				</tr>
 	  			@endif
 	  		</tbody>

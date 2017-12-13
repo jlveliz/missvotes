@@ -62,9 +62,11 @@
 			],
 			'resume_country_casting' => [
 				'th_country' => 'País',
+				'th_count_country' => 'Cant. País',
 				'th_social_network'=>'Red Social',
 				'panel_heading' => 'Red Social más usada por todos los Paises',
 				'panel_heading_casting' => 'Red Social más usada por País',
+				'panel_heading_count_country_social' => 'Redes Sociales',
 			]
 		],
 

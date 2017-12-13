@@ -371,4 +371,22 @@ class MissRepository implements MissRepositoryInterface
 		return $data;
 	}
 
+	public function getSocialNetworkGroupCountry($castingId)
+	{
+		$query = Miss::selectRaw("country.name as country ,
+			case
+				when miss.how_did_you_hear_about_us  like '%facebook%' then 'Facebook'
+				when miss.how_did_you_hear_about_us  like '%friend%' then 'Friend'
+				when miss.how_did_you_hear_about_us  like '%former_contestant%' then 'Former Contestant'
+				when miss.how_did_you_hear_about_us  like '%instagram%' then 'Instragram'
+				when miss.how_did_you_hear_about_us  like '%online_ad%' then 'Online AD'
+				when miss.how_did_you_hear_about_us  like '%school_teacher%' then 'School Teacher/Coach'
+				when miss.how_did_you_hear_about_us  like '%website_google%' then 'Website / Google Search'
+			end as occurrence, count(DISTINCT(country.name)) as counter")->leftJoin('country','miss.country_id','=','country.id')->whereRaw("miss.state < 3
+					and country.casting_id = ( select config.id from config where config.key = '".$castingId."')
+					GROUP BY  miss.how_did_you_hear_about_us
+					ORDER BY COUNT(DISTINCT(country.name)) DESC")->get();
+		return $query;
+	}
+
 }

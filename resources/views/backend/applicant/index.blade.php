@@ -127,7 +127,7 @@
 
 
 <div class="panel panel-default col-md-6">
-  <div class="panel-heading">{{substr(trans('backend.dashboard.resume_country_casting.panel_heading'),0,-9)}} 
+  <div class="panel-heading">{{trans('backend.dashboard.resume_country_casting.panel_heading_count_country_social')}}
       <div class="btn-group">
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ trans('backend.dashboard.export') }}  <span class="caret"></span></button>
       <ul class="dropdown-menu">
