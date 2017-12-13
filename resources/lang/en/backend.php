@@ -63,6 +63,7 @@
 			],
 			'resume_country_casting' => [
 				'th_country' => 'Country',
+				'th_count' => 'Count',
 				'th_social_network'=>'Social Network',
 				'th_count_country' => 'No. Countries',
 				'panel_heading' => 'The Most social network used by all Countries',

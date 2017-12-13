@@ -141,6 +141,7 @@
         <thead>
           <tr>
             <th>{{trans('backend.dashboard.resume_country_casting.th_social_network')}}</th>
+            <th>{{trans('backend.dashboard.resume_country_casting.th_count')}}</th>
           </tr>
         </thead>
         <tbody>
@@ -148,11 +149,12 @@
             @foreach ($socialMediaMoreUsed as $social)
               <tr>
                 <td> {{$social->occurrence}} </td>
+                <td> {{$social->counter}} </td>
               </tr>
             @endforeach
           @else
             <tr>
-              <td>{{ trans('backend.no-data') }}</td>
+              <td colspan="2">{{ trans('backend.no-data') }}</td>
             </tr>
           @endif
         </tbody>
