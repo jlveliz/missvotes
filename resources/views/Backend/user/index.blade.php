@@ -55,9 +55,15 @@
   $(document).ready(function(){
       $('#user-datatable').DataTable({
         @if (App::isLocale('es'))
-        "language": {
-          "url": "../public/js/datatables/json/es.json"
-        }
+        @if(App::isLocal())
+          "language": {
+            "url": "../public/js/datatables/json/es.json"
+          },
+          @else
+            "language": {
+            "url": "../../public/js/datatables/json/es.json"
+          },
+          @endif
         @endif
       });
 
