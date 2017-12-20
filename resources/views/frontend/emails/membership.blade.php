@@ -88,7 +88,7 @@ $style = [
                                         </h1>
 
                                         <!-- Intro -->
-                                        <p style="{{ $style['paragraph'] }}">
+                                        <p style="{{ $style['paragraph'] }} ; text-align: justify;">
                                             {{ trans('email.buy_ticket.line_1') }}
                                         </p>
                                         

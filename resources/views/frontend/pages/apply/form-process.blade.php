@@ -169,11 +169,11 @@
 					   				<div class="form-group @if($errors->has('phone_number') || $errors->has('phone_preffix')) has-error @endif">
 					   					<label class="control-label col-sm-6 col-md-6" for="phone_number">@lang('form_process_apply.lbl_phone') </label>
 					   					<div class="col-sm-2 col-md-2">
-					   						<input type="text" id="phone_preffix"  name="phone_preffix" id="phone_preffix" class="form-control" placeholder="593" value="{{ isset($applicant)  ? $applicant->phone_preffix :  old('phone_preffix')}}"  @if(isset($applicant)) disabled @endif>
+					   						<input type="text" id="phone_preffix"  name="phone_preffix" id="phone_preffix" class="form-control" placeholder="Pref" value="{{ isset($applicant)  ? $applicant->phone_preffix :  old('phone_preffix')}}"  @if(isset($applicant)) disabled @endif>
 					   						@if ($errors->has('phone_preffix')) <p class="help-block">{{ $errors->first('phone_preffix') }}</p> @endif
 					   					</div>
 					   					<div class="col-sm-4 col-md-4">
-						   					<input type="text" class="form-control" name="phone_number" id="phone_number" value="{{ isset($applicant) ?  $applicant->phone_number : old('phone_number') }}" @if(isset($applicant)) disabled @endif placeholder="996793020">
+						   					<input type="text" class="form-control" name="phone_number" id="phone_number" value="{{ isset($applicant) ?  $applicant->phone_number : old('phone_number') }}" @if(isset($applicant)) disabled @endif placeholder="">
 						   					@if ($errors->has('phone_number')) <p class="help-block">{{ $errors->first('phone_number') }}</p> @endif
 					   					</div>
 					   				</div>

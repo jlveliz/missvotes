@@ -79,17 +79,17 @@ $style = [
                                 <table style="{{ $style['email-body_inner'] }}"  width="100%">
                                     <tr>
                                         <td style="width: 50%">
-                                            <p>{{trans('email.casting.hi')}} <b>{{$applicant->name}} {{$applicant->last_name}}</b> {{trans('email.casting.thanks')}} {{trans('email.casting.welcome')}}</p>
+                                            <p style="text-align: justify;">{{trans('email.casting.hi')}} <b>{{$applicant->name}} {{$applicant->last_name}}</b> {{trans('email.casting.thanks')}} {{trans('email.casting.welcome')}}</p>
                                             <h2><b>{{ trans('email.casting.casting_code') }}</b> <b style="color: red">{{ $applicant->code }}</b></h2>
-                                            <p>{{trans('email.casting.paragraph_1')}}</p>
-                                            <p>{{trans('email.casting.paragraph_2_part_1')}}
+                                            <p style="text-align: justify;">{{trans('email.casting.paragraph_1')}}</p>
+                                            <p style="text-align: justify;">{{trans('email.casting.paragraph_2_part_1')}}
                                                 @if (App::isLocale('es'))
                                                 <a href="https://www.misspanamericaninternational.com/reglas-oficiales/" target="_blank"> {{trans('email.casting.paragraph_2_part_1_rules')}} </a> 
                                                 @else
                                                 <a href="https://www.misspanamericaninternational.com/official-rules" target="_blank"> {{trans('email.casting.paragraph_2_part_1_rules')}} </a> 
                                                 @endif
                                             {{trans('email.casting.paragraph_2_part_2')}} </p>
-                                            <p>{{trans('email.casting.paragraph_3',
+                                            <p style="text-align: justify;">{{trans('email.casting.paragraph_3',
                                                 ['month'=>$currentMonth,
                                                 'minDayMonth'=>$minDayCurrentMonth,
                                                 'maxDayMonth'=>$maxDayCurrentMonth,
@@ -101,7 +101,7 @@ $style = [
                                             <p>{{trans('email.casting.questions')}}</p>
                                         </td>
                                         <td style="width: 50%">
-                                            <img src="{{ asset('public/images/email_art.jpeg') }}" alt="{{config('app.name')}}" title="{{config('app.name')}}">
+                                            <img style="width: 100%;height: 45%; padding-left: 10px" src="{{ asset('public/images/email_art.jpeg') }}" alt="{{config('app.name')}}" title="{{config('app.name')}}">
                                         </td>
                                     </tr>
                                 </table>
