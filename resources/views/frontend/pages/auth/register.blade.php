@@ -112,5 +112,17 @@
       </div>
     </div>
   </div>
-    
+  <div class="row">
+    <div class="col-md-4 col-lg-4 col-xs-12 col-md-offset-4">
+      <h4 class="text-center">{{ trans('auth.register_fields.follows') }}</h4>
+      <ul class="list-inline text-center">
+        <li><a href="http://www.facebook.com/MissPanamericanInternational" target="_blank" title="Facebook"><i class="fa fa-facebook-official fa-lg" aria-hidden="true"></i></a></li>
+        <li><a href="http://www.twitter.com/MissPanamerican" target="_blank" title="Twitter"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+        <li><a href="http://www.instagram.com/misspanamericaninternational" target="_blank" title="Instagram"><i class="fa fa-instagram fa-lg" aria-hidden="true"></i></a></li>
+        <li><a href="http://www.youtube.com/misspanamerican1" target="_blank" title="Youtube"><i class="fa fa-youtube-play fa-lg" aria-hidden="true"></i></a></li>
+        <li><a href="http://www.flickr.com/misspanamerican" target="_blank" title="Flickr"><i class="fa fa-flickr fa-lg" aria-hidden="true"></i></a></li>
+        <li><a href="http://pinterest.com/misspanamerican" target="_blank" title="Pinterest"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+      </ul>
+    </div>
+  </div>
 @endsection()

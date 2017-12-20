@@ -53,7 +53,8 @@ return [
         'male' => 'Male',
         'female' => 'Female',
         'accept_terms' => 'I accept the',
-        'terms_conditions' => 'terms and conditions'
+        'terms_conditions' => 'terms and conditions',
+        'follows' => 'Follow us'
     ],
     'register_options' => [
         'register' => 'Subscribe',

@@ -54,7 +54,8 @@ return [
         'male' => 'Masculino',
         'female' => 'Femenino',
         'accept_terms' => 'Acepto los',
-        'terms_conditions' => 'terminos y condiciones'
+        'terms_conditions' => 'terminos y condiciones',
+        'follows' => 'Síguenos'
     ],
     'register_options' => [
         'register' => 'Subscribirse',
