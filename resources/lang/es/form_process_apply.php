@@ -40,8 +40,10 @@ return [
 	'lbl_done' => '¡Felicidades tu solicitud en línea está completa!',
 	'lbl_last-message' => 'Tu número de identificación de casting y toda la información que necesitas saber se envió a tu correo electrónico. ¡Compruébalo y buena suerte!',
 
-	'thanks_subscribe' => 'Gracias por subscibirse', 
+	'thanks_subscribe' => 'Gracias por suscibirse', 
 	'error_subscribe' => 'Su formulario no pudo ser procesado, intente nuevamente',
 	'lbl_photo_format' => 'Solo en formato Jpg, Png, Gif Peso máximo 2mb',
+	'paypal_message_1' => 'Nuestro servicio de pago en línea es PayPal. Sino tiene una cuenta de PayPal, puede crear una totalmente gratis.',
+	'paypal_message_2' => 'No tengo cuenta en PayPal. ¿Cómo creo una cuenta? Dale clic en el botón: Pagar con PayPal y te aparecerá la opción para crear una cuenta. Es rápido y seguro.',
 
 ];

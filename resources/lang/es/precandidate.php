@@ -1,8 +1,8 @@
 <?php
 
 return  [
-    'name.required' => 'Escriba sus nombres por favor',
-    'last_name.required' => 'Escriba sus apellidos por favor',
+    'name.required' => 'Escribe tus nombres por favor',
+    'last_name.required' => 'Escribe tus apellidos por favor',
     'is_precandidate.required' => 'la precandidatura es requerida',
     'country_id.required' => 'El País es requerido',
     'country_id.exists' => 'El País que intenta ingresar no existe',

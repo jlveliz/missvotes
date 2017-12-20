@@ -101,7 +101,7 @@ $style = [
                                             <p>{{trans('email.casting.questions')}}</p>
                                         </td>
                                         <td style="width: 50%">
-                                            <img src="{{ asset('public/images/email_art.png') }}" alt="{{config('app.name')}}" title="{{config('app.name')}}">
+                                            <img src="{{ asset('public/images/email_art.jpeg') }}" alt="{{config('app.name')}}" title="{{config('app.name')}}">
                                         </td>
                                     </tr>
                                 </table>

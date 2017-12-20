@@ -3,7 +3,7 @@
 	return [
 		'tab_name' => "Números de Rifa",
 		'my_tickets' => 'Mis Tickets',
-		'tickets_not_found' => 'Lamentamos que no tenga tickets para usar, compre uno para poder apoyar a su candidata favorita',
+		'tickets_not_found' => 'Lamentamos que no tenga tickets para usar, compre uno para poder apoyar a tu candidata favorita',
 		'tittle_raffle' => '¡GANE UN VIAJE!',
 		'subtitle_raffle' => 'Adquiera todos los números de rifa que desee! ¡Buena suerte!',
 		'tickets_not_found_query' =>'Ticket :param no encontrado',

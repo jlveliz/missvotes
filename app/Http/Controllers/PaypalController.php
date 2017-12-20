@@ -249,7 +249,11 @@ class PaypalController extends Controller
                 if (config('app.env') == 'local') {
                     return redirect()->route('website.account')->with($mensaje);
                 } else {
-                    return redirect()->away('http://www.misspanamericaninternational.com/login/')->with($mensaje);
+                    if (app()->isLocale('es')) {
+                        return redirect()->away('https://www.misspanamericaninternational.com/ingresar/')->with($mensaje);
+                    } else {
+                        return redirect()->away('http://www.misspanamericaninternational.com/login/')->with($mensaje);
+                    }
                     
                 }
                 /** echo "Exception: " . $ex->getMessage() . PHP_EOL; **/
@@ -261,7 +265,11 @@ class PaypalController extends Controller
                 if (config('app.env') == 'local') {
                     return redirect()->route('website.account')->with($mensaje);
                 } else {
-                    return redirect()->away('http://www.misspanamericaninternational.com/login/')->with($mensaje);
+                    if (app()->isLocale('es')) {
+                        return redirect()->away('https://www.misspanamericaninternational.com/ingresar/')->with($mensaje);
+                    } else {
+                        return redirect()->away('http://www.misspanamericaninternational.com/login/')->with($mensaje);
+                    }
                     
                 }
                 /** die('Some error occur, sorry for inconvenient'); **/
@@ -295,7 +303,11 @@ class PaypalController extends Controller
          if (config('app.env') == 'local') {
             return redirect()->route('website.account')->with($mensaje);
         } else {
-            return redirect()->away('http://www.misspanamericaninternational.com/login/')->with($mensaje);
+             if (app()->isLocale('es')) {
+                return redirect()->away('https://www.misspanamericaninternational.com/ingresar/')->with($mensaje);
+            } else {
+                return redirect()->away('http://www.misspanamericaninternational.com/login/')->with($mensaje);
+            }
                     
         }
         
@@ -372,7 +384,11 @@ class PaypalController extends Controller
              if (config('app.env') == 'local') {
             return redirect()->route('website.account')->with($mensaje);
         } else {
-            return redirect()->away('http://www.misspanamericaninternational.com/login/')->with($mensaje);
+             if (app()->isLocale('es')) {
+                return redirect()->away('https://www.misspanamericaninternational.com/ingresar/')->with($mensaje);
+            } else {
+                return redirect()->away('http://www.misspanamericaninternational.com/login/')->with($mensaje);
+            }
                     
         }
             // return redirect()->route('website.account')->with($mensaje);
@@ -383,7 +399,11 @@ class PaypalController extends Controller
          if (config('app.env') == 'local') {
             return redirect()->route('website.account')->with($mensaje);
         } else {
-            return redirect()->away('http://www.misspanamericaninternational.com/login/')->with($mensaje);
+            if (app()->isLocale('es')) {
+                return redirect()->away('https://www.misspanamericaninternational.com/ingresar/')->with($mensaje);
+            } else {
+                return redirect()->away('http://www.misspanamericaninternational.com/login/')->with($mensaje);
+            }
                     
         }
     }

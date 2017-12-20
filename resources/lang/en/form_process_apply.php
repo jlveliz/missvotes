@@ -43,9 +43,8 @@ Check it out and good luck!',
 
 	'thanks_subscribe' => 'Thank you for signing up', 
 	'error_subscribe' => 'Your form could not be processed, try again',
-	'lbl_photo_format' => 'Only format Jpg, Png, Gif and Max 2mb'
-
-
-
+	'lbl_photo_format' => 'Only format Jpg, Png, Gif and Max 2mb',
+	'paypal_message_1' => 'Our online payment service is PayPal. If you do not have a PayPal account, you can create one for free.',
+	'paypal_message_2' => 'I do not have an account with PayPal. How do I create an account? Click on the button: Pay with PayPal and the option to create an account will appear. It is fast and safe.',
 
 ];

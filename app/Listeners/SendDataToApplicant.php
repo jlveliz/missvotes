@@ -39,7 +39,6 @@ class SendDataToApplicant
         $maxDayCurrentMonth = $now->endOfMonth()->format('d');
         $applicant = $registred->applicant;
 
-      
         Mail::send('frontend.emails.casting',[
             'applicant'=>$applicant,
             'currentMonth'=>$currentMonth,

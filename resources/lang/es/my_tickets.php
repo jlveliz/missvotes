@@ -1,13 +1,13 @@
 <?php
 
 	return [
-		'thanks'=>'Gracias por su apoyo y por participar! ¡Usted puede conseguir más números si usted quiere! Recuerde: las probabilidades de ganar dependerán de la cantidad de números de rifa comprados.',
-		'junior_foundation'=>'Junior Foundation agradece su contribución personal.',
+		'thanks'=>'Gracias por tu apoyo y por participar! ¡Usted puede conseguir más números si usted quiere! Recuerde: las probabilidades de ganar dependerán de la cantidad de números de rifa comprados.',
+		'junior_foundation'=>'Junior Foundation agradece tu contribución personal.',
 		'signals' => [
 			'used' => 'Usado',
-			'available' => 'Su Número',
+			'available' => 'Tu Número',
 		],
-		'tickets_not_found' => 'Sentimos que no tenga tickets, le recordamos que con un tickets usted puede apoyar a su candidata preferida y ganar un Fabuloso viaje con todos los gastos pagados',
+		'tickets_not_found' => 'Sentimos que no tenga tickets, le recordamos que con un tickets usted puede apoyar a tu candidata preferida y ganar un Fabuloso viaje con todos los gastos pagados',
 		'counter' => 'Disponibles de ',
 		'points' => 'puntos',
 		'remember' => 'Recuerde',

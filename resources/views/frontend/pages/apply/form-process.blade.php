@@ -80,6 +80,9 @@
 					   				<form action="{{ route('pay.paypal.aplication') }}" method="POST" accept-charset="utf-8">
 					   					{{ csrf_field() }}
 					   					<button type="submit" class="btn btn-primary btn-lg btn-block pay-button" data-payment="paypal"><i class="fa fa-paypal"> </i> <b>@lang('form_process_apply.lbl_paypal_')</b></button>
+
+					   					<p>{{ trans('form_process_apply.paypal_message_1') }}</p>
+					   					<p>{{ trans('form_process_apply.paypal_message_2') }}</p>
 					   					
 					   				</form>
 					   				{{-- <h3>O</h3>
@@ -118,11 +121,11 @@
 				   						<input type="hidden" name="country_id" value="{{$countryselected}}">
 				   						<input type="hidden" name="state" value="0">
 				   					@endif
-				   					@forelse ($errors->all() as $error)
+
+				   					@foreach ($errors->all() as $error)
 				   						{{$error}}
-				   					@empty
-				   						{{-- empty expr --}}
-				   					@endforelse
+				   					@endforeach
+				   					
 				   					<div class="form-group @if($errors->has('name')) has-error @endif">
 				   						<label class="control-label col-sm-6 col-md-6 ">@lang('form_process_apply.lbl_name') </label>
 				   						<div class="col-sm-6 col-md-6">

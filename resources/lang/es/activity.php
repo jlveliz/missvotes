@@ -11,12 +11,12 @@
 		],
 
 		'membership'=>[
-			'bought' => 'actualizado su membresia a :name',
+			'bought' => 'actualizado tu membresia a :name',
 		],
 
 		'auth' => [
-			'change_password' => 'cambiado su contraseña',
-			'update_profile' =>'actualizado su perfil',
+			'change_password' => 'cambiado tu contraseña',
+			'update_profile' =>'actualizado tu perfil',
 		],
 		'you' => 'Usted'
 	];
