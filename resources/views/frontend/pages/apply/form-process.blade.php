@@ -431,7 +431,11 @@ $(document).ready(function() {
 
 
     	$.ajax({
+    		@if(App::isLocal())
     		url: '/apply/update-aplication-process',
+    		@else
+    		url: '../apply/update-aplication-process',
+    		@endif
     		type: 'POST',
     		data: {
     			country_code: countryCode,
