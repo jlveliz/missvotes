@@ -67,6 +67,11 @@
           },
           @endif
         @endif
+         "orderable": false,
+          order: [
+            [5, 'desc'],
+            [0, 'asc'],
+          ]
       });
 
       $(".delete").on('click', function(event) {
