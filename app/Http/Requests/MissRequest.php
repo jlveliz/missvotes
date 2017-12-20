@@ -33,6 +33,7 @@ class MissRequest extends FormRequest
                     'birthdate' => 'required|date_format:Y-m-d',
                     'placebirth'=>'required',
                     'email'=>'required|email|unique:miss',
+                    'phone_preffix'=>'required',
                     'phone_number'=>'required',
                     'how_did_you_hear_about_us'=>'required|not_in:null',
                     'height' => 'required',

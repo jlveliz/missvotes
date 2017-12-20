@@ -19,7 +19,8 @@ return [
 	'txt_13' => 'Have valid passport of the country of origin or birth certificate',
 	'txt_14' => 'Have good manners and have never commit felonies.',
 	'txt_15' => 'Accept the rules and discipline of the Miss Panamerican International competition.',
-	'txt_terms' => 'I have read and accept the official rules.',
+	'txt_terms' => 'I have read and accept the',
+	'txt_official_terms' => 'official rules.',
 	'btn_accept' => 'NEXT',
 
 ];

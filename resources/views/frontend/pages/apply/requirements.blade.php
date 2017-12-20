@@ -32,7 +32,7 @@
 				<div class="checkbox">
 					@if (app()->isLocale('es'))
 				    <label>
-				      <input type="checkbox" name="acept-terms" value="1"><b> <a href="https://www.misspanamericaninternational.com/reglas-oficiales/" target="_blank"> @lang('requirement.txt_terms')</a></b>
+				      <input type="checkbox" name="acept-terms" value="1"><b> @lang('requirement.txt_terms') <a href="https://www.misspanamericaninternational.com/reglas-oficiales/" target="_blank"> @lang('requirement.txt_official_terms')</a></b>
 				    </label>
 					@else
 				    <label>

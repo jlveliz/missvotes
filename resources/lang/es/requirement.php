@@ -20,7 +20,8 @@ return [
 	'txt_13' => 'Contar con pasaporte vigente del país de origen o certificado de nacimiento.',
 	'txt_14' => 'Tener buenos modales y no haber cometido felonías.',
 	'txt_15' => 'Estar de acuerdo con las reglas y disciplina del certamen Miss Panamerican International.',
-	'txt_terms' => 'He leído y acepto las  reglas oficiales.',
+	'txt_terms' => 'He leído y acepto las',
+	'txt_official_terms' => 'reglas oficiales.',
 	'btn_accept' => 'SIGUIENTE',
 
 ];

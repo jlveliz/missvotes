@@ -43,6 +43,7 @@ class Miss extends Model
         'birthdate',
         'placebirth',
         'email',
+        'phone_preffix',
         'phone_number',
         'how_did_you_hear_about_us',
         'height',

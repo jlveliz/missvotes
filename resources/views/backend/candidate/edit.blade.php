@@ -86,7 +86,7 @@
 				</div>
 				<div class="form-group col-md-3 col-sm-3 col-xs-12 @if($errors->has('phone_number')) has-error @endif">
 					<label class="control-label">{{ trans('backend.candidates.create-edit.label_phone_number') }} </label>
-					<input type="text" class="form-control" name="phone_number" value="{{ $candidate->phone_number }}">
+					<input type="text" class="form-control" name="phone_number" value="{{ $applicant->phone_preffix }}{{ $candidate->phone_number }}">
 					@if ($errors->has('phone_number')) <p class="help-block">{{ $errors->first('phone_number') }}</p> @endif
 				</div>
 				<div class="form-group col-md-3 col-sm-3 col-xs-4">

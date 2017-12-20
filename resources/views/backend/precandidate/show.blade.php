@@ -72,7 +72,7 @@
        	</div>
        	<div class="form-group col-md-2 col-sm-2 col-xs-12">
        		<label class="control-label">{{ trans('backend.precandidate.show.label_phone_number') }} </label>
-       		<input type="text" class="form-control"  name="phone_number" value="{{ $precandidate->phone_number }}" disabled>
+       		<input type="text" class="form-control"  name="phone_number" value="{{ $applicant->phone_preffix }}{{ $precandidate->phone_number }}" disabled>
        	</div>
        </div>
        
