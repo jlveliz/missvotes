@@ -14,7 +14,7 @@
 				'precandidate' => 'Precandidatas',
 			],
 			'members'=> [
-				'menu' => 'Subscriptores',
+				'menu' => 'Suscriptores',
 				'list' => 'Listado',
 				'activities'=>'Actividades',
 			],

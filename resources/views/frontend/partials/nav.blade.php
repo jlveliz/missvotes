@@ -19,9 +19,9 @@
                     <a href="{{ route('apply.requirements') }}" class="btn btn-update-membership-or-buy"  alt="{{ trans('app.apply_now') }}" title="{{ trans('app.apply_now') }}"> {{ trans('app.apply_now') }}</a>
                 </li>
                 @endcan
-                <li style="margin-left: 2px">
+               {{--  <li style="margin-left: 2px">
                     <a href="{{ route('list.buy.ticket') }}" class="btn btn-update-membership-or-buy"  alt="{{ trans('app.win_travel') }}" title="{{ trans('app.win_travel') }}"> {{ trans('app.win_travel') }}</a>
-                </li>
+                </li> --}}
                
             @endif
            

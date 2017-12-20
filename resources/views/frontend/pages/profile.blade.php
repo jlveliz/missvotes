@@ -28,9 +28,9 @@
 			    <li role="presentation">
 			    	<a href="#membership" aria-controls="membership" role="tab" data-toggle="tab">@lang('account_profile.membership_tab_data') @if(Auth::user()->client && !Auth::user()->client->current_membership()) <small class="upgrade-membership">(Premium!!)</small> @endif</a>
 			    </li>
-			    <li role="presentation">
+			    {{-- <li role="presentation">
 			    	<a href="#tickets" aria-controls="tickets" role="tab" data-toggle="tab">{{ trans('raffle_ticket.tab_name') }} @if (count(Auth::user()->client->tickets) > 0) <strong> ({{count(Auth::user()->client->tickets)}}) </strong> @endif</a>
-			    </li>
+			    </li> --}}
 			    <li role="presentation">
 			    	<a href="#activity" aria-controls="activity" role="tab" data-toggle="tab">@lang('account_profile.activities_tab_data')</a>
 			    </li>

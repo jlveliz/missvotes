@@ -20,14 +20,14 @@ return [
     ],
     'login_options' => [
         'login_button' => 'Ingresar',
-        'go_register' => 'Subscribirse',
+        'go_register' => 'Suscribirse',
         'forgot_password' => 'Olvidó Su contraseña?',
         'code_not_recivied' => "No recibió el código de Activación?",
         'message_close_session'=> 'Si quiere subscribirse con otro correo electrónico debe primero cerrar su sesión ',
         'message_app_session'=> 'Para tener acceso a la aplicación en línea debes suscribirte primero / Si ya eres un usuario ingresa a tu cuenta ',
     ],
 
-    'failed' => 'Las credenciales no coinciden con nuestros registros.',
+    'failed' => 'contraseña o correo incorrecto. Vuelva a intentarlo.',
     'throttle' => 'Ha sobrepasado el máximo número de intengos de ingreso, intente en :seconds segundos.',
     'not_confirmed' => 'Lo sentimos, su cuenta está inactiva.',
 
@@ -94,7 +94,7 @@ return [
     ***/
 
 
-    'forgot_password_title' => 'Perdió su Contraseña',
+    'forgot_password_title' => 'Olvidó su Contraseña',
     'forgot_password_fields' => [
         'email' => 'Email'
     ],
