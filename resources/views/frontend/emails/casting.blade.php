@@ -82,7 +82,12 @@ $style = [
                                             <p>{{trans('email.casting.hi')}} <b>{{$applicant->name}} {{$applicant->last_name}}</b> {{trans('email.casting.thanks')}} {{trans('email.casting.welcome')}}</p>
                                             <h2><b>{{ trans('email.casting.casting_code') }}</b> <b style="color: red">{{ $applicant->code }}</b></h2>
                                             <p>{{trans('email.casting.paragraph_1')}}</p>
-                                            <p>{{trans('email.casting.paragraph_2_part_1')}} <a href="http://google.com" target="_blank"> {{trans('email.casting.paragraph_2_part_1_rules')}} </a> 
+                                            <p>{{trans('email.casting.paragraph_2_part_1')}}
+                                                @if (App::isLocale('es'))
+                                                <a href="https://www.misspanamericaninternational.com/reglas-oficiales/" target="_blank"> {{trans('email.casting.paragraph_2_part_1_rules')}} </a> 
+                                                @else
+                                                <a href="https://www.misspanamericaninternational.com/official-rules" target="_blank"> {{trans('email.casting.paragraph_2_part_1_rules')}} </a> 
+                                                @endif
                                             {{trans('email.casting.paragraph_2_part_2')}} </p>
                                             <p>{{trans('email.casting.paragraph_3',
                                                 ['month'=>$currentMonth,
