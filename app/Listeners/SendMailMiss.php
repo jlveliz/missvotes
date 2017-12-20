@@ -44,7 +44,7 @@ class SendMailMiss
             $bodyMessage = preg_replace("/!!email!!/", $emailMiss, $bodyMessage);
 
              Mail::send('frontend.emails.email-preselect',['body'=>$bodyMessage], function($message) use ($subject,$miss, $emailMiss) {
-                $message->from($emailMiss)->to($miss->email, $miss->name . ' '. $miss->last_name)->subject($subject);
+                $message->from($emailMiss,config('app.name'))->to($miss->email, $miss->name . ' '. $miss->last_name)->subject($subject);
             });
             $bodyMessage = $bodyOriginalMessage;
             $miss->mail_sended = 1;
