@@ -44,7 +44,7 @@ $style = [
 
     'anchor' => 'color: #3869D4;',
     'header-1' => 'margin-top: 0; color: #2F3133; font-size: 19px; font-weight: bold; text-align: left;',
-    'paragraph' => 'margin-top: 0; color: #74787E; font-size: 16px; line-height: 1.5em;',
+    'paragraph' => 'margin-top: 0; color: #74787E; font-size: 16px; line-height: 1.5em;text-align:justify',
     'paragraph-sub' => 'margin-top: 0; color: #74787E; font-size: 12px; line-height: 1.5em;',
     'paragraph-center' => 'text-align: center;',
 
@@ -83,19 +83,14 @@ $style = [
                                 <tr>
                                     <td style="{{ $fontFamily }} {{ $style['email-body_cell'] }}">
                                         <!-- Greeting -->
-                                        <h1 style="{{ $style['header-1'] }}">
-                                           {{ trans('email.buy_membership.greeting') }}
-                                        </h1>
-
-                                        <!-- Intro -->
-                                        <p style="{{ $style['paragraph'] }} ; text-align: justify;">
-                                            {{ trans('email.buy_membership.line_1') }} <b>{{ trans('email.buy_membership.line_1_2') }}</b>
+                                        <p style="{{ $style['header-1'] }}">
+                                           Gracias por tu apoyo y por ser parte de nuestro evento internacional. Tu suscripción actual es una cuenta gratuita que <b>incluye:</b>
                                         </p>
+
                                         <ul style="text-align:justify;padding: 0px">
-                                            <li><b>{{ trans('email.buy_membership.list_header') }}</b> {{ trans('email.buy_membership.list_body') }}</li>
-                                            <li><b>{{ trans('email.buy_membership.list_header_2') }}</b> {{ trans('email.buy_membership.list_body_2') }}</li>
-                                            <li><b>{{ trans('email.buy_membership.list_header_3') }}</b> {{ trans('email.buy_membership.list_body_3') }}</li>
-                                            <li><b>{{ trans('email.buy_membership.list_header_4') }}</b> {{ trans('email.buy_membership.list_body_4') }}</li>
+                                            <li><b>Noticias</b> Todo lo relacionado a las actividades de nuestras candidatas.</li>
+                                            <li><b>Votación Online de 1 punto:</b> Cuando se abran las votaciones podrás votar hasta 5 veces al día por tu candidata favorita. Tu suscripción Gratuita permite que cada voto valga 1 punto.</li>
+                                            <li><b>Sorteos y Promociones:</b> Acceso a nuestras promociones o sorteos durante todo un año.</li>
                                         </ul>
                                         
                                         <!-- Action Button -->
@@ -110,10 +105,10 @@ $style = [
                                             </tr>
                                           
                                             <tr>
-                                                <td>{{ $membership->name }}</td>
-                                                <td>{{$membership->duration_time}} @if($membership->duration_mode == 1) {{ trans('email.buy_membership.duration_month') }} @else {{ trans('email.buy_membership.duration_year') }} @endif</td>
-                                                <td>{{$membership->price}}</td>
-                                                <td>{{$membership->points_per_vote}}</td>
+                                                <td>Gratuita</td>
+                                                <td>1 Año</td>
+                                                <td>$ 0.00</td>
+                                                <td>1</td>
                                             </tr>
                                                 
                                           
@@ -121,7 +116,7 @@ $style = [
 
                                         <!-- Salutation -->
                                         <p style="{{ $style['paragraph'] }}">
-                                            {{ trans('email.buy_membership.last_message')}}
+                                            Puedes pasar de Cuenta Free (gratuita) a Cuenta Premium desde tu perfil en nuestro sitio web: <a href="www.misspanamericaninternational.com" target="_blank">www.misspanamericaninternational.com</a> y obtener más beneficios sobre nuestro evento internacional.
                                         </p>
 
                                         <p style="{{ $style['paragraph'] }}">

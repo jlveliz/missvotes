@@ -59,15 +59,26 @@ return [
 	],
 
 	'buy_membership' => [
+		'greeting' => '¡Bienvenido a nuestra familia de Suscriptores Premium!',
 		'duration_year'=>'Año(s)',
 		'duration_month'=>'Mes(es)',
 		'subject' => ':name - Compra de Membresía',
-		'greeting' => 'Hola',
-		'line_1' => 'Gracias por tu compra, A continuación detallamos la membresía.',
+		'line_1' => 'Gracias por tu apoyo y por ser parte de nuestro evento internacional. Tu suscripción actual,',
+		'line_1_2' => 'Incluye:',
 		'duration' => 'Duración',
 		'points' => 'Puntos por voto',
 		'price' =>'Precio',
 		'name'=> 'Membresía',
+		'list_header'=>'Noticias Exclusivas:',
+		'list_header_2'=>'Votación Online de 3 puntos:',
+		'list_header_3'=>'Sorteos y Promociones:',
+		'list_header_4'=>'Donación:',
+		'list_body'=>'Serás parte del grupo de personas que tendrán información detallada y más reciente sobre nuestras candidatas oficiales.',
+		'list_body_2'=>'Cuando se abran las votaciones podrás votar hasta 5 veces al día por tu candidata favorita. Tu suscripción Premium te permite que cada voto valga 3 puntos.',
+		'list_body_3'=>'Tendrás acceso exclusivo a nuestras promociones y sorteos realizados solo para nuestros suscriptores Premium durante todo un año. También, podrás participar en los sorteos y promociones realizadas para las cuentas gratuitas.',
+		'list_body_4'=>'El 10% del valor de la suscripción Premium se donará a Junior Foundation: niños con cáncer.',
+		'last_message'=>'Esperamos que disfrutes de nuestro evento de belleza de habla hispana más importante y prestigioso en California, USA. Somos Belleza y Diversidad Cultural desde 1985...',
+		'dont_forget'=>'No olvides que también puedes seguirnos en nuestras redes sociales.'
 	],
 
 ];

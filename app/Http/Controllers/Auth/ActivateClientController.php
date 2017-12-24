@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use MissVote\Http\Controllers\Controller;
 use MissVote\Repository\ClientRepository;
 use Illuminate\Auth\Events\Registered;
+use MissVote\Events\AccountActivated;
 use Validator;
 use Response;
 use Lang;
@@ -58,7 +59,7 @@ class ActivateClientController extends Controller
             $flagData['tipo_mensaje'] = "error";
             $flagData['mensaje'] = Lang::get('auth.activation_error_message');
         }
-
+        event(new AccountActivated($client));
         return view('frontend.pages.activation',['flagData'=>$flagData]);
     }
 

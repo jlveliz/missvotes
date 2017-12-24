@@ -33,6 +33,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         'MissVote\Events\SendMailToPreselecteds' => [
             'MissVote\Listeners\SendMailMiss'
+        ],
+        'MissVote\Events\AccountActivated' => [
+            'MissVote\Listeners\SendMailFreeMembership'
         ]
     ];
 
