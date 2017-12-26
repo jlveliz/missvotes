@@ -24,7 +24,7 @@ return [
 
 	'update_btn' => 'Actualizar',
 
-	'txt_data_1' => 'Este año la organización permitirá que una de las candidatas entre directamente al top 12 en el evento final. Todos podrán votar pero deben estar suscritos a nuestra pagina web para acceder a las votaciones online. Hay dos tipos de suscripciones:',
+	'txt_data_1' => 'Este a&ntilde;o la organizaci&oacute;n permitir&aacute; que una de las candidatas entre directamente al top 12 en el evento final. Todos podr&aacute;n votar pero deben estar suscritos a nuestra pagina web para acceder a las votaciones online. Hay dos tipos de suscripciones:',
 
 	'prm_1_membership_lbl' => '<b>Noticias Exclusivas:</b> Ser&aacute;s parte del grupo de personas que tendr&aacute;n informaci&oacute;n detallada y m&aacute;s reciente sobre nuestras candidatas oficiales.',
 
@@ -36,13 +36,13 @@ return [
 
 	'free_sus' => 'Suscripción Gratuita',
 
-	'txt_free_sus' => 'Cada usuario podrá votar una sola vez al día, es decir cada 24 horas.  En este tipo de suscripción tu votación diaria equivale a 1 punto.',
+	'txt_free_sus' => 'Cada usuario puede realizar hasta 5 votos por d&iacute;a. En este tipo de suscripci&oacute;n cada voto equivale 1 punto.',
 
 	'prem_sus' => 'Suscripción Premium',
 
-	'txt_prem_sus' => 'Si quieres que tu candidata favorita esté mas cerca de la corona internacional, tienes la opción de suscribirte en categoría premium, lo cual te permitirá votar una sola vez al día, es decir cada 24 horas,  pero tu votación diaria equivaldrá a 3 puntos.',
+	'txt_prem_sus' => 'Si quieres que tu candidata favorita est&eacute; mas cerca de la corona internacional, tienes la opci&oacute;n de suscribirte en categor&iacute;a premium, lo cual te permite realizar 5 votos por d&iacute;a, pero cada voto equivale 3 puntos.',
 
-	'adi_txt' => 'La candidata que acumule mas puntos, entrará directamente al top 12.',
+	'adi_txt' => 'La candidata que acumule mas puntos, entrar&aacute; directamente al top 12.',
 
 
 
