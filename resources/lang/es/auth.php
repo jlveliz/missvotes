@@ -33,12 +33,12 @@ return [
         'remember_me' => 'Remember me / Recordarme'
     ],
     'login_options' => [
-        'login_button' => 'Log in',
-        'go_register' => 'Subscribe',
-        'forgot_password' => 'Forgot your password?',
-        'code_not_recivied' => "Didn't recieve the activation code?",
-        'message_close_session'=> 'If you want to subscribe with another email you must first close your session',
-        'message_app_session'=> 'To access the online application you must subscribe first / If you are already a user log in to you account.',
+        'login_button' => 'Ingresar',
+        'go_register' => 'Suscribirse',
+        'forgot_password' => '¿Olvidó su contraseña?',
+        'code_not_recivied' => "¿No recibió el código de activación?",
+        'message_close_session'=> 'Si quiere suscribirse con otro correo electrónico, primero debe cerrar su anterior sesión',
+        'message_app_session'=> 'Para tener acceso a la aplicación en línea debes suscribirte primero / Si ya eres un usuario ingresa a tu cuenta.',
     ],
 
 
