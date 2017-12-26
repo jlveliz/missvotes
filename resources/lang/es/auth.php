@@ -26,32 +26,19 @@ return [
 
     */
 
-    'login_title' => 'Ingresar',
-
+     'login_title' => 'Log in / Iniciar Sesión',
     'login_fields' => [
-
-        'email' => 'Correo Electrónico',
-
-        'password' => 'Contraseña',
-
-        'remember_me' => 'Recordarme'
-
+        'email' => 'Email / Correo Electrónico',
+        'password' => 'Password / Contraseña',
+        'remember_me' => 'Remember me / Recordarme'
     ],
-
     'login_options' => [
-
-        'login_button' => 'Ingresar',
-
-        'go_register' => 'Suscribirse',
-
-        'forgot_password' => 'Olvidaste tu contraseña?',
-
-        'code_not_recivied' => "No recibió el código de Activación?",
-
-        'message_close_session'=> 'Si deseas postularte en nuestro casting internacional, debes suscribirte primero para tener acceso a la aplicaci&oacute;n en l&iacute;nea.',
-
-        'message_app_session'=> 'Para tener acceso a la aplicación en línea debes suscribirte primero / Si ya eres un usuario ingresa a tu cuenta ',
-
+        'login_button' => 'Log in',
+        'go_register' => 'Subscribe',
+        'forgot_password' => 'Forgot your password?',
+        'code_not_recivied' => "Didn't recieve the activation code?",
+        'message_close_session'=> 'If you want to subscribe with another email you must first close your session',
+        'message_app_session'=> 'To access the online application you must subscribe first / If you are already a user log in to you account.',
     ],
 
 

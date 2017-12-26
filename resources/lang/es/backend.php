@@ -250,7 +250,7 @@
 				'label_preselected' => 'Preseleccionada',
 				'label_precandidate' => 'Calificar como candidate',
 				'disqualify' => 'Descalificar',
-				'label_qualify_missing' => 'Calificar como como faltante',
+				'label_qualify_missing' => 'Calificar como faltante',
 				'btn_back' => 'Atrás',
 				'label_photos' => 'Fotos',
 				'how_hear_about_us'=>'¿Como escuchó de nosotros?'
