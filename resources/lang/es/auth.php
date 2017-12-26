@@ -69,38 +69,23 @@ return [
 
 
 
-    'register_title' => 'Suscribirse',
-
+        
+    'register_title' => 'Subscribe / Suscribirse',
     'register_fields' => [
-
-        'email' => 'Correo Electrónico',
-
-        'name' => 'Nombre',
-
-        'last_name' => 'Apellido',
-
-        'country-select' => 'Seleccione un País',
-
-        'city' => 'Ciudad',
-
-        'address' => 'Dirección',
-
-        'password' => 'Contraseña',
-
-        'confirm_password' => 'Confirmar Contraseña',
-
-        'gender' => 'Género',
-
-        'male' => 'Masculino',
-
-        'female' => 'Femenino',
-
-        'accept_terms' => 'Acepto los',
-
-        'terms_conditions' => 't&eacute;rminos y condiciones',
-
-        'follows' => 'Síguenos'
-
+        'email' => 'Email / Correo Electr&oacute;nico',
+        'name' => 'Name / Nombre',
+        'last_name' => 'Last Name / Apellido',
+        'country-select' => 'Select a Country / Seleccione un Pa&iacute;s',
+        'city' => 'City / Ciudad',
+        'address' => 'Address / Domicilio',
+        'password' => 'Password / Contrase&ntilde;a',
+        'confirm_password' => 'Confirm Password / Confirmar Contrase&ntilde;a',
+        'gender' => 'Gender',
+        'male' => 'Male',
+        'female' => 'Female',
+        'accept_terms' => 'I accept the',
+        'terms_conditions' => 'terms and conditions',
+        'follows' => 'Follow us'
     ],
 
     'register_options' => [
