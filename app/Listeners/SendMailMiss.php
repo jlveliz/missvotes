@@ -6,6 +6,7 @@ use MissVote\Events\SendMailToPreselecteds;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Mail;
+use Lang;
 
 
 class SendMailMiss

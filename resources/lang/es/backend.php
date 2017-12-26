@@ -248,7 +248,7 @@
 				'label_why_would_you_win' => '¿Porque ganaría el certamen',
 				'label_no_preselected' => 'No Preseleccionada',
 				'label_preselected' => 'Preseleccionada',
-				'label_precandidate' => 'Calificar como candidate',
+				'label_precandidate' => 'Calificar como candidata',
 				'disqualify' => 'Descalificar',
 				'label_qualify_missing' => 'Calificar como faltante',
 				'btn_back' => 'Atrás',

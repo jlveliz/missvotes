@@ -46,7 +46,7 @@ class SendDataToApplicant
             'maxDayCurrentMonth'=>$maxDayCurrentMonth,
             'nextMonth' => $nextMonth,
         ], function($message) use ($applicant) {
-            $message->from('no-reply@misspanamint.com',config('app.name'))->to($applicant->email , $applicant->name .' '. $applicant->last_name)
+            $message->from(config('mail.from.address'),config('app.name'))->to($applicant->email , $applicant->name .' '. $applicant->last_name)
                 ->subject(Lang::get('email.casting.subject',['name'=>config('app.name')]));
         });
     }

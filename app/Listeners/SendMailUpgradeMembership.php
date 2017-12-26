@@ -30,7 +30,7 @@ class SendMailUpgradeMembership
     public function handle(UpgradeMembership $event)
     {
         Mail::send('frontend.emails.membership',['membership'=>$event->membership], function($message) {
-            $message->from('no-reply@misspanamint.com',config('app.name'))->to(Auth::user()->email , Auth::user()->name .' '. Auth::user()->last_name)->subject(Lang::get('email.buy_membership.subject',['name'=>config('app.name')]));
+            $message->from(config('mail.from.address'),config('app.name'))->to(Auth::user()->email , Auth::user()->name .' '. Auth::user()->last_name)->subject(Lang::get('email.buy_membership.subject',['name'=>config('app.name')]));
         });
     }
 }

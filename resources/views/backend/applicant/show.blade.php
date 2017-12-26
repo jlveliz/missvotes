@@ -177,12 +177,12 @@
                 <input type="hidden" name="state" value="0">
       		      <button type="submit" class="btn btn-success" id="save">{{ trans('backend.applicant.show.label_qualify_missing') }}</button>
       				</form>
-              <form action="{{ route('applicants.update',$applicant->id) }}"  method="POST" style="display: inline">
+             {{--  <form action="{{ route('applicants.update',$applicant->id) }}"  method="POST" style="display: inline">
                 {{ csrf_field() }}
                 <input type="hidden" name="_method" value="PUT">
                 <input type="hidden" name="state" value="3">
                 <button type="submit" class="btn btn-success" id="save">{{ trans('backend.applicant.show.label_precandidate') }}</button>
-              </form>
+              </form> --}}
               <form action="{{ route('applicants.update',$applicant->id) }}"  method="POST" style="display: inline">
                 {{ csrf_field() }}
                 <input type="hidden" name="_method" value="PUT">
