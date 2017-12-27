@@ -44,10 +44,10 @@ class ApplyCandidateController extends Controller
     	
         $existApply = $this->apply->find(['client_id' => Auth::user()->id]);
 
-        if ($existApply) {
-            return redirect()->action('ApplyCandidateController@aplicationProcess');
-        }
-        return view('frontend.pages.apply.requirements');
+        // if ($existApply) {
+        //     return redirect()->action('ApplyCandidateController@aplicationProcess');
+        // }
+        return view('frontend.pages.apply.requirements',compact('existApply'));
     }
 
     public function aceptrequirements(Request $request)

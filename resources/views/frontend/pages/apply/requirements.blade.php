@@ -32,16 +32,20 @@
 				<div class="checkbox">
 					@if (app()->isLocale('es'))
 				    <label>
-				      <input type="checkbox" name="acept-terms" value="1"><b> @lang('requirement.txt_terms') <a href="https://www.misspanamericaninternational.com/reglas-oficiales/" target="_blank"> @lang('requirement.txt_official_terms')</a></b>
+				      <input @if ($existApply) checked disabled="" @endif type="checkbox" name="acept-terms" value="1"><b> @lang('requirement.txt_terms') <a href="https://www.misspanamericaninternational.com/reglas-oficiales/" target="_blank"> @lang('requirement.txt_official_terms')</a></b>
 				    </label>
 					@else
 				    <label>
-				      <input type="checkbox" name="acept-terms" value="1"><b> @lang('requirement.txt_terms')</b>
+				      <input @if ($existApply) checked disabled="" @endif type="checkbox" name="acept-terms" value="1"><b> @lang('requirement.txt_terms') <a href="https://www.misspanamericaninternational.com/official-rules/" target="_blank"> @lang('requirement.txt_official_terms')</a></b>
 				    </label>
 					@endif
 				</div>
 				<div class="text-center">
-					<button type="submit" class="btn btn-primary">@lang('requirement.btn_accept') </button>
+					@if ($existApply)
+						<a href="{{ route('apply.aplicationProcess') }}" type="submit" class="btn btn-primary">@lang('requirement.btn_accept') </a>
+					@else
+						<button type="submit" class="btn btn-primary">@lang('requirement.btn_accept') </button>
+					@endif
 				</div>
 			</form>
 			<br><br>

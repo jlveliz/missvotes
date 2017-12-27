@@ -2,11 +2,11 @@
 
 return [
 	
-	'tittle_process' => 'APPLICATION PROCESS',
-	'requirements_tab' => 'Official Rules',
+	'tittle_process' => 'REQUIREMENTS',
+	'requirements_tab' => 'Requrirements',
 	'country_tab' => 'Country',
 	'fee_tab' => 'Application Fee',
-	'app_tab' => 'Online Applicationn',
+	'app_tab' => 'Online Application',
 	'status_tab' => 'Application Status',
 	'sel_country_lbl' => 'Select the country you want to audition',
 	'txt_pay_thanks_lbl' => 'PAYMENT DONE.',

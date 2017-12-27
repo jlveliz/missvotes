@@ -34,11 +34,11 @@
           </form>
           
           
-          <div class="login-help">
+          {{-- <div class="login-help">
             <a href="{{ route('client.show.register') }}">@lang('auth.login_options.go_register')</a> - 
             <a href="{{ route('client.show.reset-email') }}">@lang('auth.login_options.forgot_password')</a> - 
             <a href="{{ route('client.show.activate') }}">@lang('auth.login_options.code_not_recivied')</a>
-          </div>
+          </div> --}}
         </div>
     </div>
     <br>

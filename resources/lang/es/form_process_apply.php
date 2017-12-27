@@ -2,8 +2,8 @@
 
 return [
 	
-	'tittle_process' => 'PROCESO DE APLICACIÓN',
-	'requirements_tab' => 'Reglas Oficiales',
+	'tittle_process' => 'REQUERIMIENTOS',
+	'requirements_tab' => 'Requerimientos',
 	'country_tab' => 'País',
 	'fee_tab' => 'Tasa de Solicitud',
 	'app_tab' => 'Solicitud en Línea',

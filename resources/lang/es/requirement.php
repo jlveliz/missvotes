@@ -2,7 +2,7 @@
 
 return [
 	
-	'tittle_process' => 'PROCESO DE APLICACIÓN',
+	'tittle_process' => 'REQUISITOS',
 	'accept_requirements_message' => 'Por favor, acepte los terminos y condiciones de participación', 
 	'txt_01' => 'Ser originaria del país que representa.',
 	'txt_02' => 'Ser mujer de nacimiento.',
