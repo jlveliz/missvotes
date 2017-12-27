@@ -93,7 +93,7 @@
                             <input type="hidden" name="paypal_membership_name" value="{{ $membership->name }}">
                             <input type="hidden" name="paypal_membership_description" value="Pago de membresía {{ $membership->name }}">
                             <input type="hidden" name="paypal_membership_amount" value="{{ $membership->price }}">
-                            <button type="submit" class="btn  btn-sm btn-success" role="button" title="Usar Paypal"><i class="fa fa-paypal"></i> Usar Paypal</button>
+                            <button type="submit" class="btn  btn-sm btn-success" role="button" title="Usar Paypal"><i class="fa fa-paypal"></i> {{ trans('membership.btn_use_paypal') }}</button>
                         </form>
                     </div>
                 @endif

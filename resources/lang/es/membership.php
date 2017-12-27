@@ -48,6 +48,8 @@ return [
 
 	'thanks_premium_membership' => 'Gracias por ser parte de nuestra familia Premium',
 
+	'btn_use_paypal' => 'Usar Paypal',
+
 
 
 ];
