@@ -34,21 +34,21 @@
           </form>
           
           
-          {{-- <div class="login-help">
+          <div class="login-help">
             <a href="{{ route('client.show.register') }}">@lang('auth.login_options.go_register')</a> - 
             <a href="{{ route('client.show.reset-email') }}">@lang('auth.login_options.forgot_password')</a> - 
             <a href="{{ route('client.show.activate') }}">@lang('auth.login_options.code_not_recivied')</a>
-          </div> --}}
+          </div>
         </div>
     </div>
     <br>
-    <div class="col-md-12 col-xs-12">
+    {{-- <div class="col-md-12 col-xs-12">
       <div class="col-md-3 col-md-offset-8">
             <p class="text-muted text-right">
                 {{ trans('auth.login_options.message_close_session') }}
             </p>
       </div>
-    </div>
+    </div> --}}
   </div>
     
 @endsection()

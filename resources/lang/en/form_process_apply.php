@@ -2,7 +2,7 @@
 
 return [
 	
-	'tittle_process' => 'REQUIREMENTS',
+	'tittle_process' => 'APPLY PROCESS',
 	'requirements_tab' => 'Requrirements',
 	'country_tab' => 'Country',
 	'fee_tab' => 'Application Fee',

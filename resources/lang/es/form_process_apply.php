@@ -2,7 +2,7 @@
 
 return [
 	
-	'tittle_process' => 'REQUERIMIENTOS',
+	'tittle_process' => 'PROCESO DE APLICACIÓN',
 	'requirements_tab' => 'Requerimientos',
 	'country_tab' => 'País',
 	'fee_tab' => 'Tasa de Solicitud',
