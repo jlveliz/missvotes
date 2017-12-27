@@ -24,7 +24,7 @@ return [
 
 	'update_btn' => 'Actualizar',
 
-	'txt_data_1' => 'Este a&ntilde;o la organizaci&oacute;n permitir&aacute; que una de las candidatas entre directamente al top 12 en el evento final. Todos podr&aacute;n votar pero deben estar suscritos a nuestra pagina web para acceder a las votaciones online. Hay dos tipos de suscripciones:',
+	'txt_data_1' => 'Este a&ntilde;o la organizaci&oacute;n permitir&aacute; que una de las candidatas entre directamente al top 12 en el evento final. Todos podr&aacute;n votar pero deben estar suscritos a nuestra pagina web para acceder a las votaciones online. Hay dos tipos de suscripciones',
 
 	'prm_1_membership_lbl' => '<b>Noticias Exclusivas:</b> Ser&aacute;s parte del grupo de personas que tendr&aacute;n informaci&oacute;n detallada y m&aacute;s reciente sobre nuestras candidatas oficiales.',
 

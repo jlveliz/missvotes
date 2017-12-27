@@ -49,7 +49,7 @@ return [
         'address' => 'Address / Domicilio',
         'password' => 'Password / Contrase&ntilde;a',
         'confirm_password' => 'Confirm Password / Confirmar Contrase&ntilde;a',
-        'gender' => 'Gender',
+        'gender' => 'Gender / Género',
         'male' => 'Male',
         'female' => 'Female',
         'accept_terms' => 'I accept the',
