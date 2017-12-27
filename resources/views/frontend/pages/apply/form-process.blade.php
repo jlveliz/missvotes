@@ -7,7 +7,10 @@
 		<div class="col-md-12 col-xs-12 col-lg-,12">
 			<!-- Nav tabs -->
 			 <ul id="process-tab" class="nav nav-tabs" role="tablist">
-			   <li id="country-tab" role="presentation" class="@if($existApply->process_status == 1) active @endif">
+			   <li id="requirement-tab" role="presentation" class="">
+			   		<a href="#requirements" aria-controls="requirements" class="@if($existApply->process_status < 1) active @endif" role="tab" data-toggle="tab">@lang('form_process_apply.requirements_tab')</a>
+			   	</li>
+			   	<li id="country-tab" role="presentation" class="@if($existApply->process_status == 1) active @endif">
 			   		<a href="#countries" aria-controls="countries" role="tab" data-toggle="tab">@lang('form_process_apply.country_tab')</a>
 			   	</li>
 			   <li id="pay-tab" role="presentation" class="@if($existApply->process_status <= 1) disabled @endif  @if($existApply->process_status == 2) active @endif">
@@ -23,7 +26,33 @@
 
 			 <!-- Tab panes -->
 			 <div class="tab-content">
-			 	{{-- countries --}}
+			 	{{-- requirements --}}
+			   <div role="tabpanel" class="tab-pane fade" id="requirements">
+			   		<div class="process-content">
+				   		<p><b>@lang('requirement.tittle_process')</b></p>
+			   			<div class="col-md-12 col-lg-12">
+			   				<ol>
+			   					<li>@lang('requirement.txt_01')</li>
+			   					<li>@lang('requirement.txt_02')</li>
+			   					<li>@lang('requirement.txt_03')</li>
+			   					<li>@lang('requirement.txt_04_A') <b>@lang('requirement.txt_04_B')</b></li>
+								<li>@lang('requirement.txt_05')</li>
+								<li>@lang('requirement.txt_06')</li>
+								<li>@lang('requirement.txt_07')</li>
+								<li>@lang('requirement.txt_08')</li>
+								<li>@lang('requirement.txt_09')</li>
+								<li>@lang('requirement.txt_10')</li>
+								<li>@lang('requirement.txt_11')</li>
+								<li>@lang('requirement.txt_12')</li>
+								<li>@lang('requirement.txt_13')</li>
+								<li>@lang('requirement.txt_14')</li>
+								<li>@lang('requirement.txt_15')</li>
+							</ol>
+			   			</div>
+			   			<div style="clear:both;"></div>
+			   		</div>
+			   </div>
+			   {{-- countries --}}
 			   <div role="tabpanel" class="tab-pane fade in active" id="countries">
 			   		<div class="process-content">
 				   		<p><b>1.- @lang('form_process_apply.sel_country_lbl')</b></p>
@@ -75,14 +104,14 @@
 			   				<small><b>@lang('form_process_apply.txt_price_off_lbl')</b></small>
 			   			</p>
 			   			<div class="row">
-					   			<div class="col-md-4 col-lg-4 col-sm-8 col-xs-12 col-md-offset-4 text-center">
+					   			<div class="col-md-5 col-lg-5 col-sm-8 col-xs-12 col-md-offset-4 text-center">
 					   				<h2 id="price-insciption"><small>$</small> 20.00 <br> <small> USD </small></h2>
 					   				<form action="{{ route('pay.paypal.aplication') }}" method="POST" accept-charset="utf-8">
 					   					{{ csrf_field() }}
 					   					<button type="submit" class="btn btn-primary btn-lg btn-block pay-button" data-payment="paypal"><i class="fa fa-paypal"> </i> <b>@lang('form_process_apply.lbl_paypal_')</b></button>
 
 					   					<p>{{ trans('form_process_apply.paypal_message_1') }}</p>
-					   					<p>{{ trans('form_process_apply.paypal_message_2') }}</p>
+					   					<p>{{ trans('form_process_apply.paypal_message_2') }} <b>{{ trans('form_process_apply.paypal_message_2_paypal') }} </b> {{ trans('form_process_apply.paypal_message_2_2') }}</p>
 					   					
 					   				</form>
 					   				{{-- <h3>O</h3>
@@ -378,30 +407,30 @@
 
 $(document).ready(function() {
 
-	
+		
 
 	@if ($existApply->process_status == 1 )
     	window.location.hash = $("#country-tab a").attr('href');
     	// $('#process-tab a[href="#countries"]').tab('show');
-    	$('#process-tab a:first').tab('show')
+    	// $('#process-tab a:first').tab('show')
     @endif
 
     @if ($existApply->process_status == 2 ) 
     	window.location.hash = $("#pay-tab a").attr('href');
     	// $('#process-tab a[href="#pay"]').tab('show');
-    	$('#process-tab a:first').tab('show')
+    	// $('#process-tab a:first').tab('show')
     @endif
 
     @if ($existApply->process_status == 3 ) 
     	window.location.hash = $("#subscription-tab a").attr('href');
     	// $('#process-tab a[href="#aplication"]').tab('show');
-    	$('#process-tab a:first').tab('show')
+    	// $('#process-tab a:first').tab('show')
     @endif 
 
     @if ($existApply->process_status == 4 ) 
     	window.location.hash = $("#success-tab a").attr('href');
     	// $('#process-tab a[href="#status"]').tab('show');
-    	$('#process-tab a:first').tab('show')
+    	// $('#process-tab a:first').tab('show')
     @endif
    	
 

@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 @section('content')
 	<div class="row">
-		<h1 class="text-center">@lang('requirement.tittle_process')</h1>
+		<h1 class="text-center" style="margin-top: 65px">@lang('requirement.tittle_process')</h1>
 		<div class="col-md-6 col-lg-6 col-xs-12 col-md-offset-3">
 			@if (Session::has('message'))
         		<div class="alert alert-dismissible @if(Session::get('type') == 'success') alert-info  @endif @if(Session::get('type') == 'error') alert-danger  @endif" role="alert">

@@ -3,6 +3,7 @@
 return [
 	
 	'tittle_process' => 'PROCESO DE APLICACIÓN',
+	'requirements_tab' => 'Reglas Oficiales',
 	'country_tab' => 'País',
 	'fee_tab' => 'Tasa de Solicitud',
 	'app_tab' => 'Solicitud en Línea',
@@ -43,7 +44,9 @@ return [
 	'thanks_subscribe' => 'Gracias por suscibirse', 
 	'error_subscribe' => 'Su formulario no pudo ser procesado, intente nuevamente',
 	'lbl_photo_format' => 'Solo en formato Jpg, Png, Gif Peso máximo 2mb',
-	'paypal_message_1' => 'Nuestro servicio de pago en línea es PayPal. Sino tiene una cuenta de PayPal, puede crear una totalmente gratis.',
-	'paypal_message_2' => 'No tengo cuenta en PayPal. ¿Cómo creo una cuenta? Dale clic en el botón: Pagar con PayPal y te aparecerá la opción para crear una cuenta. Es rápido y seguro.',
+	'paypal_message_1' => 'P: No tengo cuenta en PayPal. ¿Cómo creo una cuenta?',
+	'paypal_message_2' => 'R: Dale clic en el botón:  ',
+	'paypal_message_2_paypal' => 'Pagar con PayPal',
+	'paypal_message_2_2' => 'y te aparecerá la opción para crear una cuenta. Es rápido y seguro.',
 
 ];
