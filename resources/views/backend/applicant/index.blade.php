@@ -18,7 +18,7 @@
         <form action="{{ route('applicants.index') }}" method="GET">
           <div class="row">
                 <input type="hidden" name="casting_id" value="{{Request::get('casting_id')}}">
-                  <div class="form-group col-md-3 col-sm-3 col-xs-12">
+                  <div class="form-group col-md-3 col-sm-3 col-xs-12 no-padding">
                     <label class="control-label">{{ trans('backend.applicant.index.filter.country_label') }} </label>
                     <select name="country_id" id="country" class="form-control">
                       <option value="null">{{trans('backend.applicant.index.filter.all')}}</option>
@@ -36,7 +36,7 @@
                       <option value="2" @if(2 == Request::get('state')) selected @endif>{{trans('backend.miss.states.no_preselected')}}</option>
                     </select>
                   </div>
-                  <div class="form-group col-md-4 col-sm-3 col-xs-12">
+                  <div class="form-group col-md-5 col-sm-3 col-xs-12">
                     <div class="form-group col-md-6 col-sm-2 col-xs-4 no-padding">
                       <label class="control-label col-md-12 col-sm-12 col-xs-12">{{ trans('backend.applicant.index.filter.label_from') }}</label>
                       <input type="date"  name="date_from" id="height" class="form-control" value="{{Request::get('date_from')}}">
@@ -46,7 +46,7 @@
                       <input type="date"  name="date_to" id="height" class="form-control" value="{{Request::get('date_to')}}">
                     </div>
                   </div>
-                    <div class="form-group col-md-3 col-sm-3 col-xs-12 no-padding text-center">
+                    <div class="form-group col-md-2 col-sm-3 col-xs-12 no-padding text-center">
                         <br> 
                       <button type="submit" class="btn btn-primary">{{ trans('backend.applicant.index.filter.btn_search') }}</button>
                       <div class="btn-group">
