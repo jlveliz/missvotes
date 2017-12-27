@@ -20,7 +20,7 @@
 $style = [
     /* Layout ------------------------------ */
 
-    'body' => 'margin: 0; padding: 0; width: 100%; background-color: #F2F4F6;',
+    'body' => 'margin: 0; padding: 0; width: 100%; background-color: #F2F4F6;color:#000',
     'email-wrapper' => 'width: 100%; margin: 0; padding: 0; background-color: #F2F4F6;',
 
     /* Masthead ----------------------- */
@@ -88,7 +88,7 @@ $style = [
                                         </h1>
 
                                         <!-- Intro -->
-                                        <p style="{{ $style['paragraph'] }} ; text-align: justify;">
+                                        <p style="{{ $style['paragraph'] }} ; text-align: justify;color:#444">
                                             {{ trans('email.buy_membership.line_1') }} <b>{{ trans('email.buy_membership.line_1_2') }}</b>
                                         </p>
                                         <ul style="text-align:justify;padding: 0px">

@@ -8,7 +8,7 @@ return [
 
 	'free_lbl' => 'Free',
 
-	'act_membership_lbl' => '(Your current membership)',
+	'act_membership_lbl' => 'Your current membership',
 
 	'lbl_membership_lbl' => 'Duration',
 

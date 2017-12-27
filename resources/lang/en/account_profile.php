@@ -20,7 +20,7 @@ return [
 	'btn_save_data' => 'Save',
 	'membership_tab_data' => 'Membership',
 	'be_btn_data' => 'Be a contestant',
-	'status_apply'=>'View apply status of',
+	'status_apply'=>'View Application Process of',
 	'admin_btn_data' => 'Control Panel',
 	'activities_tab_data' => 'My activities',
 	'img_btn_data' => 'Change image',

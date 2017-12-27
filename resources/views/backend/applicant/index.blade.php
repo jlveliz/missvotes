@@ -37,16 +37,16 @@
                     </select>
                   </div>
                   <div class="form-group col-md-4 col-sm-3 col-xs-12">
-                    <div class="form-group col-md-6 col-sm-2 col-xs-4 no-padding-left">
-                      <label class="control-label col-md-12 col-sm-12 col-xs-12 no-padding">{{ trans('backend.applicant.index.filter.label_from') }}</label>
+                    <div class="form-group col-md-6 col-sm-2 col-xs-4 no-padding">
+                      <label class="control-label col-md-12 col-sm-12 col-xs-12">{{ trans('backend.applicant.index.filter.label_from') }}</label>
                       <input type="date"  name="date_from" id="height" class="form-control" value="{{Request::get('date_from')}}">
                     </div>
-                    <div class="form-group col-md-6 col-sm-2 col-xs-4 no-padding-left">
+                    <div class="form-group col-md-6 col-sm-2 col-xs-4 no-padding">
                       <label class="control-label col-md-12 col-sm-12 col-xs-12 no-padding">{{ trans('backend.applicant.index.filter.label_to') }}</label>
                       <input type="date"  name="date_to" id="height" class="form-control" value="{{Request::get('date_to')}}">
                     </div>
                   </div>
-                    <div class="form-group col-md-3 col-sm-3 col-xs-12">
+                    <div class="form-group col-md-3 col-sm-3 col-xs-12 no-padding text-center">
                         <br> 
                       <button type="submit" class="btn btn-primary">{{ trans('backend.applicant.index.filter.btn_search') }}</button>
                       <div class="btn-group">
