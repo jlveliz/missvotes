@@ -83,7 +83,7 @@
 					   					{{ csrf_field() }}
 					   					<button type="submit" class="btn btn-primary btn-lg btn-block pay-button" data-payment="paypal"><i class="fa fa-paypal"> </i> <b>@lang('form_process_apply.lbl_paypal_')</b></button>
 
-					   					<p style="margin-bottom: 0px;font-size: 12px;text-align: justify;">{{ trans('form_process_apply.paypal_message_1') }}</p>
+					   					<p style="margin-bottom: 0px;font-size: 12px;text-align: justify; margin-top: 20px">{{ trans('form_process_apply.paypal_message_1') }}</p>
 					   					<p style="margin-bottom: 0px;margin-top: 0px;font-size: 12px;text-align: justify;">{{ trans('form_process_apply.paypal_message_2') }} <b>{{ trans('form_process_apply.paypal_message_2_paypal') }} </b> {{ trans('form_process_apply.paypal_message_2_2') }}</p>
 					   					
 					   				</form>

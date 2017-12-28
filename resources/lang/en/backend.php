@@ -42,7 +42,7 @@
 			'membership_block' => [
 				'title' => 'Memberships',
 				'th_membership' => 'Membership',
-				'th_number_user' => 'Number of Administrators',
+				'th_number_user' => 'Number of Membership',
 
 			],
 
@@ -52,6 +52,7 @@
 				'th_ticket' => 'Availables'
 			],
 			'casting_resume' => [
+				'all' => 'Send Mail to all countries',
 				'title_one' => 'Group #1',
 				'title_two' => 'Group #2',
 				'th_country' => 'Country',
@@ -68,7 +69,7 @@
 				'th_count_country' => 'No. Countries',
 				'panel_heading' => 'The Most social network used by all Countries',
 				'panel_heading_casting' => 'The Most social network used by Country',
-				'panel_heading_count_country_social' => 'Social Network',
+				'panel_heading_count_country_social' => 'How Did They Hear About Us',
 			]
 		],
 

@@ -18,6 +18,9 @@
 	  		</tr>
   		</thead>
   		<tbody>
+        @php
+            $total = 0;
+        @endphp
   			@if (count($countUserMemberships) > 0)
 	  		@foreach ($countUserMemberships as $index =>  $userMembership)
 	  	 		<tr>
@@ -26,9 +29,16 @@
 	  	 			</td>
 	  	 			<td>
 	  	 				{{$userMembership->counter}}
+              @php
+                 $total+=  $userMembership->counter;
+              @endphp
 	  	 			</td>
 	  	 		</tr>
 	  		@endforeach
+        <tr>
+        <td><b>Total</b></td>  
+        <td>{{$total}}</td>  
+        </tr>
   			@else
   			<tr>
               <td colspan="2">{{ trans('backend.no-data') }}</td>

@@ -41,7 +41,7 @@
 			'membership_block' => [
 				'title' => 'Membresías',
 				'th_membership' => 'Membresía',
-				'th_number_user' => 'Numero de Administradores',
+				'th_number_user' => 'Numero de Membresias',
 
 			],
 
@@ -51,6 +51,7 @@
 				'th_ticket' => 'Disponibles'
 			],
 			'casting_resume' => [
+				'all' => 'Enviar Correo a todos los paises',
 				'title_one' => 'Grupo #1',
 				'title_two' => 'Grupo #2',
 				'th_country' => 'País',
@@ -67,7 +68,7 @@
 				'th_social_network'=>'Red Social',
 				'panel_heading' => 'Red Social más usada por todos los Paises',
 				'panel_heading_casting' => 'Red Social más usada por País',
-				'panel_heading_count_country_social' => 'Redes Sociales',
+				'panel_heading_count_country_social' => 'Como escuchó de nosotros',
 			]
 		],
 

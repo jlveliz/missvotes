@@ -4,7 +4,7 @@
   	<a target="_blank" href="{{ route('dashboard.export.clientTickets') }}"  type="button" class="btn btn-default"><i class="fa fa-file-pdf-o"> </i> PDF</a>
   </div>
   <div class="panel-body">
-  	<table id="ticket-datatable" class="table table-bordered">
+  	<table id="casting-1-datatable" class="table table-bordered">
   		<thead>
 	  		<tr>
 	  			<th>{{ trans('backend.dashboard.tickets_block.th_client') }}</th>

@@ -9,6 +9,7 @@
       <li><a target="_blank" href="{{ route('dashboard.export.casting',['casting_id'=>$casting->key,'format'=>'xls']) }}"><i class="fa fa-file-excel-o"> </i> EXCEL</a></li>
     </ul>
   </div>
+  <a href="{{ route('applicants.index',['country_id'=>null,'casting_id'=>$casting->id]) }}" class="btn btn-primary">{{ trans('backend.dashboard.casting_resume.all') }}</a>
   </div>
   <div class="panel-body">
   	<table id="casting-1-datatable" class="table table-bordered">

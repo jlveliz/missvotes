@@ -10,7 +10,7 @@
   </div>
   </div>
   <div class="panel-body">
-  	<table id="ticket-datatable" class="table table-bordered">
+  	<table id="resume-all-casting-datatable" class="table table-bordered">
   		<thead>
 	  		<tr>
 	  			<th>{{trans('backend.dashboard.resume_country_casting.th_country')}}</th>
@@ -18,18 +18,12 @@
 	  		</tr>
   		</thead>
   		<tbody>
-        @if (count($casting))
-  	  		@foreach ($casting as $index =>  $cast)
+        	@foreach ($casting as $index =>  $cast)
   	  	 		<tr>
   	  	 			<td>{{$cast->country}}</td>
   	  	 			<td>{{$cast->occurrence}}  ({{$cast->counter}})</td>
   	  	 		</tr>
   	  		@endforeach
-        @else
-        <tr>
-          <td colspan="2">{{ trans('backend.no-data') }}</td>
-        </tr>
-        @endif
   		</tbody>
   	</table>
   </div>

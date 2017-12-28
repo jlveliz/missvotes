@@ -32,51 +32,107 @@
 @section('js')
 <script type="text/javascript">
   $(document).ready(function(){
-      // $('#ranking-datatable').DataTable({
-        {{-- @if (App::isLocale('es')) --}}
-          // "language": {
-          //   "url": "../public/js/datatables/json/es.json",
-          // },
-        {{-- @endif --}}
-        // "order": [[ 2, "desc" ]],
-        // "ordering": false,
-      // });
+       $('#ranking-datatable').DataTable({
+        @if (App::isLocale('es'))
+        @if(App::isLocal())
+          "language": {
+            "url": "../public/js/datatables/json/es.json"
+          },
+          @else
+            "language": {
+            "url": "../../public/js/datatables/json/es.json"
+          },
+          @endif
+        @endif 
+        'searching':false,
+        "ordering": false,
+        "paging" : false
+      });
 
-      // $('#memberships-datatable').DataTable({
-        {{-- @if (App::isLocale('es')) --}}
-        // "language": {
-          // "url": "../public/js/datatables/json/es.json",
-        // },
-        {{-- @endif --}}
-        // "ordering": false,
-      // });
+      $('#memberships-datatable').DataTable({
+        @if (App::isLocale('es'))
+        @if(App::isLocal())
+          "language": {
+            "url": "../public/js/datatables/json/es.json"
+          },
+          @else
+            "language": {
+            "url": "../../public/js/datatables/json/es.json"
+          },
+          @endif
+        @endif 
+        'searching':false,
+        "ordering": false,
+        "paging" : false
+      });
 
-      // $('#ticket-datatable').DataTable({
-        {{-- @if (App::isLocale('es')) --}}
-        // "language": {
-          // "url": "../public/js/datatables/json/es.json",
-        // },
-        {{-- @endif --}}
-        // "ordering": false,
-      // });
+      $('#ticket-datatable').DataTable({
+        @if (App::isLocale('es'))
+        @if(App::isLocal())
+          "language": {
+            "url": "../public/js/datatables/json/es.json"
+          },
+          @else
+            "language": {
+            "url": "../../public/js/datatables/json/es.json"
+          },
+          @endif
+        @endif 
+        'searching':false,
+        "ordering": false,
+        "paging" : false
+      });
 
-      // $('#casting-1-datatable').DataTable({
-      {{-- //   @if (App::isLocale('es')) --}}
-      //   "language": {
-      //     "url": "../public/js/datatables/json/es.json",
-      //   },
-      {{-- //   @endif --}}
-      //   "ordering": false,
-      // });
+      $('#resume-all-casting-datatable').DataTable({
+        @if (App::isLocale('es'))
+        @if(App::isLocal())
+          "language": {
+            "url": "../public/js/datatables/json/es.json"
+          },
+          @else
+            "language": {
+            "url": "../../public/js/datatables/json/es.json"
+          },
+          @endif
+        @endif 
+        'searching':false,
+        "ordering": false,
+        "paging" : false
+      });
 
-      // $('#casting-2-datatable').DataTable({
-      {{-- //   @if (App::isLocale('es')) --}}
-      //   "language": {
-      //     "url": "../public/js/datatables/json/es.json",
-      //   },
-      {{-- //   @endif --}}
-      //   "ordering": false,
-      // });
+      $('#casting-1-datatable').DataTable({
+      @if (App::isLocale('es'))
+        @if(App::isLocal())
+          "language": {
+            "url": "../public/js/datatables/json/es.json"
+          },
+          @else
+            "language": {
+            "url": "../../public/js/datatables/json/es.json"
+          },
+          @endif
+        @endif 
+        'searching':false,
+        "ordering": false,
+        "paging" : false
+      });
+
+      $('#casting-2-datatable').DataTable({
+       @if (App::isLocale('es'))
+        @if(App::isLocal())
+          "language": {
+            "url": "../public/js/datatables/json/es.json"
+          },
+          @else
+            "language": {
+            "url": "../../public/js/datatables/json/es.json"
+          },
+          @endif
+        @endif 
+        'searching':false,
+        "ordering": false,
+        "paging" : false
+      });
 
 
       // // CASTING 1
