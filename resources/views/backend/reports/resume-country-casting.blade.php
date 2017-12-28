@@ -1,7 +1,8 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-  	<b> {{ trans('backend.nav.participants.register_log') }}: @if($key == 'casting_1') {{ trans('backend.dashboard.casting_resume.title_one') }} @else {{ trans('backend.dashboard.casting_resume.title_two') }} @endif </b> <br>
-    {{trans('backend.dashboard.resume_country_casting.panel_heading_casting')}}
+  	<b> {{ trans('backend.nav.participants.register_log') }}: @if($key == 'casting_1') {{ trans('backend.dashboard.casting_resume.title_one') }} @else {{ trans('backend.dashboard.casting_resume.title_two') }} @endif : 
+    ( {{ trans('backend.dashboard.resume_country_casting.panel_heading_count_country_social')}} ) </b> <br>
+    {{trans('backend.dashboard.resume_country_casting.panel_heading')}}
     <div class="btn-group">
     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ trans('backend.dashboard.export') }}  <span class="caret"></span></button>
     <ul class="dropdown-menu">

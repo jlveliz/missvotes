@@ -19,6 +19,7 @@
 	  		</tr>
   		</thead>
   		<tbody>
+        @if (count($votes))
   				@foreach ($votes as $index =>  $vote)
 		  	 		<tr @if ($index == 0) class="success" @endif>
 		  				<td>@if ($index == 0) <b>{{$vote->miss->name}} {{$vote->miss->last_name}}</b> @else {{$vote->miss->name}} {{$vote->miss->last_name}} @endif </td>
@@ -26,6 +27,11 @@
 		  				<td>@if ($index == 0) <b>{{$vote->sumatory}} {{ trans('backend.dashboard.ranking_block.td_points') }}</b> @else {{$vote->sumatory}} {{ trans('backend.dashboard.ranking_block.td_points') }} @endif </td>
 		  			</tr>
 		  		@endforeach
+        @else
+          <tr>
+            <td colspan="3">{{ trans('backend.no-data') }}</td>
+          </tr>
+        @endif
   			
   		</tbody>
   	</table>

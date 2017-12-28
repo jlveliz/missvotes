@@ -1,6 +1,7 @@
 <?php
 
 	return [
+		'and' => 'Y',
 		'go_site' => 'Ir al sitio web',
 		'exit' => 'Salir',
 		'no-data' => 'Ningún dato disponible en esta tabla',
@@ -41,7 +42,7 @@
 			'membership_block' => [
 				'title' => 'Membresías',
 				'th_membership' => 'Membresía',
-				'th_number_user' => 'Numero de Membresias',
+				'th_number_user' => 'Número de Membresias',
 
 			],
 
@@ -59,16 +60,16 @@
 				'th_num_preselected' => 'Preseleccionadas',
 				'th_num_no_preselected' => 'No Preseleccionadas',
 				'th_num_missing' => 'Faltante',
-				'th_social_network' => 'Red Social'
+				'th_social_network' => 'Respuesta'
 			],
 			'resume_country_casting' => [
 				'th_country' => 'País',
 				'th_count' => 'Cantidad',
-				'th_count_country' => 'Cant. País',
-				'th_social_network'=>'Red Social',
-				'panel_heading' => 'Red Social más usada por todos los Paises',
-				'panel_heading_casting' => 'Red Social más usada por País',
-				'panel_heading_count_country_social' => 'Como escuchó de nosotros',
+				'th_count_country' => 'Cant. de Paises',
+				'th_social_network'=>'Respuesta',
+				'panel_heading' => 'Respuesta más usada por todos los Paises',
+				'panel_heading_casting' => 'Respuesta más usada por País',
+				'panel_heading_count_country_social' => '¿Como escuchó de nosotros?',
 			]
 		],
 

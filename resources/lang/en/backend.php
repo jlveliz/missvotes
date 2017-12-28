@@ -1,7 +1,7 @@
 <?php
 
 	return [
-
+		'and' => 'Y',
 		'go_site' => 'Go to Site',
 		'exit' => 'Exit',
 		'no-data' => 'No data available in this table',
@@ -60,15 +60,15 @@
 				'th_num_preselected' => 'Preselected',
 				'th_num_no_preselected' => 'Not Preselected',
 				'th_num_missing' => 'Missing',
-				'th_social_network' => 'Social Network'
+				'th_social_network' => 'Answer'
 			],
 			'resume_country_casting' => [
 				'th_country' => 'Country',
 				'th_count' => 'Count',
-				'th_social_network'=>'Social Network',
+				'th_social_network'=>'Answer',
 				'th_count_country' => 'No. Countries',
-				'panel_heading' => 'The Most social network used by all Countries',
-				'panel_heading_casting' => 'The Most social network used by Country',
+				'panel_heading' => 'The Most Answer used by all Countries',
+				'panel_heading_casting' => 'The Most Answer used by Country',
 				'panel_heading_count_country_social' => 'How Did They Hear About Us',
 			]
 		],

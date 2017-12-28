@@ -366,7 +366,7 @@ class MissRepository implements MissRepositoryInterface
 		}
 		$query->whereRaw("miss.state < 3
 					GROUP BY country.name
-					ORDER BY COUNT(*) ASC");
+					ORDER BY COUNT(*) desc");
 		$data = $query->limit(3)->get();
 		return $data;
 	}

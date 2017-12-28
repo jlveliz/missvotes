@@ -1,6 +1,7 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-  	{{trans('backend.dashboard.resume_country_casting.panel_heading')}}
+    <b> {{ trans('backend.nav.participants.register_log') }}  {{ trans('backend.dashboard.casting_resume.title_one') }} {{ trans('backend.and') }} {{ trans('backend.dashboard.casting_resume.title_two') }}  </b> <br>
+  	{{ trans('backend.dashboard.resume_country_casting.panel_heading') }}
     <div class="btn-group">
     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ trans('backend.dashboard.export') }}  <span class="caret"></span></button>
     <ul class="dropdown-menu">

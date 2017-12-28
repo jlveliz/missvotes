@@ -6,7 +6,7 @@
         <thead>
             <tr>
                 <th>{{ trans('backend.dashboard.membership_block.th_membership') }}</th>
-                <th>{{ trans('backend.dashboard.membership_block.th_number_user') }}</th>
+                <th>{{trans('backend.dashboard.resume_country_casting.panel_heading')}}</th>
             </tr>
         </thead>
         <tbody>
