@@ -52,8 +52,8 @@ return [
         'gender' => 'Gender / Género',
         'male' => 'Male',
         'female' => 'Female',
-        'accept_terms' => 'I accept the',
-        'terms_conditions' => 'terms and conditions',
+        'accept_terms' => 'I accept the <a href="https://www.misspanamericaninternational.com/terms-use/" target="_blank">terms and conditions</a> / Acepto los <a href="https://www.misspanamericaninternational.com/terminos-de-uso" target="_blank">terminos y condiciones</a>',
+        'terms_conditions' => '',
         'follows' => 'Follow us'
     ],
     'register_options' => [
