@@ -3,7 +3,7 @@
 return [
 	
 	'tittle_process' => 'APPLY PROCESS',
-	'requirements_tab' => 'Requrirements',
+	'requirements_tab' => 'Requirements',
 	'country_tab' => 'Country',
 	'fee_tab' => 'Application Fee',
 	'app_tab' => 'Online Application',

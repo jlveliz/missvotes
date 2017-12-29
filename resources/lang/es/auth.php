@@ -33,7 +33,7 @@ return [
         'remember_me' => 'Remember me / Recordarme'
     ],
     'login_options' => [
-        'login_button' => 'Ingresar',
+        'login_button' => 'Log in / Ingresar',
         'go_register' => 'Suscribirse',
         'forgot_password' => '¿Olvidó su contraseña?',
         'code_not_recivied' => "¿No recibió el código de activación?",
@@ -81,8 +81,8 @@ return [
         'password' => 'Password / Contrase&ntilde;a',
         'confirm_password' => 'Confirm Password / Confirmar Contrase&ntilde;a',
         'gender' => 'Gender / Género',
-        'male' => 'Male',
-        'female' => 'Female',
+        'male' => 'Male / Masculino',
+        'female' => 'Female / Masculino',
         'accept_terms' => 'I accept the',
         'terms_conditions' => 'terms and conditions',
         'follows' => 'Follow us'
@@ -90,9 +90,9 @@ return [
 
     'register_options' => [
 
-        'register' => 'Suscribirse',
+        'register' => 'Subscribe / Suscribirse',
 
-        'login' => 'Ingresar'
+        'login' => 'Log In / Ingresar'
 
     ],
 

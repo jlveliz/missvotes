@@ -19,8 +19,8 @@ return [
         'remember_me' => 'Remember me / Recordarme'
     ],
     'login_options' => [
-        'login_button' => 'Log in',
-        'go_register' => 'Subscribe',
+        'login_button' => 'Log in / Ingresar',
+        'go_register' => 'Subscribe / Suscribirse',
         'forgot_password' => 'Forgot your password?',
         'code_not_recivied' => "Didn't recieve the activation code?",
         'message_close_session'=> 'If you want to subscribe with another email you must first close your session',
