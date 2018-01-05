@@ -5,6 +5,7 @@ namespace MissVote\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\CanResetPassword;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Client extends Authenticatable
 {
@@ -92,6 +93,18 @@ class Client extends Authenticatable
     public function activeTickets()
     {
         return  $this->tickets()->where('state','1')->get();
+        
+    }
+
+    public static function boot(){
+        parent::boot();
+
+        static::deleting(function($client){
+            $client->tickets()->delete();
+            $client->memberships()->delete();
+            $client->aplies()->delete();
+        });
+
         
     }
 }

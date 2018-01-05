@@ -4,14 +4,17 @@ namespace MissVote\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use MissVote\Notifications\MyResetPassword;
 use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
-    use Notifiable, Billable;
+    use Notifiable, Billable, SoftDeletes;
 
     protected $table = "user";
+
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -48,5 +51,7 @@ class User extends Authenticatable
         static::creating(function($user){
             $user->gender = "male";
         });
+
+        
     }
 }
