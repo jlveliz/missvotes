@@ -44,7 +44,7 @@ $style = [
 
     'anchor' => 'color: #3869D4;',
     'header-1' => 'margin-top: 0; color: #2F3133; font-size: 19px; font-weight: bold; text-align: left;',
-    'paragraph' => 'margin-top: 0; color: #74787E; font-size: 16px; line-height: 1.5em;text-align:justify',
+    'paragraph' => 'margin-top: 0; color: #000; font-size: 16px;text-align:left',
     'paragraph-sub' => 'margin-top: 0; color: #74787E; font-size: 12px; line-height: 1.5em;',
     'paragraph-center' => 'text-align: center;',
 
@@ -116,8 +116,12 @@ $style = [
 
                                         <!-- Salutation -->
                                         <p style="{{ $style['paragraph'] }}">
-                                            Puedes pasar de Cuenta Free (gratuita) a Cuenta Premium desde tu perfil en nuestro sitio web: <a href="www.misspanamericaninternational.com" target="_blank">www.misspanamericaninternational.com</a> y obtener más beneficios sobre nuestro evento internacional.
+                                            Puedes pasar de Cuenta Free (gratuita) a Cuenta Premium desde tu perfil en nuestro sitio web: <a href="https://www.misspanamericaninternational.com" target="_blank">https://www.misspanamericaninternational.com </a> y obtener más beneficios sobre nuestro evento internacional.
                                         </p>
+
+                                         <p style="{{ $style['paragraph'] }}">
+                                            Esperamos que disfrutes de nuestro evento de belleza de habla hispana más importante y prestigioso en California, USA. Somos Belleza y Diversidad Cultural desde 1985...
+                                         </p>
 
                                         <p style="{{ $style['paragraph'] }}">
                                             {{ trans('email.buy_membership.dont_forget')}}

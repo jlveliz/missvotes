@@ -59,7 +59,7 @@ return [
 	],
 
 	'buy_membership' => [
-		'greeting' => '¡Bienvenido a nuestra familia de Suscriptores Premium!',
+		'greeting' => '¡Bienvenido a nuestra familia de Suscriptores! - Cuenta Premium',
 		'duration_year'=>'Año(s)',
 		'duration_month'=>'Mes(es)',
 		'subject' => ':name - Compra de Membresía',

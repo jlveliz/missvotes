@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Auth\Events\Registered;
 use MissVote\Repository\ClientRepository;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Response;
 use Lang;
@@ -67,7 +68,10 @@ class RegisterClientController extends Controller
             'last_name' => 'required',
             'country_id' => 'required|exists:country,id',
             'city' => 'required',
-            'email' => 'required|email|max:255',
+            // 'email' => 'required|unique:user|email|max:255',
+            'email' => ['required',Rule::unique('user')->where(function($query){
+                $query->whereNull('deleted_at');
+            }),'email','max:255'],
             'address' => 'required',
             'password' => 'required|min:6|confirmed',
             'password_confirmation' => 'required|min:6',

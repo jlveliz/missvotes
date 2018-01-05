@@ -60,6 +60,7 @@ return [
 	],
 
 	'buy_membership' => [
+		'greeting' => '¡Welcome to our family of subscribers! - Premium account',
 		'duration_year'=>'Year(s)',
 		'duration_month'=>'Month(s)',
 		'subject' => ':name - Membership purchase',

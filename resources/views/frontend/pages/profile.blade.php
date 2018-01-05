@@ -87,9 +87,11 @@
 		    						<li>
 		    							<a href="{{ route('website.account.edit') }}" title="{{ trans('account_profile.edit_profile') }}" alt="{{ trans('account_profile.edit_profile') }}"><i class="fa fa-pencil"></i> {{ trans('account_profile.edit_profile') }}</a>
 		    						</li>
+		    						@if (!Auth::user()->is_admin)
 		    						<li>
 		    							<a href="{{ route('website.account.delete') }}" title="{{ trans('account_profile.unsubscribe') }}" alt="{{ trans('account_profile.unsubscribe') }}"><i class="fa fa-trash"></i> {{ trans('account_profile.unsubscribe') }}</a>
 		    						</li>
+		    						@endif
 		    					</ul>
 		    				</div>
 

@@ -356,6 +356,7 @@ class WebsiteController extends Controller
 
         $client = $this->clientRepo->find(Auth::id());
         if ($client) {
+            Auth::logout();
             $clientSendMail = $client;
             if ($client->delete()) {
                 event(new ClientUnsubscribed($clientSendMail));
