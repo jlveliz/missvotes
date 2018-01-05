@@ -4,6 +4,7 @@ return [
 	
 	'tab_name' => 'Perfil',
 	'edit_profile'=>'Editar Perfil',
+	'unsubscribe'=>'Desuscribirse',
 	'cancel_edit_profile'=>'Cancelar',
 	'personal_data' => 'Información Personal',
 	'name_data' => 'Nombre',
@@ -30,5 +31,13 @@ return [
 	'gender_data' => 'Género',
 	'male_gender' => 'Masculino',
 	'female_gender' => 'Femenino',
+
+	// unsuscribe
+	'paragraph_delete' => 'Está usted seguro que desea desuscribirse en :appname ? <br> Al darse de baja usted perderá de forma <b>permanente</b> las siguientes características asociadas a su cuenta:',
+	'characteristics_lost_delete' => '<ul><li>La Membresía <b>Premium</b>.</li><li>Los <b>Tickets</b> que haya comprado.</li><li>Su <b>postulación a candidata de :appname</b> en caso de haberlo realizado.</li></ul>',
+	'insert_password' => 'Por favor digite su contraseña',
+	'btn_unsuscribe' => 'DESUSCRIBIRSE',
+	'password_required' => 'La Contraseña es requerida',
+	'dont_match_password' => 'La contraseña ingresada no coincide con su contraseña guardada'
 
 ];

@@ -339,7 +339,7 @@
 				'th_account_type' => 'Cuenta',
 				'th_name' => 'Nombre',
 				'th_email' => 'Email',
-				'th_address' => 'Dirección',
+				'th_state' => 'Estado',
 				'th_last_access' => 'Último Acceso',
 				'th_creation_date'=>'Fecha de Creación',
 				'th_upgrade'=>'Acualización',
@@ -347,6 +347,8 @@
 				'td_edit' => 'Editar',
 				'td_delete' =>'Eliminar',
 				'td_without_confirm' => 'Sin Confirmación',
+				'unsubscribed' => 'Insuscrito',
+				'subscribed' => 'Suscrito',
 			],
 
 			'create-edit' => [

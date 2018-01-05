@@ -36,7 +36,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         'MissVote\Events\AccountActivated' => [
             'MissVote\Listeners\SendMailFreeMembership'
-        ]
+        ],
+        'MissVote\Events\ClientUnsubscribed' => [
+            'MissVote\Listeners\SendMailClientUnsubscribed'
+        ],
     ];
 
     /**

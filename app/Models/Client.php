@@ -9,11 +9,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Client extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 
     protected $table = "user";
 
-
+    protected $dates = ['deleted_at'];
+    
     private $inactive = 0;
 
 
@@ -96,6 +97,11 @@ class Client extends Authenticatable
         
     }
 
+    public function activities()
+    {
+        return $this->hasMany('MissVote\Models\ClientActivity','client_id');
+    }
+
     public static function boot(){
         parent::boot();
 
@@ -103,6 +109,7 @@ class Client extends Authenticatable
             $client->tickets()->delete();
             $client->memberships()->delete();
             $client->aplies()->delete();
+            $client->activities()->delete();
         });
 
         

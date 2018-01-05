@@ -5,6 +5,7 @@ namespace MissVote\Http\Controllers\Auth;
 use MissVote\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Validator;
 use Auth;
 use Lang;
@@ -76,11 +77,10 @@ class LoginClientController extends Controller
                     return $this->sendLockoutResponse($request);
                 }
 
-
                 return redirect()->back()
                     ->withInput($request->only($this->username(), 'remember'))
                     ->withErrors([
-                        $this->username() => $validate->errors()->all(),
+                        $this->username() => $validate->errors()->first(),
                     ]);
             }
 
@@ -105,8 +105,12 @@ class LoginClientController extends Controller
      */
     protected function validateLogin(Request $request)
     {
+    
         return Validator::make($request->all(), [
-            $this->username() => 'required|exists:user|confirmed_account', 'password' => 'required',
+            $this->username() => ['required',Rule::exists('user')->where(function($query){
+                $query->whereNull('deleted_at');
+            }),'confirmed_account'], 
+            'password' => 'required',
         ],
         [
             $this->username().'.exists' => Lang::get('auth.failed'),

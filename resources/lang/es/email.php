@@ -81,4 +81,9 @@ return [
 		'dont_forget'=>'No olvides que también puedes seguirnos en nuestras redes sociales.'
 	],
 
+	'unsubscribed' => [
+		'subject' => 'Hasta Luego :name',
+		'paragraph' => ':appname lamenta mucho que se haya desuscritado, esperamos que puedas regresar con nosotros para seguir formando parte de este gran sueño.'
+	]
+
 ];

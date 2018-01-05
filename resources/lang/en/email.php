@@ -71,4 +71,10 @@ return [
 		'name'=> 'Membership',
 	],
 
+	'unsubscribed' => [
+		'subject' => 'See You Later :name',
+		'paragraph' => ':appname is very sorry that she has unsubscribed, we hope you can come back with us to continue being part of this great dream.'
+	]
+
+
 ];

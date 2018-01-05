@@ -339,7 +339,7 @@
 				'th_account_type' => 'Account',
 				'th_name' => 'Name',
 				'th_email' => 'Email',
-				'th_address' => 'Address',
+				'th_state' => 'State',
 				'th_last_access' => 'Last Access',
 				'th_creation_date'=>'Creation Date',
 				'th_upgrade'=>'Upgrade',
@@ -347,6 +347,8 @@
 				'td_edit' => 'Edit',
 				'td_delete' =>'Delete',
 				'td_without_confirm' => 'Without confirmation',
+				'unsubscribed' => 'Unsubscribed',
+				'subscribed' => 'Subscribed',
 			],
 
 			'create-edit' => [

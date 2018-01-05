@@ -18,8 +18,8 @@
             <th>{{ trans('backend.client.index.th_account_type') }}</th>
      				<th>{{ trans('backend.client.index.th_name') }}</th>
      				<th>{{ trans('backend.client.index.th_email') }}</th>
-     				<th>{{ trans('backend.client.index.th_address') }}</th>
-     				<th>{{ trans('backend.client.index.th_last_access') }}</th>
+            <th>{{ trans('backend.client.index.th_last_access') }}</th>
+     				<th>{{ trans('backend.client.index.th_state') }}</th>
      				<th>{{ trans('backend.client.index.th_creation_date') }} / {{ trans('backend.client.index.th_upgrade') }}</th>
      				<th>{{ trans('backend.client.index.th_action') }}</th>
      			</tr>
@@ -30,8 +30,8 @@
               <td>{{ $client->current_membership() ? $client->current_membership()->membership->name : 'Free' }}</td>
        				<td>{{$client->name}}  @if(!$client->confirmed) <small><i>({{ trans('backend.client.index.td_without_confirm') }})</i> </small> @endif</td>
        				<td>{{$client->email}}</td>
-       				<td>{{$client->address}}</td>
-       				<td>@if($client->last_login){{$client->last_login}} @else - @endif</td>
+              <td>@if($client->last_login){{$client->last_login}} @else - @endif</td>
+       				<td>{{$client->deleted_at ?  trans('backend.client.index.unsubscribed') : trans('backend.client.index.subscribed') }}</td>
        				<td>{{$client->created_at }} / {{$client->updated_at}}</td>
        				<td class="text-center">
        					<form action="{{ route('clients.destroy',$client->id) }}" method="POST">

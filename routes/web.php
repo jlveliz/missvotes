@@ -23,6 +23,8 @@ Route::post('/miss/vote', 'VoteController@store')->name('website.miss.vote.store
 Route::group(['prefix'=>'account'],function(){
 	Route::get('/','WebsiteController@myAccount')->name('website.account')->middleware('auth');
 	Route::get('/edit','WebsiteController@editAccount')->name('website.account.edit')->middleware('auth');
+	Route::get('/delete','WebsiteController@deleteAccount')->name('website.account.delete')->middleware('auth');
+	Route::post('/delete','WebsiteController@postDeleteAccount')->name('website.account.postdelete')->middleware('auth');
 	Route::post('/update','WebsiteController@updateAccount')->name('website.account.update')->middleware('auth');
 	Route::post('subscribe','StripeController@subscribe')->name('website.stripe.subscribe')->middleware('auth');
 	Route::post('ticket','StripeController@buyTicket')->name('website.stripe.buyticket')->middleware('auth');

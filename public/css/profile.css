@@ -29,6 +29,8 @@
 }
 
 
+
+
 /* CSS-only ribbon styles    */
 
 .cnrflash {
@@ -112,4 +114,18 @@
     font-size: 0.95em;
     font-weight: bold;
     text-align: center;
+}
+
+
+
+
+/**unsuscribe**/
+
+.unsubscribe-form {
+    padding: 10px 260px!important;
+    text-align: justify;
+}
+
+.unsubscribe-form p {
+    font-size: 17px;
 }

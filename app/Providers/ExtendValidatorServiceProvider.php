@@ -8,6 +8,10 @@ use MissVote\Models\Client;
 
 use Validator;
 
+use Auth;
+
+use Hash;
+
 
 
 class ExtendValidatorServiceProvider extends ServiceProvider
@@ -33,6 +37,12 @@ class ExtendValidatorServiceProvider extends ServiceProvider
                 if ($client->confirmed == 1) return false;
             }
             return true;
+        });
+
+        Validator::extend('is_same_password_database',function($attribute, $value, $parameters, $validator){
+            $userLogged = Auth::user();
+            if (Hash::check($value, $userLogged->password)) return true;
+            return false;
         });
     }
 

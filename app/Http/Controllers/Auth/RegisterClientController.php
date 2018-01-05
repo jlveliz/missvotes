@@ -67,7 +67,7 @@ class RegisterClientController extends Controller
             'last_name' => 'required',
             'country_id' => 'required|exists:country,id',
             'city' => 'required',
-            'email' => 'required|email|max:255|unique:user',
+            'email' => 'required|email|max:255',
             'address' => 'required',
             'password' => 'required|min:6|confirmed',
             'password_confirmation' => 'required|min:6',
@@ -112,18 +112,45 @@ class RegisterClientController extends Controller
     {
         $confirmation_code = str_random(30);
 
-       return Client::create([
-            'name' => $data['name'],
-            'last_name' => $data['last_name'],
-            'country_id' => $data['country_id'],
-            'city' => $data['city'],
-            'email' => $data['email'],
-            'address' => $data['address'],
-            'is_admin' => (new Client())->getInactive(),
-            'confirmation_code' => $confirmation_code,
-            'password' => bcrypt($data['password']),
-            'gender' => $data['gender']
-        ]);
+        $client = Client::withTrashed()->where('email',$data['email'])->first();
+
+        if ($client) {
+            $client->restore();
+            Client::where('id',$client->id)->update([
+                'name' => $data['name'],
+                'last_name' => $data['last_name'],
+                'country_id' => $data['country_id'],
+                'city' => $data['city'],
+                'email' => $data['email'],
+                'address' => $data['address'],
+                'is_admin' => (new Client())->getInactive(),
+                'confirmation_code' => $confirmation_code,
+                'confirmed' => 0,
+                'photo'=> '',
+                'password' => bcrypt($data['password']),
+                'gender' => $data['gender'],
+                'stripe_id'=>null,
+                'card_brand' => null,
+                'card_last_four'=>null,
+                'trial_ends_at'=>null,
+                'remember_token'=>null
+            ]);
+            return Client::find($client->id);
+        } else {
+           return Client::create([
+                'name' => $data['name'],
+                'last_name' => $data['last_name'],
+                'country_id' => $data['country_id'],
+                'city' => $data['city'],
+                'email' => $data['email'],
+                'address' => $data['address'],
+                'is_admin' => (new Client())->getInactive(),
+                'confirmation_code' => $confirmation_code,
+                'password' => bcrypt($data['password']),
+                'gender' => $data['gender']
+            ]);
+        }
+
         
     }
 

@@ -10,6 +10,7 @@ use MissVote\RepositoryInterface\ClientRepositoryInterface;
 use MissVote\RepositoryInterface\MembershipRepositoryInterface;
 use MissVote\RepositoryInterface\ClientActivityRepositoryInterface;
 use MissVote\Events\ClientActivity;
+use MissVote\Events\ClientUnsubscribed;
 use MissVote\Models\Country;
 use App;
 use Hash;
@@ -332,6 +333,36 @@ class WebsiteController extends Controller
 
         }
 
+    }
+
+    public function deleteAccount()
+    {
+        return view('frontend.pages.unsuscribe');
+    }
+
+    public function postDeleteAccount(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|is_same_password_database',
+        ],
+        [
+           'password.required' => Lang::get('account_profile.password_required'),
+           'password.is_same_password_database' => Lang::get('account_profile.dont_match_password'),
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+
+        $client = $this->clientRepo->find(Auth::id());
+        if ($client) {
+            $clientSendMail = $client;
+            if ($client->delete()) {
+                event(new ClientUnsubscribed($clientSendMail));
+                return back();
+            }
+        }
+        
     }
 
 }
