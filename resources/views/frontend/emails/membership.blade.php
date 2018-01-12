@@ -97,7 +97,7 @@ $style = [
                                             <li><b>{{ trans('email.buy_membership.list_header_3') }}</b> {{ trans('email.buy_membership.list_body_3') }}</li>
                                             <li><b>{{ trans('email.buy_membership.list_header_4') }}</b> {{ trans('email.buy_membership.list_body_4') }}</li>
                                         </ul>
-                                        
+                                        <hr>
                                         <!-- Action Button -->
                                         <table style="{{ $style['body_action'] }}" align="center" width="100%" cellpadding="0" cellspacing="0">
                                             <tr>
@@ -118,6 +118,7 @@ $style = [
                                                 
                                           
                                         </table>
+                                        <hr>
 
                                         <!-- Salutation -->
                                         <p style="{{ $style['paragraph'] }}">

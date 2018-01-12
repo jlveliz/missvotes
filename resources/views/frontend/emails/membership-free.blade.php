@@ -92,7 +92,7 @@ $style = [
                                             <li><b>Votación Online de 1 punto:</b> Cuando se abran las votaciones podrás votar hasta 5 veces al día por tu candidata favorita. Tu suscripción Gratuita permite que cada voto valga 1 punto.</li>
                                             <li><b>Sorteos y Promociones:</b> Acceso a nuestras promociones o sorteos durante todo un año.</li>
                                         </ul>
-                                        
+                                        <hr>
                                         <!-- Action Button -->
                                         <table style="{{ $style['body_action'] }}" align="center" width="100%" cellpadding="0" cellspacing="0">
                                             <tr>
@@ -113,7 +113,7 @@ $style = [
                                                 
                                           
                                         </table>
-
+                                        <hr>
                                         <!-- Salutation -->
                                         <p style="{{ $style['paragraph'] }}">
                                             Puedes pasar de Cuenta Free (gratuita) a Cuenta Premium desde tu perfil en nuestro sitio web: <a href="https://www.misspanamericaninternational.com" target="_blank">https://www.misspanamericaninternational.com </a> y obtener más beneficios sobre nuestro evento internacional.
