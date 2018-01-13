@@ -29,7 +29,7 @@ class SendMailFreeMembership
     {
         $client = $event->client;
         Mail::send('frontend.emails.membership-free',[],function($message) use($client) {
-            $message->from(config('mail.from.address'),config('app.name'))->to($client->email , $client->name .' '. $client->last_name)->subject('¡Bienvenido a nuestra familia de Suscriptores! - Cuenta Free');
+            $message->from(config('mail.from.address'),config('app.name'))->to($client->email , $client->name .' '. $client->last_name)->subject(trans('email.membership_free.subject'));
         });
     }
 }

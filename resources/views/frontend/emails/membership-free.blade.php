@@ -84,43 +84,26 @@ $style = [
                                     <td style="{{ $fontFamily }} {{ $style['email-body_cell'] }}">
                                         <!-- Greeting -->
                                         <p style="{{ $style['header-1'] }}">
-                                           Gracias por tu apoyo y por ser parte de nuestro evento internacional. Tu suscripción actual es una cuenta gratuita que <b>incluye:</b>
+                                            {!! trans('email.membership_free.first_line') !!}
                                         </p>
 
                                         <ul style="text-align:justify;padding: 0px">
-                                            <li><b>Noticias</b> Todo lo relacionado a las actividades de nuestras candidatas.</li>
-                                            <li><b>Votación Online de 1 punto:</b> Cuando se abran las votaciones podrás votar hasta 5 veces al día por tu candidata favorita. Tu suscripción Gratuita permite que cada voto valga 1 punto.</li>
-                                            <li><b>Sorteos y Promociones:</b> Acceso a nuestras promociones o sorteos durante todo un año.</li>
+                                            {!!trans('email.membership_free.beneficts')!!}
                                         </ul>
                                         <hr>
-                                        <!-- Action Button -->
-                                        <table style="{{ $style['body_action'] }}" align="center" width="100%" cellpadding="0" cellspacing="0">
-                                            <tr>
-                                                <td align="center">
-                                                  {{ trans('email.buy_membership.name') }}
-                                                </td>
-                                                <td align="center">{{ trans('email.buy_membership.duration') }}</td>
-                                                <td align="center">{{ trans('email.buy_membership.price') }}</td>
-                                                <td align="center">{{ trans('email.buy_membership.points') }}</td>
-                                            </tr>
-                                          
-                                            <tr>
-                                                <td>Gratuita</td>
-                                                <td>1 Año</td>
-                                                <td>$ 0.00</td>
-                                                <td>1</td>
-                                            </tr>
-                                                
-                                          
-                                        </table>
+                                        @if (App::isLocale('es'))
+                                            <img src="{{ asset('public/images/memberships/membersip_free_es.png') }}" style="width: 100%" alt="Descripción de Membresía Gratis" title="Descripción de Membresía Gratis">
+                                        @else
+                                            <img src="{{ asset('public/images/memberships/membersip_free_en.png') }}" style="width: 100%" alt="Membership Free" title="Membership Free">
+                                        @endif
                                         <hr>
                                         <!-- Salutation -->
                                         <p style="{{ $style['paragraph'] }}">
-                                            Puedes pasar de Cuenta Free (gratuita) a Cuenta Premium desde tu perfil en nuestro sitio web: <a href="https://www.misspanamericaninternational.com" target="_blank">https://www.misspanamericaninternational.com </a> y obtener más beneficios sobre nuestro evento internacional.
+                                            {!! trans('email.membership_free.second_line')  !!}
                                         </p>
 
                                          <p style="{{ $style['paragraph'] }}">
-                                            Esperamos que disfrutes de nuestro evento de belleza de habla hispana más importante y prestigioso en California, USA. Somos Belleza y Diversidad Cultural desde 1985...
+                                           {!! trans('email.membership_free.third_line')  !!}
                                          </p>
 
                                         <p style="{{ $style['paragraph'] }}">

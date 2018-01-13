@@ -45,10 +45,12 @@ class MyResetPassword extends Notification
      */
     public function toMail($notifiable)
     {
+        // dd(new MailMessage());
         return (new MailMessage)
+                    ->subject(trans('auth.forgot_password_email.subject',['appname'=>config('app.name')]))
                     ->line(Lang::get('auth.forgot_password_email.recivied'))
-                    ->action('Reset Password', url('auth/reset', $this->token))
-                    ->line('If you did not requiere the password change, please ignore this message.');
+                    ->action(Lang::get('auth.forgot_password_email.action'), url('auth/reset', $this->token))
+                    ->line(Lang::get('auth.forgot_password_email.if_not_require'));
     }
 
     /**

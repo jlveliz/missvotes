@@ -35,10 +35,10 @@ return [
 	],
 
 	'verify' => [
-		'welcome' => 'Bienvenidos al certamen de belleza mas importante en California, Estados Unidos.',
-		'thanks' => ' Gracias por registrarse. Ahora solo debes activar tu cuenta para que pueda conocer mas sobre nosotros y por supuesto para votar por tu candidata favorita.',
+		'welcome' => 'Bienvenidos al certamen de belleza más importante en California, Estados Unidos.',
+		'thanks' => ' Gracias por registrarse. Ahora solo debes activar su cuenta para que pueda conocer más sobre nosotros y por supuesto para votar por tu candidata favorita.',
 		'activate_button' => 'Activar Cuenta',
-		'if_prefeer' => 'Si prefiere copie el siguiente enlace y peguelo en tu navegador',
+		'if_prefeer' => 'Si prefiere copie el siguiente enlace y péguelo en su navegador',
 	],
 
 	'buy_ticket' => [
@@ -59,11 +59,11 @@ return [
 	],
 
 	'buy_membership' => [
-		'greeting' => '¡Bienvenido a nuestra familia de Suscriptores! - Cuenta Premium',
+		'greeting' => '¡Bienvenido a nuestra familia de Suscriptores Premium!',
 		'duration_year'=>'Año(s)',
 		'duration_month'=>'Mes(es)',
 		'subject' => ':name - Compra de Membresía',
-		'line_1' => 'Gracias por tu apoyo y por ser parte de nuestro evento internacional. Tu suscripción actual,',
+		'line_1' => 'Gracias por tu apoyo y por ser parte de nuestro evento internacional. Tu suscripción actual, ',
 		'line_1_2' => 'Incluye:',
 		'duration' => 'Duración',
 		'points' => 'Puntos por voto',
@@ -82,8 +82,18 @@ return [
 	],
 
 	'unsubscribed' => [
-		'subject' => 'Hasta Luego :name',
+		'subject' => ':appname - Hasta Luego :name',
 		'paragraph' => ':appname lamenta mucho que se haya desuscritado, esperamos que puedas regresar con nosotros para seguir formando parte de este gran sueño.'
-	]
+	],
+
+
+	'membership_free' => [
+		'subject' => '¡Bienvenido a nuestra familia de Suscriptores! - Cuenta Free',
+		'first_line' => 'Gracias por tu apoyo y por ser parte de nuestro evento internacional. Tu suscripción actual es una cuenta gratuita que <b>incluye:</b>',
+		'beneficts' => '<li><b>Noticias:</b> Todo lo relacionado a las actividades de nuestras candidatas.</li> <li><b>Votación Online de 1 punto:</b> Cuando se abran las votaciones podrás votar hasta 5 veces al día por tu candidata favorita. Tu suscripción Gratuita permite que cada voto valga 1 punto.</li> <li><b>Sorteos y Promociones:</b> Acceso a nuestras promociones o sorteos durante todo un año.</li>',
+		'second_line' => 'Puedes pasar de Cuenta Free (gratuita) a Cuenta Premium desde tu perfil en nuestro sitio web: <a href="https://www.misspanamericaninternational.com">www.https://misspanamericaninternational.com</a> y obtener más beneficios sobre nuestro evento internacional.',
+		'third_line' => 'Esperamos que disfrutes de nuestro evento de belleza de habla hispana más importante y prestigioso en California, USA. Somos Belleza y Diversidad Cultural desde 1985...'
+
+	],
 
 ];

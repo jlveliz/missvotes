@@ -108,7 +108,13 @@ return [
         'email.confirmed_account' => "Sorry, Your account is inactive."
     ],
     'forgot_password_email'=>[
-        'recivied' => 'You have recieved a password change request.',
+        'subject' => ':appname - Reset Password',
+        'hello' => 'Hello!',
+        'recivied' => 'You have received a password change request.',
+        'if_not_require'=>'If you did not require the password change, please ignore this message.',
+        'regards' => 'Regards',
+        'action' => 'Reset Password',
+        'problems'=>'If you’re having trouble clicking the ":actions" button, copy and paste the URL below into your web browser:'
     ],
 
     

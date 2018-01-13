@@ -34,8 +34,8 @@ return [
 	],
 
 	'verify' => [
-		'welcome' => 'Welcome to the most important beauty contest in California, United States.',
-		'thanks' => ' Thank you for subscribe. Now, please click in activate account, to know more about us and of course to vote for your favorite candidate.',
+		'welcome' => 'Welcome to the most important beauty pageant in California, United States.',
+		'thanks' => 'Thank you for registering. Now you just have to activate your account, so you can know more about us and of course to vote for your favorite candidate.',
 		'activate_button' => 'Activate Account',
 		'if_prefeer' => 'If you prefer, please copy the following link and paste it into your browser',
 
@@ -60,22 +60,41 @@ return [
 	],
 
 	'buy_membership' => [
-		'greeting' => '¡Welcome to our family of subscribers! - Premium account',
+		'greeting' => 'Welcome to our family of Premium Subscribers!',
 		'duration_year'=>'Year(s)',
-		'duration_month'=>'Month(s)',
-		'subject' => ':name - Membership purchase',
-		'greeting' => 'Hello',
-		'line_1' => 'Thank you for your purchase, below we detail the membership.',
+		'duration_month'=>'Month(es)',
+		'subject' => ':name - Purchase of Membership',
+		'line_1' => 'Thank you for your support and for being part of our international event. Your current subscription, ',
+		'line_1_2' => 'Includes:',
 		'duration' => 'Duration',
-		'points' => 'Points per Vote',
+		'points' => 'Points per vote',
 		'price' =>'Price',
 		'name'=> 'Membership',
+		'list_header'=>'Exclusive News:',
+		'list_header_2'=>'Online voting of 3 points:',
+		'list_header_3'=>'Sweepstakes and Promotions:',
+		'list_header_4'=>'Donation:',
+		'list_body'=>'You will be part of the group of people who will have detailed and latest information about our official candidates.',
+		'list_body_2'=>'When the online voting will be open you can vote up to 5 times per day for your favorite candidate. Your Premium subscription allows each vote to be worth 3 points.',
+		'list_body_3'=>'You will have exclusive access to our promotions and raffles made only for our Premium subscribers during a whole year. Also, you can participate in the draws and promotions made for free subscribers.',
+		'list_body_4'=>'10% of the value of the Premium subscription will be donated to Junior Foundation: children with cancer.',
+		'last_message'=>'We hope you enjoy our most important prestigious Spanish-speaking beauty event in California, USA. We are Beauty and Cultural Diversity since 1985 ...',
+		'dont_forget'=>'Do not forget that you can also follow us on our social networks.'
 	],
 
 	'unsubscribed' => [
-		'subject' => 'See You Later :name',
+		'subject' => ':appname - See You Later :name',
 		'paragraph' => ':appname is very sorry that she has unsubscribed, we hope you can come back with us to continue being part of this great dream.'
-	]
+	],
+
+	'membership_free' => [
+		'subject' => 'Miss Panamerican International –  Premium Account',
+		'first_line' => 'Thank you for your support and for being part of our international event. Your current subscription is a free account that <b>includes</b>:',
+		'beneficts' => '<li><b>News:</b> Everything related to the activities of our candidates.</li> <li><b>Online voting of 1 point:</b> When the online voting will be open you can vote up to 5 times per day for your favorite candidate. Your Free subscription allows each vote to be worth 1 point.</li> <li><b>Sweepstakes and Promotions:</b> Access to our promotions or raffles for a whole year.</li>',
+		'second_line' => 'You can go from Free Account to Premium Account from your profile on our website: <a href="https://ww.misspanamericaninternational.com">https://www.misspanamericaninternational.com</a> and get more benefits of our international event.',
+		'third_line' => 'We hope you enjoy our most important prestigious Spanish-speaking beauty event in California, USA. We are Beauty and Cultural Diversity since 1985 ...'
+
+	],
 
 
 ];

@@ -99,25 +99,11 @@ $style = [
                                         </ul>
                                         <hr>
                                         <!-- Action Button -->
-                                        <table style="{{ $style['body_action'] }}" align="center" width="100%" cellpadding="0" cellspacing="0">
-                                            <tr>
-                                                <td align="center">
-                                                  {{ trans('email.buy_membership.name') }}
-                                                </td>
-                                                <td align="center">{{ trans('email.buy_membership.duration') }}</td>
-                                                <td align="center">{{ trans('email.buy_membership.price') }}</td>
-                                                <td align="center">{{ trans('email.buy_membership.points') }}</td>
-                                            </tr>
-                                          
-                                            <tr>
-                                                <td>{{ $membership->name }}</td>
-                                                <td>{{$membership->duration_time}} @if($membership->duration_mode == 1) {{ trans('email.buy_membership.duration_month') }} @else {{ trans('email.buy_membership.duration_year') }} @endif</td>
-                                                <td>{{$membership->price}}</td>
-                                                <td>{{$membership->points_per_vote}}</td>
-                                            </tr>
-                                                
-                                          
-                                        </table>
+                                         @if (App::isLocale('es'))
+                                            <img src="{{ asset('public/images/memberships/membersip_premium_es.png') }}" style="width: 100%" alt="Descripción de Membresía Premium" title="Descripción de Membresía Premium">
+                                        @else
+                                            <img src="{{ asset('public/images/memberships/membersip_premium_en.png') }}" style="width: 100%" alt="Membership Premium" title="Membership Premium">
+                                        @endif
                                         <hr>
 
                                         <!-- Salutation -->

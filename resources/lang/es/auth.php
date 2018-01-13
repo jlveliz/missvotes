@@ -41,6 +41,16 @@ return [
         'message_app_session'=> 'Para tener acceso a la aplicación en línea debes suscribirte primero / Si ya eres un usuario ingresa a tu cuenta.',
     ],
 
+    'forgot_password_email'=>[
+        'subject' => ':appname - Recuperación de Contraseña',
+        'hello' => 'Hola!',
+        'recivied' => 'Ha recibido una solicitud de cambio de contraseña',
+        'if_not_require'=>'Si no requirió el cambio de contraseña, ignore este mensaje',
+        'regards' => 'Saludos',
+        'action' => 'Restablecer Contraseña',
+        'problems'=>'Si tiene problemas para hacer clic en el botón ":actions", copie y pegue la siguiente URL en su navegador web:'
+    ],
+
 
 
     'failed' => 'contraseña o correo incorrecto. Vuelva a intentarlo.',

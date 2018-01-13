@@ -30,7 +30,7 @@ class SendMailClientUnsubscribed
     {
         $client = $event->client;
         Mail::send('frontend.emails.unsubscribed',['client'=>$client], function($message) use($client) {
-            $message->from(config('mail.from.address'),config('app.name'))->to($client->email , $client->name .' '. $client->last_name)->subject(Lang::get('email.unsubscribed.subject',['name'=>$client->name]));
+            $message->from(config('mail.from.address'),config('app.name'))->to($client->email , $client->name .' '. $client->last_name)->subject(Lang::get('email.unsubscribed.subject',['appname'=>config('app.name'),'name'=>$client->name]));
         });
     }
 }
