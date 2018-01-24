@@ -34,11 +34,11 @@ class SendDataToApplicant
     
         $now = Carbon::now();
         $currentMonth = Lang::get('email.casting.month_'.$now->format('m'));
-        $nextMonth = Lang::get('email.casting.month_'.$now->addMonth()->format('m'));
-        $minDayCurrentMonth = $now->startOfMonth()->format('d');
-        $maxDayCurrentMonth = $now->endOfMonth()->format('d');
+        $numNextMonth = Carbon::now()->addMonth()->format('m');
+        $nextMonth = Lang::get('email.casting.month_'.$numNextMonth);
+        $minDayCurrentMonth = $now->startOfMonth()->format('j');
+        $maxDayCurrentMonth = $now->endOfMonth()->format('j');
         $applicant = $registred->applicant;
-
         Mail::send('frontend.emails.casting',[
             'applicant'=>$applicant,
             'currentMonth'=>$currentMonth,

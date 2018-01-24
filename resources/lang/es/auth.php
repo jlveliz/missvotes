@@ -92,7 +92,7 @@ return [
         'confirm_password' => 'Confirm Password / Confirmar Contrase&ntilde;a',
         'gender' => 'Gender / Género',
         'male' => 'Male / Masculino',
-        'female' => 'Female / Masculino',
+        'female' => 'Female / Femenino',
         'accept_terms' => 'I accept the <a href="https://www.misspanamericaninternational.com/terms-use/" target="_blank">terms and conditions</a> / Acepto los <a href="https://www.misspanamericaninternational.com/terminos-de-uso" target="_blank">terminos y condiciones</a>',
         'follows' => 'Follow us'
     ],
