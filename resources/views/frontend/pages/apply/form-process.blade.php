@@ -163,7 +163,8 @@
 					   				<div class="form-group @if($errors->has('email')) has-error @endif">
 					   					<label class="control-label col-sm-6 col-md-6" for="email">@lang('form_process_apply.lbl_email') </label>
 					   					<div class="col-sm-6 col-md-6">
-						   					<input class="form-control" type="email" name="email" id="email" value="{{ isset($applicant) ? $applicant->email  : Auth::user()->email }}" readonly>
+					   						<b>{{ isset($applicant) ? $applicant->email  : Auth::user()->email }}</b>
+						   					<input type="hidden" name="email" id="email" value="{{ isset($applicant) ? $applicant->email  : Auth::user()->email }}" readonly>
 						   					@if ($errors->has('email')) <p class="help-block">{{ $errors->first('email') }}</p> @endif
 					   					</div>
 					   				</div>

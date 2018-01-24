@@ -179,7 +179,7 @@ class ApplyCandidateController extends Controller
                 $mensaje['payment-type'] = 'error';
                 $mensaje['payment-message'] = Lang::get('paypal.paypal_error_connection');
                // return redirect()->route('pay.paypal.aplication.status')->with($mensaje);
-                return redirect()->away('https://misspanamericaninternational.com/online-application')->with($mensaje);
+                return redirect()->away('https://www.misspanamericaninternational.com/online-application')->with($mensaje);
                 /** echo "Exception: " . $ex->getMessage() . PHP_EOL; **/
                 /** $err_data = json_decode($ex->getData(), true); **/
                 /** exit; **/
@@ -187,7 +187,7 @@ class ApplyCandidateController extends Controller
                $mensaje['payment-type'] = 'error';
                 $mensaje['payment-message'] = Lang::get('paypal.general_error');
                // return redirect()->url("pay.paypal.aplication.status")->with($mensaje);
-                return redirect()->away('https://misspanamericaninternational.com/online-application')->with($mensaje);
+                return redirect()->away('https://www.misspanamericaninternational.com/online-application')->with($mensaje);
                 /** die('Some error occur, sorry for inconvenient'); **/
             }
         }catch (PayPal\Exception\PayPalConnectionException $ex) {
@@ -217,7 +217,7 @@ class ApplyCandidateController extends Controller
         }
         $mensaje['payment-type'] = 'error';
         $mensaje['payment-message'] = Lang::get('paypal.paypal_error_connection');
-        return redirect()->away('https://misspanamericaninternational.com/online-application')->with($mensaje);
+        return redirect()->away('https://www.misspanamericaninternational.com/online-application')->with($mensaje);
         // return redirect()->url("apply/aplication-process#pay")->with($mensaje);
         // return redirect()->url("apply/aplication-process#pay")->with($mensaje);
         
@@ -234,7 +234,7 @@ class ApplyCandidateController extends Controller
             $mensaje['payment-type'] = 'error';
             $mensaje['payment-message'] =  Lang::get('paypal.paypal_error_transaction');
             // return redirect()->to('apply/aplication-process#pay')->with($mensaje);
-            return redirect()->away('https://misspanamericaninternational.com/online-application')->with($mensaje);
+            return redirect()->away('https://www.misspanamericaninternational.com/online-application')->with($mensaje);
         }
         $payer = Paypalpayment::payer();
 
@@ -261,7 +261,7 @@ class ApplyCandidateController extends Controller
             $mensaje['payment-type'] = 'success';
             $mensaje['payment-message'] = Lang::get('paypal.pay_apply');
             // return redirect()->to('apply/aplication-process#aplication')->with($mensaje);
-            return redirect()->away('https://misspanamericaninternational.com/online-application')->with($mensaje);
+            return redirect()->away('https://www.misspanamericaninternational.com/online-application')->with($mensaje);
         }
 
         $mensaje['payment-type'] = 'error';
@@ -296,7 +296,7 @@ class ApplyCandidateController extends Controller
             $mensaje['payment-type'] = 'success';
             $mensaje['payment-message'] = Lang::get('stripe.pay_apply');
             // return redirect()->to('apply/aplication-process#aplication')->with($mensaje);
-            return redirect()->away('https://misspanamericaninternational.com/online-application')->with($mensaje);
+            return redirect()->away('https://www.misspanamericaninternational.com/online-application')->with($mensaje);
         } else {
             $mensaje['payment-type'] = 'error';
             $mensaje['payment-message'] = Lang::get('stripe.error_pay_apply');
@@ -328,7 +328,7 @@ class ApplyCandidateController extends Controller
             $sessionData['tipo_mensaje'] = 'error';
             $sessionData['mensaje'] = Lang::get('form_process_apply.error_subscribe');
             return redirect()->to('apply/aplication-process#aplication')->with($sessionData);
-            // return redirect()->away('https://misspanamericaninternational.com/online-application')->with($sessionData);
+            // return redirect()->away('https://www.misspanamericaninternational.com/online-application')->with($sessionData);
         }
 
     }
