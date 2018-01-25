@@ -4,6 +4,7 @@ namespace MissVote\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use MissVote\Repository\ConfigRepository;
+use MissVote\Repository\ClientApplyProcessRepository;
 
 class AppServiceProvider extends ServiceProvider
 {

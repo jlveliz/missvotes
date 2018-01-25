@@ -1,6 +1,7 @@
 <?php
 
 return [
+	'home' => 'Inicio',
 	'credits' => 'Todos los derechos reservados',
 	'update_membership'=>'Actualiza tu membresía',
 	'apply_now' => 'Postularse',

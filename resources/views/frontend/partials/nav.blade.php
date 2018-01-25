@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top navbar-main">
+<nav class="navbar navbar-inverse navbar-main">
     <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -15,6 +15,9 @@
             @if (Auth::user() && !Auth::user()->is_admin)
                 {{-- <li class="@if(Request::path() == '/') active @endif"><a href="{{ route('website.home') }}">Candidatas</a></li> --}}
                @can('postulate',Auth::user())
+                <li>
+                    <a href="https://www.misspanamericaninternational.com" class="btn"  alt="{{ trans('app.apply_now') }}" title="{{ trans('app.apply_now') }}"> {{ trans('app.home') }}</a>
+                </li>
                 <li>
                     <a href="{{ route('apply.requirements') }}" class="btn btn-update-membership-or-buy"  alt="{{ trans('app.apply_now') }}" title="{{ trans('app.apply_now') }}"> {{ trans('app.apply_now') }}</a>
                 </li>

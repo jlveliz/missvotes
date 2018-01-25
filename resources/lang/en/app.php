@@ -1,6 +1,7 @@
 <?php
 
 return [
+	'home' => 'Home',
 	'credits' => 'All rights reserved',
 	'update_membership'=>'Update your Membership',
 	'apply_now' => 'Apply Now',

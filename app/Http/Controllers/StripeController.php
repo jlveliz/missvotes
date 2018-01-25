@@ -82,7 +82,7 @@ class StripeController extends Controller
 		if (config('app.env') == 'local') {
                     return redirect()->route('website.account')->with($mensaje);
         } else {
-                    return redirect()->away('http://www.misspanamericaninternational.com/login/')->with($mensaje);
+                    return redirect()->away('https://www.misspanamericaninternational.com/login/')->with($mensaje);
         }
 
 	}
@@ -130,7 +130,7 @@ class StripeController extends Controller
 		if (config('app.env') == 'local') {
 		 	return redirect()->route('website.account')->with($mensaje);
 		} else {
-			return redirect()->away('http://www.misspanamericaninternational.com/login/')->with($mensaje);
+			return redirect()->away('https://www.misspanamericaninternational.com/login/')->with($mensaje);
 		}
 	}
 

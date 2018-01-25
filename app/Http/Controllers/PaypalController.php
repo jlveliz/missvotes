@@ -252,7 +252,7 @@ class PaypalController extends Controller
                     if (app()->isLocale('es')) {
                         return redirect()->away('https://www.misspanamericaninternational.com/ingresar/')->with($mensaje);
                     } else {
-                        return redirect()->away('http://www.misspanamericaninternational.com/login/')->with($mensaje);
+                        return redirect()->away('https://www.misspanamericaninternational.com/login/')->with($mensaje);
                     }
                     
                 }
@@ -268,7 +268,7 @@ class PaypalController extends Controller
                     if (app()->isLocale('es')) {
                         return redirect()->away('https://www.misspanamericaninternational.com/ingresar/')->with($mensaje);
                     } else {
-                        return redirect()->away('http://www.misspanamericaninternational.com/login/')->with($mensaje);
+                        return redirect()->away('https://www.misspanamericaninternational.com/login/')->with($mensaje);
                     }
                     
                 }
@@ -306,7 +306,7 @@ class PaypalController extends Controller
              if (app()->isLocale('es')) {
                 return redirect()->away('https://www.misspanamericaninternational.com/ingresar/')->with($mensaje);
             } else {
-                return redirect()->away('http://www.misspanamericaninternational.com/login/')->with($mensaje);
+                return redirect()->away('https://www.misspanamericaninternational.com/login/')->with($mensaje);
             }
                     
         }
@@ -387,7 +387,7 @@ class PaypalController extends Controller
              if (app()->isLocale('es')) {
                 return redirect()->away('https://www.misspanamericaninternational.com/ingresar/')->with($mensaje);
             } else {
-                return redirect()->away('http://www.misspanamericaninternational.com/login/')->with($mensaje);
+                return redirect()->away('https://www.misspanamericaninternational.com/login/')->with($mensaje);
             }
                     
         }
@@ -402,7 +402,7 @@ class PaypalController extends Controller
             if (app()->isLocale('es')) {
                 return redirect()->away('https://www.misspanamericaninternational.com/ingresar/')->with($mensaje);
             } else {
-                return redirect()->away('http://www.misspanamericaninternational.com/login/')->with($mensaje);
+                return redirect()->away('https://www.misspanamericaninternational.com/login/')->with($mensaje);
             }
                     
         }

@@ -30,7 +30,7 @@ class ResetClientPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'http://www.misspanamericaninternational.com/login/';
+    protected $redirectTo = 'https://www.misspanamericaninternational.com/login/';
 
     /**
      * Create a new controller instance.
