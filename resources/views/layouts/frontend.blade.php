@@ -20,6 +20,11 @@
     </script>
 </head>
 <body>
+    @if (App::isLocale('es'))
+        @include('frontend.partials.header-es-nav')
+    @else
+        @include('frontend.partials.header-en-nav')
+    @endif
     <div id="spinner">
         <div class="spinner" >
           <div class="rect1"></div>
