@@ -19,7 +19,7 @@
                     <a href="https://www.misspanamericaninternational.com" class="btn"  alt="{{ trans('app.apply_now') }}" title="{{ trans('app.apply_now') }}"> {{ trans('app.home') }}</a>
                 </li>
                 <li>
-                    <a href="{{ route('apply.requirements') }}" class="btn btn-update-membership-or-buy"  alt="{{ trans('app.apply_now') }}" title="{{ trans('app.apply_now') }}"> {{ trans('app.apply_now') }}</a>
+                    <a href="{{ route('apply.aplicationProcess') }}" class="btn btn-update-membership-or-buy"  alt="{{ trans('app.apply_now') }}" title="{{ trans('app.apply_now') }}"> {{ trans('app.apply_now') }}</a>
                 </li>
                 @endcan
                {{--  <li style="margin-left: 2px">

@@ -71,7 +71,7 @@
 				    					<a href="{{ route('apply.requirements') }}" class="btn btn-apply btn-block btn-lg" alt="@lang('account_profile.be_btn_data')" title="@lang('account_profile.be_btn_data')">@lang('account_profile.status_apply') <br> {{ config('app.name') }}		</a>
 				    				@endif
 				    			@else
-				    				<a href="{{ route('apply.requirements') }}" class="btn btn-apply btn-block btn-lg" alt="@lang('account_profile.be_btn_data')" title="@lang('account_profile.be_btn_data')">@lang('account_profile.be_btn_data') <br> {{ config('app.name') }}		</a>
+				    				<a href="{{ route('apply.requirements') }}" class="btn btn-apply btn-block btn-lg" alt="@lang('account_profile.be_btn_data') {{ config('app.name') }} !" title="@lang('account_profile.be_btn_data') {{ config('app.name') }} !">@lang('account_profile.be_btn_data') <br> {{ config('app.name') }} !		</a>
 				    			@endif
 			    			@endcan
 			    		@endif
@@ -311,7 +311,7 @@
 				    					<a href="{{ route('apply.requirements') }}" class="btn btn-apply btn-block btn-lg" alt="@lang('account_profile.be_btn_data')" title="@lang('account_profile.be_btn_data')">@lang('account_profile.status_apply') <br> {{ config('app.name') }}		</a>
 				    				@endif
 				    			@else
-				    				<a href="{{ route('apply.requirements') }}" class="btn btn-apply btn-block btn-lg" alt="@lang('account_profile.be_btn_data')" title="@lang('account_profile.be_btn_data')">@lang('account_profile.be_btn_data') <br> {{ config('app.name') }}		</a>
+				    				<a href="{{ route('apply.requirements') }}" class="btn btn-apply btn-block btn-lg" alt="@lang('account_profile.be_btn_data')" title="@lang('account_profile.be_btn_data')">@lang('account_profile.be_btn_data') <br> {{ config('app.name') }}	!	</a>
 				    			@endif
 				    		@endif
 				    		</div>

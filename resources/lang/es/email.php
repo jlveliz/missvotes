@@ -36,7 +36,7 @@ return [
 
 	'verify' => [
 		'welcome' => 'Bienvenidos al certamen de belleza más importante en California, Estados Unidos.',
-		'thanks' => ' Gracias por registrarse. Ahora solo debes activar su cuenta para que pueda conocer más sobre nosotros y por supuesto para votar por tu candidata favorita.',
+		'thanks' => ' Gracias por registrarse. Ahora solo debe activar su cuenta para que pueda conocer más sobre nosotros y por supuesto para votar por su candidata favorita.',
 		'activate_button' => 'Activar Cuenta',
 		'if_prefeer' => 'Si prefiere copie el siguiente enlace y péguelo en su navegador',
 	],
