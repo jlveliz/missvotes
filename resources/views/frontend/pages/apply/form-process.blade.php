@@ -117,16 +117,12 @@
 			   			<hr>
 			   			<div class="row">
 			   				<div class="col-md-7 col-lg-7 col-sm-12 col-xs-12 col-md-offset-2">
-				   				<form action="{{ route('insert.applicant') }}" enctype="multipart/form-data" method="POST" class="form-horizontal">
+				   				<form action="{{ route('insert.applicant') }}" enctype="multipart/form-data" method="POST" class="form-horizontal" id="form-process" name="form-process">
 				   					{{ csrf_field() }}
 				   					@if ($countryselected)
 				   						<input type="hidden" name="country_id" value="{{$countryselected}}">
 				   						<input type="hidden" name="state" value="0">
 				   					@endif
-
-				   					@foreach ($errors->all() as $error)
-				   						{{$error}}
-				   					@endforeach
 				   					
 				   					<div class="form-group @if($errors->has('name')) has-error @endif">
 				   						<label class="control-label col-sm-6 col-md-6 ">@lang('form_process_apply.lbl_name') </label>
@@ -320,6 +316,11 @@
 											<input type="file" name="applicant_body_photo"  accept="image/*" class="photo">
 											@if ($errors->has('applicant_body_photo')) <p class="help-block">{{ $errors->first('applicant_body_photo') }}</p> @endif
 										</div>
+										@if ($errors->any())
+											<div class="form-group has-error">
+												<p class="help-block" style="font-size: 17px"><b>{{ trans('form_process_apply.has_any_error') }}</b></p>
+											</div>
+										@endif
 					   				@else
 					   					<img class="col-md-6 col-lg-6 col-xs-12 img-responsive" src="{{ asset($applicant->applicant_face_photo) }}" alt="{{$applicant->name}}" title="{{$applicant->name}}">
 					   					<img class="col-md-6 col-lg-6 col-xs-12 img-responsive" src="{{ asset($applicant->applicant_body_photo)}} " alt="{{$applicant->name}}"  title="{{$applicant->name}}">
@@ -376,13 +377,13 @@
 <script src="{{asset('/public/js/bootstrap-file-input/plugins/purify.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('/public/js/bootstrap-file-input/fileinput.js')}}" type="text/javascript"></script>
 <script src="{{asset('/public/js/bootstrap-file-input/themes/fa/theme.js')}}" type="text/javascript"></script>
+<script src="{{asset('/public/js/jquery-validation/dist/jquery.validate.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('/public/js/bootstrap-file-input/locales/es.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
 
 $(document).ready(function() {
 
-		
-
+	
 	@if ($existApply->process_status == 1 )
     	window.location.hash = $("#country-tab a").attr('href');
     	// $('#process-tab a[href="#countries"]').tab('show');
@@ -569,6 +570,7 @@ $(document).ready(function() {
 	});
 
 </script>
+
 @endsection()
 
 @section('css')

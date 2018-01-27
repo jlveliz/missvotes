@@ -49,5 +49,5 @@ Check it out and good luck!',
 	'paypal_message_2' => 'A: Click on the button ',
 	'paypal_message_2_paypal' => 'Pay with PayPal',
 	'paypal_message_2_2' => 'and the option to create an account will appear. It is fast and safe.',
-
+	'has_any_error'=>'Please, you must reattach the images'
 ];
