@@ -48,5 +48,6 @@ return [
 	'paypal_message_2' => 'R: Dale clic en el botón:  ',
 	'paypal_message_2_paypal' => 'Pagar con PayPal',
 	'paypal_message_2_2' => 'y te aparecerá la opción para crear una cuenta. Es rápido y seguro.',
+	'has_any_error'=>'Por favor, debe volver adjuntar las imágenes'
 
 ];
