@@ -21,7 +21,7 @@ return [
 	'btn_save_data' => 'Guardar',
 	'membership_tab_data' => 'Membresía',
 	'be_btn_data' => '¡Inscríbete a Candidata del ',
-	'status_apply'=>'Revisa tu Solicitud en Línea de ',
+	'status_apply'=>'Revisa tu Solicitud en Línea del ',
 	'admin_btn_data' => 'Ir a administración',
 	'activities_tab_data' => 'Mis actividades',
 	'img_btn_data' => 'Cambiar imágen',
