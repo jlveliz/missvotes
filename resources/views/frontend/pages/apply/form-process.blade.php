@@ -377,7 +377,7 @@
 <script src="{{asset('/public/js/bootstrap-file-input/plugins/purify.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('/public/js/bootstrap-file-input/fileinput.js')}}" type="text/javascript"></script>
 <script src="{{asset('/public/js/bootstrap-file-input/themes/fa/theme.js')}}" type="text/javascript"></script>
-<script src="{{asset('/public/js/jquery-validation/dist/jquery.validate.min.js')}}" type="text/javascript"></script>
+{{-- <script src="{{asset('/public/js/jquery-validation/dist/jquery.validate.min.js')}}" type="text/javascript"></script> --}}
 <script src="{{asset('/public/js/bootstrap-file-input/locales/es.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
 

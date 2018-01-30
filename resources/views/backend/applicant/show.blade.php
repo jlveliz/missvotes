@@ -66,17 +66,17 @@
        		<input type="text" class="form-control"  name="address" value="{{ $applicant->address }}" disabled>
        	</div>
 
-       	<div class="form-group col-md-3 col-sm-3 col-xs-4">
+       	<div class="form-group col-md-4 col-sm-4 col-xs-4">
        		<label class="control-label" for="email">{{ trans('backend.applicant.show.label_email') }} </label>
        		<input class="form-control" type="email" name="email" id="email"   value="{{ $applicant->email }}" disabled>
-       	</div>
-       	<div class="form-group col-md-2 col-sm-2 col-xs-12">
-       		<label class="control-label">{{ trans('backend.applicant.show.label_phone_number') }} </label>
-       		<input type="text" class="form-control"  name="phone_number" value="{{ $applicant->phone_preffix }}{{ $applicant->phone_number }}" disabled>
        	</div>
        </div>
        
        <div class="row">
+        <div class="form-group col-md-2 col-sm-2 col-xs-12">
+          <label class="control-label">{{ trans('backend.applicant.show.label_phone_number') }} </label>
+          <input type="text" class="form-control"  name="phone_number" value="{{ $applicant->phone_preffix }}{{ $applicant->phone_number }}" disabled>
+        </div>
        	<div class="form-group col-md-2 col-sm-2 col-xs-12">
        		<label class="control-label">{{ trans('backend.applicant.show.label_city') }} </label>
        		<input type="text" class="form-control" name="city" value="{{ $applicant->city }}" disabled>
@@ -86,7 +86,7 @@
        		<label class="control-label">{{ trans('backend.applicant.show.label_state_province') }} </label>
        		<input type="text" class="form-control"  name="state_province" value="{{ $applicant->state_province }}" disabled>
        	</div>
-       	<div class="form-group col-md-7 col-sm-7 col-xs-12">
+       	<div class="form-group col-md-12 col-sm-12 col-xs-12">
        		<label class="control-label col-md-12 col-sm-12 col-xs-12 no-padding">{{ trans('backend.applicant.show.label_measurements') }} </label>
        		<div class="form-group col-md-3 col-sm-2 col-xs-4 no-padding-left">
        			<input type="text"  name="height" id="height" class="form-control" value="{{ trans('backend.applicant.show.label_height') }}: {{$applicant->height}} {{ $applicant->height_type_measure }}" disabled>

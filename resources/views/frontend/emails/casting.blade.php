@@ -78,7 +78,7 @@ $style = [
                             <td style="{{ $style['email-body'] }}" width="100%">
                                 <table style="{{ $style['email-body_inner'] }}"  width="100%">
                                     <tr>
-                                        <td style="width: 50%">
+                                        <td style="width: 100%">
                                             <p style="text-align: justify;">{{trans('email.casting.hi')}} <b>{{$applicant->name}} {{$applicant->last_name}}</b> {{trans('email.casting.thanks')}} {{trans('email.casting.welcome')}}</p>
                                             <h2><b>{{ trans('email.casting.casting_code') }}</b> <b style="color: red">{{ $applicant->code }}</b></h2>
                                             <p style="text-align: justify;">{{trans('email.casting.paragraph_1')}}</p>
@@ -100,7 +100,7 @@ $style = [
                                             <p><b>{{trans('email.casting.lucky')}}</b></p>
                                             <p>{{trans('email.casting.questions')}}</p>
                                         </td>
-                                        <td style="width: 50%">
+                                        <td style="width: 100%">
                                             <img style="width: 100%;height: 45%; padding-left: 10px" src="{{ asset('public/images/email_art.jpeg') }}" alt="{{config('app.name')}}" title="{{config('app.name')}}">
                                         </td>
                                     </tr>

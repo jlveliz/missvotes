@@ -86,6 +86,32 @@ Route::group(['prefix'=>'backend'],function(){
 
 	Route::get('/',function(){})->middleware('guest:is_admin');
 
+	Route::get('resend/{id}', function($id) {
+	    $now = \Carbon\Carbon::now();
+        $currentMonth = \Lang::get('email.casting.month_'.$now->format('m'));
+        $numNextMonth = \Carbon\Carbon::now()->addMonth()->format('m');
+        $numNextMonth = "02";
+        $nextMonth = \Lang::get('email.casting.month_'.$numNextMonth);
+        $minDayCurrentMonth = $now->startOfMonth()->format('j');
+        $maxDayCurrentMonth = $now->endOfMonth()->format('j');
+        $applicant = \MissVote\Models\Miss::find($id);
+        \Mail::send('frontend.emails.casting',[
+            'applicant'=>$applicant,
+            'currentMonth'=>$currentMonth,
+            'minDayCurrentMonth'=>$minDayCurrentMonth,
+            'maxDayCurrentMonth'=>$maxDayCurrentMonth,
+            'nextMonth' => $nextMonth,
+        ], function($message) use ($applicant) {
+            $message->from(config('mail.from.address'),config('app.name'))->to($applicant->email , $applicant->name .' '. $applicant->last_name)
+                ->subject(\Lang::get('email.casting.subject',['name'=>config('app.name')]));
+        });
+
+         // check for failures
+    	if (!\Mail::failures()) {
+        	return "listo";
+    	}
+	});
+
 	// Authentication Routes...
     Route::get('login', 'Auth\LoginAdminController@showLoginForm')->name('login');
     Route::post('login', 'Auth\LoginAdminController@login');
