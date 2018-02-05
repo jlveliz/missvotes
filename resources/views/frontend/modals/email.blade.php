@@ -8,7 +8,7 @@
 		        <input type="email" class="form-control" name="email" id="email-email" placeholder="Correo" autofocus>
 		        <strong class="help-block"></strong>
 		    </div>
-		    <input type="submit" name="button" id="email" class="email btn btn-primary btn-block loginmodal-submit" value="Recuperar Contraseña">
+		    <input type="submit" name="button" id="btnemail" class="email btn btn-primary btn-block loginmodal-submit" value="Recuperar Contraseña">
 		  </form>
 		</div>
 	</div>

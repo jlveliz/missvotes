@@ -474,29 +474,29 @@ $(document).ready(function() {
 
     // stripe
 
-   var handlerPay = StripeCheckout.configure({
-	  key: '{{ config('services.stripe.key') }}',
-	  image: '{{ asset('public/images/queen-mini.png') }}',
-	  locale: 'auto',
-	  name: '{{ config('app.name') }}',
-	  description : 'Pay Apply Process Miss Panamerican Int',
-	  token : function(token){
-	  	$("#stripe-pay-token").val(token.id);
-	  	//submit the magic form :3
-	  	$("#pay-stripe-aplication").submit();
-	  }
-	});
+ //   var handlerPay = StripeCheckout.configure({
+	//   key: '{{ config('services.stripe.key') }}',
+	//   image: '{{ asset('public/images/queen-mini.png') }}',
+	//   locale: 'auto',
+	//   name: '{{ config('app.name') }}',
+	//   description : 'Pay Apply Process Miss Panamerican Int',
+	//   token : function(token){
+	//   	$("#stripe-pay-token").val(token.id);
+	//   	//submit the magic form :3
+	//   	$("#pay-stripe-aplication").submit();
+	//   }
+	// });
 
-   	$("#pay-aplication-stripe").on('click', function(event) {
-   		event.preventDefault();
-   		var _this = $(this);
-      	handlerPay.open({
-    		description: _this.data('description'),
-    		amount: _this.data('amount'),
-    		email: _this.data('email')
-  		});
-   		/* Act on the event */
-   	});
+ //   	$("#pay-aplication-stripe").on('click', function(event) {
+ //   		event.preventDefault();
+ //   		var _this = $(this);
+ //      	handlerPay.open({
+ //    		description: _this.data('description'),
+ //    		amount: _this.data('amount'),
+ //    		email: _this.data('email')
+ //  		});
+ //   		/* Act on the event */
+ //   	});
 
 
    	$("#height_type_measure").on('change', function(event) {
@@ -566,7 +566,7 @@ $(document).ready(function() {
 
 	 // Close Checkout on page navigation:
 	window.addEventListener('popstate', function() {
-  		handlerPay.close();
+  		// handlerPay.close();
 	});
 
 </script>
