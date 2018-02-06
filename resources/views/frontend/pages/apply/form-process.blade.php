@@ -78,7 +78,7 @@
 			   			</p>
 			   			<div class="row">
 					   			<div class="col-md-5 col-lg-5 col-sm-8 col-xs-12 col-md-offset-4 text-center">
-					   				<h2 id="price-insciption"><small>$</small> 20.00 <br> <small> USD </small></h2>
+					   				<h2 id="price-insciption"><small>$</small> 40.00 <br> <small> USD </small></h2>
 					   				<form action="{{ route('pay.paypal.aplication') }}" method="POST" accept-charset="utf-8">
 					   					{{ csrf_field() }}
 					   					<button type="submit" class="btn btn-primary btn-lg btn-block pay-button" data-payment="paypal"><i class="fa fa-paypal"> </i> <b>@lang('form_process_apply.lbl_paypal_')</b></button>

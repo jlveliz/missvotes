@@ -10,7 +10,7 @@ return [
 	'status_tab' => 'Application Status',
 	'sel_country_lbl' => 'Select the country you want to audition',
 	'txt_pay_thanks_lbl' => 'PAYMENT DONE.',
-	'txt_price_lbl' => 'Please complete our online application, with an application fee of $20. Our online payment service is Paypal.',
+	'txt_price_lbl' => 'Please complete our online application, with an application fee of $40. Our online payment service is Paypal.',
 	'txt_price_off_lbl' => 'If you do not have a PayPal account, you can create one totally free.',
 	'lbl_paypal_' =>'Pay with Paypal',
 	'lbl_cc_' =>'Pay with Credit Card',

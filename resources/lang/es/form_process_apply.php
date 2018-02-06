@@ -10,7 +10,7 @@ return [
 	'status_tab' => 'Estado de la Solicitud',
 	'sel_country_lbl' => 'Seleccione el país al que desea audicionar',
 	'txt_pay_thanks_lbl' => 'PAGO EFECTUADO EXITOSAMENTE',
-	'txt_price_lbl' => 'Por favor complete nuestra solicitud en línea, la cuota de solicitud es de $ 20.',
+	'txt_price_lbl' => 'Por favor complete nuestra solicitud en línea, la cuota de solicitud es de $ 40.',
 	'txt_price_off_lbl' => 'Nuestro servicio de pago en línea es PayPal. Si no tiene una cuenta de PayPal, puede crear una totalmente gratis.',
 	'lbl_paypal_' =>'Pagar con Paypal',
 	'lbl_cc_' =>'Pagar con Tarjeta de Crédito',
