@@ -155,7 +155,7 @@
 	<div class="panel-footer">
 		<dir class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12">
-          <a href="{{ route('applicants.index') }}" class="btn btn-primary">{{ trans('backend.applicant.show.btn_back') }}</a>
+          <a href="{{ route('applicants.index',['casting_id'=>Request::get('casting_id'),'country_id'=>Request::get('country_id'),'date_from'=>Request::get('date_from'),'date_to'=>Request::get('date_to'),'state'=>Request::get('state')]) }}" class="btn btn-primary">{{ trans('backend.applicant.show.btn_back') }}</a>
           @if ($applicant->state == \MissVote\Models\Miss::FORRATING)
               <form action="{{ route('applicants.update',$applicant->id) }}"  method="POST" style="display: inline">
                 {{ csrf_field() }}

@@ -111,7 +111,7 @@
                   <td>{{$applicants[$i]->getFormattedHowDidYouHearAboutUs()}}</td>
            				<td class="text-center">
                     <form action="{{ route('applicants.destroy',$applicants[$i]->id) }}" method="POST">
-                        <a href="{{ route('applicants.show',$applicants[$i]->id) }}" title="{{ trans('backend.applicant.index.td_show') }}" class="btn btn-xs btn-warning"> {{ trans('backend.applicant.index.td_show') }}</a>
+                        <a href="{{ route('applicants.show',[$applicants[$i]->id,'casting_id'=>Request::get('casting_id'),'country_id'=>Request::get('country_id'),'date_from'=>Request::get('date_from'),'date_to'=>Request::get('date_to'),'state'=>Request::get('state')]) }}" title="{{ trans('backend.applicant.index.td_show') }}" class="btn btn-xs btn-warning"> {{ trans('backend.applicant.index.td_show') }}</a>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="_method" value="DELETE">
                         <button type="submit" title="{{ trans('backend.applicant.index.td_delete') }}" class="btn btn-xs btn-danger delete"> {{ trans('backend.applicant.index.td_delete') }}</button>
