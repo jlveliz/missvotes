@@ -23,9 +23,10 @@ class CanShowMiss
         $casting = $configRepo->find(['key'=>'exist_casting'],false);
         if (!$casting) $existCasting = config('app.castings');
         $existCasting =  $casting->payload;
+       
 
 
-        if ($existCasting && Auth::user()) {
+        if ($existCasting) {
             return redirect('/account/');
         } else {
             return $next($request);
