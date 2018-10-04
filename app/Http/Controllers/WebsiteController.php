@@ -58,7 +58,10 @@ class WebsiteController extends Controller
 
     {
 
-    	return redirect()->route('website.account');
+    	// return redirect()->route('website.account');
+        $misses = $this->missRepo->paginate();
+
+        return view('frontend.pages.home',['misses'=>$misses]);
 
     }
 

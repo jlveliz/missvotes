@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', 'WebsiteController@index')->name('website.home');
-Route::get('/change-language', 'WebsiteController@setLocale')->name('website.locale');
+Route::get('/', 'WebsiteController@index')->name('website.home')->middleware('showMiss');
 Route::get('/miss', 'WebsiteController@showMisses')->name('website.miss.index')->middleware('showMiss');
-Route::get('/miss/{slug}', 'WebsiteController@show')->name('website.miss.show');
+Route::get('/miss/{slug}', 'WebsiteController@show')->name('website.miss.show')->middleware('showMiss');
+Route::get('/change-language', 'WebsiteController@setLocale')->name('website.locale');
 
 
 // votes for miss

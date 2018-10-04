@@ -24,12 +24,14 @@ class CanShowMiss
         if (!$casting) $existCasting = config('app.castings');
         $existCasting =  $casting->payload;
 
+
         if ($existCasting && Auth::user()) {
             return redirect('/account/');
+        } else {
+            return $next($request);
         }
 
-        return redirect('/auth/login');
+        // return redirect('/auth/login');
 
-        return $next($request);
     }
 }
