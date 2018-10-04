@@ -42,7 +42,8 @@ class CandidateController extends Controller
      */
     public function create()
     {
-        
+        $countries = $this->country->enum(['with_flags'=>true]);
+        return view('backend.candidate.create',compact('countries'));
     }
 
     /**

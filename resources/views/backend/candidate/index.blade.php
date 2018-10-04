@@ -58,6 +58,7 @@
           </div>
         </form>
       </div>
+      <a class="btn btn-primary pull-right" href="{{ route('candidates.create') }}" title="">{{ trans('backend.candidates.index.btn_create') }}</a><br><br>
       
       <table id="candidates-datatable" class="table table-bordered">
             <caption>{{ trans('backend.candidates.index.panel_caption') }}</caption>

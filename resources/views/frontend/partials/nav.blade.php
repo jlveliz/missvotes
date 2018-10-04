@@ -14,28 +14,32 @@
         <ul class="nav navbar-nav">
             @if (Auth::user() && !Auth::user()->is_admin)
                 {{-- <li class="@if(Request::path() == '/') active @endif"><a href="{{ route('website.home') }}">Candidatas</a></li> --}}
-               @can('postulate',Auth::user())
-                <li>
-                    <a href="https://www.misspanamericaninternational.com" class="btn"  alt="{{ trans('app.apply_now') }}" title="{{ trans('app.apply_now') }}"> {{ trans('app.home') }}</a>
-                </li>
-                <li>
-                    <a href="{{ route('apply.aplicationProcess') }}" class="btn btn-update-membership-or-buy"  alt="{{ trans('app.apply_now') }}" title="{{ trans('app.apply_now') }}"> {{ trans('app.apply_now') }}</a>
-                </li>
-                @endcan
+                @if ($existCasting)
+                   @can('postulate',Auth::user())
+                    <li>
+                        <a href="https://www.misspanamericaninternational.com" class="btn"  alt="{{ trans('app.apply_now') }}" title="{{ trans('app.apply_now') }}"> {{ trans('app.home') }}</a>
+                    </li>
+                        {{-- expr --}}
+                   
+                    <li>
+                        <a href="{{ route('apply.aplicationProcess') }}" class="btn btn-update-membership-or-buy"  alt="{{ trans('app.apply_now') }}" title="{{ trans('app.apply_now') }}"> {{ trans('app.apply_now') }}</a>
+                    </li>
+                    @endcan
                {{--  <li style="margin-left: 2px">
                     <a href="{{ route('list.buy.ticket') }}" class="btn btn-update-membership-or-buy"  alt="{{ trans('app.win_travel') }}" title="{{ trans('app.win_travel') }}"> {{ trans('app.win_travel') }}</a>
                 </li> --}}
                
+                @endif
             @endif
            
 
         </ul>
 
         @if (!Auth::user())
-            {{-- <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ route('client.show.login') }}">Entrar</a></li>
-                <li><a href="{{ route('client.show.register') }}">Registrarse</a></li>
-            </ul> --}}
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ route('client.show.login') }}">{{ trans('app.login') }}</a></li>
+                <li><a href="{{ route('client.show.register') }}">{{ trans('app.register') }}</a></li>
+            </ul>
         @else
              <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">

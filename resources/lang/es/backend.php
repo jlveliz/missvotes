@@ -89,6 +89,7 @@
 		// candidates
 		'candidates' => [
 			'index' => [
+				'btn_create'=>'Crear',
 				'panel_title' => 'Candidatas',
 				'panel_caption' => 'Lista de Candidatas',
 				'th_names' => 'Nombres',
@@ -161,6 +162,7 @@
 				'label_email'=>'Email',
 				'label_phone_number'=>'Número telefónico',
 				'label_address' => 'Dirección',
+				'label_phone_prefix' => 'Prefix',
 				'label_city' => 'Ciudad',
 				'label_state_province' => 'Estado / Provincia',
 				'label_measurements' => 'Medidas',
@@ -187,7 +189,10 @@
 				'flag_error_deleted' => 'Candidata no puede ser eliminada, Intente otra vez.',
 				'flag_disqualited' => 'La señorita ha sido descalificada',
 				'flag_qualited' => 'La señorita es un candidata',
-				'how_hear_about_us'=>'¿Como escuchó de nosotros?'
+				'how_hear_about_us'=>'¿Como escuchó de nosotros?',
+				'select_state_active' => 'Activo',
+				'select_state_inactive' => 'Inactiva',
+				'btn_cancel' => 'Cancelar'
 			],
 		],
 

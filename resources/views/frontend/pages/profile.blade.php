@@ -31,9 +31,11 @@
 			    {{-- <li role="presentation">
 			    	<a href="#tickets" aria-controls="tickets" role="tab" data-toggle="tab">{{ trans('raffle_ticket.tab_name') }} @if (count(Auth::user()->client->tickets) > 0) <strong> ({{count(Auth::user()->client->tickets)}}) </strong> @endif</a>
 			    </li> --}}
-			    <li role="presentation">
-			    	<a href="#activity" aria-controls="activity" role="tab" data-toggle="tab">@lang('account_profile.activities_tab_data')</a>
-			    </li>
+			    @if ($existCasting)
+				    <li role="presentation">
+				    	<a href="#activity" aria-controls="activity" role="tab" data-toggle="tab">@lang('account_profile.activities_tab_data')</a>
+				    </li>
+			    @endif
 		    @endif
   		</ul>
 
@@ -62,7 +64,7 @@
 			    		<div class="text-center">
 			    		@if (Auth::user()->is_admin)
 			    			<a href="{{ route('dashboard') }}" class="btn btn-primary btn-block btn-lg" alt="@lang('account_profile.admin_btn_data')" title="Ir a Administración"> <i class="fa fa-code"></i>@lang('account_profile.admin_btn_data')</a>
-			    		@else
+			    		@elseif($existCasting)
 			    			@can('postulate',Auth::user())
 				    			@if (Auth::user()->client->hasApply())
 				    				@if (Auth::user()->client->hasApply())

@@ -35,7 +35,7 @@ class MissRequest extends FormRequest
                     'email'=>'required|email|unique:miss',
                     'phone_preffix'=>'required',
                     'phone_number'=>'required',
-                    'how_did_you_hear_about_us'=>'required|not_in:null',
+                    // 'how_did_you_hear_about_us'=>'required|not_in:null',
                     'height' => 'required',
                     'weight'=>'required',
                     'address'=>'required',
@@ -48,9 +48,9 @@ class MissRequest extends FormRequest
                     'eye_color'=>'required',
                     'dairy_philosophy'=>'required',
                     'why_would_you_win'=>'required', 
-                    // 'photos'=>'array',
-                    'applicant_body_photo'=>'required|image|max:2000',
-                    'applicant_face_photo'=>'required|image|max:2000',
+                    'photos'=>'array',
+                    // 'applicant_body_photo'=>'required|image|max:2000',
+                    // 'applicant_face_photo'=>'required|image|max:2000',
                 ];
                 break;
             case "PUT":

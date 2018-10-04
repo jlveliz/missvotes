@@ -86,7 +86,7 @@
 				</div>
 				<div class="form-group col-md-3 col-sm-3 col-xs-12 @if($errors->has('phone_number')) has-error @endif">
 					<label class="control-label">{{ trans('backend.candidates.create-edit.label_phone_number') }} </label>
-					<input type="text" class="form-control" name="phone_number" value="{{ $applicant->phone_preffix }}{{ $candidate->phone_number }}">
+					<input type="text" class="form-control" name="phone_number" value="{{ $candidate->phone_preffix }}{{ $candidate->phone_number }}">
 					@if ($errors->has('phone_number')) <p class="help-block">{{ $errors->first('phone_number') }}</p> @endif
 				</div>
 				<div class="form-group col-md-3 col-sm-3 col-xs-4">
@@ -156,16 +156,12 @@
 			<div class="row">
 				<div class="col-md-6 col-sm-6 col-xs-12 @if($errors->has('dairy_philosophy')) has-error @endif">
 					<label class="control-label" for="dairy_philosophy">{{ trans('backend.candidates.create-edit.label_dairy_philosophy') }} </label>
-					<textarea class="form-control" name="dairy_philosophy" id="dairy_philosophy">
-						{!! trim($candidate->dairy_philosophy) !!}
-					</textarea>	
+					<textarea class="form-control" name="dairy_philosophy" id="dairy_philosophy">{!! trim($candidate->dairy_philosophy) !!}</textarea>	
 					@if($errors->has('dairy_philosophy')) <p class="help-block">{{ $errors->first('dairy_philosophy') }}</p> @endif
 				</div>
 				<div class="col-md-6 col-sm-6 col-xs-12 @if($errors->has('why_would_you_win')) has-error @endif">
 					<label class="control-label" for="best-film-book-in-life">{{ trans('backend.candidates.create-edit.label_why_would_you_win') }} {{config('app.name')}}? </label>
-					<textarea class="form-control" name="why_would_you_win" id="why-would-you-win">
-						{!! trim($candidate->why_would_you_win) !!}
-					</textarea>	
+					<textarea class="form-control" name="why_would_you_win" id="why-would-you-win">{!! trim($candidate->why_would_you_win) !!}</textarea>	
 					@if($errors->has('why_would_you_win')) <p class="help-block">{{ $errors->first('why_would_you_win') }}</p> @endif
 				</div>
 			</div>

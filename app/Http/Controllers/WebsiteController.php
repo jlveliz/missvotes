@@ -89,7 +89,7 @@ class WebsiteController extends Controller
 
     	$miss = $this->missRepo->find(['slug' => $slug]);
 
-        $misses = $this->missRepo->enum(['state'=>1]);
+        $misses = $this->missRepo->enumWithPhotos(['state'=>1]);
 
     	if (!$miss) abort(404);
 

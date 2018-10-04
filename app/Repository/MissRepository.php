@@ -389,4 +389,9 @@ class MissRepository implements MissRepositoryInterface
 		return $query;
 	}
 
+	public function enumWithPhotos()
+	{
+		return Miss::where('state','1')->whereHas('photos')->get();
+	}
+
 }

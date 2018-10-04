@@ -8,5 +8,7 @@ return [
 	'win_travel' => 'Gana un viaje',
 	'my_account' => 'Mi Cuenta',
 	'go_administration' => 'Ir a Administración',
-	'logout' => 'Salir'
+	'logout' => 'Salir',
+	'login' => 'Ingresar',
+	'register' => 'Registrarse',
 ];

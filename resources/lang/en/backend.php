@@ -89,6 +89,7 @@
 		// candidates
 		'candidates' => [
 			'index' => [
+				'btn_create'=>'Create',
 				'panel_title' => 'Candidates',
 				'panel_caption' => 'List of Candidates',
 				'th_names' => 'Names',
@@ -174,6 +175,7 @@
 				'label_dairy_philosophy'=>'Dairy Philosophy',
 				'label_why_would_you_win' => 'Why would you win',
 				'label_photos' => 'Photos',
+				'label_phone_prefix' => 'Prefix',
 				'select_default' => '--Select--',
 				'btn_back' => 'Back',
 				'btn_save' => 'Save',
@@ -187,7 +189,11 @@
 				'flag_error_deleted' => 'Candidate could not be deleted, try again',
 				'flag_disqualited' => 'The Miss has been disqualified as a candidate',
 				'flag_qualited' => 'The Miss is as a candidate',
-				'how_hear_about_us'=>'How Did You Hear About Us?'
+				'how_hear_about_us'=>'How Did You Hear About Us?',
+				'select_state_active' => 'Active',
+				'select_state_inactive' => 'Inactive',
+				'btn_cancel' => 'Cancel'
+
 			],
 		],
 
