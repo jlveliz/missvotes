@@ -45,8 +45,8 @@
 					<label class="control-label">{{ trans('backend.candidates.create-edit.label_state') }} </label>
 					<select name="state" id="state" class="form-control">
 						<option value="null">{{ trans('backend.candidates.create-edit.select_default') }}</option>
-						<option value="1" @if (old('state') == '1') selected @endif>{{ trans('backend.candidates.create-edit.select_state_active') }}</option>
-						<option value="0" @if (old('state') == '0') selected @endif>{{ trans('backend.candidates.create-edit.select_state_inactive') }}</option>
+						<option value="4" @if (old('state') == '5') selected @endif>{{ trans('backend.candidates.create-edit.select_state_active') }}</option>
+						<option value="5" @if (old('state') == '4') selected @endif>{{ trans('backend.candidates.create-edit.select_state_inactive') }}</option>
 					</select>
 					@if ($errors->has('state')) <p class="help-block">{{ $errors->first('state') }}</p> @endif
 				</div>

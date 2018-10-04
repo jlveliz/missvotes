@@ -193,6 +193,8 @@ class MissRequest extends FormRequest
                      'applicant_face_photo.image'=>'La archivo debe ser un formato de imagen',
                      'applicant_face_photo.max'=>'la foto excede el tamaño permitido',
                   ];
+               } else {
+                  return ['state.required'=>'Ingrese un estado'];
                }
         }
     }

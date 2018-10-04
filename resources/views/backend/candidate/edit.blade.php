@@ -182,7 +182,7 @@
 	</form>
 	@if ($candidate->state == '5')
 	<form action="{{ route('candidates.update',$candidate->id) }}" method="POST" style="display: inline">
-		{{ csrf_field() }}
+			{{ csrf_field() }}
 			<input type="hidden" name="_method" value="PUT">
 			<input type="hidden" name="state" value="{{\Missvote\Models\Miss::DISQUALIFIEDCANDIDATE}}">
 		    <button type="submit" class="btn btn-warning" id="save">{{ trans('backend.candidates.create-edit.disqualify') }}</button>
