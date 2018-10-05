@@ -51,7 +51,8 @@ class AuthServiceProvider extends ServiceProvider
                             ->where('miss_id',$miss->id)
                             ->where('type','membership')
                             ->whereRaw("DATE_FORMAT(created_at,".DB::raw("'%Y-%m-%d'").") = DATE_FORMAT(".DB::raw("now()").",".DB::raw("'%Y-%m-%d'").")")
-                            ->first();
+                            ->toSql();
+            dd($existVote);
             if (!$existVote) return true;
             return false;
         });
