@@ -50,7 +50,7 @@ class AuthServiceProvider extends ServiceProvider
             $existVote =  Vote::where('client_id',$user->id)
                             ->where('miss_id',$miss->id)
                             ->where('type','membership')
-                            ->whereRaw("DATE_FORMAT(created_at,".DB::raw("'%Y-%m-%d'").") = DATE_FORMAT(".DB::raw("now()").",".DB::raw("'%Y-%m-%d'").")")
+                            ->whereRaw("DATE_FORMAT(DATE_ADD(created_at, INTERVAL 3 HOUR),'%H:%i') >= DATE_FORMAT(".DB::raw("now()").",'%H:%i') and DATE_FORMAT(created_at,".DB::raw("'%Y-%m-%d'").") = DATE_FORMAT(".DB::raw("now()").",".DB::raw("'%Y-%m-%d'").")")
                             ->first();
             if (!$existVote) return true;
             return false;
