@@ -19,6 +19,11 @@ hr {
     border-bottom: 3px solid #ffffff;
 }
 
+.navbar-inverse-index {
+    border-bottom: 0px !important;
+    
+}
+
 .navbar-collapse .navbar-brand {
     display: inline-block;
     float: none;

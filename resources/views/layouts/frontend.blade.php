@@ -39,9 +39,12 @@
 	</header><!-- /header -->
 	<div class="container @if(Request::path() == '/') container-index @else container-app @endif">
         @yield('content')
-		<footer class="row footer">
+		
+        @if(Request::path() != '/')
+        <footer class="row footer">
 			<p class="text-center">{{date('Y')}}© {{ trans('app.credits') }}.</p>
 		</footer>
+        @endif
 	</div>
     <script src="{{asset('public/js/app.js')}} "></script>
     <script src="{{asset('public/js/jquery-validation/dist/jquery.validate.min.js')}} "></script>

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-main">
+<nav class="navbar @if(Request::path() == '/') navbar-inverse navbar-inverse-index  @else navbar-inverse @endif navbar-main">
     <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -36,10 +36,10 @@
         </ul>
 
         @if (!Auth::user())
-            <ul class="nav navbar-nav navbar-right">
+            {{-- <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{ route('client.show.login') }}">{{ trans('app.login') }}</a></li>
                 <li><a href="{{ route('client.show.register') }}">{{ trans('app.register') }}</a></li>
-            </ul>
+            </ul> --}}
         @else
              <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
