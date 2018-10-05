@@ -11,7 +11,7 @@
 		'hip_measure'=>'Cad.',
 		'dairy_philosophy'=>'Filosofía Diaria',
 		'why_would_you_win'=> 'Porque le gustaría ganar el'.config('app.name'),
-		'thanks_vote' => '<b>Gracias por registrar tu voto, Podrá volver a votar en  <span class="text-danger">24 horas</span> o puede <span class="text-danger">comprar</span> o <span class="text-danger">usar</span> un ticket de voto</span></b>',
+		'thanks_vote' => 'Gracias por registrar tu voto, Podrá volver a votar en  <span class="text-danger">180 minutos</span>',
 		'thanks_vote_ticket' => '<b>Gracias por votar mediante el ticket <span id="vote-id" class="text-danger"></span></b>',
 		'you_cant' =>"No puede realizar ésta acción",
 		'vote' => 'Votar',

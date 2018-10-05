@@ -30,7 +30,7 @@ class LoginClientController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/account';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -205,7 +205,7 @@ class LoginClientController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->route('client.login');
+        return redirect()->route('website.home');
     }
 
 

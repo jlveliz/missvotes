@@ -19,7 +19,7 @@
         ]); ?>
     </script>
 </head>
-<body>
+<body @if(Request::path() == '/') class="body-black" @endif>
     {{-- @if (App::isLocale('es'))
         @include('frontend.partials.header-es-nav')
     @else
@@ -37,7 +37,7 @@
 	<header id="header">
         @include('frontend.partials.nav')
 	</header><!-- /header -->
-	<div class="container container-app">
+	<div class="container @if(Request::path() == '/') container-index @else container-app @endif">
         @yield('content')
 		<footer class="row footer">
 			<p class="text-center">{{date('Y')}}© {{ trans('app.credits') }}.</p>

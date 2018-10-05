@@ -1,18 +1,22 @@
 @extends('layouts.frontend')
+@section('js')
+<script type="text/javascript" src="{{ asset('/public/js/show-miss-app.js') }}"></script>
+@endsection()
 @section('content')
-<br><br>
 <div class="row text-center">
     {{ $misses->links() }}
 </div>
 <div class="row gallery-container">
 	@foreach ($misses as $miss)
-        <a href="{{ route('website.miss.show',$miss->slug) }}">
-            <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe thumbnail " style="background-image: url('{{config('app.url') .'/'. $miss->photos()->first()->path }}'); ">
-                {{-- <div class="middle">
-                    <div class="text">{{$miss->name}} {{ $miss->last_name }} <br> <small>({{ $miss->country->name}})</small></div>
-                </div> --}}
+        <div class="miss-item">
+            <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe thumbnail " style="background-image: url('{{config('app.url') .'/'. $miss->photos()->first()->path }}'); ">
+                <div class="middle">
+                    <div class="text">
+                        @include('frontend.partials.vote',['miss'=>$miss])
+                    </div>
+                </div>
             </div>
-        </a>
+        </div>
     @endforeach
 
 </div>

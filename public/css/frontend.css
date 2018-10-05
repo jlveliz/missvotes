@@ -1,5 +1,9 @@
 body {
-    background: #eeefee;
+    background: #f5f8fa;
+}
+
+.body-black {
+    background: #000000!important;
 }
 
 hr {
@@ -66,12 +70,17 @@ hr {
 
 @media screen and (max-width:1000px) and (min-width: 510px) {
     .thumbnail {
-        margin-left: 35px!important;
+        text-align: center;
+        margin-left: 85px!important;
         height: 300px;
         width: 300px;
     }
 }
 
+.container-index {
+    background-color: #000000;
+    
+}
 .container-app {
     background-color: #ffffff;
     border: 1px solid #cdcdcd;
@@ -275,10 +284,10 @@ hr {
     padding: 0px;
     position: relative;
     background-color: #fbfbfb;
-    width: 300px;
-    height: 300px;
+    width: 279px;
+    height: 279px;
     overflow: hidden;
-    margin-left: 60px;
+    margin-left: 5px;
     background-size: cover;
     background-position: top center;
     background-repeat: no-repeat;
@@ -310,11 +319,17 @@ hr {
 }
 
 .middle {
-    top: 84%;
-    position: relative;
+    top: 40%;
+    position: absolute;
     width: 100%;
+    opacity: 0;
+    transition: 0.5s;
+    height: 100%;
 }
 
+.thumbnail:hover .middle {
+    opacity: 1
+}
 .thumbnail:hover .image {
     opacity: 0.3;
 }
@@ -324,12 +339,14 @@ hr {
 }
 
 .text {
-    background-color: #ddcc33;
     color: white;
     font-size: 14px;
     padding: 5px 5px;
     border-radius: 2px;
+
 }
+
+
 
 
 /*******IMG ***********/
@@ -416,8 +433,8 @@ hr {
 .btn-vote {
     color: #fff;
     background-color: #ddcc33;
-    border-color: #aa9335;
-    border-radius: 2px;
+    /*border-color: #aa9335;*/
+    /*border-radius: 2px;*/
 }
 
 .btn-vote:hover {
@@ -457,3 +474,10 @@ hr {
 
 
 /*******AUTH ******/
+
+
+.message-bg{
+    background:#ddcc33;
+    margin: 0px;
+    padding:0px 
+}
