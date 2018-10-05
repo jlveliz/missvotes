@@ -109,7 +109,7 @@ hr {
 }
 
 .gallery_product {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 
@@ -191,6 +191,25 @@ hr {
     margin-top: 10px;
     font-size: 13px;
     text-align: center;
+}
+
+.go-modal-login-container {
+    background: rgb(35, 35, 35, 0.8);
+    color: #ffffff;
+    padding: 80px;
+    width: 100% !important;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+
+.go-login-text  {
+    font-size: 20px;
+    color: #ffffff;
+}
+
+.go-login-text a {
+    color: #ffffff;
 }
 
 
@@ -298,11 +317,11 @@ hr {
     background-repeat: no-repeat;
 }
 
-.thumbnail a img {
+.thumbnail img {
     position: absolute;
     left: 50%;
     top: 50%;
-    height: 100%;
+    height: calc(width * 1.75)
     width: auto;
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
@@ -324,12 +343,14 @@ hr {
 }
 
 .middle {
-    top: 40%;
-    position: absolute;
-    width: 100%;
-    opacity: 0;
-    transition: 0.5s;
-    height: 100%;
+   /* bottom: 0;
+    position: absolute;*/
+    width: 279px;
+    /*opacity: 0;*/
+    /*transition: 0.5s;*/
+    height: 20px;
+    background: #ddcc33;
+    margin-left: 5px;
 }
 
 .thumbnail:hover .middle {
@@ -346,8 +367,8 @@ hr {
 .text {
     color: white;
     font-size: 14px;
-    padding: 5px 5px;
-    border-radius: 2px;
+   /* padding: 5px 5px;
+    border-radius: 2px;*/
 
 }
 
@@ -482,7 +503,7 @@ hr {
 
 
 .message-bg{
-    background:#ddcc33;
+    background:#000;
     margin: 0px;
     padding:0px 
 }

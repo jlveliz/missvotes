@@ -30,18 +30,26 @@
 					{{ csrf_field() }}
 					<input type="hidden" name="miss_id" value="{{$miss->id}}">
 					<input type="hidden" name="client_id" value="{{Auth::user()->id}}">
-					<button id="btn-vote-default" type="submit" class="btn btn-vote btn-lg" @cannot('vote', Auth::user()) disabled @endcannot>
-						<i class="fa fa-heart like-vote" aria-hidden="true"></i> <span></span>
+					<button id="btn-vote-default" type="submit" class="btn btn-link btn-lg" @cannot('vote', Auth::user()) disabled @endcannot>
+						<img src="{{ asset('public/images/btn_like.png') }}" alt="">
 					</button>
 				</form>
 			@endcan()
 		@endcan
 	@else
-		<p class="message-bg text-center">
-			{{ trans('miss-vote.for_vote') }}, 
-			<a href="{{ route('client.show.login') }}"  title="{{ trans('miss-vote.login') }}"><span>{{ trans('miss-vote.login') }}</span></a> 
-			{{ trans('miss-vote.or') }}  
-			<a href="{{ route('client.show.register') }}" title="{{ trans('miss-vote.register') }}"><span>{{ trans('miss-vote.register') }}</span></a>
-		</p> 
+		{{-- <p class="message-bg text-center"> --}}
+			{{-- {{ trans('miss-vote.for_vote') }},  --}}
+			{{-- <a href="{{ route('client.show.login') }}"  title="{{ trans('miss-vote.login') }}"><span>{{ trans('miss-vote.login') }}</span></a>  --}}
+			{{-- {{ trans('miss-vote.or') }}   --}}
+			{{-- <a href="{{ route('client.show.register') }}" title="{{ trans('miss-vote.register') }}"><span>{{ trans('miss-vote.register') }}</span></a> --}}
+		{{-- </p>  --}}
+		<form action="{{ route('website.miss.vote.store') }}" method="POST"  style="display: inline"  >
+					{{ csrf_field() }}
+					<input type="hidden" name="miss_id" value="{{$miss->id}}">
+					{{-- <input type="hidden" name="client_id" value="{{Auth::user()->id}}"> --}}
+					<button id="btn-vote-default" type="submit" class="btn btn-link btn-lg" disabled>
+						<img src="{{ asset('public/images/btn_like.png') }}" alt="">
+					</button>
+		</form>
 	@endif
 </div>
