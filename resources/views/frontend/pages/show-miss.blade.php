@@ -31,14 +31,18 @@
 			    	</div>
 			  	@endforeach
 
-			  	 <div class="Wallop-pagination">
-			  	 	@foreach ($miss->photos as $key => $photo) 
-	      				<button class="Wallop-dot @if($key == 0) Wallop-dot--current @endif">go to item {{ $key + 1 }}</button>
-			  	 	@endforeach
-	      		</div>
+			  	@if (count($miss->photos) > 1)
+				  	<div class="Wallop-pagination">
+				  	 	@foreach ($miss->photos as $key => $photo) 
+		      				<button class="Wallop-dot @if($key == 0) Wallop-dot--current @endif">go to item {{ $key + 1 }}</button>
+				  	 	@endforeach
+		      		</div>
+			  	@endif
 			  </div>
-			  <button class="Wallop-buttonPrevious">Previous</button>
-			  <button class="Wallop-buttonNext">Next</button>
+			  @if (count($miss->photos) > 1)
+				  <button class="Wallop-buttonPrevious">Previous</button>
+				  <button class="Wallop-buttonNext">Next</button>
+			  @endif
 			</div>
 		</div>
 		{{-- description --}}

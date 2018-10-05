@@ -8,9 +8,9 @@
 	@foreach ($misses as $miss)
         <a href="{{ route('website.miss.show',$miss->slug) }}">
             <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe thumbnail " style="background-image: url('{{config('app.url') .'/'. $miss->photos()->first()->path }}'); ">
-                <div class="middle">
-                    <div class="text">{{ $miss->country->name}}</div>
-                </div>
+                {{-- <div class="middle">
+                    <div class="text">{{$miss->name}} {{ $miss->last_name }} <br> <small>({{ $miss->country->name}})</small></div>
+                </div> --}}
             </div>
         </a>
     @endforeach
