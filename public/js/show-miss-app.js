@@ -78,8 +78,22 @@ $(document).ready(function() {
     //     slidesToScroll: 4,
     // })
 
+    function openSuccessModal() {
+        
+        $("#open-success-modal").modal();
 
-    $("#btn-vote-default").on('click', function(event) {
+        $("#open-success-modal").on('shown.bs.modal',function(){
+            
+            setTimeout(function() {
+                $("#open-success-modal").modal('hide');
+            }, 5000);
+        });
+
+    }
+
+
+    $(".btn-vote-default").on('click', function(event) {
+        
         event.preventDefault();
         event.stopPropagation();
         _this = $(this);
@@ -95,8 +109,10 @@ $(document).ready(function() {
                 data: form.serialize(),
             })
             .done(function() {
+                
+                _this.parents('form').prev('.thanks-vote-js').removeAttr('style');
+                openSuccessModal();
                 _this.parents('form').remove();
-                $("#thanks-vote-js").removeAttr('style');
             })
             .fail(function() {
                 _this.removeAttr('disabled', true);

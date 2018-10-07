@@ -5,11 +5,16 @@
 
 @if(!Auth::user())
     <script type="text/javascript">
+
         jQuery(document).ready(function($) {
-            $("#go-login-modal").modal({
-                backdrop : 'static',
-                keyboard : false
-            });
+
+            $('.open-login').on('click',openModalLogin);
+
+            function openModalLogin() {
+                    $("#go-login-modal").modal({
+                        keyboard : true
+                    });
+            }
         });
     </script>
 @endif
@@ -18,12 +23,12 @@
 
 @section('content')
 <div class="row text-center">
-    {{ $misses->links() }}
+    {{-- {{ $misses->links() }} --}}
 </div>
 <div class="row gallery-container">
 	@foreach ($misses as $miss)
-        <div class="miss-item">
-            <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe thumbnail" style="background-image: url('{{config('app.url') .'/'. $miss->photos()->first()->path }}'); ">
+        <div class="miss-item"  style="float:left">
+            <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe thumbnail open-login" style="background-image: url('{{config('app.url') .'/'. $miss->photos()->first()->path }}'); ">
                 
             </div>
             <div class="middle">
@@ -35,9 +40,11 @@
     @endforeach
 @if(!Auth::user())
     @include('frontend.modals.go-login');
+@else
+    @include('frontend.modals.open-success-modal');
 @endif
 </div>
 <div class="row text-center">
-    {{ $misses->links() }}
+    {{-- {{ $misses->links() }} --}}
 </div>
 @endsection()

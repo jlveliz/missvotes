@@ -15,7 +15,9 @@ class MissRepository implements MissRepositoryInterface
 	
 	public function paginate()
 	{
-		return Miss::where('state',Miss::CANDIDATE)->whereHas('photos')->paginate();
+		return Miss::with(['country'=>function($query){
+					$query->orderBy('name','asc');
+				}])->where('state',Miss::CANDIDATE)->whereHas('photos')->get();
 	}
 
 	public function enum($request = null)

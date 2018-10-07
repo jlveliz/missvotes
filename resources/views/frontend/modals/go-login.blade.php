@@ -2,8 +2,8 @@
 	<div class="modal-dialog modal-lg" style="margin-top: 5%">
 		<div class="modal-content go-modal-login-container">
 			<img src="{{ asset('public/images/newlogo.png') }}" class="text-center" alt="" style="width: 10%">
-		  <h2>PARA PODER VOTAR POR TU CANDIDATA FAVORITA</h2><br>
-		  <p class="text-center go-login-text"><a href="{{ route('client.show.login') }}" title="">INICIA SESIÓN</a> O <a href="{{ route('client.show.register') }}" title="">SUSCRIBETE</a></p>
+		  <h2>PARA VOTAR POR TU CANDIDATA FAVORITA</h2><br>
+		  <p class="text-center go-login-text"><a href="{{ route('client.show.login') }}" title="">INICIAR SESIÓN</a> O <a href="{{ route('client.show.register') }}" title="">SUSCRÍBETE</a></p>
 		</div>
 	</div>
 </div>
