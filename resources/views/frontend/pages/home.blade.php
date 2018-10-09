@@ -6,10 +6,14 @@
 @if(!Auth::user())
     <script type="text/javascript">
         jQuery(document).ready(function($) {
-            $("#go-login-modal").modal({
-                backdrop : 'static',
-                keyboard : false
-            });
+
+            $('.open-modal').on('click',openModal);
+
+            function openModal () {
+                $("#go-login-modal").modal({
+                    backdrop : 'static',
+                });
+            }
         });
     </script>
 @endif
@@ -22,8 +26,8 @@
 </div>
 <div class="row gallery-container">
 	@foreach ($misses as $miss)
-        <div class="miss-item">
-            <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe thumbnail" style="background-image: url('{{config('app.url') .'/'. $miss->photos()->first()->path }}'); ">
+        <div class="miss-item" style="float:left">
+            <div class="gallery_product col-lg-3 col-md-3 col-sm-3 col-xs-6 filter hdpe thumbnail open-modal" style="background-image: url('{{config('app.url') .'/'. $miss->photos()->first()->path }}'); ">
                 
             </div>
             <div class="middle">
@@ -33,6 +37,9 @@
             </div>
         </div>
     @endforeach
+
+    
+
 @if(!Auth::user())
     @include('frontend.modals.go-login');
 @endif

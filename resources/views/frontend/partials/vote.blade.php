@@ -47,7 +47,7 @@
 					{{ csrf_field() }}
 					<input type="hidden" name="miss_id" value="{{$miss->id}}">
 					{{-- <input type="hidden" name="client_id" value="{{Auth::user()->id}}"> --}}
-					<button id="btn-vote-default" type="submit" class="btn btn-link btn-lg" disabled>
+					<button id="btn-vote-default" type="submit" class="btn btn-link btn-lg open-modal" disabled>
 						<img src="{{ asset('public/images/btn_like.png') }}" alt="">
 					</button>
 		</form>

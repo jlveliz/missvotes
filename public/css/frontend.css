@@ -67,18 +67,21 @@ hr {
 
 @media screen and (max-width:500px) and (min-width: 300px) {
     .thumbnail {
-        margin-left: 20px!important;
+        /*margin-left: 20px!important;*/
         height: 50px;
         width: 50px;
+        margin:0 auto;
     }
 }
 
 @media screen and (max-width:1000px) and (min-width: 510px) {
     .thumbnail {
         text-align: center;
-        margin-left: 85px!important;
+        /*margin-left: 85px!important;*/
         height: 300px;
         width: 300px;
+        margin:0 auto;
+        display: block;
     }
 }
 
@@ -349,7 +352,7 @@ hr {
     /*opacity: 0;*/
     /*transition: 0.5s;*/
     height: 20px;
-    background: #ddcc33;
+    /*background: #ddcc33;*/
     margin-left: 5px;
 }
 
@@ -506,4 +509,8 @@ hr {
     background:#000;
     margin: 0px;
     padding:0px 
+}
+
+.miss-item {
+    margin-bottom: 60px;
 }
