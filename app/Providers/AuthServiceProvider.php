@@ -51,7 +51,10 @@ class AuthServiceProvider extends ServiceProvider
                             ->where('miss_id',$miss->id)
                             ->where('type','membership')
                             ->whereRaw("DATE_FORMAT(DATE_ADD(created_at, INTERVAL 3 HOUR),'%H:%i') >= DATE_FORMAT(".DB::raw("now()").",'%H:%i') and DATE_FORMAT(created_at,".DB::raw("'%Y-%m-%d'").") = DATE_FORMAT(".DB::raw("now()").",".DB::raw("'%Y-%m-%d'").")")
+                            ->orderBy('id','desc')
+                            ->limit(1)
                             ->first();
+            
             if (!$existVote) return true;
             return false;
         });

@@ -11,7 +11,7 @@
 		'hip_measure'=>'Hip',
 		'dairy_philosophy'=>'Dairy Philosophy',
 		'why_would_you_win'=> 'Why would you like to win  '.config('app.name'),
-		'thanks_vote' => 'Thank you for registering your vote, You can re-vote in <span class="text-danger">180 minutes</span>',
+		'thanks_vote' => 'THANKS FOR YOUR VOTE, YOU CAN RE-VOTE WITHIN <span class="text-danger">3 HOURS</span>',
 		'thanks_vote_ticket' => '<b>Thank you for voting via ticket <span id="vote-id" class="text-danger"></span></b>',
 		'you_cant' =>"You can't perform this action",
 		'vote' => 'Vote',

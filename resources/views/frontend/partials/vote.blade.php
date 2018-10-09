@@ -16,7 +16,7 @@
 		@endif
 
 		{{-- js --}}
-		<p class="message-bg text-center" id="thanks-vote-js" style="display: none">
+		<p class="message-bg text-center thanks-vote-js"  style="display: none">
 			{!! trans('miss-vote.thanks_vote') !!}
 		</p>
 		<p class="message-bg text-center" id="thanks-vote-ticket-js" style="display: none">
@@ -26,11 +26,14 @@
 
 		@can('vote',Auth::user())
 			@can('vote_today', $miss)
+				<p class="message-bg text-center thanks-vote-js"  style="display: none">
+					{!! trans('miss-vote.thanks_vote') !!}
+				</p>
 				<form action="{{ route('website.miss.vote.store') }}" method="POST"  style="display: inline"  >
 					{{ csrf_field() }}
 					<input type="hidden" name="miss_id" value="{{$miss->id}}">
 					<input type="hidden" name="client_id" value="{{Auth::user()->id}}">
-					<button id="btn-vote-default" type="submit" class="btn btn-link btn-lg" @cannot('vote', Auth::user()) disabled @endcannot>
+					<button  type="submit" class="btn btn-link btn-lg btn-vote-default" @cannot('vote', Auth::user()) disabled @endcannot>
 						<img src="{{ asset('public/images/btn_like.png') }}" alt="">
 					</button>
 				</form>
@@ -47,7 +50,7 @@
 					{{ csrf_field() }}
 					<input type="hidden" name="miss_id" value="{{$miss->id}}">
 					{{-- <input type="hidden" name="client_id" value="{{Auth::user()->id}}"> --}}
-					<button id="btn-vote-default" type="submit" class="btn btn-link btn-lg open-modal" disabled>
+					<button id="btn-vote-default" type="button" class="open-login btn btn-link btn-lg open-modal">
 						<img src="{{ asset('public/images/btn_like.png') }}" alt="">
 					</button>
 		</form>
