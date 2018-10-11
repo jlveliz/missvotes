@@ -8,21 +8,12 @@
 
         jQuery(document).ready(function($) {
 
-<<<<<<< HEAD
-            $('.open-modal').on('click',openModal);
-
-            function openModal () {
-                $("#go-login-modal").modal({
-                    backdrop : 'static',
-                });
-=======
             $('.open-login').on('click',openModalLogin);
 
             function openModalLogin() {
                     $("#go-login-modal").modal({
                         keyboard : true
                     });
->>>>>>> ec75229299dec4269709cf158229bd06593a0ae7
             }
         });
     </script>

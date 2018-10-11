@@ -74,7 +74,6 @@ class VoteController extends Controller
             $data = $request->all();
             //find a client
             $client = $this->clientRepo->find(Auth::user()->id);
-            
             //vote for ticket
             if ($request->has('ticket_id')) {
                 //update the ticket client 
@@ -86,6 +85,7 @@ class VoteController extends Controller
                 $data['type'] = 'ticket';
                 
             } else {
+
                 //vote for membership
                 //find a val vote
                 $valVote = $client &&  $client->current_membership() ? $client->current_membership()->membership->points_per_vote :  config('vote.vote-default');
@@ -99,7 +99,6 @@ class VoteController extends Controller
             $data['value'] = $valVote;
             
             $vote = $this->vote->save($data);
-            
             $sessionData = [
                 'tipo_mensaje' => 'success',
                 'mensaje' => '',

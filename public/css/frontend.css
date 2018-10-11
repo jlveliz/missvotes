@@ -200,9 +200,24 @@ hr {
     background: rgb(35, 35, 35, 0.8);
     color: #ffffff;
     padding: 80px;
-    width: 100% !important;
+    width: 70% !important;
     margin: 0 auto;
     overflow: hidden;
+    border: 1px solid #F1D364
+}
+
+.vertical-alignment-helper {
+    display:table;
+    height: 100%;
+    width: 100%;
+    pointer-events:none;
+}
+
+.vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+    pointer-events:none;
 }
 
 

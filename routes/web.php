@@ -53,7 +53,7 @@ Route::group(['middleware'=>'can:postulate','prefix'=>'apply'],function(){
 
 	Route::post("pay-stripe-aplication-process",'ApplyCandidateController@payStripeApplyProcess')->name('pay.stripe.aplication')->middleware('auth','isClient');
 
-	Route::post('insert-applicant','ApplyCandidateController@insertPrecandidate')->name('insert.applicant')->middleware('auth','isClient');;
+	Route::post('insert-applicant','ApplyCandidateController@insertPrecandidate')->name('insert.applicant')->middleware('auth','isClient');
 });
 
 Route::group(['prefix'=>'auth'],function(){

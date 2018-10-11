@@ -268,7 +268,7 @@ class ApplyCandidateController extends Controller
         }
 
         $mensaje['payment-type'] = 'error';
-        $mensaje['payment-message'] = Lang::get('paypal.error_pay_apply');;
+        $mensaje['payment-message'] = Lang::get('paypal.error_pay_apply');
         return redirect()->to('apply/aplication-process#pay')->with($mensaje);
         // return redirect()->away('https://www.misspanamericaninternational.com/online-application')->with($mensaje);
 
