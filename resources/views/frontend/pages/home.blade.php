@@ -41,9 +41,9 @@
     
 
 @if(!Auth::user())
-    @include('frontend.modals.go-login');
+    @include('frontend.modals.go-login')
 @else
-    @include('frontend.modals.open-success-modal');
+    @include('frontend.modals.open-success-modal')
 @endif
 </div>
 <div class="row text-center">
