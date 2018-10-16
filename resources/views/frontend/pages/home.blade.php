@@ -12,7 +12,7 @@
 
             function openModalLogin() {
                     $("#go-login-modal").modal({
-                        keyboard : true
+                        // keyboard : true
                     });
             }
         });
