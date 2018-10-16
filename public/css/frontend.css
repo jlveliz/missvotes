@@ -197,7 +197,7 @@ hr {
 }
 
 .go-modal-login-container {
-    background: rgb(35, 35, 35, 0.8);
+    background: rgba(35, 35, 35, 0.8)!important;
     color: #ffffff;
     padding: 80px;
     width: 80% !important;
